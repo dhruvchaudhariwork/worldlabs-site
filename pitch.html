@@ -108,31 +108,69 @@
   /* Problem list */
   .problem-list {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
     margin-top: var(--space-8);
-    max-width: 640px;
   }
 
-  .problem-list li {
-    display: flex;
-    gap: var(--space-4);
-    align-items: flex-start;
+  .problem-item {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
   }
 
   .problem-cost {
     font-family: var(--font-body);
     font-weight: 800;
-    font-size: var(--text-lg);
-    white-space: nowrap;
-    min-width: 80px;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .problem-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-2);
   }
 
   .problem-desc {
-    font-size: var(--text-base);
+    font-size: var(--text-sm);
     color: var(--color-text-secondary);
     line-height: 1.5;
+  }
+
+  /* Slide visual */
+  .slide-visual {
+    margin-top: var(--space-10);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    aspect-ratio: 16 / 7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    position: relative;
+  }
+
+  .slide-visual svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .split-slide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+
+  .split-slide .slide-visual {
+    margin-top: 0;
+    aspect-ratio: 1;
   }
 
   /* Comparison table */
@@ -257,6 +295,8 @@
     .stat-grid { grid-template-columns: 1fr; }
     .rev-row { grid-template-columns: 1fr; }
     .ask-grid { grid-template-columns: 1fr; }
+    .problem-list { grid-template-columns: 1fr; }
+    .split-slide { grid-template-columns: 1fr; }
     .pitch-title { font-size: var(--text-2xl); }
   }
 </style>
@@ -278,6 +318,35 @@
     <div class="pitch-label">OPSFLOW &mdash; INVESTOR DECK</div>
     <h1 class="pitch-title">The AI COO for<br>e-commerce brands</h1>
     <p class="pitch-sub">One platform that automates customer support, subscription retention, inventory ops, and chargeback protection &mdash; so lean teams can scale without hiring.</p>
+    <div class="slide-visual" style="margin-top:var(--space-10);aspect-ratio:16/6;">
+      <svg viewBox="0 0 1140 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pipeline visualization -->
+        <rect x="40" y="120" width="200" height="160" rx="12" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="140" y="165" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11" font-weight="600" letter-spacing="0.1em">INGEST</text>
+        <text x="140" y="195" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Shopify / Woo / BC</text>
+        <text x="140" y="215" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Gmail / Stripe</text>
+        <text x="140" y="235" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">ReCharge / Loop</text>
+        <path d="M260 200 L300 200" stroke="var(--color-text-tertiary)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="310" y="120" width="200" height="160" rx="12" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="410" y="165" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11" font-weight="600" letter-spacing="0.1em">PROCESS</text>
+        <text x="410" y="195" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Event Router</text>
+        <text x="410" y="215" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Redis Queue</text>
+        <text x="410" y="235" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">LLM Orchestrator</text>
+        <path d="M530 200 L570 200" stroke="var(--color-text-tertiary)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="580" y="120" width="200" height="160" rx="12" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="680" y="165" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11" font-weight="600" letter-spacing="0.1em">AGENTS</text>
+        <text x="680" y="195" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">SupportAgent</text>
+        <text x="680" y="215" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">RetentionAgent</text>
+        <text x="680" y="235" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">InventoryAgent</text>
+        <path d="M800 200 L840 200" stroke="var(--color-text-tertiary)" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <rect x="850" y="120" width="200" height="160" rx="12" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="950" y="165" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11" font-weight="600" letter-spacing="0.1em">ACT</text>
+        <text x="950" y="195" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Auto-reply emails</text>
+        <text x="950" y="215" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Slack alerts</text>
+        <text x="950" y="235" text-anchor="middle" fill="var(--color-text-secondary)" font-size="13">Save flows</text>
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-auto"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="var(--color-text-tertiary)" stroke-width="1.5"/></marker></defs>
+      </svg>
+    </div>
   </div>
 </section>
 
@@ -289,24 +358,28 @@
     <h2 class="section-title" style="font-size:var(--text-2xl);">E-commerce ops is a tax on growth</h2>
     <p class="pitch-sub">Every brand hitting $100K+/mo GMV faces the same bottleneck: ops busywork eats the team alive.</p>
 
-    <ul class="problem-list">
-      <li>
-        <span class="problem-cost">$6.00</span>
-        <span class="problem-desc">Average cost per human support ticket. AI interactions cost $0.50. That's 12x cheaper.</span>
-      </li>
-      <li>
-        <span class="problem-cost">$190</span>
-        <span class="problem-desc">Average cost per chargeback (dispute fees + lost product + admin time). Most brands lose 80% of disputes because they miss the response window.</span>
-      </li>
-      <li>
-        <span class="problem-cost">$2-4K/mo</span>
-        <span class="problem-desc">What brands pay for a VA to manage support + disputes + inventory manually. Slow, error-prone, doesn't scale.</span>
-      </li>
-      <li>
-        <span class="problem-cost">15-30%</span>
-        <span class="problem-desc">Subscription revenue lost to involuntary churn (failed payments). Most brands don't retry intelligently or run save flows.</span>
-      </li>
-    </ul>
+    <div class="problem-list">
+      <div class="problem-item">
+        <div class="problem-label">Support cost</div>
+        <div class="problem-cost">$6 vs $0.50</div>
+        <div class="problem-desc">Average human ticket vs AI interaction. 12x cheaper. At 500 tickets/mo that's $2,750 saved.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-label">Chargeback cost</div>
+        <div class="problem-cost">$190/dispute</div>
+        <div class="problem-desc">Dispute fees + lost product + admin time. 80% of brands lose because they miss the response window.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-label">Manual ops</div>
+        <div class="problem-cost">$2-4K/mo</div>
+        <div class="problem-desc">What brands pay a VA to manage support, disputes, and inventory. Slow, error-prone, doesn't scale.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-label">Involuntary churn</div>
+        <div class="problem-cost">15-30%</div>
+        <div class="problem-desc">Subscription revenue lost to failed payments. Most brands don't retry intelligently or run save flows.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -398,18 +471,52 @@
     <h2 class="section-title" style="font-size:var(--text-2xl);">Cross-agent intelligence is the moat</h2>
     <p class="pitch-sub">Every standalone tool operates in a silo. OpsFlow connects signals across support, subscriptions, inventory, and disputes to make smarter decisions.</p>
 
+    <div class="slide-visual" style="margin-top:var(--space-8);aspect-ratio:16/8;">
+      <svg viewBox="0 0 1140 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Central hub -->
+        <circle cx="570" cy="280" r="80" stroke="var(--color-text-tertiary)" stroke-width="1.5" stroke-dasharray="6 4"/>
+        <text x="570" y="275" text-anchor="middle" fill="var(--color-text)" font-size="14" font-weight="700">OpsFlow</text>
+        <text x="570" y="295" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11">Shared context</text>
+        <!-- Nodes -->
+        <rect x="150" y="100" width="180" height="80" rx="10" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="240" y="135" text-anchor="middle" fill="var(--color-text)" font-size="13" font-weight="600">SupportAgent</text>
+        <text x="240" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11">Tickets + intent data</text>
+        <rect x="810" y="100" width="180" height="80" rx="10" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="900" y="135" text-anchor="middle" fill="var(--color-text)" font-size="13" font-weight="600">RetentionAgent</text>
+        <text x="900" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11">Churn + rebill data</text>
+        <rect x="150" y="380" width="180" height="80" rx="10" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="240" y="415" text-anchor="middle" fill="var(--color-text)" font-size="13" font-weight="600">InventoryAgent</text>
+        <text x="240" y="435" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11">Stock + velocity data</text>
+        <rect x="810" y="380" width="180" height="80" rx="10" stroke="var(--color-border)" stroke-width="1.5"/>
+        <text x="900" y="415" text-anchor="middle" fill="var(--color-text)" font-size="13" font-weight="600">Disputely</text>
+        <text x="900" y="435" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="11">Chargeback data</text>
+        <!-- Connection lines -->
+        <line x1="330" y1="145" x2="495" y2="255" stroke="var(--color-border)" stroke-width="1"/>
+        <line x1="810" y1="145" x2="645" y2="255" stroke="var(--color-border)" stroke-width="1"/>
+        <line x1="330" y1="415" x2="495" y2="305" stroke="var(--color-border)" stroke-width="1"/>
+        <line x1="810" y1="415" x2="645" y2="305" stroke="var(--color-border)" stroke-width="1"/>
+        <!-- Cross-connections with labels -->
+        <line x1="330" y1="140" x2="810" y2="140" stroke="var(--color-text-tertiary)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+        <text x="570" y="130" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="10">&ldquo;Cancel&rdquo; email &rarr; save flow</text>
+        <line x1="330" y1="420" x2="810" y2="420" stroke="var(--color-text-tertiary)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+        <text x="570" y="410" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="10">Low stock &rarr; dispute evidence</text>
+        <line x1="240" y1="180" x2="240" y2="380" stroke="var(--color-text-tertiary)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+        <text x="215" y="285" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="10" transform="rotate(-90 215 285)">Stock &rarr; WISMO context</text>
+      </svg>
+    </div>
+
     <div class="stat-grid" style="margin-top:var(--space-8);grid-template-columns:repeat(3, 1fr);">
       <div class="stat-card">
         <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Support &rarr; Retention</div>
-        <div class="stat-label">"Cancel my subscription" email triggers a save flow before the customer reaches the cancel page. Nobody else connects these.</div>
+        <div class="stat-label">"Cancel my subscription" email triggers a save flow before the customer reaches the cancel page.</div>
       </div>
       <div class="stat-card">
         <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Inventory &rarr; Support</div>
-        <div class="stat-label">When a SKU hits 3-day supply, SupportAgent automatically adds "ships in 5-7 days" to WISMO replies for that product. Context-aware.</div>
+        <div class="stat-label">SKU at 3-day supply? SupportAgent auto-adds "ships in 5-7 days" to WISMO replies for that product.</div>
       </div>
       <div class="stat-card">
         <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Support &rarr; Disputes</div>
-        <div class="stat-label">Customer support transcripts automatically feed into dispute evidence. Disputely gets richer evidence = higher win rate.</div>
+        <div class="stat-label">Support transcripts auto-feed into Disputely evidence. Richer evidence = higher win rate.</div>
       </div>
     </div>
   </div>
