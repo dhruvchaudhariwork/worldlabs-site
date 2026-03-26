@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpsFlow — About</title>
+
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+
+<style>
+  .about-layout {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6) var(--space-12);
+  }
+
+  .about-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .about-nav-links {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .about-nav-links a {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .about-nav-links a:hover { color: var(--color-text); }
+
+  .about-hero {
+    margin-bottom: var(--space-12);
+  }
+
+  .about-hero h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+  }
+
+  .about-hero p {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .about-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .about-section h2 {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+  }
+
+  .about-section p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+  }
+
+  .about-section p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-10) 0;
+  }
+
+  .career-item {
+    display: flex;
+    gap: var(--space-5);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .career-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .career-marker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-text);
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .career-content h3 {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .career-meta {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-2);
+  }
+
+  .career-content p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin: var(--space-8) 0;
+  }
+
+  .stat-item {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .stat-item .val {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-item .label {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .about-quote {
+    padding: var(--space-6) var(--space-8);
+    border-left: 3px solid var(--color-border);
+    margin: var(--space-8) 0;
+  }
+
+  .about-quote p {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .stat-row { grid-template-columns: 1fr; }
+    .about-hero h1 { font-size: var(--text-2xl); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="about-nav">
+  <a href="./index.html" class="logo"><span class="logo-text">OPSFLOW</span></a>
+  <div class="about-nav-links">
+    <a href="./index.html">Product</a>
+    <a href="./docs.html">Docs</a>
+    <a href="./pitch.html">Pitch Deck</a>
+    <button class="theme-toggle" data-theme-toggle aria-label="Switch theme" style="color:var(--color-text-tertiary);margin-left:var(--space-2);">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+  </div>
+</nav>
+
+
+<div class="about-layout">
+
+  <div class="about-hero fade-in">
+    <h1>Built by an operator,<br>not a consultant</h1>
+    <p>OpsFlow exists because I needed it. I run two e-commerce brands solo and got tired of paying $4-5K/mo for a patchwork of tools that still required my time. So I built the automation stack myself. Now I'm packaging it for every brand that hits the same wall.</p>
+  </div>
+
+
+  <div class="about-section fade-in">
+    <h2>The e-commerce story</h2>
+    <p>I launched my first Shopify brand in October 2025. Within five months it scaled to ~$175K MRR. The second brand launched shortly after and hit ~$10K MRR in its first month. Both run on the same automation stack — AI agents handling creative, customer support, and operations on top of Shopify.</p>
+    <p>The playbook is simple: layer AI agents on top of Shopify for everything from CX to inventory. That means I don't need to hire a support team, a VA for dispute management, or someone to watch inventory levels. The agents do it. I approve or override from my phone.</p>
+    <p>Both brands sit on the same infrastructure, which means I can spin up new verticals quickly without adding headcount. That's the thesis behind OpsFlow — if this stack works for my brands, it works for anyone's.</p>
+
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="val">~$185K</div>
+        <div class="label">Combined MRR across 2 brands</div>
+      </div>
+      <div class="stat-item">
+        <div class="val">0</div>
+        <div class="label">Full-time employees</div>
+      </div>
+      <div class="stat-item">
+        <div class="val">2</div>
+        <div class="label">Brands on the same AI stack</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section fade-in">
+    <h2>Before e-commerce</h2>
+    <p>Before building brands, I spent three years in the startup and fintech world — operating at the intersection of AI, ops, and growth. Every role taught me something that directly informs how OpsFlow is built.</p>
+
+    <div style="margin-top:var(--space-6);">
+      <div class="career-item">
+        <div class="career-marker"></div>
+        <div class="career-content">
+          <h3>Chief of Staff — Onyx AI</h3>
+          <div class="career-meta">YC Winter 2024 &middot; San Francisco &middot; 2025 – Present</div>
+          <p>Raised a $10M seed round at a $45M valuation. Grew ARR to over $1M. Owned GTM outbound strategy, closing enterprise clients including Netflix, Ramp, Brex, NASA, and Mercury. Led security and compliance (SOC2, ISO27001, GDPR). Scaled the team from 7 to 13+. Lead contributor in product design.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-marker"></div>
+        <div class="career-content">
+          <h3>Founding Operations — Saturn AI</h3>
+          <div class="career-meta">YC Summer 2024 &middot; Remote &middot; 2024 – 2025</div>
+          <p>Supported the GTM launch of CoPlanner AI, a workflow assistant for financial advisors. Led customer onboarding, technical demos, and early-stage support. Built SOC2-aligned data infrastructure. Drove $1M in ARR through early customer acquisition and outbound pipeline. Company went on to raise a $15M Series A.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-marker"></div>
+        <div class="career-content">
+          <h3>Operations Analyst — Coinbase</h3>
+          <div class="career-meta">Remote &middot; 2023 – 2024</div>
+          <p>Led cross-exchange initiatives across Coinbase Exchange, Derivatives, and International platforms. Optimized liquidation, margin, and leverage systems. Drove institutional onboarding, translating complex trading mechanisms into actionable insights for high-value clients.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-marker"></div>
+        <div class="career-content">
+          <h3>Growth &amp; Operations Analyst — Eviden (Atos)</h3>
+          <div class="career-meta">Chicago &middot; 2022 – 2023</div>
+          <p>Developed cloud consulting solutions for enterprise clients. Automated data analysis with Python and SQL. Built REST API integrations to streamline operations.</p>
+        </div>
+      </div>
+
+      <div class="career-item">
+        <div class="career-marker"></div>
+        <div class="career-content">
+          <h3>University of Illinois at Urbana-Champaign</h3>
+          <div class="career-meta">B.S. Statistics &middot; 3.93 GPA</div>
+          <p>Java, Python, R, SQL, JavaScript/TypeScript. Focus on statistical modeling and data infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section fade-in">
+    <h2>Why OpsFlow</h2>
+    <p>Every e-commerce brand that crosses $100K/mo GMV hits the same bottleneck: ops busywork eats the team alive. You're juggling a helpdesk, a chargeback tool, a subscription platform, inventory spreadsheets, and a VA — spending $4-5K/mo on tools that don't talk to each other and still require your time.</p>
+    <p>I know because I was that person. I was running two brands, managing support tickets at midnight, manually filing dispute evidence, and checking inventory levels in a spreadsheet. The tools existed, but none of them worked together, and none of them were autonomous.</p>
+    <p>So I built the stack I wanted. AI agents that actually run your ops — not tools that give you more dashboards to check. OpsFlow is the productized version of what already powers my own brands.</p>
+
+    <div class="about-quote">
+      <p>&ldquo;I built OpsFlow because I was the customer. I was paying $4-5K/mo for a patchwork of tools that still required my time every day. Now three AI agents handle what used to take me 20+ hours a week. I want every brand at my stage to have the same leverage.&rdquo;</p>
+    </div>
+  </div>
+
+  <hr class="about-divider">
+
+  <div class="about-section fade-in" style="text-align:center;">
+    <p style="color:var(--color-text-tertiary);font-size:var(--text-sm);">Want to chat?</p>
+    <p style="margin-bottom:var(--space-6);">
+      <a href="mailto:dchaudhari.work@gmail.com" style="color:var(--color-text);text-decoration:none;font-weight:600;">dchaudhari.work@gmail.com</a>
+    </p>
+    <a href="./index.html" class="btn btn-primary">Back to OpsFlow</a>
+  </div>
+
+</div>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border:none;padding:0;">
+      <p>&copy; 2026 OpsFlow.</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function upd() {
+    if (!t) return;
+    t.innerHTML = d === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  upd();
+  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upd(); });
+})();
+
+// Fade in
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
