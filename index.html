@@ -65,7 +65,7 @@
 <section class="hero">
   <div class="hero-inner">
     <h1>Autonomous ops<br>for e-commerce</h1>
-    <p class="hero-sub">AI agents that handle chargebacks, customer support, and inventory alerts for brands on Shopify, WooCommerce, BigCommerce, and more.</p>
+    <p class="hero-sub">AI agents that handle customer support, subscriptions, inventory, and chargebacks for brands on Shopify, WooCommerce, BigCommerce, and more.</p>
     <div class="hero-ctas">
       <a href="#dashboard" class="btn btn-primary">See the Dashboard</a>
       <a href="#architecture" class="btn btn-outline">Technical Deep-Dive</a>
@@ -192,13 +192,14 @@
 
       <div class="feature-card fade-in">
         <div class="feature-label">SUBSCRIPTIONS</div>
-        <h3>Rebill Recovery + Retention</h3>
-        <p>AI-powered failed payment recovery that retries declined charges with smart timing and cascade routing. Detects churn signals from support tickets and triggers save flows — pause offers, product swaps, or discount incentives — before the customer cancels.</p>
+        <h3>Subscription Engine</h3>
+        <p>Full subscription management built in — setup, billing, payment processing, and support. We handle failed payment recovery with smart retry cascading and MID routing, plus churn prevention that detects cancel intent from support tickets and triggers save flows. Zero upfront cost to the merchant, PCI DSS Level 1 compliant. Designed to increase AOV and CLTV on autopilot.</p>
         <div class="feature-tags">
+          <span class="tag">Subscription billing</span>
+          <span class="tag">Payment processing</span>
           <span class="tag">Failed rebill recovery</span>
           <span class="tag">Churn prevention</span>
-          <span class="tag">Save flows</span>
-          <span class="tag">MRR analytics</span>
+          <span class="tag">PCI DSS L1</span>
         </div>
       </div>
 
@@ -318,11 +319,11 @@
           <h3>RetentionAgent</h3>
         </div>
         <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Monitor rebill events from ReCharge / Loop / Stripe Billing</li>
-          <li><span class="wf-step-num">02</span>On decline: smart retry with cascade timing + alternate MID</li>
-          <li><span class="wf-step-num">03</span>Detect churn signals: cancel requests, repeat complaints, skip patterns</li>
+          <li><span class="wf-step-num">01</span>Merchant connects store — OpsFlow handles subscription setup, billing, and payment processing</li>
+          <li><span class="wf-step-num">02</span>On failed payment: smart retry with cascade timing + MID routing for max approval rates</li>
+          <li><span class="wf-step-num">03</span>Detect churn signals from support tickets, skip patterns, and cancel page visits</li>
           <li><span class="wf-step-num">04</span>Trigger save flow: pause offer, discount, product swap, or personal outreach</li>
-          <li><span class="wf-step-num">05</span>Dashboard shows subscriber health, recovery rate, and MRR impact</li>
+          <li><span class="wf-step-num">05</span>Dashboard shows MRR, subscriber health, recovery rate, AOV, and CLTV trends</li>
         </ul>
       </div>
 
