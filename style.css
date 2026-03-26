@@ -1385,8 +1385,9 @@
   /* Dashboard mobile fix */
   .dashboard-mock { border-radius: var(--radius-md); }
   .dash-content { padding: var(--space-4); }
-  .dash-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0; flex-wrap: nowrap; }
-  .dash-tab { white-space: nowrap; padding: var(--space-2) var(--space-3); font-size: 13px; flex-shrink: 0; }
+  .dash-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0; flex-wrap: nowrap; scrollbar-width: none; -ms-overflow-style: none; }
+  .dash-tabs::-webkit-scrollbar { display: none; }
+  .dash-tab { white-space: nowrap; padding: var(--space-2) var(--space-4); font-size: 13px; flex-shrink: 0; }
   .dash-toolbar { padding: var(--space-2) var(--space-3); }
   .dash-url { font-size: 10px; }
 
