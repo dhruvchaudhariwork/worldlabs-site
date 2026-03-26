@@ -18,10 +18,9 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpsFlow — AI Ops Automation for E-Commerce</title>
-<meta name="description" content="E-commerce ops on autopilot. AI agents that run your support, subscriptions, inventory, and chargebacks — so you can focus on growth, not busywork.">
+<title>OpsFlow — Autonomous Ops for E-Commerce</title>
+<meta name="description" content="AI agents that build your Shopify store and run your ops. Support, subscriptions, inventory, chargebacks — all autonomous.">
 
-<!-- Fonts -->
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,10 +30,56 @@
 <link rel="stylesheet" href="./style.css">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+
+<style>
+  .waitlist-form {
+    display: flex;
+    gap: var(--space-2);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .waitlist-input {
+    flex: 1;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    outline: none;
+    transition: border-color var(--transition-interactive);
+  }
+  .waitlist-input::placeholder { color: var(--color-text-tertiary); }
+  .waitlist-input:focus { border-color: var(--color-text-tertiary); }
+  .waitlist-msg {
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-3);
+  }
+  .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
+
+  .modules-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-8);
+  }
+  .module-tag {
+    font-size: var(--text-xs);
+    padding: 5px var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+  }
+</style>
 </head>
 <body>
 
-<!-- ========== HEADER ========== -->
+<!-- Header -->
 <header class="site-header">
   <div class="header-inner">
     <a href="#" class="logo">
@@ -42,523 +87,106 @@
     </a>
     <nav>
       <ul class="nav-links" role="list">
-        <li><a href="#features">Platform</a></li>
-        <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="./about.html">About</a></li>
         <li><a href="./docs.html">Docs</a></li>
-        <li><a href="./pitch.html">Pitch Deck</a></li>
+        <li><a href="./about.html">About</a></li>
       </ul>
     </nav>
     <div class="nav-right">
       <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
-      <a href="#contact" class="btn btn-primary">Book a Demo</a>
     </div>
   </div>
 </header>
 
 
-<!-- ========== HERO ========== -->
-<section class="hero">
+<!-- Hero -->
+<section class="hero" style="min-height:80vh;display:flex;align-items:center;">
   <div class="hero-inner">
     <h1>Autonomous ops<br>for e-commerce</h1>
-    <p class="hero-sub">AI agents that build your Shopify store and run your ops. Support, subscriptions, inventory, chargebacks, and your storefront — all autonomous. Describe your product and go live.</p>
-    <div class="hero-ctas">
-      <a href="#dashboard" class="btn btn-primary">See the Dashboard</a>
-      <a href="#architecture" class="btn btn-outline">Technical Deep-Dive</a>
+    <p class="hero-sub">AI agents that build your Shopify store and run your ops — support, subscriptions, inventory, and chargebacks. Describe your product and go live.</p>
+
+    <div class="waitlist-form" id="waitlist-form">
+      <input type="email" class="waitlist-input" placeholder="you@yourbrand.com" id="waitlist-email" required>
+      <button class="btn btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
+    </div>
+    <div class="waitlist-msg" id="waitlist-msg"></div>
+
+    <div class="modules-row">
+      <span class="module-tag">StorefrontAgent</span>
+      <span class="module-tag">SupportAgent</span>
+      <span class="module-tag">RetentionAgent</span>
+      <span class="module-tag">InventoryAgent</span>
+      <span class="module-tag">Disputely</span>
+      <span class="module-tag">True Profit</span>
     </div>
   </div>
 </section>
 
 
-<!-- ========== PLATFORM LOGOS ========== -->
-<section class="section" style="padding-top:0;">
-  <div class="section-inner fade-in">
-    <div class="logo-banner">
-      <h3 class="logo-banner-title">Connect your stack</h3>
-      <p class="logo-banner-desc">Launching on Shopify. More platforms coming soon.</p>
-      <div class="logo-row">
-        <div class="logo-item"><!-- Shopify --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</div>
-        <div class="logo-item" style="opacity:0.4;"><!-- WooCommerce --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.227 4.857A3.228 3.228 0 000 7.857v7.286a3.228 3.228 0 003.228 3.228h5.402l2.37 1.629-.538-1.629h5.766A3.228 3.228 0 0019.456 15.143V7.857A3.228 3.228 0 0016.228 4.857H2.227zm3.25 1.97c.347 0 .652.18.828.49.282.497.474 1.265.58 2.309.066.672.076 1.2.028 1.588-.04.32-.124.544-.252.67-.068.068-.15.108-.244.118-.128.01-.272-.054-.413-.2-.41-.416-.735-1.048-.97-1.894-.278.552-.488.976-.63 1.27-.268.533-.5.803-.694.817-.124.01-.228-.097-.318-.32C3.17 11.03 2.94 9.88 2.688 8.233a.433.433 0 01.072-.324c.066-.092.16-.14.288-.15.228-.018.36.084.396.31.146.977.306 1.813.474 2.507l1.014-1.962c.092-.178.21-.27.35-.28.2-.016.328.116.38.39.114.616.262 1.148.44 1.596.118-1.19.324-2.046.614-2.576.098-.178.232-.274.396-.274zm4.73.47c.304 0 .566.086.784.264.22.176.368.42.444.73.066.27.088.554.088.852 0 .566-.128 1.096-.38 1.588-.298.58-.688.874-1.168.882-.074 0-.16-.01-.252-.028-.33-.074-.582-.28-.75-.62a2.286 2.286 0 01-.242-1.022c0-.554.126-1.064.376-1.532.3-.562.664-.86 1.1-.86zm3.148 0c.304 0 .566.086.784.264.22.176.368.42.444.73.066.27.088.554.088.852 0 .566-.128 1.096-.38 1.588-.298.58-.688.874-1.168.882-.074 0-.16-.01-.252-.028-.33-.074-.582-.28-.75-.62a2.286 2.286 0 01-.242-1.022c0-.554.126-1.064.376-1.532.3-.562.664-.86 1.1-.86zM10.2 8.06c-.152 0-.302.104-.448.318a1.812 1.812 0 00-.3 1.036c0 .158.03.322.088.492.074.212.17.324.288.336.118.012.242-.04.376-.16.18-.17.304-.408.376-.716.022-.112.034-.234.034-.366 0-.158-.028-.322-.086-.492-.074-.2-.17-.32-.284-.34a.234.234 0 00-.044-.008zm3.148 0c-.152 0-.302.104-.448.318a1.812 1.812 0 00-.3 1.036c0 .158.03.322.088.492.074.212.17.324.288.336.118.012.242-.04.376-.16.18-.17.304-.408.376-.716.022-.112.034-.234.034-.366 0-.158-.028-.322-.086-.492-.074-.2-.17-.32-.284-.34a.234.234 0 00-.044-.008z"/></svg>WooCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
-        <div class="logo-item" style="opacity:0.4;"><!-- BigCommerce --><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.645 13.663h3.027c.861 0 1.406-.474 1.406-1.235 0-.717-.545-1.234-1.406-1.234h-3.027c-.1 0-.187.086-.187.172v2.125c.015.1.086.172.187.172zm0 4.896h3.128c.961 0 1.535-.488 1.535-1.35 0-.746-.545-1.35-1.535-1.35h-3.128c-.1 0-.187.087-.187.173v2.34c.015.115.086.187.187.187zM23.72.053l-8.953 8.93h1.464c2.281 0 3.63 1.435 3.63 3 0 1.235-.832 2.14-1.722 2.541-.143.058-.143.259.014.316 1.033.402 1.765 1.48 1.765 2.742 0 1.78-1.19 3.202-3.5 3.202h-6.342c-.1 0-.187-.086-.187-.172V13.85L.062 23.64c-.13.13-.043.359.143.359h23.631a.16.16 0 0 0 .158-.158V.182c.043-.158-.158-.244-.273-.13z"/></svg>BigCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
-      </div>
+<!-- Logos -->
+<section class="section" style="padding-top:0;padding-bottom:var(--space-12);">
+  <div class="section-inner fade-in" style="text-align:center;">
+    <p style="font-size:var(--text-xs);color:var(--color-text-tertiary);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:var(--space-5);">LAUNCHING ON</p>
+    <div class="logo-row" style="gap:var(--space-8);">
+      <div class="logo-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</div>
+      <div class="logo-item" style="opacity:0.4;">WooCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
+      <div class="logo-item" style="opacity:0.4;">BigCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
     </div>
   </div>
 </section>
 
 
-
-
-<!-- ========== HOW IT WORKS ========== -->
-<section class="section alt" id="how">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">HOW OPSFLOW WORKS</div>
-    <h2 class="section-title fade-in">Tell us what you sell. We handle the rest.</h2>
-    <p class="section-desc fade-in">From building your storefront to running day-to-day operations. Describe your product, and OpsFlow takes it from there.</p>
-
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <h3>Build</h3>
-        <p>Describe your product. StorefrontAgent analyzes top stores in your niche and generates a conversion-optimized storefront — product pages, bundles, upsells, checkout. Iterate with prompts.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <h3>Connect</h3>
-        <p>Link your payment processor, support inbox, and supplier contacts. Agents pull in your order history, inventory levels, and customer data. 30 minutes of setup.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <h3>Autopilot</h3>
-        <p>Agents go live: auto-reply support tickets, recover failed payments, alert on inventory, deflect chargebacks. You approve or override from one dashboard.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== PLATFORM FEATURES ========== -->
-<section class="section" id="features">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">PLATFORM FEATURES</div>
-    <h2 class="section-title fade-in">Your ops team, fully automated</h2>
-    <p class="section-desc fade-in">Not another dashboard to check. Not another app to configure. Seven modules that do the work — from building your store to running it.</p>
-
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-label">DISPUTES &mdash; POWERED BY DISPUTELY</div>
-        <h3>Chargeback Protection</h3>
-        <p>Integrated chargeback prevention and recovery powered by Disputely. Real-time alerts via Visa RDR, Ethoca, and CDRN networks intercept disputes before they hit your account. Auto-refunds, evidence compilation, and response submission — all surfaced in the OpsFlow dashboard.</p>
-        <div class="feature-tags">
-          <span class="tag">Visa RDR</span>
-          <span class="tag">Ethoca alerts</span>
-          <span class="tag">Auto-deflection</span>
-          <span class="tag">Disputely</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">SUPPORT</div>
-        <h3>Support Autoresolver</h3>
-        <p>Monitors your support inbox for common issues — WISMO, cancellations, address changes. Classifies intent, pulls relevant order data, and drafts empathetic replies. Auto-sends simple cases; escalates edge cases with full context.</p>
-        <div class="feature-tags">
-          <span class="tag">Intent classification</span>
-          <span class="tag">Auto-reply</span>
-          <span class="tag">Smart escalation</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">INVENTORY</div>
-        <h3>Inventory Alerts</h3>
-        <p>Computes days-of-cover for every SKU. Flags stock-out risks (&lt;7 days) with auto-drafted PO emails. Detects excess inventory (&gt;45 days) and generates promo copy to move product.</p>
-        <div class="feature-tags">
-          <span class="tag">Days-of-cover</span>
-          <span class="tag">PO drafts</span>
-          <span class="tag">Promo copy</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">SUBSCRIPTIONS</div>
-        <h3>Subscription Engine</h3>
-        <p>Full subscription management built in — setup, billing, payment processing, and support. We handle failed payment recovery with smart retry cascading and MID routing, plus churn prevention that detects cancel intent from support tickets and triggers save flows. Zero upfront cost to the merchant, PCI DSS Level 1 compliant. Designed to increase AOV and CLTV on autopilot.</p>
-        <div class="feature-tags">
-          <span class="tag">Subscription billing</span>
-          <span class="tag">Payment processing</span>
-          <span class="tag">Failed rebill recovery</span>
-          <span class="tag">Churn prevention</span>
-          <span class="tag">PCI DSS L1</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">STOREFRONT</div>
-        <h3>StorefrontAgent</h3>
-        <p>Describe your product and the AI builds a conversion-optimized storefront — product pages, bundles, upsells, checkout flows. It analyzes top-performing stores in your niche and iterates with every prompt. No code, no templates, no developers. Hosted and managed by OpsFlow.</p>
-        <div class="feature-tags">
-          <span class="tag">AI store builder</span>
-          <span class="tag">Niche analysis</span>
-          <span class="tag">Prompt-to-iterate</span>
-          <span class="tag">Hosted</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">PROFITABILITY</div>
-        <h3>True Profit Dashboard</h3>
-        <p>Connect your ad accounts (Meta, TikTok, Google Ads), set your COGS per SKU, and see real profit — not just revenue. Factors in ad spend, shipping, transaction fees, returns, chargebacks, and subscription costs. Know your true margin on every order, every product, every channel.</p>
-        <div class="feature-tags">
-          <span class="tag">COGS tracking</span>
-          <span class="tag">Ad spend (Meta, TikTok, Google)</span>
-          <span class="tag">Real-time P&L</span>
-          <span class="tag">Per-order margin</span>
-        </div>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">COMMAND CENTER</div>
-        <h3>Ops Dashboard</h3>
-        <p>Unified dashboard showing your storefront, support tickets, inventory alerts, subscription health, profitability, and chargeback status. Approve, edit, or reject AI drafts with a single click. Full audit log of every action taken.</p>
-        <div class="feature-tags">
-          <span class="tag">Unified view</span>
-          <span class="tag">Audit log</span>
-          <span class="tag">One-click actions</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== ARCHITECTURE ========== -->
-<section class="section alt" id="architecture">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">SYSTEM DESIGN</div>
-    <h2 class="section-title fade-in">Built on Shopify. Agent-native.</h2>
-    <p class="section-desc fade-in">OpsFlow plugs directly into Shopify's Admin API and webhook system. Your agents see real-time order, inventory, and customer data the moment it changes.</p>
-
-    <div class="arch-pipeline fade-in">
-      <div class="arch-step">
-        <div class="arch-step-label">INGEST</div>
-        <div class="arch-step-items">
-          <span>Shopify Admin API</span>
-          <span>Gmail</span>
-          <span>Stripe</span>
-          <span>ReCharge / Loop</span>
-        </div>
-      </div>
-      <div class="arch-arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
-      <div class="arch-step">
-        <div class="arch-step-label">PROCESS</div>
-        <div class="arch-step-items">
-          <span>Event router</span>
-          <span>Redis queue</span>
-          <span>LLM orchestrator</span>
-        </div>
-      </div>
-      <div class="arch-arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
-      <div class="arch-step">
-        <div class="arch-step-label">AGENTS</div>
-        <div class="arch-step-items">
-          <span>SupportAgent</span>
-          <span>RetentionAgent</span>
-          <span>InventoryAgent</span>
-          <span>Disputely</span>
-        </div>
-      </div>
-      <div class="arch-arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </div>
-      <div class="arch-step">
-        <div class="arch-step-label">ACT</div>
-        <div class="arch-step-items">
-          <span>Auto-reply emails</span>
-          <span>Slack alerts</span>
-          <span>Save flows</span>
-          <span>Dashboard</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== DASHBOARD MOCK ========== -->
-<section class="section alt" id="dashboard">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">COMMAND CENTER</div>
-    <h2 class="section-title fade-in">You're the CEO, not the operator</h2>
-    <p class="section-desc fade-in">The dashboard isn't where you do the work — it's where you see what your agents already did. Approve, override, or let it run. Every action is logged.</p>
-
-    <div class="dashboard-mock fade-in">
-      <div class="dash-toolbar">
-        <div class="dash-dot red"></div>
-        <div class="dash-dot yellow"></div>
-        <div class="dash-dot green"></div>
-        <div class="dash-url">ops.yourstore.com/dashboard</div>
-      </div>
-      <div class="dash-content">
-        <div class="dash-tabs">
-          <div class="dash-tab active" data-tab="disputes">Disputes</div>
-          <div class="dash-tab" data-tab="support">Support</div>
-          <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
-          <div class="dash-tab" data-tab="profit">Profitability</div>
-          <div class="dash-tab" data-tab="inventory">Inventory</div>
-          <div class="dash-tab" data-tab="audit">Audit Log</div>
-        </div>
-
-        <!-- DISPUTES TAB (Powered by Disputely) -->
-        <div class="tab-panel active" id="tab-disputes">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Deflected</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta positive">Auto-refunded via Disputely</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Active Disputes</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta neutral">Evidence submitted</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Win Rate</div><div class="dash-kpi-value">87%</div><div class="dash-kpi-delta positive">+12% from last month</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Revenue Saved</div><div class="dash-kpi-value">$18.2k</div><div class="dash-kpi-delta positive">This quarter</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>Order</th><th>Network</th><th>Customer</th><th>Amount</th><th>Status</th><th>Source</th><th>Outcome</th></tr></thead>
-            <tbody>
-              <tr><td style="font-family:var(--font-mono)">#4829</td><td>Visa RDR</td><td>J. Martinez</td><td>$189.00</td><td><span class="status-badge approved"><span class="status-dot"></span>Deflected</span></td><td>Disputely</td><td style="color:var(--color-success)">Auto-refunded</td></tr>
-              <tr><td style="font-family:var(--font-mono)">#4815</td><td>Ethoca</td><td>S. Patel</td><td>$67.50</td><td><span class="status-badge approved"><span class="status-dot"></span>Deflected</span></td><td>Disputely</td><td style="color:var(--color-success)">Auto-refunded</td></tr>
-              <tr><td style="font-family:var(--font-mono)">#4801</td><td>Stripe</td><td>R. Chen</td><td>$342.00</td><td><span class="status-badge pending"><span class="status-dot"></span>In review</span></td><td>Disputely</td><td style="color:var(--color-warning)">Evidence submitted</td></tr>
-              <tr><td style="font-family:var(--font-mono)">#4793</td><td>Visa CDRN</td><td>A. Johnson</td><td>$524.00</td><td><span class="status-badge approved"><span class="status-dot"></span>Won</span></td><td>Disputely</td><td style="color:var(--color-success)">Recovered $524</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SUPPORT TAB -->
-        <div class="tab-panel" id="tab-support">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Open Tickets</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">+8 today</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Auto-resolved</div><div class="dash-kpi-value">74%</div><div class="dash-kpi-delta positive">+5% this week</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Avg Response</div><div class="dash-kpi-value">1.4m</div><div class="dash-kpi-delta positive">-30s from last week</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">CSAT Score</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>Ticket</th><th>Intent</th><th>Customer</th><th>Subject</th><th>Confidence</th><th>AI Draft</th><th>Actions</th></tr></thead>
-            <tbody>
-              <tr><td style="font-family:var(--font-mono)">#T-892</td><td>WISMO</td><td>M. Davis</td><td>Where is my order?</td><td><span class="status-badge approved"><span class="status-dot"></span>98%</span></td><td style="color:var(--color-success)">Auto-sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">#T-891</td><td>Refund</td><td>K. Nguyen</td><td>Wrong item received</td><td><span class="status-badge pending"><span class="status-dot"></span>72%</span></td><td style="color:var(--color-warning)">Queued</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">#T-890</td><td>Cancel</td><td>L. Thompson</td><td>Cancel my subscription</td><td><span class="status-badge escalated"><span class="status-dot"></span>45%</span></td><td style="color:var(--color-error)">Escalated</td><td><div class="action-btns"><button class="action-btn">Review</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">#T-889</td><td>Address</td><td>P. Williams</td><td>Update shipping address</td><td><span class="status-badge approved"><span class="status-dot"></span>95%</span></td><td style="color:var(--color-success)">Auto-sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SUBSCRIPTIONS TAB -->
-        <div class="tab-panel" id="tab-subscriptions">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Active Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">MRR</div><div class="dash-kpi-value">$38.4k</div><div class="dash-kpi-delta positive">+8% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Failed Rebills</div><div class="dash-kpi-value">47</div><div class="dash-kpi-delta neutral">34 recovered, 13 pending</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Churn Risk</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">Save flows triggered</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>Customer</th><th>Plan</th><th>MRR</th><th>Status</th><th>Rebill Issue</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td>M. Rivera</td><td>Monthly Box</td><td>$49.00</td><td><span class="status-badge escalated"><span class="status-dot"></span>Failed x3</span></td><td>Card declined</td><td><div class="action-btns"><button class="action-btn">Retry</button><button class="action-btn">Save Flow</button></div></td></tr>
-              <tr><td>K. Lee</td><td>Quarterly</td><td>$129.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>Cancel intent detected</td><td><div class="action-btns"><button class="action-btn">Offer Pause</button></div></td></tr>
-              <tr><td>T. Brooks</td><td>Monthly Box</td><td>$49.00</td><td><span class="status-badge approved"><span class="status-dot"></span>Recovered</span></td><td>Retry #2 succeeded</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
-              <tr><td>A. Patel</td><td>Annual</td><td>$399.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>3 support tickets in 7 days</td><td><div class="action-btns"><button class="action-btn">Save Flow</button></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- PROFITABILITY TAB -->
-        <div class="tab-panel" id="tab-profit">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Revenue (30d)</div><div class="dash-kpi-value">$127k</div><div class="dash-kpi-delta positive">+18% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Ad Spend</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Meta $28k &bull; TikTok $9k &bull; Google $4.2k</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">COGS + Shipping</div><div class="dash-kpi-value">$38.1k</div><div class="dash-kpi-delta neutral">30% of revenue</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">True Profit</div><div class="dash-kpi-value">$34.8k</div><div class="dash-kpi-delta positive">27.4% net margin</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>Channel</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Fees</th><th>Net Profit</th><th>ROAS</th></tr></thead>
-            <tbody>
-              <tr><td>Meta Ads</td><td>$78.4k</td><td>$28.0k</td><td>$23.5k</td><td>$3.9k</td><td style="font-weight:700;color:var(--color-success)">$23.0k</td><td>2.80x</td></tr>
-              <tr><td>TikTok Ads</td><td>$31.2k</td><td>$9.0k</td><td>$9.4k</td><td>$1.6k</td><td style="font-weight:700;color:var(--color-success)">$11.2k</td><td>3.47x</td></tr>
-              <tr><td>Google Ads</td><td>$12.8k</td><td>$4.2k</td><td>$3.8k</td><td>$0.6k</td><td style="font-weight:700;color:var(--color-success)">$4.2k</td><td>3.05x</td></tr>
-              <tr><td>Organic / Direct</td><td>$4.6k</td><td>$0</td><td>$1.4k</td><td>$0.2k</td><td style="font-weight:700;color:var(--color-success)">$3.0k</td><td>&mdash;</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- INVENTORY TAB -->
-        <div class="tab-panel" id="tab-inventory">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">SKUs Tracked</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 stores</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Low Stock Alerts</div><div class="dash-kpi-value">6</div><div class="dash-kpi-delta negative">3 critical</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Overstock</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta neutral">&gt;45 days cover</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">PO Drafts Sent</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">This week</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>SKU</th><th>Product</th><th>On Hand</th><th>Days of Cover</th><th>Status</th><th>Action</th><th></th></tr></thead>
-            <tbody>
-              <tr><td style="font-family:var(--font-mono)">BLK-TEE-M</td><td>Black Tee (M)</td><td>18</td><td>3 days</td><td><span class="status-badge escalated"><span class="status-dot"></span>Critical</span></td><td>PO drafted</td><td><div class="action-btns"><button class="action-btn">Send PO</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">WHT-HOD-L</td><td>White Hoodie (L)</td><td>42</td><td>5 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Low</span></td><td>PO drafted</td><td><div class="action-btns"><button class="action-btn">Send PO</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">GRN-SNK-10</td><td>Green Sneaker (10)</td><td>340</td><td>68 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Overstock</span></td><td>Promo drafted</td><td><div class="action-btns"><button class="action-btn">View Promo</button></div></td></tr>
-              <tr><td style="font-family:var(--font-mono)">NVY-CAP-OS</td><td>Navy Cap (OS)</td><td>215</td><td>52 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Overstock</span></td><td>Promo drafted</td><td><div class="action-btns"><button class="action-btn">View Promo</button></div></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- AUDIT LOG TAB -->
-        <div class="tab-panel" id="tab-audit">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Actions Today</div><div class="dash-kpi-value">34</div><div class="dash-kpi-delta neutral">12 auto, 22 manual</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Approvals</div><div class="dash-kpi-value">19</div><div class="dash-kpi-delta positive">All by ops team</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Rejections</div><div class="dash-kpi-value">3</div><div class="dash-kpi-delta neutral">Edits applied</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Auto-actions</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta positive">100% accurate</div></div>
-          </div>
-          <table class="dash-table">
-            <thead><tr><th>Time</th><th>Agent</th><th>Action</th><th>Target</th><th>User</th><th>Result</th></tr></thead>
-            <tbody>
-              <tr><td style="font-family:var(--font-mono)">14:32</td><td>SupportAgent</td><td>Auto-reply sent</td><td>Ticket #T-892</td><td>System</td><td><span class="status-badge approved"><span class="status-dot"></span>Success</span></td></tr>
-              <tr><td style="font-family:var(--font-mono)">14:18</td><td>DisputeAgent</td><td>Draft approved</td><td>Order #4829</td><td>@sarah</td><td><span class="status-badge approved"><span class="status-dot"></span>Submitted</span></td></tr>
-              <tr><td style="font-family:var(--font-mono)">13:45</td><td>InventoryAgent</td><td>PO email sent</td><td>SKU BLK-TEE-M</td><td>@sarah</td><td><span class="status-badge approved"><span class="status-dot"></span>Sent</span></td></tr>
-              <tr><td style="font-family:var(--font-mono)">13:12</td><td>SupportAgent</td><td>Draft rejected</td><td>Ticket #T-887</td><td>@mike</td><td><span class="status-badge escalated"><span class="status-dot"></span>Edited</span></td></tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== PRICING ========== -->
-<section class="section" id="pricing">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">PRICING</div>
-    <h2 class="section-title fade-in">Pricing coming soon</h2>
-    <p class="section-desc fade-in">We are finalizing our pricing model with early design partners. Expect a platform fee + performance share structure that aligns our incentives with yours.</p>
-
-    <div class="steps-grid fade-in" style="margin-top:var(--space-8);">
-      <div class="step-card">
-        <div class="step-number" style="background:transparent;border:1px solid var(--color-border);color:var(--color-text-tertiary);">1</div>
-        <h3>Platform Fee</h3>
-        <p>Monthly base covers all AI agents, dashboard, and infrastructure. Scales with your GMV.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number" style="background:transparent;border:1px solid var(--color-border);color:var(--color-text-tertiary);">2</div>
-        <h3>Performance Share</h3>
-        <p>We earn a percentage of agent-processed GMV. We only make more when we save you more.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-number" style="background:transparent;border:1px solid var(--color-border);color:var(--color-text-tertiary);">3</div>
-        <h3>Partner Revenue</h3>
-        <p>Chargeback protection via Disputely billed separately on their pay-per-save model.</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:var(--space-8);" class="fade-in">
-      <a href="#contact" class="btn btn-primary">Get Early Access</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== FOOTER ========== -->
-<footer class="site-footer">
+<!-- Footer -->
+<footer class="site-footer" style="border-top:1px solid var(--color-border);">
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <span class="logo-text">OPSFLOW</span>
-        <p>E-commerce ops on autopilot. Chargeback protection powered by Disputely.</p>
+    <div class="footer-bottom" style="border:none;padding:0;">
+      <p>&copy; 2026 OpsFlow.</p>
+      <div style="display:flex;gap:var(--space-4);align-items:center;">
+        <a href="./docs.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Docs</a>
+        <a href="./about.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">About</a>
+        <a href="./pitch.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Investors</a>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Created with Perplexity Computer</a>
       </div>
-      <div class="footer-col">
-        <h4>Product</h4>
-        <ul role="list">
-          <li><a href="#features">Platform</a></li>
-          <li><a href="#architecture">Architecture</a></li>
-          <li><a href="#dashboard">Dashboard</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Modules</h4>
-        <ul role="list">
-          <li><a href="#features">SupportAgent</a></li>
-          <li><a href="#features">RetentionAgent</a></li>
-          <li><a href="#features">InventoryAgent</a></li>
-          <li><a href="#features">StorefrontAgent</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul role="list">
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 OpsFlow. Confidential investor preview.</p>
-      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
     </div>
   </div>
 </footer>
 
 
 <script>
-// Theme toggle
+// Theme
 (function(){
   const t = document.querySelector('[data-theme-toggle]');
   const r = document.documentElement;
   let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
   r.setAttribute('data-theme', d);
-  function updateIcon() {
+  function upd() {
     if (!t) return;
     t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
     t.innerHTML = d === 'dark'
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   }
-  updateIcon();
-  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); updateIcon(); });
+  upd();
+  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upd(); });
 })();
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
-
-// Scroll-triggered fade-in
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-
-// KPI count-up
-const kpiObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const text = el.textContent;
-      const match = text.match(/^([\$<]?)(\d+\.?\d*)(k|%|min|m|days|)?$/);
-      if (match) {
-        const prefix = match[1], target = parseFloat(match[2]), suffix = match[3] || '';
-        const duration = 600, start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          el.textContent = prefix + (target % 1 === 0 ? Math.round(target * eased) : (target * eased).toFixed(1)) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-      kpiObs.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.kpi-value').forEach(el => kpiObs.observe(el));
-
-// Dashboard tabs — show/hide panels
-document.querySelectorAll('.dash-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    const panel = document.getElementById('tab-' + tab.dataset.tab);
-    if (panel) panel.classList.add('active');
-  });
+// Waitlist
+document.getElementById('waitlist-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('waitlist-email').value.trim();
+  const msg = document.getElementById('waitlist-msg');
+  if (!email || !email.includes('@')) {
+    msg.textContent = 'Enter a valid email.';
+    msg.className = 'waitlist-msg';
+    return;
+  }
+  // In production, POST to your backend here
+  msg.textContent = 'You\u2019re on the list. We\u2019ll be in touch.';
+  msg.className = 'waitlist-msg success';
+  document.getElementById('waitlist-email').value = '';
+  document.getElementById('waitlist-btn').textContent = 'Joined';
+  document.getElementById('waitlist-btn').disabled = true;
 });
 </script>
 
