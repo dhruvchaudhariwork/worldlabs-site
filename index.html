@@ -196,12 +196,131 @@
     <h2 class="section-title fade-in">You're the CEO, not the operator</h2>
     <p class="section-desc fade-in">The dashboard isn't where you do the work — it's where you see what your agents already did.</p>
 
+    <style>
+      .dash-row { display: grid; gap: 12px; margin-bottom: 12px; }
+      .dash-row-2 { grid-template-columns: 1fr 1fr; }
+      .dash-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+      .dash-row-5 { grid-template-columns: repeat(5, 1fr); }
+      .dash-panel {
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 16px;
+      }
+      .dash-panel-header {
+        display: flex; align-items: center; justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .dash-panel-title {
+        font-size: 13px; font-weight: 700; color: var(--color-text);
+        display: flex; align-items: center; gap: 8px;
+      }
+      .dash-panel-subtitle {
+        font-size: 11px; color: var(--color-text-tertiary); font-weight: 500;
+      }
+      .dash-panel-icon {
+        width: 28px; height: 28px; border-radius: 6px;
+        background: var(--color-bg); border: 1px solid var(--color-border);
+        display: flex; align-items: center; justify-content: center;
+      }
+      .dash-mini-kpi {
+        border: 1px solid var(--color-border); border-radius: 8px;
+        padding: 14px 16px;
+      }
+      .dash-mini-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
+      .dash-mini-kpi-value { font-size: 22px; font-weight: 800; color: var(--color-text); font-variant-numeric: tabular-nums; }
+      .dash-mini-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 3px; }
+      .dash-mini-kpi-delta.pos { color: var(--color-success); }
+      .dash-mini-kpi-delta.neg { color: var(--color-error); }
+      .dash-mini-kpi-delta.neu { color: var(--color-text-tertiary); }
+      .dash-bar-row {
+        display: flex; align-items: center; gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 12px;
+      }
+      .dash-bar-row:last-child { border-bottom: none; }
+      .dash-bar-label { min-width: 110px; color: var(--color-text-secondary); font-weight: 500; }
+      .dash-bar-track { flex: 1; height: 6px; background: var(--color-border); border-radius: 3px; overflow: hidden; }
+      .dash-bar-fill { height: 100%; border-radius: 3px; }
+      .dash-bar-val { min-width: 40px; text-align: right; color: var(--color-text-tertiary); font-weight: 600; font-variant-numeric: tabular-nums; }
+      .dash-badge-row {
+        display: flex; align-items: center; gap: 10px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 12.5px;
+      }
+      .dash-badge-row:last-child { border-bottom: none; }
+      .dash-badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+      .dash-badge-name { flex: 1; color: var(--color-text-secondary); font-weight: 500; }
+      .dash-badge-val { font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
+      .dash-badge-pct { font-size: 11px; color: var(--color-text-tertiary); min-width: 42px; text-align: right; }
+      .dash-toggle-group {
+        display: flex; gap: 0; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;
+      }
+      .dash-toggle-btn {
+        font-size: 11px; padding: 4px 10px; font-weight: 600;
+        color: var(--color-text-tertiary); background: transparent; border: none; cursor: default;
+      }
+      .dash-toggle-btn.active { background: var(--color-text); color: var(--color-bg); }
+      .dash-date-badge {
+        font-size: 11px; padding: 4px 10px; border: 1px solid var(--color-border);
+        border-radius: 6px; color: var(--color-text-tertiary); font-weight: 500;
+        display: flex; align-items: center; gap: 5px;
+      }
+      .dash-status-dot {
+        display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 4px;
+      }
+      .dash-donut-container { display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+      .dash-legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 8px; }
+      .dash-legend-item { font-size: 11px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 5px; }
+      .dash-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+      .dash-ticket-row {
+        display: grid; grid-template-columns: 1fr auto auto; gap: 12px;
+        padding: 10px 0; border-bottom: 1px solid var(--color-border);
+        font-size: 12.5px; align-items: center;
+      }
+      .dash-ticket-row:last-child { border-bottom: none; }
+      .dash-ticket-subject { font-weight: 600; color: var(--color-text); }
+      .dash-ticket-meta { color: var(--color-text-tertiary); font-size: 11px; }
+      .dash-tag {
+        font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700;
+        letter-spacing: 0.03em;
+      }
+      .dash-tag-auto { background: rgba(34,197,94,0.12); color: #22c55e; }
+      .dash-tag-queue { background: rgba(234,179,8,0.12); color: #eab308; }
+      .dash-tag-escalate { background: rgba(239,68,68,0.12); color: #ef4444; }
+      .dash-sku-row {
+        display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
+        padding: 9px 0; border-bottom: 1px solid var(--color-border);
+        font-size: 12.5px; align-items: center;
+      }
+      .dash-sku-row:last-child { border-bottom: none; }
+      .dash-sku-name { font-weight: 600; color: var(--color-text); }
+      .dash-sku-stock { font-variant-numeric: tabular-nums; color: var(--color-text-secondary); text-align: right; }
+      .dash-sku-cover { font-variant-numeric: tabular-nums; text-align: right; }
+      .dash-sku-status { text-align: right; }
+      .dash-status-pill {
+        font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;
+      }
+      .pill-critical { background: rgba(239,68,68,0.12); color: #ef4444; }
+      .pill-low { background: rgba(234,179,8,0.12); color: #eab308; }
+      .pill-ok { background: rgba(34,197,94,0.08); color: #22c55e; }
+      .pill-over { background: rgba(99,102,241,0.1); color: #6366f1; }
+      @media (max-width: 768px) {
+        .dash-row-2, .dash-row-3, .dash-row-5 { grid-template-columns: 1fr; }
+        .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 480px) {
+        .dash-kpis { grid-template-columns: 1fr; }
+      }
+    </style>
+
     <div class="dashboard-mock fade-in">
       <div class="dash-toolbar">
         <div class="dash-dot red"></div>
         <div class="dash-dot yellow"></div>
         <div class="dash-dot green"></div>
-        <div class="dash-url">ops.yourstore.com/dashboard</div>
+        <div class="dash-url">optonomous.ai/dashboard</div>
       </div>
       <div class="dash-content">
         <div class="dash-tabs">
@@ -212,17 +331,157 @@
           <div class="dash-tab" data-tab="inventory">Inventory</div>
         </div>
 
-        <!-- DISPUTES -->
+        <!-- ========== DISPUTES TAB ========== -->
         <div class="tab-panel active" id="tab-disputes">
+          <!-- Top KPIs -->
           <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Deflected</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta positive">Via Disputely</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Active</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta neutral">Evidence submitted</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Win Rate</div><div class="dash-kpi-value">87%</div><div class="dash-kpi-delta positive">+12% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Saved</div><div class="dash-kpi-value">$18.2k</div><div class="dash-kpi-delta positive">This quarter</div></div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Chargeback Ratio</div>
+              <div class="dash-kpi-value">0.41%</div>
+              <div class="dash-kpi-delta positive">&darr; 0.23% from last month</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Deflected</div>
+              <div class="dash-kpi-value">23</div>
+              <div class="dash-kpi-delta positive">Via Disputely</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Win Rate</div>
+              <div class="dash-kpi-value">87%</div>
+              <div class="dash-kpi-delta positive">+12% MoM</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="dash-kpi-label">Saved</div>
+              <div class="dash-kpi-value">$18.2k</div>
+              <div class="dash-kpi-delta positive">This quarter</div>
+            </div>
+          </div>
+
+          <!-- Disputes Over Time chart -->
+          <div class="dash-panel" style="margin-bottom:12px;">
+            <div class="dash-panel-header">
+              <div>
+                <div class="dash-panel-title">
+                  <div class="dash-panel-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                  Disputes Over Time
+                </div>
+                <div class="dash-panel-subtitle">With vs without Disputely protection</div>
+              </div>
+              <div class="dash-date-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                Feb 24 – Mar 26
+              </div>
+            </div>
+            <svg viewBox="0 0 600 160" style="width:100%;height:auto;">
+              <!-- Grid lines -->
+              <line x1="40" y1="20" x2="580" y2="20" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="40" y1="60" x2="580" y2="60" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="40" y1="100" x2="580" y2="100" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="40" y1="140" x2="580" y2="140" stroke="var(--color-border)" stroke-width="0.5"/>
+              <!-- Y labels -->
+              <text x="30" y="24" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">12</text>
+              <text x="30" y="64" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">8</text>
+              <text x="30" y="104" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">4</text>
+              <text x="30" y="144" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">0</text>
+              <!-- X labels -->
+              <text x="85" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 1</text>
+              <text x="220" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 2</text>
+              <text x="355" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 3</text>
+              <text x="490" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 4</text>
+              <!-- Without Disputely (red area) -->
+              <path d="M85,100 L220,80 L355,50 L490,40 L490,140 L355,140 L220,140 L85,140 Z" fill="rgba(239,68,68,0.08)" stroke="none"/>
+              <polyline points="85,100 220,80 355,50 490,40" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
+              <!-- With Disputely (green area) -->
+              <path d="M85,130 L220,125 L355,120 L490,125 L490,140 L355,140 L220,140 L85,140 Z" fill="rgba(34,197,94,0.1)" stroke="none"/>
+              <polyline points="85,130 220,125 355,120 490,125" fill="none" stroke="#22c55e" stroke-width="2"/>
+              <!-- Dots -->
+              <circle cx="85" cy="100" r="3" fill="#ef4444" opacity="0.5"/>
+              <circle cx="220" cy="80" r="3" fill="#ef4444" opacity="0.5"/>
+              <circle cx="355" cy="50" r="3" fill="#ef4444" opacity="0.5"/>
+              <circle cx="490" cy="40" r="3" fill="#ef4444" opacity="0.5"/>
+              <circle cx="85" cy="130" r="3" fill="#22c55e"/>
+              <circle cx="220" cy="125" r="3" fill="#22c55e"/>
+              <circle cx="355" cy="120" r="3" fill="#22c55e"/>
+              <circle cx="490" cy="125" r="3" fill="#22c55e"/>
+            </svg>
+            <div class="dash-legend">
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#ef4444;opacity:0.6;"></div>Without Disputely</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#22c55e;"></div>With Disputely</div>
+            </div>
+          </div>
+
+          <!-- Bottom row: Reason Breakdown + Alert Prevention -->
+          <div class="dash-row dash-row-2">
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Reason Breakdown</div>
+                  <div class="dash-panel-subtitle">Analysis by category</div>
+                </div>
+                <div class="dash-toggle-group">
+                  <div class="dash-toggle-btn active">All</div>
+                  <div class="dash-toggle-btn">Alerts</div>
+                  <div class="dash-toggle-btn">Disputes</div>
+                </div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Product Not Received</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%;background:#6366f1;"></div></div>
+                <div class="dash-bar-val">12</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Subscription Cancelled</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:30%;background:#8b8b8b;"></div></div>
+                <div class="dash-bar-val">8</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Not as Described</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:15%;background:#eab308;"></div></div>
+                <div class="dash-bar-val">4</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Fraud</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:10%;background:#ef4444;"></div></div>
+                <div class="dash-bar-val">3</div>
+              </div>
+            </div>
+
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Alert Prevention</div>
+                  <div class="dash-panel-subtitle">Early warning system</div>
+                </div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#22c55e;"></div>
+                <div class="dash-badge-name">Visa RDR</div>
+                <div class="dash-badge-val">14</div>
+                <div class="dash-badge-pct">51.9%</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#6366f1;"></div>
+                <div class="dash-badge-name">ETHOCA</div>
+                <div class="dash-badge-val">7</div>
+                <div class="dash-badge-pct">25.9%</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#eab308;"></div>
+                <div class="dash-badge-name">CDRN</div>
+                <div class="dash-badge-val">4</div>
+                <div class="dash-badge-pct">14.8%</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#ef4444;"></div>
+                <div class="dash-badge-name">Unresolved</div>
+                <div class="dash-badge-val">2</div>
+                <div class="dash-badge-pct">7.4%</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- SUPPORT -->
+        <!-- ========== SUPPORT TAB ========== -->
         <div class="tab-panel" id="tab-support">
           <div class="dash-kpis">
             <div class="dash-kpi"><div class="dash-kpi-label">Open Tickets</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">+8 today</div></div>
@@ -230,35 +489,329 @@
             <div class="dash-kpi"><div class="dash-kpi-label">Avg Response</div><div class="dash-kpi-value">1.4m</div><div class="dash-kpi-delta positive">-30s from last week</div></div>
             <div class="dash-kpi"><div class="dash-kpi-label">CSAT</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
           </div>
+
+          <!-- Intent breakdown + recent tickets -->
+          <div class="dash-row dash-row-2">
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Intent Breakdown</div>
+                  <div class="dash-panel-subtitle">Last 7 days</div>
+                </div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">WISMO</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%;background:#22c55e;"></div></div>
+                <div class="dash-bar-val">38</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Refund</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%;background:#6366f1;"></div></div>
+                <div class="dash-bar-val">20</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Product Q</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:18%;background:#eab308;"></div></div>
+                <div class="dash-bar-val">16</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Cancel</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:11%;background:#ef4444;"></div></div>
+                <div class="dash-bar-val">10</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Other</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:7%;background:#8b8b8b;"></div></div>
+                <div class="dash-bar-val">6</div>
+              </div>
+            </div>
+
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Recent Tickets</div>
+                  <div class="dash-panel-subtitle">Last 24 hours</div>
+                </div>
+              </div>
+              <div class="dash-ticket-row">
+                <div><div class="dash-ticket-subject">Where is my order #4821?</div><div class="dash-ticket-meta">sarah.k@gmail.com · 14m ago</div></div>
+                <div class="dash-tag dash-tag-auto">AUTO-SENT</div>
+                <div style="font-size:11px;color:var(--color-text-tertiary);">94%</div>
+              </div>
+              <div class="dash-ticket-row">
+                <div><div class="dash-ticket-subject">Want to cancel subscription</div><div class="dash-ticket-meta">mike.r@yahoo.com · 1h ago</div></div>
+                <div class="dash-tag dash-tag-queue">QUEUED</div>
+                <div style="font-size:11px;color:var(--color-text-tertiary);">78%</div>
+              </div>
+              <div class="dash-ticket-row">
+                <div><div class="dash-ticket-subject">Item arrived damaged, need refund</div><div class="dash-ticket-meta">jen.w@outlook.com · 2h ago</div></div>
+                <div class="dash-tag dash-tag-auto">AUTO-SENT</div>
+                <div style="font-size:11px;color:var(--color-text-tertiary);">91%</div>
+              </div>
+              <div class="dash-ticket-row">
+                <div><div class="dash-ticket-subject">Can't login to account</div><div class="dash-ticket-meta">alex.t@gmail.com · 3h ago</div></div>
+                <div class="dash-tag dash-tag-escalate">ESCALATED</div>
+                <div style="font-size:11px;color:var(--color-text-tertiary);">42%</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- SUBSCRIPTIONS -->
+        <!-- ========== SUBSCRIPTIONS TAB ========== -->
         <div class="tab-panel" id="tab-subscriptions">
           <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Active Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
             <div class="dash-kpi"><div class="dash-kpi-label">MRR</div><div class="dash-kpi-value">$38.4k</div><div class="dash-kpi-delta positive">+8% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Failed Rebills</div><div class="dash-kpi-value">47</div><div class="dash-kpi-delta neutral">34 recovered</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Churn Risk</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">Save flows active</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Churn Rate</div><div class="dash-kpi-value">4.2%</div><div class="dash-kpi-delta positive">&darr; 0.8% from last month</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">LTV</div><div class="dash-kpi-value">$247</div><div class="dash-kpi-delta positive">+$18 MoM</div></div>
+          </div>
+
+          <div class="dash-row dash-row-2">
+            <!-- MRR chart -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">MRR Growth</div>
+                  <div class="dash-panel-subtitle">Last 6 months</div>
+                </div>
+              </div>
+              <svg viewBox="0 0 300 120" style="width:100%;height:auto;">
+                <line x1="30" y1="100" x2="280" y2="100" stroke="var(--color-border)" stroke-width="0.5"/>
+                <line x1="30" y1="70" x2="280" y2="70" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+                <line x1="30" y1="40" x2="280" y2="40" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+                <line x1="30" y1="10" x2="280" y2="10" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+                <text x="24" y="104" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$0</text>
+                <text x="24" y="44" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$25k</text>
+                <text x="24" y="14" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$40k</text>
+                <path d="M55,88 L97,80 L139,72 L181,60 L223,48 L265,38 L265,100 L55,100 Z" fill="rgba(34,197,94,0.08)" stroke="none"/>
+                <polyline points="55,88 97,80 139,72 181,60 223,48 265,38" fill="none" stroke="#22c55e" stroke-width="2"/>
+                <circle cx="55" cy="88" r="2.5" fill="#22c55e"/>
+                <circle cx="97" cy="80" r="2.5" fill="#22c55e"/>
+                <circle cx="139" cy="72" r="2.5" fill="#22c55e"/>
+                <circle cx="181" cy="60" r="2.5" fill="#22c55e"/>
+                <circle cx="223" cy="48" r="2.5" fill="#22c55e"/>
+                <circle cx="265" cy="38" r="3" fill="#22c55e"/>
+                <text x="55" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Oct</text>
+                <text x="97" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Nov</text>
+                <text x="139" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Dec</text>
+                <text x="181" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Jan</text>
+                <text x="223" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Feb</text>
+                <text x="265" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Mar</text>
+              </svg>
+            </div>
+
+            <!-- Recovery & Churn -->
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Payment Recovery</div>
+                  <div class="dash-panel-subtitle">This month</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+                <div class="dash-mini-kpi">
+                  <div class="dash-mini-kpi-label">Failed Rebills</div>
+                  <div class="dash-mini-kpi-value" style="font-size:18px;">47</div>
+                </div>
+                <div class="dash-mini-kpi">
+                  <div class="dash-mini-kpi-label">Recovered</div>
+                  <div class="dash-mini-kpi-value" style="font-size:18px;color:#22c55e;">34</div>
+                </div>
+              </div>
+              <div class="dash-panel-title" style="margin-bottom:8px;font-size:12px;">Churn Signals</div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#ef4444;"></div>
+                <div class="dash-badge-name">Cancel intent in support</div>
+                <div class="dash-badge-val">8</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#eab308;"></div>
+                <div class="dash-badge-name">3+ skips in a row</div>
+                <div class="dash-badge-val">5</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:#8b8b8b;"></div>
+                <div class="dash-badge-name">Payment failure after retries</div>
+                <div class="dash-badge-val">10</div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- PROFITABILITY -->
+        <!-- ========== PROFITABILITY TAB ========== -->
         <div class="tab-panel" id="tab-profit">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Revenue (30d)</div><div class="dash-kpi-value">$127k</div><div class="dash-kpi-delta positive">+18% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Ad Spend</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Meta / TikTok / Google</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">COGS</div><div class="dash-kpi-value">$38.1k</div><div class="dash-kpi-delta neutral">30% of revenue</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">True Profit</div><div class="dash-kpi-value">$34.8k</div><div class="dash-kpi-delta positive">27.4% net margin</div></div>
+          <!-- KPI row 1 -->
+          <div class="dash-row dash-row-5">
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Order Count</div>
+              <div class="dash-mini-kpi-value">1,847</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 18.2%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Revenue</div>
+              <div class="dash-mini-kpi-value">$127k</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 22.1%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Net Profit</div>
+              <div class="dash-mini-kpi-value">$34.8k</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 31.4%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Total Cost</div>
+              <div class="dash-mini-kpi-value">$92.2k</div>
+              <div class="dash-mini-kpi-delta neu">&uarr; 16.8%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Net Margin</div>
+              <div class="dash-mini-kpi-value">27.4%</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 3.1%</div>
+            </div>
+          </div>
+          <!-- KPI row 2 -->
+          <div class="dash-row dash-row-5">
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Units Sold</div>
+              <div class="dash-mini-kpi-value">2,914</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 12.5%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">Ad Spend</div>
+              <div class="dash-mini-kpi-value">$41.2k</div>
+              <div class="dash-mini-kpi-delta neg">&uarr; 8.3%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">AOV</div>
+              <div class="dash-mini-kpi-value">$68.70</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 3.2%</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">ROAS</div>
+              <div class="dash-mini-kpi-value">3.08x</div>
+              <div class="dash-mini-kpi-delta pos">&uarr; 0.4x</div>
+            </div>
+            <div class="dash-mini-kpi">
+              <div class="dash-mini-kpi-label">COGS</div>
+              <div class="dash-mini-kpi-value">$38.1k</div>
+              <div class="dash-mini-kpi-delta neu">30% of rev</div>
+            </div>
+          </div>
+
+          <!-- Performance chart -->
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <div>
+                <div class="dash-panel-title">Performance</div>
+                <div class="dash-panel-subtitle">Revenue, Ad Spend, and Net Profit — last 6 months</div>
+              </div>
+              <div class="dash-toggle-group">
+                <div class="dash-toggle-btn active">Monthly</div>
+                <div class="dash-toggle-btn">Weekly</div>
+              </div>
+            </div>
+            <svg viewBox="0 0 600 180" style="width:100%;height:auto;">
+              <!-- Grid -->
+              <line x1="50" y1="20" x2="570" y2="20" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="50" y1="55" x2="570" y2="55" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="50" y1="90" x2="570" y2="90" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="50" y1="125" x2="570" y2="125" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
+              <line x1="50" y1="155" x2="570" y2="155" stroke="var(--color-border)" stroke-width="0.5"/>
+              <!-- Y axis -->
+              <text x="44" y="24" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$140k</text>
+              <text x="44" y="59" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$100k</text>
+              <text x="44" y="94" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$60k</text>
+              <text x="44" y="129" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$20k</text>
+              <!-- X axis -->
+              <text x="137" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Oct</text>
+              <text x="224" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Nov</text>
+              <text x="311" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Dec</text>
+              <text x="398" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Jan</text>
+              <text x="485" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Feb</text>
+              <text x="550" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Mar</text>
+              <!-- Revenue (solid, dark) -->
+              <path d="M137,98 L224,82 L311,75 L398,58 L485,42 L550,28 L550,155 L137,155 Z" fill="var(--color-text)" opacity="0.04" stroke="none"/>
+              <polyline points="137,98 224,82 311,75 398,58 485,42 550,28" fill="none" stroke="var(--color-text)" stroke-width="2.5" opacity="0.8"/>
+              <!-- Ad Spend (dashed, blue) -->
+              <polyline points="137,130 224,126 311,120 398,118 485,115 550,112" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <!-- Net Profit (green) -->
+              <polyline points="137,138 224,132 311,128 398,120 485,112 550,105" fill="none" stroke="#22c55e" stroke-width="2"/>
+              <!-- Dots -->
+              <circle cx="550" cy="28" r="3" fill="var(--color-text)" opacity="0.8"/>
+              <circle cx="550" cy="112" r="2.5" fill="#6366f1"/>
+              <circle cx="550" cy="105" r="2.5" fill="#22c55e"/>
+            </svg>
+            <div class="dash-legend">
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-text);opacity:0.7;"></div>Revenue</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#6366f1;"></div>Ad Spend</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#22c55e;"></div>Net Profit</div>
+            </div>
           </div>
         </div>
 
-        <!-- INVENTORY -->
+        <!-- ========== INVENTORY TAB ========== -->
         <div class="tab-panel" id="tab-inventory">
           <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">SKUs</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 stores</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Total SKUs</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 categories</div></div>
             <div class="dash-kpi"><div class="dash-kpi-label">Low Stock</div><div class="dash-kpi-value">6</div><div class="dash-kpi-delta negative">3 critical</div></div>
             <div class="dash-kpi"><div class="dash-kpi-label">Overstock</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta neutral">&gt;45 days cover</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">POs Sent</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">This week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">POs Drafted</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">Auto-sent this week</div></div>
+          </div>
+
+          <div class="dash-panel">
+            <div class="dash-panel-header">
+              <div>
+                <div class="dash-panel-title">SKU Health</div>
+                <div class="dash-panel-subtitle">Sorted by days of cover</div>
+              </div>
+            </div>
+            <div class="dash-sku-row" style="font-size:11px;color:var(--color-text-tertiary);font-weight:600;border-bottom:1px solid var(--color-border);padding-bottom:6px;">
+              <div>SKU</div>
+              <div style="text-align:right;">On Hand</div>
+              <div style="text-align:right;">Days Cover</div>
+              <div style="text-align:right;">Status</div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Hydra Serum 30ml</div>
+              <div class="dash-sku-stock">24</div>
+              <div class="dash-sku-cover" style="color:#ef4444;font-weight:700;">3d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Glow Drops 15ml</div>
+              <div class="dash-sku-stock">51</div>
+              <div class="dash-sku-cover" style="color:#ef4444;font-weight:700;">5d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Volume Shampoo 250ml</div>
+              <div class="dash-sku-stock">89</div>
+              <div class="dash-sku-cover" style="color:#eab308;font-weight:600;">11d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-low">LOW</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Repair Mask 200ml</div>
+              <div class="dash-sku-stock">145</div>
+              <div class="dash-sku-cover" style="color:#22c55e;">22d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Curl Cream 150ml</div>
+              <div class="dash-sku-stock">312</div>
+              <div class="dash-sku-cover" style="color:#22c55e;">34d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Dry Shampoo 200ml</div>
+              <div class="dash-sku-stock">890</div>
+              <div class="dash-sku-cover" style="color:#6366f1;">67d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
+            </div>
+            <div class="dash-sku-row">
+              <div class="dash-sku-name">Heat Protector 120ml</div>
+              <div class="dash-sku-stock">724</div>
+              <div class="dash-sku-cover" style="color:#6366f1;">52d</div>
+              <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
+            </div>
           </div>
         </div>
 
