@@ -279,27 +279,10 @@
 }
 
 .section.alt {
-  background: var(--color-bg-alt);
+  background: var(--color-bg);
 }
 
-/* Smooth gradient transitions between sections */
-.section.alt::before {
-  content: '';
-  display: block;
-  height: var(--space-12);
-  margin-top: calc(-1 * var(--space-12));
-  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg-alt));
-  pointer-events: none;
-}
 
-.section.alt + .section:not(.alt)::before {
-  content: '';
-  display: block;
-  height: var(--space-12);
-  margin-top: calc(-1 * var(--space-12));
-  background: linear-gradient(to bottom, var(--color-bg-alt), var(--color-bg));
-  pointer-events: none;
-}
 
 .section-inner {
   max-width: var(--content-wide);
@@ -1265,18 +1248,25 @@
 /* =============================================
    ANIMATIONS
    ============================================= */
-/* Scroll-triggered fade-in with subtle upward drift */
+/* Scroll-triggered fade-in */
 .fade-in {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Stagger children */
+.fade-in:nth-child(2) { transition-delay: 0.08s; }
+.fade-in:nth-child(3) { transition-delay: 0.16s; }
+.fade-in:nth-child(4) { transition-delay: 0.24s; }
+.fade-in:nth-child(5) { transition-delay: 0.32s; }
+.fade-in:nth-child(6) { transition-delay: 0.4s; }
 
 
 /* =============================================

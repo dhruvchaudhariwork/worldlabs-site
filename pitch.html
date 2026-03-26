@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpsFlow — Investor Pitch</title>
+
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+
+<style>
+  /* Pitch-specific styles */
+  .pitch-slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(var(--space-12), 8vw, var(--space-24)) var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .pitch-slide:last-of-type { border-bottom: none; }
+
+  .pitch-inner {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .pitch-label {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-6);
+  }
+
+  .pitch-title {
+    font-family: var(--font-display);
+    font-size: var(--text-hero);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.05;
+    margin-bottom: var(--space-6);
+    letter-spacing: -0.02em;
+  }
+
+  .pitch-sub {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  /* Big stat */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+  }
+
+  .stat-card {
+    padding: var(--space-8) var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .stat-value {
+    font-family: var(--font-body);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+
+  .stat-source {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-2);
+    font-style: italic;
+  }
+
+  /* Problem list */
+  .problem-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    margin-top: var(--space-8);
+    max-width: 640px;
+  }
+
+  .problem-list li {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .problem-cost {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: var(--text-lg);
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .problem-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Comparison table */
+  .comp-table {
+    width: 100%;
+    margin-top: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .comp-table th, .comp-table td {
+    padding: var(--space-4) var(--space-5);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--text-sm);
+  }
+
+  .comp-table th {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table .highlight { font-weight: 700; }
+
+  /* Revenue model */
+  .rev-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .rev-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .rev-card h3 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .rev-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Team placeholder */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-8);
+  }
+
+  .ask-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  .ask-card h3 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+  }
+
+  .ask-card p, .ask-card li {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .ask-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .ask-card li::before {
+    content: '\2192  ';
+    color: var(--color-text-tertiary);
+  }
+
+  .pitch-nav {
+    position: fixed;
+    bottom: var(--space-6);
+    right: var(--space-6);
+    display: flex;
+    gap: var(--space-2);
+    z-index: 100;
+  }
+
+  .pitch-nav a {
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-interactive);
+  }
+
+  .pitch-nav a:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-tertiary);
+  }
+
+  @media (max-width: 768px) {
+    .stat-grid { grid-template-columns: 1fr; }
+    .rev-row { grid-template-columns: 1fr; }
+    .ask-grid { grid-template-columns: 1fr; }
+    .pitch-title { font-size: var(--text-2xl); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed nav -->
+<div class="pitch-nav">
+  <a href="./index.html">Back to Site</a>
+  <button class="theme-toggle" data-theme-toggle aria-label="Switch theme" style="padding:var(--space-2);border:1px solid var(--color-border);border-radius:var(--radius-full);background:var(--color-surface);color:var(--color-text-tertiary);">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  </button>
+</div>
+
+
+<!-- SLIDE 1: Title -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">OPSFLOW &mdash; INVESTOR DECK</div>
+    <h1 class="pitch-title">The AI COO for<br>e-commerce brands</h1>
+    <p class="pitch-sub">One platform that automates customer support, subscription retention, inventory ops, and chargeback protection &mdash; so lean teams can scale without hiring.</p>
+  </div>
+</section>
+
+
+<!-- SLIDE 2: The Problem -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">THE PROBLEM</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">E-commerce ops is a tax on growth</h2>
+    <p class="pitch-sub">Every brand hitting $100K+/mo GMV faces the same bottleneck: ops busywork eats the team alive.</p>
+
+    <ul class="problem-list">
+      <li>
+        <span class="problem-cost">$6.00</span>
+        <span class="problem-desc">Average cost per human support ticket. AI interactions cost $0.50. That's 12x cheaper.</span>
+      </li>
+      <li>
+        <span class="problem-cost">$190</span>
+        <span class="problem-desc">Average cost per chargeback (dispute fees + lost product + admin time). Most brands lose 80% of disputes because they miss the response window.</span>
+      </li>
+      <li>
+        <span class="problem-cost">$2-4K/mo</span>
+        <span class="problem-desc">What brands pay for a VA to manage support + disputes + inventory manually. Slow, error-prone, doesn't scale.</span>
+      </li>
+      <li>
+        <span class="problem-cost">15-30%</span>
+        <span class="problem-desc">Subscription revenue lost to involuntary churn (failed payments). Most brands don't retry intelligently or run save flows.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- SLIDE 3: Market Size -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">MARKET SIZE</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">Massive TAM, fragmented solutions</h2>
+    <p class="pitch-sub">Brands currently buy 3-5 separate tools to solve these problems. OpsFlow consolidates them into one platform.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value">$6.7B</div>
+        <div class="stat-label">Customer service automation market (2026)</div>
+        <div class="stat-source">EIN Presswire, growing at 16.3% CAGR to $12.3B by 2030</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$3.0B</div>
+        <div class="stat-label">Chargeback management market (2026)</div>
+        <div class="stat-source">Market.us, growing at 13.5% CAGR to $9.3B by 2035</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$378B</div>
+        <div class="stat-label">Shopify GMV alone in 2025</div>
+        <div class="stat-source">Shopify Q4 2025 earnings, 30% YoY growth</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$29.5B</div>
+        <div class="stat-label">Chatbot market by 2029</div>
+        <div class="stat-source">Tidio, up from $10.3B in 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SLIDE 4: Why Now -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">WHY NOW</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">Three tailwinds converging</h2>
+
+    <div class="stat-grid" style="grid-template-columns:repeat(3, 1fr);">
+      <div class="stat-card">
+        <div class="stat-value">93%</div>
+        <div class="stat-label">Cost reduction from GPT-4 to GPT-4o-mini. What cost $10 per 1K inferences in 2023 now costs $0.75. AI ops is finally unit-economic positive.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">30%</div>
+        <div class="stat-label">Of support cases now resolved by AI (Salesforce). Expected to hit 50% by 2027. Merchants are ready to adopt.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3-5x</div>
+        <div class="stat-label">ROI on every $1 invested in AI customer service. The economics are proven &mdash; merchants just need the tool.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SLIDE 5: Solution -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">THE SOLUTION</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">OpsFlow: one platform, four agents</h2>
+    <p class="pitch-sub">Instead of buying Gorgias + Chargeflow + Apptics + a VA, brands get one unified platform that shares context across all ops functions.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr><th>Problem</th><th>Old Way</th><th>OpsFlow</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Support tickets</td><td>Gorgias ($360/mo + $1/AI resolution)</td><td class="highlight">SupportAgent &mdash; included, unlimited</td></tr>
+        <tr><td>Chargebacks</td><td>Chargeflow (25% of recovered $)</td><td class="highlight">Disputely integration &mdash; 15% recovery</td></tr>
+        <tr><td>Failed rebills</td><td>Apptics / manual retries</td><td class="highlight">RetentionAgent &mdash; smart cascade + save flows</td></tr>
+        <tr><td>Inventory ops</td><td>Spreadsheets / VAs</td><td class="highlight">InventoryAgent &mdash; auto PO + promo copy</td></tr>
+        <tr><td>Unified view</td><td>Doesn't exist</td><td class="highlight">Ops Command Center &mdash; one dashboard</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- SLIDE 6: Moat -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">COMPETITIVE ADVANTAGE</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">Cross-agent intelligence is the moat</h2>
+    <p class="pitch-sub">Every standalone tool operates in a silo. OpsFlow connects signals across support, subscriptions, inventory, and disputes to make smarter decisions.</p>
+
+    <div class="stat-grid" style="margin-top:var(--space-8);grid-template-columns:repeat(3, 1fr);">
+      <div class="stat-card">
+        <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Support &rarr; Retention</div>
+        <div class="stat-label">"Cancel my subscription" email triggers a save flow before the customer reaches the cancel page. Nobody else connects these.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Inventory &rarr; Support</div>
+        <div class="stat-label">When a SKU hits 3-day supply, SupportAgent automatically adds "ships in 5-7 days" to WISMO replies for that product. Context-aware.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label" style="font-size:var(--text-base);color:var(--color-text);font-weight:600;margin-bottom:var(--space-2);">Support &rarr; Disputes</div>
+        <div class="stat-label">Customer support transcripts automatically feed into dispute evidence. Disputely gets richer evidence = higher win rate.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SLIDE 7: Revenue Model -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">REVENUE MODEL</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">Platform fee + performance share</h2>
+
+    <div class="rev-row">
+      <div class="rev-card">
+        <h3>Platform Fee</h3>
+        <p>$1.5K&ndash;$4K/mo base depending on GMV tier. Covers AI agents, dashboard, and infrastructure. ~95% gross margin.</p>
+      </div>
+      <div class="rev-card">
+        <h3>Performance Share</h3>
+        <p>1&ndash;2% of agent-processed GMV. Aligns incentives &mdash; we earn more when we save more.</p>
+      </div>
+      <div class="rev-card">
+        <h3>Partner Revenue</h3>
+        <p>Disputely referral share on chargeback prevention. Add-on modules (after-hours coverage, creative autopilot) at $500&ndash;$1K/mo.</p>
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:var(--space-8);grid-template-columns:repeat(3, 1fr);">
+      <div class="stat-card">
+        <div class="stat-value">$6K</div>
+        <div class="stat-label">Example monthly ARR from a $300K GMV brand ($2K base + $4K performance share)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">~95%</div>
+        <div class="stat-label">Gross margin on platform fee. AI costs ~$50/store/mo, infra ~$100/store/mo.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">$72K</div>
+        <div class="stat-label">Annual revenue per mid-market customer. 100 customers = $7.2M ARR.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SLIDE 8: The Ask -->
+<section class="pitch-slide">
+  <div class="pitch-inner fade-in">
+    <div class="pitch-label">THE ASK</div>
+    <h2 class="section-title" style="font-size:var(--text-2xl);">Seed round to get to 50 paying stores</h2>
+
+    <div class="ask-grid">
+      <div class="ask-card">
+        <h3>Use of Funds</h3>
+        <ul>
+          <li>Shopify + Stripe integration (MVP in 8 weeks)</li>
+          <li>SupportAgent + RetentionAgent core build</li>
+          <li>Disputely partnership integration</li>
+          <li>First 10 design partner onboards</li>
+          <li>12 months runway at lean burn</li>
+        </ul>
+      </div>
+      <div class="ask-card">
+        <h3>Milestones</h3>
+        <ul>
+          <li>Month 3: MVP live with 10 design partners</li>
+          <li>Month 6: 25 paying stores, $40K MRR</li>
+          <li>Month 9: WooCommerce connector live</li>
+          <li>Month 12: 50 stores, $100K+ MRR</li>
+          <li>Month 12: Series A ready metrics</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SLIDE 9: Close -->
+<section class="pitch-slide" style="text-align:center;">
+  <div class="pitch-inner fade-in">
+    <h2 class="pitch-title">OpsFlow</h2>
+    <p class="pitch-sub" style="margin:0 auto var(--space-8);text-align:center;">The AI COO for e-commerce brands.</p>
+    <a href="./index.html" class="btn btn-primary" style="margin:0 auto;">View the Product</a>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border:none;padding:0;">
+      <p>&copy; 2026 OpsFlow. Confidential investor preview.</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// Theme
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function upd() {
+    if (!t) return;
+    t.innerHTML = d === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  upd();
+  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upd(); });
+})();
+
+// Fade in
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
