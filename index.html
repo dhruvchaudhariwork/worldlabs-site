@@ -153,7 +153,7 @@
   <div class="section-inner section-center">
     <div class="section-label fade-in">PLATFORM FEATURES</div>
     <h2 class="section-title fade-in">Your ops team, fully automated</h2>
-    <p class="section-desc fade-in">Not another dashboard to check. Not another app to configure. Six autonomous agents that do the work — from building your store to running it.</p>
+    <p class="section-desc fade-in">Not another dashboard to check. Not another app to configure. Seven modules that do the work — from building your store to running it.</p>
 
     <div class="features-grid">
       <div class="feature-card fade-in">
@@ -216,9 +216,21 @@
       </div>
 
       <div class="feature-card fade-in">
+        <div class="feature-label">PROFITABILITY</div>
+        <h3>True Profit Dashboard</h3>
+        <p>Connect your ad accounts (Meta, TikTok, Google Ads), set your COGS per SKU, and see real profit — not just revenue. Factors in ad spend, shipping, transaction fees, returns, chargebacks, and subscription costs. Know your true margin on every order, every product, every channel.</p>
+        <div class="feature-tags">
+          <span class="tag">COGS tracking</span>
+          <span class="tag">Ad spend (Meta, TikTok, Google)</span>
+          <span class="tag">Real-time P&L</span>
+          <span class="tag">Per-order margin</span>
+        </div>
+      </div>
+
+      <div class="feature-card fade-in">
         <div class="feature-label">COMMAND CENTER</div>
         <h3>Ops Dashboard</h3>
-        <p>Unified dashboard showing your storefront, support tickets, inventory alerts, subscription health, and chargeback status. Approve, edit, or reject AI drafts with a single click. Full audit log of every action taken.</p>
+        <p>Unified dashboard showing your storefront, support tickets, inventory alerts, subscription health, profitability, and chargeback status. Approve, edit, or reject AI drafts with a single click. Full audit log of every action taken.</p>
         <div class="feature-tags">
           <span class="tag">Unified view</span>
           <span class="tag">Audit log</span>
@@ -390,6 +402,7 @@
           <div class="dash-tab active" data-tab="disputes">Disputes</div>
           <div class="dash-tab" data-tab="support">Support</div>
           <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
+          <div class="dash-tab" data-tab="profit">Profitability</div>
           <div class="dash-tab" data-tab="inventory">Inventory</div>
           <div class="dash-tab" data-tab="audit">Audit Log</div>
         </div>
@@ -447,6 +460,25 @@
               <tr><td>K. Lee</td><td>Quarterly</td><td>$129.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>Cancel intent detected</td><td><div class="action-btns"><button class="action-btn">Offer Pause</button></div></td></tr>
               <tr><td>T. Brooks</td><td>Monthly Box</td><td>$49.00</td><td><span class="status-badge approved"><span class="status-dot"></span>Recovered</span></td><td>Retry #2 succeeded</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
               <tr><td>A. Patel</td><td>Annual</td><td>$399.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>3 support tickets in 7 days</td><td><div class="action-btns"><button class="action-btn">Save Flow</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- PROFITABILITY TAB -->
+        <div class="tab-panel" id="tab-profit">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Revenue (30d)</div><div class="dash-kpi-value">$127k</div><div class="dash-kpi-delta positive">+18% MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Ad Spend</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Meta $28k &bull; TikTok $9k &bull; Google $4.2k</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">COGS + Shipping</div><div class="dash-kpi-value">$38.1k</div><div class="dash-kpi-delta neutral">30% of revenue</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">True Profit</div><div class="dash-kpi-value">$34.8k</div><div class="dash-kpi-delta positive">27.4% net margin</div></div>
+          </div>
+          <table class="dash-table">
+            <thead><tr><th>Channel</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Fees</th><th>Net Profit</th><th>ROAS</th></tr></thead>
+            <tbody>
+              <tr><td>Meta Ads</td><td>$78.4k</td><td>$28.0k</td><td>$23.5k</td><td>$3.9k</td><td style="font-weight:700;color:var(--color-success)">$23.0k</td><td>2.80x</td></tr>
+              <tr><td>TikTok Ads</td><td>$31.2k</td><td>$9.0k</td><td>$9.4k</td><td>$1.6k</td><td style="font-weight:700;color:var(--color-success)">$11.2k</td><td>3.47x</td></tr>
+              <tr><td>Google Ads</td><td>$12.8k</td><td>$4.2k</td><td>$3.8k</td><td>$0.6k</td><td style="font-weight:700;color:var(--color-success)">$4.2k</td><td>3.05x</td></tr>
+              <tr><td>Organic / Direct</td><td>$4.6k</td><td>$0</td><td>$1.4k</td><td>$0.2k</td><td style="font-weight:700;color:var(--color-success)">$3.0k</td><td>&mdash;</td></tr>
             </tbody>
           </table>
         </div>
