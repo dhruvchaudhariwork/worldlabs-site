@@ -44,10 +44,8 @@
       <ul class="nav-links" role="list">
         <li><a href="#features">Platform</a></li>
         <li><a href="#architecture">Architecture</a></li>
-        <li><a href="#workflows">Agents</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
         <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#roadmap">Roadmap</a></li>
         <li><a href="./pitch.html">Pitch Deck</a></li>
       </ul>
     </nav>
@@ -95,29 +93,6 @@
 </section>
 
 
-<!-- ========== KPIs ========== -->
-<section class="section" style="padding-top:0;">
-  <div class="section-inner fade-in">
-    <div class="kpi-row">
-      <div class="kpi">
-        <div class="kpi-value">85%</div>
-        <div class="kpi-label">Dispute win-rate target</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-value">&lt;2min</div>
-        <div class="kpi-label">Avg support response</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-value">0</div>
-        <div class="kpi-label">Stock-outs with alerts</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-value">8 days</div>
-        <div class="kpi-label">MVP build time</div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ========== HOW IT WORKS ========== -->
@@ -295,88 +270,6 @@
           <span>Save flows</span>
           <span>Dashboard</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== AGENT WORKFLOWS ========== -->
-<section class="section" id="workflows">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">AGENT WORKFLOWS</div>
-    <h2 class="section-title fade-in">Agents that act, not tools you manage</h2>
-    <p class="section-desc fade-in">Each agent runs a deterministic pipeline with LLM reasoning at key decision points. They don't wait for you to click buttons — they act autonomously and surface results for approval.</p>
-
-    <div class="workflow-grid">
-      <div class="workflow-card fade-in">
-        <div class="workflow-header">
-          <div class="workflow-num">1</div>
-          <h3>Chargeback Protection</h3>
-        </div>
-        <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Customer files dispute with bank &mdash; card network fires alert</li>
-          <li><span class="wf-step-num">02</span>Disputely intercepts via Visa RDR / Ethoca / CDRN</li>
-          <li><span class="wf-step-num">03</span>Auto-refund deflects chargeback before it hits your ratio</li>
-          <li><span class="wf-step-num">04</span>If dispute escalates, Disputely compiles evidence + submits response</li>
-          <li><span class="wf-step-num">05</span>OpsFlow dashboard shows all dispute activity + outcomes</li>
-        </ul>
-      </div>
-
-      <div class="workflow-card fade-in">
-        <div class="workflow-header">
-          <div class="workflow-num">2</div>
-          <h3>SupportAgent</h3>
-        </div>
-        <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>New support email via Gmail push notification</li>
-          <li><span class="wf-step-num">02</span>Classify: WISMO, Cancel, Refund, Address Change, Other</li>
-          <li><span class="wf-step-num">03</span>Pull order data, tracking status, subscription state</li>
-          <li><span class="wf-step-num">04</span>LLM drafts reply with intent-specific template</li>
-          <li><span class="wf-step-num">05</span>Auto-send if confidence &gt; threshold, else queue</li>
-        </ul>
-      </div>
-
-      <div class="workflow-card fade-in">
-        <div class="workflow-header">
-          <div class="workflow-num">3</div>
-          <h3>RetentionAgent</h3>
-        </div>
-        <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Merchant connects store — OpsFlow handles subscription setup, billing, and payment processing</li>
-          <li><span class="wf-step-num">02</span>On failed payment: smart retry with cascade timing + MID routing for max approval rates</li>
-          <li><span class="wf-step-num">03</span>Detect churn signals from support tickets, skip patterns, and cancel page visits</li>
-          <li><span class="wf-step-num">04</span>Trigger save flow: pause offer, discount, product swap, or personal outreach</li>
-          <li><span class="wf-step-num">05</span>Dashboard shows MRR, subscriber health, recovery rate, AOV, and CLTV trends</li>
-        </ul>
-      </div>
-
-      <div class="workflow-card fade-in">
-        <div class="workflow-header">
-          <div class="workflow-num">4</div>
-          <h3>StorefrontAgent</h3>
-        </div>
-        <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Merchant describes product, target audience, and brand vibe</li>
-          <li><span class="wf-step-num">02</span>AI analyzes top-performing stores in the niche for layout and copy patterns</li>
-          <li><span class="wf-step-num">03</span>Generates full storefront: product pages, bundles, upsells, checkout flow</li>
-          <li><span class="wf-step-num">04</span>Merchant iterates via prompts — each version improves on the last</li>
-          <li><span class="wf-step-num">05</span>Store goes live on hosted OpsFlow domain or custom domain</li>
-        </ul>
-      </div>
-
-      <div class="workflow-card fade-in">
-        <div class="workflow-header">
-          <div class="workflow-num">5</div>
-          <h3>InventoryAgent</h3>
-        </div>
-        <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Scheduled job runs every 6 hours via cron</li>
-          <li><span class="wf-step-num">02</span>Compute days_of_cover = on_hand / avg_daily_sales</li>
-          <li><span class="wf-step-num">03</span>&lt;7 days: Slack alert + auto-drafted PO email</li>
-          <li><span class="wf-step-num">04</span>&gt;45 days: LLM generates promo copy</li>
-          <li><span class="wf-step-num">05</span>Dashboard shows SKUs with recommended action</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -615,102 +508,6 @@
 </section>
 
 
-<!-- ========== HOW ONBOARDING WORKS ========== -->
-<section class="section alt" id="onboarding">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">ONBOARDING</div>
-    <h2 class="section-title fade-in">Live in 30 minutes. Autonomous in 48 hours.</h2>
-    <p class="section-desc fade-in">Three steps. That's it. Connect your store, let the agents shadow you for 48 hours, then flip to autopilot.</p>
-
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <h3>Connect &mdash; 5 min</h3>
-        <p>OAuth into your e-commerce platform and Gmail inbox. OpsFlow installs as an app and pulls the last 90 days of orders, inventory levels, and active disputes.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <h3>Configure &mdash; 15 min</h3>
-        <p>Set auto-send confidence thresholds, upload your T&C, choose which intents auto-reply vs. queue. OpsFlow generates reply templates matched to your brand voice.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <h3>Shadow &mdash; 48 hrs</h3>
-        <p>All agents run in shadow mode. Every draft goes to Slack and the dashboard for your team to approve, edit, or reject. The system learns your preferences.</p>
-      </div>
-    </div>
-
-    <div style="margin-top:var(--space-8);">
-      <div class="steps-grid">
-        <div class="step-card fade-in">
-          <div class="step-number">4</div>
-          <h3>Go Live</h3>
-          <p>Flip agents to autonomous mode. SupportAgent auto-sends high-confidence replies. DisputeAgent pushes drafts to Slack. InventoryAgent alerts on thresholds.</p>
-        </div>
-        <div class="step-card fade-in">
-          <div class="step-number" style="background:transparent;border:1px solid var(--color-border);color:var(--color-text-tertiary);">?</div>
-          <h3>How AI cost works</h3>
-          <p>80% of LLM calls use fast, cheap models (GPT-4o-mini at $0.15/1M tokens) for classification. Only complex drafts use larger models. Avg AI cost: ~$15/store/mo &mdash; built into your flat rate.</p>
-        </div>
-        <div class="step-card fade-in">
-          <div class="step-number" style="background:transparent;border:1px solid var(--color-border);color:var(--color-text-tertiary);">%</div>
-          <h3>Unit economics</h3>
-          <p>A $300K GMV brand at $2K base + $4K performance share = $6K/mo ARR to OpsFlow. Disputely bills chargebacks separately (pay-per-save). AI costs ~$50, infra ~$100. 97% gross margin on base, performance share is upside.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ========== IMPLEMENTATION TIMELINE ========== -->
-<section class="section alt" id="roadmap">
-  <div class="section-inner">
-    <div class="section-label fade-in">IMPLEMENTATION</div>
-    <h2 class="section-title fade-in">8 days to a working MVP</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Lean build, fast iteration. Each step delivers a testable increment.</p>
-
-    <div class="timeline">
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 0.5</div>
-        <h3>Bootstrap Project</h3>
-        <p>Repo setup, env vars, Postgres schema, initial migrations.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 1 — 1.5</div>
-        <h3>Platform Connectors</h3>
-        <p>Shopify OAuth + webhooks first. Adapter pattern for WooCommerce, BigCommerce next. Gmail push/polling.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 1.5 — 3.5</div>
-        <h3>DisputeAgent MVP</h3>
-        <p>Data fetch, LLM evidence compilation, PDF generation, Slack notifications.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 3.5 — 5.5</div>
-        <h3>SupportAgent MVP</h3>
-        <p>Intent classifier, template library, confidence-gated auto-send, approval flow.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 5.5 — 6.5</div>
-        <h3>InventoryAgent</h3>
-        <p>Days-of-cover computation, threshold alerts, promo copy, supplier PO drafts.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 6.5 — 7.5</div>
-        <h3>Dashboard UI</h3>
-        <p>Next.js command center with tabs, approve/edit/reject, audit log.</p>
-      </div>
-      <div class="timeline-item fade-in">
-        <div class="timeline-duration">Day 7.5 — 8</div>
-        <h3>Testing + Hardening</h3>
-        <p>Edge cases, retry logic, error handling, monitoring, logging.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ========== CTA / FUTURE ========== -->
 <section class="cta-banner">
   <div class="cta-watermark">OPSFLOW</div>
@@ -756,11 +553,12 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Agents</h4>
+        <h4>Modules</h4>
         <ul role="list">
-          <li><a href="#workflows">Chargeback Protection</a></li>
-          <li><a href="#workflows">SupportAgent</a></li>
-          <li><a href="#workflows">InventoryAgent</a></li>
+          <li><a href="#features">SupportAgent</a></li>
+          <li><a href="#features">RetentionAgent</a></li>
+          <li><a href="#features">InventoryAgent</a></li>
+          <li><a href="#features">StorefrontAgent</a></li>
         </ul>
       </div>
       <div class="footer-col">
