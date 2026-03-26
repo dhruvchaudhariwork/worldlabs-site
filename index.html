@@ -123,7 +123,7 @@
 <section class="section alt" id="how">
   <div class="section-inner section-center">
     <div class="section-label fade-in">HOW OPSFLOW WORKS</div>
-    <h2 class="section-title fade-in">Three agents, one command center</h2>
+    <h2 class="section-title fade-in">Four agents, one command center</h2>
     <p class="section-desc fade-in">Each module runs autonomously but reports to a single dashboard. Human-in-the-loop approval keeps you in control.</p>
 
     <div class="steps-grid">
@@ -152,7 +152,7 @@
   <div class="section-inner section-center">
     <div class="section-label fade-in">PLATFORM FEATURES</div>
     <h2 class="section-title fade-in">Everything you need to ship faster</h2>
-    <p class="section-desc fade-in">Four modules that cover the highest-ROI busywork for lean e-commerce teams.</p>
+    <p class="section-desc fade-in">Five modules that cover the highest-ROI busywork for lean e-commerce teams.</p>
 
     <div class="features-grid">
       <div class="feature-card fade-in">
@@ -190,9 +190,21 @@
       </div>
 
       <div class="feature-card fade-in">
+        <div class="feature-label">SUBSCRIPTIONS</div>
+        <h3>Rebill Recovery + Retention</h3>
+        <p>AI-powered failed payment recovery that retries declined charges with smart timing and cascade routing. Detects churn signals from support tickets and triggers save flows — pause offers, product swaps, or discount incentives — before the customer cancels.</p>
+        <div class="feature-tags">
+          <span class="tag">Failed rebill recovery</span>
+          <span class="tag">Churn prevention</span>
+          <span class="tag">Save flows</span>
+          <span class="tag">MRR analytics</span>
+        </div>
+      </div>
+
+      <div class="feature-card fade-in">
         <div class="feature-label">COMMAND CENTER</div>
         <h3>Ops Dashboard</h3>
-        <p>Unified dashboard showing dispute queue, support tickets awaiting approval, and inventory alerts. Approve, edit, or reject AI drafts with a single click. Full audit log of every action taken.</p>
+        <p>Unified dashboard showing support tickets, inventory alerts, subscription health, and chargeback status. Approve, edit, or reject AI drafts with a single click. Full audit log of every action taken.</p>
         <div class="feature-tags">
           <span class="tag">Unified view</span>
           <span class="tag">Audit log</span>
@@ -305,6 +317,20 @@
       <div class="workflow-card fade-in">
         <div class="workflow-header">
           <div class="workflow-num">3</div>
+          <h3>RetentionAgent</h3>
+        </div>
+        <ul class="workflow-steps" role="list">
+          <li><span class="wf-step-num">01</span>Monitor rebill events from ReCharge / Loop / Stripe Billing</li>
+          <li><span class="wf-step-num">02</span>On decline: smart retry with cascade timing + alternate MID</li>
+          <li><span class="wf-step-num">03</span>Detect churn signals: cancel requests, repeat complaints, skip patterns</li>
+          <li><span class="wf-step-num">04</span>Trigger save flow: pause offer, discount, product swap, or personal outreach</li>
+          <li><span class="wf-step-num">05</span>Dashboard shows subscriber health, recovery rate, and MRR impact</li>
+        </ul>
+      </div>
+
+      <div class="workflow-card fade-in">
+        <div class="workflow-header">
+          <div class="workflow-num">4</div>
           <h3>InventoryAgent</h3>
         </div>
         <ul class="workflow-steps" role="list">
@@ -338,6 +364,7 @@
         <div class="dash-tabs">
           <div class="dash-tab active" data-tab="disputes">Disputes</div>
           <div class="dash-tab" data-tab="support">Support</div>
+          <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
           <div class="dash-tab" data-tab="inventory">Inventory</div>
           <div class="dash-tab" data-tab="audit">Audit Log</div>
         </div>
@@ -376,6 +403,25 @@
               <tr><td style="font-family:var(--font-mono)">#T-891</td><td>Refund</td><td>K. Nguyen</td><td>Wrong item received</td><td><span class="status-badge pending"><span class="status-dot"></span>72%</span></td><td style="color:var(--color-warning)">Queued</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
               <tr><td style="font-family:var(--font-mono)">#T-890</td><td>Cancel</td><td>L. Thompson</td><td>Cancel my subscription</td><td><span class="status-badge escalated"><span class="status-dot"></span>45%</span></td><td style="color:var(--color-error)">Escalated</td><td><div class="action-btns"><button class="action-btn">Review</button></div></td></tr>
               <tr><td style="font-family:var(--font-mono)">#T-889</td><td>Address</td><td>P. Williams</td><td>Update shipping address</td><td><span class="status-badge approved"><span class="status-dot"></span>95%</span></td><td style="color:var(--color-success)">Auto-sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SUBSCRIPTIONS TAB -->
+        <div class="tab-panel" id="tab-subscriptions">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Active Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">MRR</div><div class="dash-kpi-value">$38.4k</div><div class="dash-kpi-delta positive">+8% MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Failed Rebills</div><div class="dash-kpi-value">47</div><div class="dash-kpi-delta neutral">34 recovered, 13 pending</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Churn Risk</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">Save flows triggered</div></div>
+          </div>
+          <table class="dash-table">
+            <thead><tr><th>Customer</th><th>Plan</th><th>MRR</th><th>Status</th><th>Rebill Issue</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>M. Rivera</td><td>Monthly Box</td><td>$49.00</td><td><span class="status-badge escalated"><span class="status-dot"></span>Failed x3</span></td><td>Card declined</td><td><div class="action-btns"><button class="action-btn">Retry</button><button class="action-btn">Save Flow</button></div></td></tr>
+              <tr><td>K. Lee</td><td>Quarterly</td><td>$129.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>Cancel intent detected</td><td><div class="action-btns"><button class="action-btn">Offer Pause</button></div></td></tr>
+              <tr><td>T. Brooks</td><td>Monthly Box</td><td>$49.00</td><td><span class="status-badge approved"><span class="status-dot"></span>Recovered</span></td><td>Retry #2 succeeded</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
+              <tr><td>A. Patel</td><td>Annual</td><td>$399.00</td><td><span class="status-badge pending"><span class="status-dot"></span>At risk</span></td><td>3 support tickets in 7 days</td><td><div class="action-btns"><button class="action-btn">Save Flow</button></div></td></tr>
             </tbody>
           </table>
         </div>
@@ -618,8 +664,8 @@
     <div style="position:relative;z-index:1;">
       <div class="stretch-grid fade-in">
         <div class="stretch-item">
-          <h3>Churn Saves via Klaviyo/Loop</h3>
-          <p>Auto-trigger retention campaigns when cancellation intent is detected. Offer discounts, pause options, or product swaps based on customer LTV.</p>
+          <h3>Deep Klaviyo/Loop Integration</h3>
+          <p>Sync subscription health data into Klaviyo for automated win-back flows. Trigger campaigns based on failed rebill count, churn risk score, and LTV tier.</p>
         </div>
         <div class="stretch-item">
           <h3>Marketplace Expansion</h3>
