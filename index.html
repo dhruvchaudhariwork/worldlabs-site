@@ -229,9 +229,9 @@
       .dash-mini-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
       .dash-mini-kpi-value { font-size: 22px; font-weight: 800; color: var(--color-text); font-variant-numeric: tabular-nums; }
       .dash-mini-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 3px; }
-      .dash-mini-kpi-delta.pos { color: var(--color-success); }
-      .dash-mini-kpi-delta.neg { color: var(--color-error); }
-      .dash-mini-kpi-delta.neu { color: var(--color-text-tertiary); }
+      .dash-mini-kpi-delta.pos { color: var(--color-positive); }
+      .dash-mini-kpi-delta.neg { color: var(--color-negative); }
+      .dash-mini-kpi-delta.neu { color: var(--color-neutral); }
       .dash-bar-row {
         display: flex; align-items: center; gap: 10px;
         padding: 8px 0;
@@ -286,9 +286,9 @@
         font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700;
         letter-spacing: 0.03em;
       }
-      .dash-tag-auto { background: rgba(34,197,94,0.12); color: #22c55e; }
-      .dash-tag-queue { background: rgba(234,179,8,0.12); color: #eab308; }
-      .dash-tag-escalate { background: rgba(239,68,68,0.12); color: #ef4444; }
+      .dash-tag-auto { background: var(--color-positive-bg); color: var(--color-positive); }
+      .dash-tag-queue { background: var(--color-caution-bg); color: var(--color-caution); }
+      .dash-tag-escalate { background: var(--color-negative-bg); color: var(--color-negative); }
       .dash-sku-row {
         display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
         padding: 9px 0; border-bottom: 1px solid var(--color-border);
@@ -302,10 +302,10 @@
       .dash-status-pill {
         font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;
       }
-      .pill-critical { background: rgba(239,68,68,0.12); color: #ef4444; }
-      .pill-low { background: rgba(234,179,8,0.12); color: #eab308; }
-      .pill-ok { background: rgba(34,197,94,0.08); color: #22c55e; }
-      .pill-over { background: rgba(99,102,241,0.1); color: #6366f1; }
+      .pill-critical { background: var(--color-negative-bg); color: var(--color-negative); }
+      .pill-low { background: var(--color-caution-bg); color: var(--color-caution); }
+      .pill-ok { background: var(--color-positive-bg); color: var(--color-positive); }
+      .pill-over { background: var(--color-brand-muted); color: var(--color-brand); }
       @media (max-width: 768px) {
         .dash-row-2, .dash-row-3, .dash-row-5 { grid-template-columns: 1fr; }
         .dash-kpis { grid-template-columns: repeat(2, 1fr); }
@@ -389,24 +389,24 @@
               <text x="355" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 3</text>
               <text x="490" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 4</text>
               <!-- Without Disputely (red area) -->
-              <path d="M85,100 L220,80 L355,50 L490,40 L490,140 L355,140 L220,140 L85,140 Z" fill="rgba(239,68,68,0.08)" stroke="none"/>
-              <polyline points="85,100 220,80 355,50 490,40" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
+              <path d="M85,100 L220,80 L355,50 L490,40 L490,140 L355,140 L220,140 L85,140 Z" fill="var(--color-negative-bg)" stroke="none"/>
+              <polyline points="85,100 220,80 355,50 490,40" fill="none" stroke="var(--color-negative)" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
               <!-- With Disputely (green area) -->
-              <path d="M85,130 L220,125 L355,120 L490,125 L490,140 L355,140 L220,140 L85,140 Z" fill="rgba(34,197,94,0.1)" stroke="none"/>
-              <polyline points="85,130 220,125 355,120 490,125" fill="none" stroke="#22c55e" stroke-width="2"/>
+              <path d="M85,130 L220,125 L355,120 L490,125 L490,140 L355,140 L220,140 L85,140 Z" fill="var(--color-positive-bg)" stroke="none"/>
+              <polyline points="85,130 220,125 355,120 490,125" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
               <!-- Dots -->
-              <circle cx="85" cy="100" r="3" fill="#ef4444" opacity="0.5"/>
-              <circle cx="220" cy="80" r="3" fill="#ef4444" opacity="0.5"/>
-              <circle cx="355" cy="50" r="3" fill="#ef4444" opacity="0.5"/>
-              <circle cx="490" cy="40" r="3" fill="#ef4444" opacity="0.5"/>
-              <circle cx="85" cy="130" r="3" fill="#22c55e"/>
-              <circle cx="220" cy="125" r="3" fill="#22c55e"/>
-              <circle cx="355" cy="120" r="3" fill="#22c55e"/>
-              <circle cx="490" cy="125" r="3" fill="#22c55e"/>
+              <circle cx="85" cy="100" r="3" fill="var(--color-negative)" opacity="0.5"/>
+              <circle cx="220" cy="80" r="3" fill="var(--color-negative)" opacity="0.5"/>
+              <circle cx="355" cy="50" r="3" fill="var(--color-negative)" opacity="0.5"/>
+              <circle cx="490" cy="40" r="3" fill="var(--color-negative)" opacity="0.5"/>
+              <circle cx="85" cy="130" r="3" fill="var(--color-positive)"/>
+              <circle cx="220" cy="125" r="3" fill="var(--color-positive)"/>
+              <circle cx="355" cy="120" r="3" fill="var(--color-positive)"/>
+              <circle cx="490" cy="125" r="3" fill="var(--color-positive)"/>
             </svg>
             <div class="dash-legend">
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#ef4444;opacity:0.6;"></div>Without Disputely</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#22c55e;"></div>With Disputely</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-negative);opacity:0.6;"></div>Without Disputely</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-positive);"></div>With Disputely</div>
             </div>
           </div>
 
@@ -426,22 +426,22 @@
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Product Not Received</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%;background:#6366f1;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%;background:var(--color-brand);"></div></div>
                 <div class="dash-bar-val">12</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Subscription Cancelled</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:30%;background:#8b8b8b;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:30%;background:var(--color-neutral);"></div></div>
                 <div class="dash-bar-val">8</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Not as Described</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:15%;background:#eab308;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:15%;background:var(--color-caution);"></div></div>
                 <div class="dash-bar-val">4</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Fraud</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:10%;background:#ef4444;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:10%;background:var(--color-negative);"></div></div>
                 <div class="dash-bar-val">3</div>
               </div>
             </div>
@@ -454,25 +454,25 @@
                 </div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#22c55e;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
                 <div class="dash-badge-name">Visa RDR</div>
                 <div class="dash-badge-val">14</div>
                 <div class="dash-badge-pct">51.9%</div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#6366f1;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-brand);"></div>
                 <div class="dash-badge-name">ETHOCA</div>
                 <div class="dash-badge-val">7</div>
                 <div class="dash-badge-pct">25.9%</div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#eab308;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
                 <div class="dash-badge-name">CDRN</div>
                 <div class="dash-badge-val">4</div>
                 <div class="dash-badge-pct">14.8%</div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#ef4444;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
                 <div class="dash-badge-name">Unresolved</div>
                 <div class="dash-badge-val">2</div>
                 <div class="dash-badge-pct">7.4%</div>
@@ -501,27 +501,27 @@
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">WISMO</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%;background:#22c55e;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%;background:var(--color-positive);"></div></div>
                 <div class="dash-bar-val">38</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Refund</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%;background:#6366f1;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%;background:var(--color-brand);"></div></div>
                 <div class="dash-bar-val">20</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Product Q</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:18%;background:#eab308;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:18%;background:var(--color-caution);"></div></div>
                 <div class="dash-bar-val">16</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Cancel</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:11%;background:#ef4444;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:11%;background:var(--color-negative);"></div></div>
                 <div class="dash-bar-val">10</div>
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">Other</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:7%;background:#8b8b8b;"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:7%;background:var(--color-neutral);"></div></div>
                 <div class="dash-bar-val">6</div>
               </div>
             </div>
@@ -583,14 +583,14 @@
                 <text x="24" y="104" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$0</text>
                 <text x="24" y="44" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$25k</text>
                 <text x="24" y="14" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$40k</text>
-                <path d="M55,88 L97,80 L139,72 L181,60 L223,48 L265,38 L265,100 L55,100 Z" fill="rgba(34,197,94,0.08)" stroke="none"/>
-                <polyline points="55,88 97,80 139,72 181,60 223,48 265,38" fill="none" stroke="#22c55e" stroke-width="2"/>
-                <circle cx="55" cy="88" r="2.5" fill="#22c55e"/>
-                <circle cx="97" cy="80" r="2.5" fill="#22c55e"/>
-                <circle cx="139" cy="72" r="2.5" fill="#22c55e"/>
-                <circle cx="181" cy="60" r="2.5" fill="#22c55e"/>
-                <circle cx="223" cy="48" r="2.5" fill="#22c55e"/>
-                <circle cx="265" cy="38" r="3" fill="#22c55e"/>
+                <path d="M55,88 L97,80 L139,72 L181,60 L223,48 L265,38 L265,100 L55,100 Z" fill="var(--color-positive-bg)" stroke="none"/>
+                <polyline points="55,88 97,80 139,72 181,60 223,48 265,38" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
+                <circle cx="55" cy="88" r="2.5" fill="var(--color-positive)"/>
+                <circle cx="97" cy="80" r="2.5" fill="var(--color-positive)"/>
+                <circle cx="139" cy="72" r="2.5" fill="var(--color-positive)"/>
+                <circle cx="181" cy="60" r="2.5" fill="var(--color-positive)"/>
+                <circle cx="223" cy="48" r="2.5" fill="var(--color-positive)"/>
+                <circle cx="265" cy="38" r="3" fill="var(--color-positive)"/>
                 <text x="55" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Oct</text>
                 <text x="97" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Nov</text>
                 <text x="139" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Dec</text>
@@ -615,22 +615,22 @@
                 </div>
                 <div class="dash-mini-kpi">
                   <div class="dash-mini-kpi-label">Recovered</div>
-                  <div class="dash-mini-kpi-value" style="font-size:18px;color:#22c55e;">34</div>
+                  <div class="dash-mini-kpi-value" style="font-size:18px;color:var(--color-positive);">34</div>
                 </div>
               </div>
               <div class="dash-panel-title" style="margin-bottom:8px;font-size:12px;">Churn Signals</div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#ef4444;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
                 <div class="dash-badge-name">Cancel intent in support</div>
                 <div class="dash-badge-val">8</div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#eab308;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
                 <div class="dash-badge-name">3+ skips in a row</div>
                 <div class="dash-badge-val">5</div>
               </div>
               <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:#8b8b8b;"></div>
+                <div class="dash-badge-dot" style="background:var(--color-neutral);"></div>
                 <div class="dash-badge-name">Payment failure after retries</div>
                 <div class="dash-badge-val">10</div>
               </div>
@@ -732,18 +732,18 @@
               <path d="M137,98 L224,82 L311,75 L398,58 L485,42 L550,28 L550,155 L137,155 Z" fill="var(--color-text)" opacity="0.04" stroke="none"/>
               <polyline points="137,98 224,82 311,75 398,58 485,42 550,28" fill="none" stroke="var(--color-text)" stroke-width="2.5" opacity="0.8"/>
               <!-- Ad Spend (dashed, blue) -->
-              <polyline points="137,130 224,126 311,120 398,118 485,115 550,112" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="5,3"/>
+              <polyline points="137,130 224,126 311,120 398,118 485,115 550,112" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-dasharray="5,3"/>
               <!-- Net Profit (green) -->
-              <polyline points="137,138 224,132 311,128 398,120 485,112 550,105" fill="none" stroke="#22c55e" stroke-width="2"/>
+              <polyline points="137,138 224,132 311,128 398,120 485,112 550,105" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
               <!-- Dots -->
               <circle cx="550" cy="28" r="3" fill="var(--color-text)" opacity="0.8"/>
-              <circle cx="550" cy="112" r="2.5" fill="#6366f1"/>
-              <circle cx="550" cy="105" r="2.5" fill="#22c55e"/>
+              <circle cx="550" cy="112" r="2.5" fill="var(--color-brand)"/>
+              <circle cx="550" cy="105" r="2.5" fill="var(--color-positive)"/>
             </svg>
             <div class="dash-legend">
               <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-text);opacity:0.7;"></div>Revenue</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#6366f1;"></div>Ad Spend</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:#22c55e;"></div>Net Profit</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-brand);"></div>Ad Spend</div>
+              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-positive);"></div>Net Profit</div>
             </div>
           </div>
         </div>
@@ -773,43 +773,43 @@
             <div class="dash-sku-row">
               <div class="dash-sku-name">Hydra Serum 30ml</div>
               <div class="dash-sku-stock">24</div>
-              <div class="dash-sku-cover" style="color:#ef4444;font-weight:700;">3d</div>
+              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:700;">3d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Glow Drops 15ml</div>
               <div class="dash-sku-stock">51</div>
-              <div class="dash-sku-cover" style="color:#ef4444;font-weight:700;">5d</div>
+              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:700;">5d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Volume Shampoo 250ml</div>
               <div class="dash-sku-stock">89</div>
-              <div class="dash-sku-cover" style="color:#eab308;font-weight:600;">11d</div>
+              <div class="dash-sku-cover" style="color:var(--color-caution);font-weight:600;">11d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-low">LOW</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Repair Mask 200ml</div>
               <div class="dash-sku-stock">145</div>
-              <div class="dash-sku-cover" style="color:#22c55e;">22d</div>
+              <div class="dash-sku-cover" style="color:var(--color-positive);">22d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Curl Cream 150ml</div>
               <div class="dash-sku-stock">312</div>
-              <div class="dash-sku-cover" style="color:#22c55e;">34d</div>
+              <div class="dash-sku-cover" style="color:var(--color-positive);">34d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Dry Shampoo 200ml</div>
               <div class="dash-sku-stock">890</div>
-              <div class="dash-sku-cover" style="color:#6366f1;">67d</div>
+              <div class="dash-sku-cover" style="color:var(--color-brand);">67d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Heat Protector 120ml</div>
               <div class="dash-sku-stock">724</div>
-              <div class="dash-sku-cover" style="color:#6366f1;">52d</div>
+              <div class="dash-sku-cover" style="color:var(--color-brand);">52d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
             </div>
           </div>
