@@ -1135,6 +1135,60 @@
   background: var(--color-accent);
 }
 
+.pricing-overage {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+  line-height: 1.5;
+}
+
+.pricing-addons {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.pricing-addons h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.addon-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.addon-price {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 800;
+}
+
+.addon-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.addon-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  line-height: 1.4;
+}
+
 
 /* =============================================
    ANIMATIONS
@@ -1173,6 +1227,7 @@
   .workflow-grid { grid-template-columns: 1fr; }
   .stretch-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
+  .addons-grid { grid-template-columns: 1fr; }
 
   .arch-layers { grid-template-columns: 1fr 1fr; }
   .dash-kpis { grid-template-columns: repeat(2, 1fr); }
