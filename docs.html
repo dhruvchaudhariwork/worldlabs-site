@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpsFlow — Documentation</title>
+
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+
+<style>
+  .docs-layout {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .docs-header {
+    margin-bottom: var(--space-12);
+  }
+
+  .docs-header h1 {
+    font-family: var(--font-body);
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    margin-bottom: var(--space-3);
+  }
+
+  .docs-header p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  .docs-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .docs-nav-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .docs-nav-links a {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .docs-nav-links a:hover { color: var(--color-text); }
+
+  .doc-section {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .doc-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .doc-section h2 {
+    font-family: var(--font-body);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+  }
+
+  .doc-section h3 {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-3);
+  }
+
+  .doc-section p, .doc-section li {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-3);
+  }
+
+  .doc-section ul, .doc-section ol {
+    padding-left: var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+
+  .doc-section li { margin-bottom: var(--space-2); }
+
+  .doc-section code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 2px 6px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+  }
+
+  .doc-section pre {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    overflow-x: auto;
+    margin-bottom: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .doc-badge {
+    display: inline-flex;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-tertiary);
+    margin-left: var(--space-2);
+    vertical-align: middle;
+  }
+
+  .doc-callout {
+    padding: var(--space-4) var(--space-5);
+    border-left: 3px solid var(--color-border);
+    margin: var(--space-4) 0;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .doc-step {
+    display: flex;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .doc-step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    background: var(--color-text);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .doc-step-content h4 {
+    font-size: var(--text-base);
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+
+  .doc-step-content p {
+    font-size: var(--text-sm);
+    margin-bottom: 0;
+  }
+
+  .doc-toc {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-10);
+  }
+
+  .doc-toc h3 {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    margin: 0 0 var(--space-3) 0;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .doc-toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .doc-toc a {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .doc-toc a:hover { color: var(--color-text); }
+</style>
+</head>
+<body>
+
+<nav class="docs-nav">
+  <a href="./index.html" class="logo"><span class="logo-text">OPSFLOW</span></a>
+  <div class="docs-nav-links">
+    <a href="#storefront">Storefront</a>
+    <a href="#support">Support</a>
+    <a href="#subscriptions">Subscriptions</a>
+    <a href="#inventory">Inventory</a>
+    <a href="#chargebacks">Chargebacks</a>
+    <a href="#profit">Profitability</a>
+    <a href="#security">Security</a>
+  </div>
+  <button class="theme-toggle" data-theme-toggle aria-label="Switch theme" style="color:var(--color-text-tertiary);">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  </button>
+</nav>
+
+<div class="docs-layout">
+  <div class="docs-header">
+    <h1>OpsFlow Documentation</h1>
+    <p>Everything you need to connect your Shopify store and go autonomous. The entire setup takes under 30 minutes.</p>
+  </div>
+
+  <div class="doc-toc">
+    <h3>On this page</h3>
+    <ul>
+      <li><a href="#storefront">StorefrontAgent — AI Store Builder</a></li>
+      <li><a href="#support">SupportAgent — Customer Support</a></li>
+      <li><a href="#subscriptions">RetentionAgent — Subscriptions</a></li>
+      <li><a href="#inventory">InventoryAgent — Inventory Ops</a></li>
+      <li><a href="#chargebacks">Chargeback Protection — Disputely</a></li>
+      <li><a href="#profit">True Profit Dashboard</a></li>
+      <li><a href="#shopify-setup">Shopify Store Connection</a></li>
+      <li><a href="#security">Security &amp; Privacy</a></li>
+    </ul>
+  </div>
+
+
+  <!-- STOREFRONT -->
+  <div class="doc-section" id="storefront">
+    <h2>StorefrontAgent <span class="doc-badge">AI-Powered</span></h2>
+    <p>Build a conversion-optimized Shopify storefront from a product description. No code, no templates, no developers.</p>
+
+    <h3>How it works</h3>
+
+    <div class="doc-step">
+      <div class="doc-step-num">1</div>
+      <div class="doc-step-content">
+        <h4>Describe your product</h4>
+        <p>Tell OpsFlow what you sell, who your target customer is, and your brand vibe. One paragraph is enough — the AI handles the rest.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">2</div>
+      <div class="doc-step-content">
+        <h4>AI analyzes your niche</h4>
+        <p>StorefrontAgent benchmarks top-performing stores in your category — layout patterns, copy structures, pricing psychology, upsell mechanics — and builds a store designed to convert.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">3</div>
+      <div class="doc-step-content">
+        <h4>Generate your storefront</h4>
+        <p>Full store generated: homepage, product pages, bundle offers, upsell flows, checkout optimization, and trust elements. Every section is editable.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">4</div>
+      <div class="doc-step-content">
+        <h4>Iterate with prompts</h4>
+        <p>Refine any section by describing what you want changed. "Make the hero more urgent," "Add a comparison table," "Change the color scheme to dark." Each version improves on the last.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">5</div>
+      <div class="doc-step-content">
+        <h4>Go live</h4>
+        <p>Publish to your OpsFlow-hosted domain or connect a custom domain. Your store is live and connected to all OpsFlow agents from day one.</p>
+      </div>
+    </div>
+
+    <div class="doc-callout">StorefrontAgent creates a duplicate workspace for editing — your existing live store (if any) remains completely untouched until you choose to publish.</div>
+
+    <h3>What gets generated</h3>
+    <ul>
+      <li>Homepage with hero, social proof, and featured products</li>
+      <li>Individual product pages with optimized copy and imagery</li>
+      <li>Bundle and "save more" offers</li>
+      <li>Post-purchase upsell flows</li>
+      <li>Checkout page optimization</li>
+      <li>Mobile-responsive layout</li>
+      <li>SEO meta tags and structured data</li>
+    </ul>
+  </div>
+
+
+  <!-- SUPPORT -->
+  <div class="doc-section" id="support">
+    <h2>SupportAgent <span class="doc-badge">Autonomous</span></h2>
+    <p>Monitors your support inbox, classifies intent, drafts replies using your brand voice, and auto-sends when confidence is high. Escalates edge cases with full context.</p>
+
+    <h3>Setup</h3>
+    <ol>
+      <li>Connect your Gmail support inbox via OAuth (read + send permissions)</li>
+      <li>SupportAgent samples your last 20 replies to learn your brand voice and tone</li>
+      <li>Set your auto-send confidence threshold (default: 90%)</li>
+      <li>Choose which intents auto-reply vs. queue for human approval</li>
+    </ol>
+
+    <h3>Supported intents</h3>
+    <ul>
+      <li><code>WISMO</code> — Where is my order?</li>
+      <li><code>CANCEL</code> — Cancel order or subscription</li>
+      <li><code>REFUND</code> — Refund request</li>
+      <li><code>ADDRESS</code> — Update shipping address</li>
+      <li><code>PRODUCT</code> — Product questions</li>
+      <li><code>OTHER</code> — Unclassified (always escalated)</li>
+    </ul>
+
+    <h3>Auto-send vs. queue</h3>
+    <p>Tickets classified with confidence above your threshold are auto-sent. Everything else goes to your Slack channel and dashboard for review. You can approve, edit, or reject any draft.</p>
+
+    <div class="doc-callout">During the first 48 hours (shadow mode), all drafts are queued for approval regardless of confidence score. This lets you calibrate the agent before it goes autonomous.</div>
+  </div>
+
+
+  <!-- SUBSCRIPTIONS -->
+  <div class="doc-section" id="subscriptions">
+    <h2>RetentionAgent <span class="doc-badge">Subscription Engine</span></h2>
+    <p>Full subscription management — billing, payment processing, failed payment recovery, and churn prevention. PCI DSS Level 1 compliant.</p>
+
+    <h3>Setup</h3>
+    <ol>
+      <li>Connect your Shopify store (if not already connected)</li>
+      <li>Connect your payment processor (Stripe, or existing ReCharge/Loop)</li>
+      <li>Configure subscription plans (pricing, frequency, trial periods)</li>
+      <li>Set failed payment retry rules (default: 3 retries over 7 days with cascade timing)</li>
+    </ol>
+
+    <h3>Failed payment recovery</h3>
+    <p>When a rebill declines, RetentionAgent runs a smart retry sequence:</p>
+    <ul>
+      <li>Retry #1: 24 hours later, same processor</li>
+      <li>Retry #2: 72 hours later, alternate MID if available</li>
+      <li>Retry #3: 7 days later, with updated card info if customer responds to dunning email</li>
+    </ul>
+    <p>Average recovery rate: 60-70% of failed payments.</p>
+
+    <h3>Churn prevention</h3>
+    <p>RetentionAgent detects churn signals across the platform:</p>
+    <ul>
+      <li>Cancel intent detected in support emails (via SupportAgent)</li>
+      <li>Repeated skips or order pauses</li>
+      <li>Multiple support tickets in a short window</li>
+      <li>Failed payment after 3+ retries</li>
+    </ul>
+    <p>When a signal fires, RetentionAgent triggers a save flow: pause offer, discount code, product swap, or personal outreach — configured by you.</p>
+  </div>
+
+
+  <!-- INVENTORY -->
+  <div class="doc-section" id="inventory">
+    <h2>InventoryAgent <span class="doc-badge">Scheduled</span></h2>
+    <p>Computes days-of-cover for every SKU, alerts on stock-outs, and drafts PO emails to suppliers. Generates promo copy when inventory is heavy.</p>
+
+    <h3>Setup</h3>
+    <ol>
+      <li>Connect your Shopify store (inventory levels are pulled automatically)</li>
+      <li>Set your thresholds: critical (&lt;7 days default), low (&lt;14 days), overstock (&gt;45 days)</li>
+      <li>Add supplier email addresses for auto-PO drafts</li>
+    </ol>
+
+    <h3>How it runs</h3>
+    <pre>days_of_cover = on_hand_qty / avg_daily_sales (30-day rolling)</pre>
+    <p>InventoryAgent runs every 6 hours. When a SKU crosses a threshold:</p>
+    <ul>
+      <li><strong>Critical / Low:</strong> Slack alert + auto-drafted PO email to supplier</li>
+      <li><strong>Overstock:</strong> AI generates promo copy (email subject lines, discount suggestions) to move excess inventory</li>
+    </ul>
+
+    <div class="doc-callout">Sales velocity is computed from your Shopify order history. The more history available, the more accurate the forecast. We recommend at least 30 days of order data.</div>
+  </div>
+
+
+  <!-- CHARGEBACKS -->
+  <div class="doc-section" id="chargebacks">
+    <h2>Chargeback Protection <span class="doc-badge">Powered by Disputely</span></h2>
+    <p>Real-time chargeback prevention and recovery through our integration with Disputely. Taps into Visa RDR, Ethoca, and CDRN alert networks.</p>
+
+    <h3>How it works</h3>
+    <ol>
+      <li>Customer files a dispute with their bank</li>
+      <li>Card network fires an alert to Disputely within minutes</li>
+      <li>Disputely auto-refunds to deflect the chargeback before it hits your ratio</li>
+      <li>If a dispute escalates, Disputely compiles evidence and submits a response</li>
+      <li>All activity surfaces in the OpsFlow dashboard</li>
+    </ol>
+
+    <h3>What OpsFlow adds</h3>
+    <p>Because OpsFlow already holds your support transcripts, order data, and fulfillment timeline, Disputely gets richer evidence than it would standalone. Support conversations that prove the customer received the product are automatically included in dispute evidence.</p>
+
+    <div class="doc-callout">Disputely is billed separately on their pay-per-save model. You only pay when they successfully deflect or recover a chargeback.</div>
+  </div>
+
+
+  <!-- PROFITABILITY -->
+  <div class="doc-section" id="profit">
+    <h2>True Profit Dashboard</h2>
+    <p>See your real profit — not just revenue. Connect your ad accounts, set COGS per SKU, and OpsFlow calculates true margin per order, per product, per channel.</p>
+
+    <h3>Data sources</h3>
+    <ul>
+      <li><strong>Revenue:</strong> Shopify orders (automatic)</li>
+      <li><strong>Ad spend:</strong> Meta Ads, TikTok Ads, Google Ads (OAuth connect)</li>
+      <li><strong>COGS:</strong> Set per SKU in the dashboard or bulk import via CSV</li>
+      <li><strong>Shipping:</strong> Pulled from Shopify fulfillment data</li>
+      <li><strong>Transaction fees:</strong> Calculated from payment processor rates</li>
+      <li><strong>Chargebacks / returns:</strong> Pulled from Disputely + Shopify refund data</li>
+    </ul>
+
+    <h3>Metrics</h3>
+    <pre>true_profit = revenue - ad_spend - cogs - shipping - fees - returns - chargebacks</pre>
+    <p>Available at the store level, per-channel (Meta vs TikTok vs Google vs Organic), per-product, and per-order. Real-time, updated with every new order.</p>
+  </div>
+
+
+  <!-- SHOPIFY SETUP -->
+  <div class="doc-section" id="shopify-setup">
+    <h2>Shopify Store Connection</h2>
+    <p>Connect your Shopify store in under 5 minutes. OpsFlow needs three things from you.</p>
+
+    <div class="doc-step">
+      <div class="doc-step-num">1</div>
+      <div class="doc-step-content">
+        <h4>Store URL</h4>
+        <p>Enter your Shopify store URL (<code>yourstore.myshopify.com</code>). Find it in <strong>Shopify Admin → Settings → Domains</strong>.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">2</div>
+      <div class="doc-step-content">
+        <h4>Theme Access Password</h4>
+        <p>Install the official <strong>Shopify Theme Access</strong> app from the Shopify App Store. Create a password for OpsFlow — this lets StorefrontAgent view and modify your theme code securely.</p>
+      </div>
+    </div>
+
+    <div class="doc-step">
+      <div class="doc-step-num">3</div>
+      <div class="doc-step-content">
+        <h4>Admin API Access Token</h4>
+        <p>In <strong>Settings → Apps and sales channels → Develop apps</strong>, create a new app called "OpsFlow." Configure the following API scopes:</p>
+      </div>
+    </div>
+
+    <pre>read_products    write_products
+read_orders      read_inventory
+read_customers   read_fulfillments</pre>
+
+    <p>Install the app and copy the Admin API access token. Paste it into the OpsFlow setup form.</p>
+
+    <div class="doc-callout">
+      <strong>Your store is safe.</strong> OpsFlow creates a duplicate theme for AI editing — your published store remains untouched. We cannot access your financial data, analytics, or staff accounts. You have full control over what gets published.
+    </div>
+  </div>
+
+
+  <!-- SECURITY -->
+  <div class="doc-section" id="security">
+    <h2>Security &amp; Privacy</h2>
+
+    <h3>Data access</h3>
+    <ul>
+      <li>OpsFlow accesses only: theme code, products, orders, inventory, customers, and fulfillments</li>
+      <li>We <strong>cannot</strong> view or modify your finances, analytics, staff accounts, or billing</li>
+      <li>All theme changes are made to a duplicate — your live store stays safe</li>
+      <li>Gmail access is scoped to read + send on your support inbox only</li>
+    </ul>
+
+    <h3>Infrastructure</h3>
+    <ul>
+      <li>All data encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+      <li>API tokens stored in encrypted vault, never logged</li>
+      <li>Subscription billing is PCI DSS Level 1 compliant</li>
+      <li>SOC 2 Type II in progress</li>
+    </ul>
+
+    <h3>Data retention</h3>
+    <ul>
+      <li>Order and customer data retained for 90 days after disconnection</li>
+      <li>Full deletion available on request</li>
+      <li>GDPR-compliant data handling</li>
+    </ul>
+  </div>
+
+</div>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-bottom" style="border:none;padding:0;">
+      <p>&copy; 2026 OpsFlow. Confidential.</p>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  function upd() {
+    if (!t) return;
+    t.innerHTML = d === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+  upd();
+  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upd(); });
+})();
+</script>
+
+</body>
+</html>
