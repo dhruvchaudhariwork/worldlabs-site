@@ -59,22 +59,6 @@
     margin-top: var(--space-3);
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
-
-  .modules-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-2);
-    margin-top: var(--space-8);
-  }
-  .module-tag {
-    font-size: var(--text-xs);
-    padding: 5px var(--space-3);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    color: var(--color-text-tertiary);
-    font-weight: 500;
-  }
 </style>
 </head>
 <body>
@@ -87,6 +71,8 @@
     </a>
     <nav>
       <ul class="nav-links" role="list">
+        <li><a href="#features">Platform</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
         <li><a href="./docs.html">Docs</a></li>
         <li><a href="./about.html">About</a></li>
       </ul>
@@ -100,8 +86,8 @@
 </header>
 
 
-<!-- Hero -->
-<section class="hero" style="min-height:80vh;display:flex;align-items:center;">
+<!-- Hero + Waitlist -->
+<section class="hero">
   <div class="hero-inner">
     <h1>Autonomous ops<br>for e-commerce</h1>
     <p class="hero-sub">AI agents that build your Shopify store and run your ops — support, subscriptions, inventory, and chargebacks. Describe your product and go live.</p>
@@ -111,21 +97,12 @@
       <button class="btn btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
     </div>
     <div class="waitlist-msg" id="waitlist-msg"></div>
-
-    <div class="modules-row">
-      <span class="module-tag">StorefrontAgent</span>
-      <span class="module-tag">SupportAgent</span>
-      <span class="module-tag">RetentionAgent</span>
-      <span class="module-tag">InventoryAgent</span>
-      <span class="module-tag">Disputely</span>
-      <span class="module-tag">True Profit</span>
-    </div>
   </div>
 </section>
 
 
-<!-- Logos -->
-<section class="section" style="padding-top:0;padding-bottom:var(--space-12);">
+<!-- Platform Logos -->
+<section class="section" style="padding-top:0;">
   <div class="section-inner fade-in" style="text-align:center;">
     <p style="font-size:var(--text-xs);color:var(--color-text-tertiary);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:var(--space-5);">LAUNCHING ON</p>
     <div class="logo-row" style="gap:var(--space-8);">
@@ -137,16 +114,170 @@
 </section>
 
 
+<!-- How It Works -->
+<section class="section" id="how">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">HOW IT WORKS</div>
+    <h2 class="section-title fade-in">Tell us what you sell. We handle the rest.</h2>
+    <p class="section-desc fade-in">From building your storefront to running day-to-day operations. Three steps.</p>
+
+    <div class="steps-grid">
+      <div class="step-card fade-in">
+        <div class="step-number">1</div>
+        <h3>Build</h3>
+        <p>Describe your product. StorefrontAgent analyzes top stores in your niche and generates a conversion-optimized storefront — product pages, bundles, upsells, checkout.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">2</div>
+        <h3>Connect</h3>
+        <p>Link your payment processor, support inbox, and supplier contacts. Agents pull in your order history, inventory levels, and customer data.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">3</div>
+        <h3>Autopilot</h3>
+        <p>Agents go live: auto-reply support tickets, recover failed payments, alert on inventory, deflect chargebacks. You approve or override from one dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">PLATFORM</div>
+    <h2 class="section-title fade-in">Your ops team, fully automated</h2>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-label">STOREFRONT</div>
+        <h3>StorefrontAgent</h3>
+        <p>Describe your product and the AI builds a conversion-optimized storefront — product pages, bundles, upsells, checkout flows. Iterate with prompts. Hosted and managed.</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">SUPPORT</div>
+        <h3>SupportAgent</h3>
+        <p>Monitors your inbox, classifies intent, drafts replies in your brand voice, and auto-sends high-confidence responses. Escalates edge cases with full context.</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">SUBSCRIPTIONS</div>
+        <h3>Subscription Engine</h3>
+        <p>Full subscription management — billing, payment processing, failed rebill recovery with smart retry cascading, and churn prevention via save flows. PCI DSS Level 1.</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">INVENTORY</div>
+        <h3>InventoryAgent</h3>
+        <p>Computes days-of-cover for every SKU. Flags stock-out risks with auto-drafted PO emails. Generates promo copy when inventory is heavy.</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">DISPUTES &mdash; POWERED BY DISPUTELY</div>
+        <h3>Chargeback Protection</h3>
+        <p>Integrated prevention and recovery via Disputely. Real-time alerts from Visa RDR, Ethoca, and CDRN networks. Auto-deflection before chargebacks hit your ratio.</p>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">PROFITABILITY</div>
+        <h3>True Profit Dashboard</h3>
+        <p>Connect Meta, TikTok, and Google ad accounts. Set COGS per SKU. See real profit per order, per product, per channel — not just revenue.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Dashboard Mock -->
+<section class="section" id="dashboard">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">COMMAND CENTER</div>
+    <h2 class="section-title fade-in">You're the CEO, not the operator</h2>
+    <p class="section-desc fade-in">The dashboard isn't where you do the work — it's where you see what your agents already did.</p>
+
+    <div class="dashboard-mock fade-in">
+      <div class="dash-toolbar">
+        <div class="dash-dot red"></div>
+        <div class="dash-dot yellow"></div>
+        <div class="dash-dot green"></div>
+        <div class="dash-url">ops.yourstore.com/dashboard</div>
+      </div>
+      <div class="dash-content">
+        <div class="dash-tabs">
+          <div class="dash-tab active" data-tab="disputes">Disputes</div>
+          <div class="dash-tab" data-tab="support">Support</div>
+          <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
+          <div class="dash-tab" data-tab="profit">Profitability</div>
+          <div class="dash-tab" data-tab="inventory">Inventory</div>
+        </div>
+
+        <!-- DISPUTES -->
+        <div class="tab-panel active" id="tab-disputes">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Deflected</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta positive">Via Disputely</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Active</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta neutral">Evidence submitted</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Win Rate</div><div class="dash-kpi-value">87%</div><div class="dash-kpi-delta positive">+12% MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Saved</div><div class="dash-kpi-value">$18.2k</div><div class="dash-kpi-delta positive">This quarter</div></div>
+          </div>
+        </div>
+
+        <!-- SUPPORT -->
+        <div class="tab-panel" id="tab-support">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Open Tickets</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">+8 today</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Auto-resolved</div><div class="dash-kpi-value">74%</div><div class="dash-kpi-delta positive">+5% this week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Avg Response</div><div class="dash-kpi-value">1.4m</div><div class="dash-kpi-delta positive">-30s from last week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">CSAT</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
+          </div>
+        </div>
+
+        <!-- SUBSCRIPTIONS -->
+        <div class="tab-panel" id="tab-subscriptions">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">MRR</div><div class="dash-kpi-value">$38.4k</div><div class="dash-kpi-delta positive">+8% MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Failed Rebills</div><div class="dash-kpi-value">47</div><div class="dash-kpi-delta neutral">34 recovered</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Churn Risk</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">Save flows active</div></div>
+          </div>
+        </div>
+
+        <!-- PROFITABILITY -->
+        <div class="tab-panel" id="tab-profit">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Revenue (30d)</div><div class="dash-kpi-value">$127k</div><div class="dash-kpi-delta positive">+18% MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Ad Spend</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Meta / TikTok / Google</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">COGS</div><div class="dash-kpi-value">$38.1k</div><div class="dash-kpi-delta neutral">30% of revenue</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">True Profit</div><div class="dash-kpi-value">$34.8k</div><div class="dash-kpi-delta positive">27.4% net margin</div></div>
+          </div>
+        </div>
+
+        <!-- INVENTORY -->
+        <div class="tab-panel" id="tab-inventory">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">SKUs</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 stores</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Low Stock</div><div class="dash-kpi-value">6</div><div class="dash-kpi-delta negative">3 critical</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Overstock</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta neutral">&gt;45 days cover</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">POs Sent</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">This week</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Footer -->
-<footer class="site-footer" style="border-top:1px solid var(--color-border);">
+<footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-bottom" style="border:none;padding:0;">
+    <div class="footer-bottom">
       <p>&copy; 2026 OpsFlow.</p>
       <div style="display:flex;gap:var(--space-4);align-items:center;">
-        <a href="./docs.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Docs</a>
-        <a href="./about.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">About</a>
-        <a href="./pitch.html" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Investors</a>
-        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="font-size:var(--text-xs);color:var(--color-text-tertiary);text-decoration:none;">Created with Perplexity Computer</a>
+        <a href="./docs.html">Docs</a>
+        <a href="./about.html">About</a>
+        <a href="./pitch.html">Investors</a>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
       </div>
     </div>
   </div>
@@ -162,7 +293,6 @@
   r.setAttribute('data-theme', d);
   function upd() {
     if (!t) return;
-    t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
     t.innerHTML = d === 'dark'
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
@@ -176,17 +306,37 @@ document.getElementById('waitlist-btn').addEventListener('click', function(e) {
   e.preventDefault();
   const email = document.getElementById('waitlist-email').value.trim();
   const msg = document.getElementById('waitlist-msg');
-  if (!email || !email.includes('@')) {
-    msg.textContent = 'Enter a valid email.';
-    msg.className = 'waitlist-msg';
-    return;
-  }
-  // In production, POST to your backend here
+  if (!email || !email.includes('@')) { msg.textContent = 'Enter a valid email.'; msg.className = 'waitlist-msg'; return; }
   msg.textContent = 'You\u2019re on the list. We\u2019ll be in touch.';
   msg.className = 'waitlist-msg success';
   document.getElementById('waitlist-email').value = '';
   document.getElementById('waitlist-btn').textContent = 'Joined';
   document.getElementById('waitlist-btn').disabled = true;
+});
+
+// Dashboard tabs
+document.querySelectorAll('.dash-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('tab-' + tab.dataset.tab);
+    if (panel) panel.classList.add('active');
+  });
+});
+
+// Fade in
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
 });
 </script>
 
