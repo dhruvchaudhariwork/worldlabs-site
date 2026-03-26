@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+
+<!-- Perplexity Computer Attribution — SEO Meta Tags -->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpsFlow — AI-Powered Ops Automation for Shopify Brands</title>
+<meta name="description" content="Automate chargebacks, customer support, and inventory management for lean Shopify brands. One platform, three AI agents, zero busywork.">
+
+<meta property="og:title" content="OpsFlow — AI Ops Automation for Shopify">
+<meta property="og:description" content="Automate chargebacks, customer support, and inventory for lean Shopify brands.">
+<meta property="og:type" content="website">
+
+<!-- Fonts -->
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230a0e17'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='%2322d3ee' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg class="logo-mark" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="OpsFlow logo">
+        <rect width="32" height="32" rx="8" fill="var(--color-primary)"/>
+        <path d="M8 16h4l3-6 3 12 3-6h4" stroke="var(--color-text-inverse)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">OpsFlow</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links" role="list">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#workflows">Workflows</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+        <li>
+          <button class="theme-toggle" data-theme-toggle aria-label="Switch to light mode">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Seed-Stage MVP
+    </div>
+    <h1>Kill the busywork.<br><span class="accent">Scale the brand.</span></h1>
+    <p class="hero-sub">AI agents that handle chargebacks, customer support, and inventory alerts for lean Shopify brands — so you can focus on growth.</p>
+    <div class="hero-ctas">
+      <a href="#dashboard" class="btn btn-primary">See the Dashboard</a>
+      <a href="#architecture" class="btn btn-outline">Technical Deep-Dive</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== KPIs ========== -->
+<section class="section">
+  <div class="section-inner fade-in">
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-value">85%</div>
+        <div class="kpi-label">Dispute win-rate target</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value">&lt;2min</div>
+        <div class="kpi-label">Avg support response</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value">0</div>
+        <div class="kpi-label">Stock-outs with alerts</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-value">8 days</div>
+        <div class="kpi-label">MVP build time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== FEATURES ========== -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="section-label fade-in">Core Modules</div>
+    <h2 class="section-title fade-in">Four agents. One command center.</h2>
+    <p class="section-desc fade-in">Each module runs autonomously but reports to a single dashboard. Human-in-the-loop approval keeps you in control.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon dispute">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+        </div>
+        <h3>Dispute Desk</h3>
+        <p>Detects new chargebacks, compiles order evidence, fulfillment timelines, and tracking data. Drafts reason-specific responses and generates PDF evidence bundles. Pushes to Slack for one-click approval.</p>
+        <div class="feature-tags">
+          <span class="tag">Auto-evidence</span>
+          <span class="tag">PDF bundles</span>
+          <span class="tag">Slack alerts</span>
+        </div>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon support">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Support Autoresolver</h3>
+        <p>Monitors your support inbox for common issues — WISMO, cancellations, address changes. Classifies intent, pulls relevant Shopify data, and drafts empathetic replies. Auto-sends simple cases; escalates edge cases with full context.</p>
+        <div class="feature-tags">
+          <span class="tag">Intent classification</span>
+          <span class="tag">Auto-reply</span>
+          <span class="tag">Smart escalation</span>
+        </div>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon inventory">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <h3>Inventory Alerts</h3>
+        <p>Computes days-of-cover for every SKU. Flags stock-out risks (&lt;7 days) with auto-drafted PO emails. Detects excess inventory (&gt;45 days) and generates promo copy to move product.</p>
+        <div class="feature-tags">
+          <span class="tag">Days-of-cover</span>
+          <span class="tag">PO drafts</span>
+          <span class="tag">Promo copy</span>
+        </div>
+      </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-icon dashboard">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>Ops Command Center</h3>
+        <p>Unified dashboard showing dispute queue, support tickets awaiting approval, and inventory alerts. Approve, edit, or reject AI drafts with a single click. Full audit log of every action.</p>
+        <div class="feature-tags">
+          <span class="tag">Unified view</span>
+          <span class="tag">Audit log</span>
+          <span class="tag">One-click actions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== ARCHITECTURE ========== -->
+<section class="section" id="architecture" style="background: var(--color-surface);">
+  <div class="section-inner">
+    <div class="section-label fade-in">System Design</div>
+    <h2 class="section-title fade-in">Event-driven architecture</h2>
+    <p class="section-desc fade-in">Webhooks and pollers feed an orchestrator that routes events to specialized AI agents. Every action is logged, queued, and auditable.</p>
+
+    <div class="arch-diagram fade-in">
+      <div class="arch-layers">
+        <div class="arch-layer">
+          <div class="arch-layer-title">Data Sources</div>
+          <div class="arch-node source">Shopify Admin API</div>
+          <div class="arch-node source">Gmail API</div>
+          <div class="arch-node source">Loop / ReCharge</div>
+          <div class="arch-node source">Slack Webhooks</div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-title">Ingestion</div>
+          <div class="arch-node service">Gmail Watcher<br><span style="opacity:0.7;font-size:0.85em;">Push / 1-min poll</span></div>
+          <div class="arch-node service">Shopify Listener<br><span style="opacity:0.7;font-size:0.85em;">HMAC-verified hooks</span></div>
+          <div class="arch-node service">Event Router<br><span style="opacity:0.7;font-size:0.85em;">Redis-backed queue</span></div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-title">AI Agents</div>
+          <div class="arch-node agent">DisputeAgent<br><span style="opacity:0.7;font-size:0.85em;">Evidence + drafts</span></div>
+          <div class="arch-node agent">SupportAgent<br><span style="opacity:0.7;font-size:0.85em;">Classify + reply</span></div>
+          <div class="arch-node agent">InventoryAgent<br><span style="opacity:0.7;font-size:0.85em;">Forecast + alert</span></div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-layer-title">Outputs</div>
+          <div class="arch-node output">Slack Notifications</div>
+          <div class="arch-node output">Dashboard UI</div>
+          <div class="arch-node output">PDF / Evidence</div>
+          <div class="arch-node output">Auto-sent Emails</div>
+        </div>
+      </div>
+      <div class="arch-arrows">
+        <span>Webhooks</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span>Queue</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span>Agents</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        <span>Actions</span>
+      </div>
+    </div>
+
+    <div class="tech-grid fade-in">
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#95BF47;border-radius:4px;"></span>Shopify</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#EA4335;border-radius:4px;"></span>Gmail</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#4A154B;border-radius:4px;"></span>Slack</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#336791;border-radius:4px;"></span>Postgres</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#DC382D;border-radius:4px;"></span>Redis</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#D49A89;border-radius:4px;"></span>Claude 3.5</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#74AA9C;border-radius:4px;"></span>GPT-4o</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#000;border-radius:4px;"></span>Next.js</div>
+      <div class="tech-pill"><span class="tech-pill-icon" style="background:#FF6C37;border-radius:4px;"></span>S3 / GCS</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== WORKFLOWS ========== -->
+<section class="section" id="workflows">
+  <div class="section-inner">
+    <div class="section-label fade-in">How It Works</div>
+    <h2 class="section-title fade-in">Agent workflows, step by step</h2>
+    <p class="section-desc fade-in">Each agent follows a deterministic pipeline with LLM reasoning at key decision points. Human approval gates prevent any auto-action on sensitive tasks.</p>
+
+    <div class="workflow-grid">
+      <!-- DisputeAgent -->
+      <div class="workflow-card fade-in">
+        <div class="workflow-header">
+          <div class="workflow-num dispute">1</div>
+          <h3>DisputeAgent</h3>
+        </div>
+        <ul class="workflow-steps" role="list">
+          <li><span class="step-num">1</span>Trigger: Shopify dispute webhook or Gmail chargeback notification</li>
+          <li><span class="step-num">2</span>Fetch order JSON, fulfillment events, tracking number, customer emails</li>
+          <li><span class="step-num">3</span>Compile evidence: timeline, tracking screenshots, email transcripts, T&C</li>
+          <li><span class="step-num">4</span>LLM drafts reason-specific dispute response using templates</li>
+          <li><span class="step-num">5</span>Output: Markdown summary + PDF bundle + Slack approval message</li>
+        </ul>
+      </div>
+
+      <!-- SupportAgent -->
+      <div class="workflow-card fade-in">
+        <div class="workflow-header">
+          <div class="workflow-num support">2</div>
+          <h3>SupportAgent</h3>
+        </div>
+        <ul class="workflow-steps" role="list">
+          <li><span class="step-num">1</span>Trigger: New support email via Gmail push notification</li>
+          <li><span class="step-num">2</span>Classify intent: WISMO, Cancel, Refund, Address Change, Other</li>
+          <li><span class="step-num">3</span>Gather context: order data, tracking status, subscription state</li>
+          <li><span class="step-num">4</span>LLM drafts reply using intent-specific template + Shopify data</li>
+          <li><span class="step-num">5</span>Auto-send if confidence &gt; threshold; else queue for approval</li>
+        </ul>
+      </div>
+
+      <!-- InventoryAgent -->
+      <div class="workflow-card fade-in">
+        <div class="workflow-header">
+          <div class="workflow-num inventory">3</div>
+          <h3>InventoryAgent</h3>
+        </div>
+        <ul class="workflow-steps" role="list">
+          <li><span class="step-num">1</span>Scheduled job runs every 6 hours via cron</li>
+          <li><span class="step-num">2</span>Compute: days_of_cover = on_hand / avg_daily_sales per SKU</li>
+          <li><span class="step-num">3</span>&lt;7 days: Slack alert + auto-drafted PO email to supplier</li>
+          <li><span class="step-num">4</span>&gt;45 days: LLM generates promo copy to move inventory</li>
+          <li><span class="step-num">5</span>Dashboard shows all SKUs with recommended action</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== DASHBOARD MOCK ========== -->
+<section class="section" id="dashboard">
+  <div class="section-inner">
+    <div class="section-label fade-in">Command Center</div>
+    <h2 class="section-title fade-in">One dashboard to rule them all</h2>
+    <p class="section-desc fade-in">Approve AI drafts, review escalations, and monitor inventory — all from a single screen. Every action is logged for audit.</p>
+
+    <div class="dashboard-mock fade-in">
+      <div class="dash-toolbar">
+        <div class="dash-dot red"></div>
+        <div class="dash-dot yellow"></div>
+        <div class="dash-dot green"></div>
+        <div class="dash-url">ops.yourstore.com/dashboard</div>
+      </div>
+      <div class="dash-content">
+        <div class="dash-tabs">
+          <div class="dash-tab active">Disputes</div>
+          <div class="dash-tab">Support</div>
+          <div class="dash-tab">Inventory</div>
+          <div class="dash-tab">Audit Log</div>
+        </div>
+
+        <div class="dash-kpis">
+          <div class="dash-kpi">
+            <div class="dash-kpi-label">Open Disputes</div>
+            <div class="dash-kpi-value">7</div>
+            <div class="dash-kpi-delta negative">+3 this week</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="dash-kpi-label">Win Rate</div>
+            <div class="dash-kpi-value">87%</div>
+            <div class="dash-kpi-delta positive">+12% from last month</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="dash-kpi-label">Pending Approvals</div>
+            <div class="dash-kpi-value">4</div>
+            <div class="dash-kpi-delta">2 disputes, 2 refunds</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="dash-kpi-label">Revenue Saved</div>
+            <div class="dash-kpi-value">$12.4k</div>
+            <div class="dash-kpi-delta positive">This quarter</div>
+          </div>
+        </div>
+
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Type</th>
+              <th>Customer</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>AI Draft</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4829</td>
+              <td>Chargeback</td>
+              <td>J. Martinez</td>
+              <td style="font-variant-numeric:tabular-nums;">$189.00</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td style="color:var(--color-success);">Ready</td>
+              <td>
+                <div class="action-btns">
+                  <button class="action-btn approve">Approve</button>
+                  <button class="action-btn edit">Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4815</td>
+              <td>Inquiry</td>
+              <td>S. Patel</td>
+              <td style="font-variant-numeric:tabular-nums;">$67.50</td>
+              <td><span class="status-badge approved">Approved</span></td>
+              <td style="color:var(--color-success);">Sent</td>
+              <td>
+                <div class="action-btns">
+                  <button class="action-btn edit">View</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4801</td>
+              <td>Chargeback</td>
+              <td>R. Chen</td>
+              <td style="font-variant-numeric:tabular-nums;">$342.00</td>
+              <td><span class="status-badge escalated">Escalated</span></td>
+              <td style="color:var(--color-warning);">Needs review</td>
+              <td>
+                <div class="action-btns">
+                  <button class="action-btn approve">Approve</button>
+                  <button class="action-btn edit">Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4793</td>
+              <td>Fraud</td>
+              <td>A. Johnson</td>
+              <td style="font-variant-numeric:tabular-nums;">$524.00</td>
+              <td><span class="status-badge pending">Pending</span></td>
+              <td style="color:var(--color-success);">Ready</td>
+              <td>
+                <div class="action-btns">
+                  <button class="action-btn approve">Approve</button>
+                  <button class="action-btn edit">Edit</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== IMPLEMENTATION TIMELINE ========== -->
+<section class="section" id="roadmap" style="background: var(--color-surface);">
+  <div class="section-inner">
+    <div class="section-label fade-in">Implementation</div>
+    <h2 class="section-title fade-in">8 days to a working MVP</h2>
+    <p class="section-desc fade-in">Lean build, fast iteration. Each step delivers a testable increment.</p>
+
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 0.5</div>
+        <h3>Bootstrap Project</h3>
+        <p>Repo setup, environment variables, Postgres schema, initial migrations.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 1 — 1.5</div>
+        <h3>Shopify + Gmail Connectors</h3>
+        <p>OAuth flows, webhook endpoints with HMAC verification, Gmail push/polling setup.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 1.5 — 3.5</div>
+        <h3>DisputeAgent MVP</h3>
+        <p>Data fetch pipeline, LLM evidence compilation, PDF generation, Slack notification with interactive buttons.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 3.5 — 5.5</div>
+        <h3>SupportAgent MVP</h3>
+        <p>Intent classifier (gpt-4o-mini), template library per intent, confidence-gated auto-send, human approval flow.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 5.5 — 6.5</div>
+        <h3>InventoryAgent</h3>
+        <p>Days-of-cover computation, threshold alerts, promo copy generation, supplier PO drafts.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 6.5 — 7.5</div>
+        <h3>Dashboard UI</h3>
+        <p>Next.js command center with tabs, approve/edit/reject actions, audit log, real-time updates.</p>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-duration">Day 7.5 — 8</div>
+        <h3>Testing + Hardening</h3>
+        <p>Edge cases, retry logic, error handling, monitoring, and logging setup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== STRETCH / FUTURE ========== -->
+<section class="section" id="future">
+  <div class="section-inner">
+    <div class="section-label fade-in">What's Next</div>
+    <h2 class="section-title fade-in">Post-MVP roadmap</h2>
+    <p class="section-desc fade-in">White-label architecture means every feature multiplies across stores. Here's where we go after MVP.</p>
+
+    <div class="stretch-grid">
+      <div class="stretch-item fade-in">
+        <h3>Churn Saves via Klaviyo/Loop</h3>
+        <p>Auto-trigger retention campaigns when cancellation intent is detected. Offer discounts, pause options, or product swaps based on customer LTV.</p>
+      </div>
+      <div class="stretch-item fade-in">
+        <h3>Omnichannel Support</h3>
+        <p>Extend connectors to Amazon, Etsy, and other marketplaces. Unified inbox for all channels with platform-specific response formatting.</p>
+      </div>
+      <div class="stretch-item fade-in">
+        <h3>Merchant Financing</h3>
+        <p>Underwrite store loans based on the operational data we already capture — order velocity, dispute rates, inventory health. Long-term revenue play.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p>&copy; 2026 OpsFlow. Confidential investor preview.</p>
+    <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </div>
+</footer>
+
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+// Theme toggle
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+
+  function updateIcon() {
+    if (!t) return;
+    t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
+    t.innerHTML = d === 'dark'
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+
+  updateIcon();
+
+  t && t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    updateIcon();
+  });
+})();
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+// Animate KPI values on scroll (count up)
+const kpiObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const text = el.textContent;
+      // Only animate numeric values
+      const match = text.match(/^([\$<]?)(\d+\.?\d*)(k|%|min|days|)?$/);
+      if (match) {
+        const prefix = match[1];
+        const target = parseFloat(match[2]);
+        const suffix = match[3] || '';
+        const duration = 600;
+        const start = performance.now();
+
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          el.textContent = prefix + (target % 1 === 0 ? Math.round(current) : current.toFixed(1)) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      kpiObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.kpi-value').forEach(el => kpiObserver.observe(el));
+
+// Dashboard tab switching (mock interaction)
+document.querySelectorAll('.dash-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>
