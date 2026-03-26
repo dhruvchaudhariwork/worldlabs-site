@@ -223,56 +223,53 @@
     <h2 class="section-title fade-in">Event-driven architecture</h2>
     <p class="section-desc fade-in">Webhooks and pollers feed an orchestrator that routes events to specialized AI agents. Platform-agnostic connectors let you plug in any e-commerce backend.</p>
 
-    <div class="arch-diagram fade-in">
-      <div class="arch-layers">
-        <div>
-          <div class="arch-layer-title">DATA SOURCES</div>
-          <div class="arch-node">Shopify / WooCommerce / BigCommerce API</div>
-          <div class="arch-node">Gmail API</div>
-          <div class="arch-node">Loop / ReCharge</div>
-          <div class="arch-node">Slack Webhooks</div>
-        </div>
-        <div>
-          <div class="arch-layer-title">INGESTION</div>
-          <div class="arch-node">Gmail Watcher — Push / 1-min poll</div>
-          <div class="arch-node">Platform Listener — HMAC-verified</div>
-          <div class="arch-node">Event Router — Redis queue</div>
-        </div>
-        <div>
-          <div class="arch-layer-title">AI AGENTS</div>
-          <div class="arch-node">DisputeAgent — Evidence + drafts</div>
-          <div class="arch-node">SupportAgent — Classify + reply</div>
-          <div class="arch-node">InventoryAgent — Forecast + alert</div>
-        </div>
-        <div>
-          <div class="arch-layer-title">OUTPUTS</div>
-          <div class="arch-node">Slack Notifications</div>
-          <div class="arch-node">Dashboard UI</div>
-          <div class="arch-node">PDF / Evidence Bundles</div>
-          <div class="arch-node">Auto-sent Emails</div>
+    <div class="arch-pipeline fade-in">
+      <div class="arch-step">
+        <div class="arch-step-label">INGEST</div>
+        <div class="arch-step-items">
+          <span>Shopify</span>
+          <span>WooCommerce</span>
+          <span>BigCommerce</span>
+          <span>Gmail</span>
+          <span>ReCharge / Loop</span>
+          <span>Stripe</span>
         </div>
       </div>
-      <div class="arch-flow">
-        <span>Webhooks</span>
+      <div class="arch-arrow">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        <span>Queue</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        <span>Agents</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        <span>Actions</span>
       </div>
-    </div>
-
-    <div class="tech-grid fade-in">
-      <div class="tech-pill"><span class="tech-dot" style="background:#95BF47;"></span>Shopify</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#EA4335;"></span>Gmail</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#4A154B;"></span>Slack</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#336791;"></span>Postgres</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#DC382D;"></span>Redis</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#D49A89;"></span>Claude 3.5</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#74AA9C;"></span>GPT-4o</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#000;"></span>Next.js</div>
-      <div class="tech-pill"><span class="tech-dot" style="background:#FF6C37;"></span>S3 / GCS</div>
+      <div class="arch-step">
+        <div class="arch-step-label">PROCESS</div>
+        <div class="arch-step-items">
+          <span>Event router</span>
+          <span>Redis queue</span>
+          <span>LLM orchestrator</span>
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-label">AGENTS</div>
+        <div class="arch-step-items">
+          <span>SupportAgent</span>
+          <span>RetentionAgent</span>
+          <span>InventoryAgent</span>
+          <span>Disputely</span>
+        </div>
+      </div>
+      <div class="arch-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-label">ACT</div>
+        <div class="arch-step-items">
+          <span>Auto-reply emails</span>
+          <span>Slack alerts</span>
+          <span>Save flows</span>
+          <span>Dashboard</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -748,6 +745,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// Scroll-triggered fade-in
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
 
 // KPI count-up
 const kpiObs = new IntersectionObserver((entries) => {
