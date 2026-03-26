@@ -81,9 +81,21 @@
       <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       </button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- Mobile nav overlay -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#features" data-mobile-link>Platform</a>
+  <a href="#dashboard" data-mobile-link>Dashboard</a>
+  <a href="./docs.html">Docs</a>
+  <a href="./about.html">About</a>
+  <a href="./pitch.html">Pitch Deck</a>
+</nav>
 
 
 <!-- Hero + Waitlist -->
@@ -307,11 +319,27 @@
       .pill-ok { background: var(--color-positive-bg); color: var(--color-positive); }
       .pill-over { background: var(--color-brand-muted); color: var(--color-brand); }
       @media (max-width: 768px) {
-        .dash-row-2, .dash-row-3, .dash-row-5 { grid-template-columns: 1fr; }
+        .dash-row-2, .dash-row-3 { grid-template-columns: 1fr; }
+        .dash-row-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+        .dash-panel { padding: 12px; }
+        .dash-panel-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+        .dash-bar-label { min-width: 80px; font-size: 11px; }
+        .dash-ticket-row { grid-template-columns: 1fr auto; gap: 8px; }
+        .dash-ticket-row > div:last-child { display: none; }
+        .dash-sku-row { grid-template-columns: 1fr auto auto; gap: 8px; font-size: 11px; }
+        .dash-sku-stock { display: none; }
+        .intent-grid { grid-template-columns: repeat(2, 1fr); }
+        .retry-timeline { flex-direction: column; }
+        .retry-step:first-child { border-radius: 8px 8px 0 0; }
+        .retry-step:last-child { border-radius: 0 0 8px 8px; }
+        .retry-step + .retry-step { border-left: 1px solid var(--color-border); border-top: none; }
+        .dash-mini-kpi { padding: 10px 12px; }
+        .dash-mini-kpi-value { font-size: 18px; }
       }
       @media (max-width: 480px) {
         .dash-kpis { grid-template-columns: 1fr; }
+        .dash-row-5 { grid-template-columns: 1fr 1fr; }
       }
     </style>
 
@@ -891,6 +919,29 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// Mobile menu
+(function(){
+  const btn = document.getElementById('mobile-menu-btn');
+  const nav = document.getElementById('mobile-nav');
+  if (!btn || !nav) return;
+  let open = false;
+  btn.addEventListener('click', () => {
+    open = !open;
+    nav.classList.toggle('open', open);
+    btn.innerHTML = open
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+  });
+  // Close on link click
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      open = false;
+      nav.classList.remove('open');
+      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
+    });
+  });
+})();
 </script>
 
 </body>
