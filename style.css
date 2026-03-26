@@ -520,6 +520,30 @@
   flex-shrink: 0;
 }
 
+/* --- Logo Row (Proliferate-style) --- */
+.logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-8);
+}
+
+.logo-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+}
+
+.logo-item svg {
+  display: block;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+
 .tech-grid {
   display: flex;
   flex-wrap: wrap;
