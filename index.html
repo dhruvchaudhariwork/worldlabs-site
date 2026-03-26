@@ -18,8 +18,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OpsFlow — AI Ops Automation for Shopify</title>
-<meta name="description" content="AI agents that handle chargebacks, customer support, and inventory management for lean Shopify brands.">
+<title>OpsFlow — AI Ops Automation for E-Commerce</title>
+<meta name="description" content="AI agents that handle chargebacks, customer support, and inventory management for e-commerce brands on Shopify, WooCommerce, BigCommerce, and more.">
 
 <!-- Fonts -->
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
@@ -46,6 +46,7 @@
         <li><a href="#architecture">Architecture</a></li>
         <li><a href="#workflows">Agents</a></li>
         <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#pricing">Pricing</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
       </ul>
     </nav>
@@ -62,8 +63,8 @@
 <!-- ========== HERO ========== -->
 <section class="hero">
   <div class="hero-inner">
-    <h1>Autonomous ops<br>for Shopify brands</h1>
-    <p class="hero-sub">AI agents that handle chargebacks, customer support, and inventory alerts — so you can focus on growth, not busywork.</p>
+    <h1>Autonomous ops<br>for e-commerce</h1>
+    <p class="hero-sub">AI agents that handle chargebacks, customer support, and inventory alerts for brands on Shopify, WooCommerce, BigCommerce, and more.</p>
     <div class="hero-ctas">
       <a href="#dashboard" class="btn btn-primary">See the Dashboard</a>
       <a href="#architecture" class="btn btn-outline">Technical Deep-Dive</a>
@@ -72,8 +73,26 @@
 </section>
 
 
+<!-- ========== PLATFORM LOGOS ========== -->
+<section class="section" style="padding-top:0;">
+  <div class="section-inner section-center fade-in">
+    <p style="font-size:var(--text-xs);color:var(--color-text-tertiary);letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:var(--space-6);">CONNECT YOUR STACK</p>
+    <div class="tech-grid" style="border:none;padding:0;margin:0;">
+      <div class="tech-pill"><span class="tech-dot" style="background:#95BF47;"></span>Shopify</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#7B51AD;"></span>WooCommerce</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#121118;"></span>BigCommerce</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#EE672F;"></span>Magento</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#000;"></span>Wix</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#000;"></span>Squarespace</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#FF9900;"></span>Amazon</div>
+      <div class="tech-pill"><span class="tech-dot" style="background:#F56400;"></span>Etsy</div>
+    </div>
+  </div>
+</section>
+
+
 <!-- ========== KPIs ========== -->
-<section class="section">
+<section class="section" style="padding-top:0;">
   <div class="section-inner fade-in">
     <div class="kpi-row">
       <div class="kpi">
@@ -108,7 +127,7 @@
       <div class="step-card fade-in">
         <div class="step-number">1</div>
         <h3>Ingest</h3>
-        <p>Shopify webhooks and Gmail watchers detect disputes, support emails, and inventory changes in real time. Events are routed through a Redis-backed queue to the right agent.</p>
+        <p>Platform webhooks and Gmail watchers detect disputes, support emails, and inventory changes in real time. Events are routed through a Redis-backed queue to the right agent.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-number">2</div>
@@ -147,7 +166,7 @@
       <div class="feature-card fade-in">
         <div class="feature-label">SUPPORT</div>
         <h3>Support Autoresolver</h3>
-        <p>Monitors your support inbox for common issues — WISMO, cancellations, address changes. Classifies intent, pulls relevant Shopify data, and drafts empathetic replies. Auto-sends simple cases; escalates edge cases with full context.</p>
+        <p>Monitors your support inbox for common issues — WISMO, cancellations, address changes. Classifies intent, pulls relevant order data, and drafts empathetic replies. Auto-sends simple cases; escalates edge cases with full context.</p>
         <div class="feature-tags">
           <span class="tag">Intent classification</span>
           <span class="tag">Auto-reply</span>
@@ -186,13 +205,13 @@
   <div class="section-inner section-center">
     <div class="section-label fade-in">SYSTEM DESIGN</div>
     <h2 class="section-title fade-in">Event-driven architecture</h2>
-    <p class="section-desc fade-in">Webhooks and pollers feed an orchestrator that routes events to specialized AI agents. Every action is logged, queued, and auditable.</p>
+    <p class="section-desc fade-in">Webhooks and pollers feed an orchestrator that routes events to specialized AI agents. Platform-agnostic connectors let you plug in any e-commerce backend.</p>
 
     <div class="arch-diagram fade-in">
       <div class="arch-layers">
         <div>
           <div class="arch-layer-title">DATA SOURCES</div>
-          <div class="arch-node">Shopify Admin API</div>
+          <div class="arch-node">Shopify / WooCommerce / BigCommerce API</div>
           <div class="arch-node">Gmail API</div>
           <div class="arch-node">Loop / ReCharge</div>
           <div class="arch-node">Slack Webhooks</div>
@@ -200,7 +219,7 @@
         <div>
           <div class="arch-layer-title">INGESTION</div>
           <div class="arch-node">Gmail Watcher — Push / 1-min poll</div>
-          <div class="arch-node">Shopify Listener — HMAC-verified</div>
+          <div class="arch-node">Platform Listener — HMAC-verified</div>
           <div class="arch-node">Event Router — Redis queue</div>
         </div>
         <div>
@@ -257,7 +276,7 @@
           <h3>DisputeAgent</h3>
         </div>
         <ul class="workflow-steps" role="list">
-          <li><span class="wf-step-num">01</span>Shopify dispute webhook or Gmail chargeback email triggers agent</li>
+          <li><span class="wf-step-num">01</span>Platform dispute webhook or Gmail chargeback email triggers agent</li>
           <li><span class="wf-step-num">02</span>Fetch order JSON, fulfillment events, tracking, customer comms</li>
           <li><span class="wf-step-num">03</span>Compile evidence: timeline, tracking screenshots, T&C</li>
           <li><span class="wf-step-num">04</span>LLM drafts reason-specific dispute response</li>
@@ -313,86 +332,148 @@
       </div>
       <div class="dash-content">
         <div class="dash-tabs">
-          <div class="dash-tab active">Disputes</div>
-          <div class="dash-tab">Support</div>
-          <div class="dash-tab">Inventory</div>
-          <div class="dash-tab">Audit Log</div>
+          <div class="dash-tab active" data-tab="disputes">Disputes</div>
+          <div class="dash-tab" data-tab="support">Support</div>
+          <div class="dash-tab" data-tab="inventory">Inventory</div>
+          <div class="dash-tab" data-tab="audit">Audit Log</div>
         </div>
 
-        <div class="dash-kpis">
-          <div class="dash-kpi">
-            <div class="dash-kpi-label">Open Disputes</div>
-            <div class="dash-kpi-value">7</div>
-            <div class="dash-kpi-delta negative">+3 this week</div>
+        <!-- DISPUTES TAB -->
+        <div class="tab-panel active" id="tab-disputes">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Open Disputes</div><div class="dash-kpi-value">7</div><div class="dash-kpi-delta negative">+3 this week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Win Rate</div><div class="dash-kpi-value">87%</div><div class="dash-kpi-delta positive">+12% from last month</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Pending Approvals</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta neutral">2 disputes, 2 refunds</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Revenue Saved</div><div class="dash-kpi-value">$12.4k</div><div class="dash-kpi-delta positive">This quarter</div></div>
           </div>
-          <div class="dash-kpi">
-            <div class="dash-kpi-label">Win Rate</div>
-            <div class="dash-kpi-value">87%</div>
-            <div class="dash-kpi-delta positive">+12% from last month</div>
-          </div>
-          <div class="dash-kpi">
-            <div class="dash-kpi-label">Pending Approvals</div>
-            <div class="dash-kpi-value">4</div>
-            <div class="dash-kpi-delta neutral">2 disputes, 2 refunds</div>
-          </div>
-          <div class="dash-kpi">
-            <div class="dash-kpi-label">Revenue Saved</div>
-            <div class="dash-kpi-value">$12.4k</div>
-            <div class="dash-kpi-delta positive">This quarter</div>
-          </div>
+          <table class="dash-table">
+            <thead><tr><th>Order</th><th>Type</th><th>Customer</th><th>Amount</th><th>Status</th><th>AI Draft</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-mono)">#4829</td><td>Chargeback</td><td>J. Martinez</td><td>$189.00</td><td><span class="status-badge pending"><span class="status-dot"></span>Pending</span></td><td style="color:var(--color-success)">Ready</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#4815</td><td>Inquiry</td><td>S. Patel</td><td>$67.50</td><td><span class="status-badge approved"><span class="status-dot"></span>Approved</span></td><td style="color:var(--color-success)">Sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#4801</td><td>Chargeback</td><td>R. Chen</td><td>$342.00</td><td><span class="status-badge escalated"><span class="status-dot"></span>Escalated</span></td><td style="color:var(--color-warning)">Needs review</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#4793</td><td>Fraud</td><td>A. Johnson</td><td>$524.00</td><td><span class="status-badge pending"><span class="status-dot"></span>Pending</span></td><td style="color:var(--color-success)">Ready</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
+            </tbody>
+          </table>
         </div>
 
-        <table class="dash-table">
-          <thead>
-            <tr>
-              <th>Order</th>
-              <th>Type</th>
-              <th>Customer</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>AI Draft</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4829</td>
-              <td>Chargeback</td>
-              <td>J. Martinez</td>
-              <td style="font-variant-numeric:tabular-nums;">$189.00</td>
-              <td><span class="status-badge pending"><span class="status-dot"></span>Pending</span></td>
-              <td style="color:var(--color-success);">Ready</td>
-              <td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td>
-            </tr>
-            <tr>
-              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4815</td>
-              <td>Inquiry</td>
-              <td>S. Patel</td>
-              <td style="font-variant-numeric:tabular-nums;">$67.50</td>
-              <td><span class="status-badge approved"><span class="status-dot"></span>Approved</span></td>
-              <td style="color:var(--color-success);">Sent</td>
-              <td><div class="action-btns"><button class="action-btn">View</button></div></td>
-            </tr>
-            <tr>
-              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4801</td>
-              <td>Chargeback</td>
-              <td>R. Chen</td>
-              <td style="font-variant-numeric:tabular-nums;">$342.00</td>
-              <td><span class="status-badge escalated"><span class="status-dot"></span>Escalated</span></td>
-              <td style="color:var(--color-warning);">Needs review</td>
-              <td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td>
-            </tr>
-            <tr>
-              <td style="font-family:var(--font-mono);font-variant-numeric:tabular-nums;">#4793</td>
-              <td>Fraud</td>
-              <td>A. Johnson</td>
-              <td style="font-variant-numeric:tabular-nums;">$524.00</td>
-              <td><span class="status-badge pending"><span class="status-dot"></span>Pending</span></td>
-              <td style="color:var(--color-success);">Ready</td>
-              <td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td>
-            </tr>
-          </tbody>
-        </table>
+        <!-- SUPPORT TAB -->
+        <div class="tab-panel" id="tab-support">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Open Tickets</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">+8 today</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Auto-resolved</div><div class="dash-kpi-value">74%</div><div class="dash-kpi-delta positive">+5% this week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Avg Response</div><div class="dash-kpi-value">1.4m</div><div class="dash-kpi-delta positive">-30s from last week</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">CSAT Score</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
+          </div>
+          <table class="dash-table">
+            <thead><tr><th>Ticket</th><th>Intent</th><th>Customer</th><th>Subject</th><th>Confidence</th><th>AI Draft</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-mono)">#T-892</td><td>WISMO</td><td>M. Davis</td><td>Where is my order?</td><td><span class="status-badge approved"><span class="status-dot"></span>98%</span></td><td style="color:var(--color-success)">Auto-sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#T-891</td><td>Refund</td><td>K. Nguyen</td><td>Wrong item received</td><td><span class="status-badge pending"><span class="status-dot"></span>72%</span></td><td style="color:var(--color-warning)">Queued</td><td><div class="action-btns"><button class="action-btn">Approve</button><button class="action-btn">Edit</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#T-890</td><td>Cancel</td><td>L. Thompson</td><td>Cancel my subscription</td><td><span class="status-badge escalated"><span class="status-dot"></span>45%</span></td><td style="color:var(--color-error)">Escalated</td><td><div class="action-btns"><button class="action-btn">Review</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">#T-889</td><td>Address</td><td>P. Williams</td><td>Update shipping address</td><td><span class="status-badge approved"><span class="status-dot"></span>95%</span></td><td style="color:var(--color-success)">Auto-sent</td><td><div class="action-btns"><button class="action-btn">View</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- INVENTORY TAB -->
+        <div class="tab-panel" id="tab-inventory">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">SKUs Tracked</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 stores</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Low Stock Alerts</div><div class="dash-kpi-value">6</div><div class="dash-kpi-delta negative">3 critical</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Overstock</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta neutral">&gt;45 days cover</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">PO Drafts Sent</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">This week</div></div>
+          </div>
+          <table class="dash-table">
+            <thead><tr><th>SKU</th><th>Product</th><th>On Hand</th><th>Days of Cover</th><th>Status</th><th>Action</th><th></th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-mono)">BLK-TEE-M</td><td>Black Tee (M)</td><td>18</td><td>3 days</td><td><span class="status-badge escalated"><span class="status-dot"></span>Critical</span></td><td>PO drafted</td><td><div class="action-btns"><button class="action-btn">Send PO</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">WHT-HOD-L</td><td>White Hoodie (L)</td><td>42</td><td>5 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Low</span></td><td>PO drafted</td><td><div class="action-btns"><button class="action-btn">Send PO</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">GRN-SNK-10</td><td>Green Sneaker (10)</td><td>340</td><td>68 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Overstock</span></td><td>Promo drafted</td><td><div class="action-btns"><button class="action-btn">View Promo</button></div></td></tr>
+              <tr><td style="font-family:var(--font-mono)">NVY-CAP-OS</td><td>Navy Cap (OS)</td><td>215</td><td>52 days</td><td><span class="status-badge pending"><span class="status-dot"></span>Overstock</span></td><td>Promo drafted</td><td><div class="action-btns"><button class="action-btn">View Promo</button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- AUDIT LOG TAB -->
+        <div class="tab-panel" id="tab-audit">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Actions Today</div><div class="dash-kpi-value">34</div><div class="dash-kpi-delta neutral">12 auto, 22 manual</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Approvals</div><div class="dash-kpi-value">19</div><div class="dash-kpi-delta positive">All by ops team</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Rejections</div><div class="dash-kpi-value">3</div><div class="dash-kpi-delta neutral">Edits applied</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Auto-actions</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta positive">100% accurate</div></div>
+          </div>
+          <table class="dash-table">
+            <thead><tr><th>Time</th><th>Agent</th><th>Action</th><th>Target</th><th>User</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-mono)">14:32</td><td>SupportAgent</td><td>Auto-reply sent</td><td>Ticket #T-892</td><td>System</td><td><span class="status-badge approved"><span class="status-dot"></span>Success</span></td></tr>
+              <tr><td style="font-family:var(--font-mono)">14:18</td><td>DisputeAgent</td><td>Draft approved</td><td>Order #4829</td><td>@sarah</td><td><span class="status-badge approved"><span class="status-dot"></span>Submitted</span></td></tr>
+              <tr><td style="font-family:var(--font-mono)">13:45</td><td>InventoryAgent</td><td>PO email sent</td><td>SKU BLK-TEE-M</td><td>@sarah</td><td><span class="status-badge approved"><span class="status-dot"></span>Sent</span></td></tr>
+              <tr><td style="font-family:var(--font-mono)">13:12</td><td>SupportAgent</td><td>Draft rejected</td><td>Ticket #T-887</td><td>@mike</td><td><span class="status-badge escalated"><span class="status-dot"></span>Edited</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========== PRICING ========== -->
+<section class="section" id="pricing">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">PRICING</div>
+    <h2 class="section-title fade-in">Simple, transparent pricing</h2>
+    <p class="section-desc fade-in">Start free during beta. Scale as your store grows.</p>
+
+    <div class="pricing-grid fade-in">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">$0<span class="pricing-period">/mo</span></div>
+        <div class="pricing-note">Free during beta</div>
+        <ul class="pricing-features" role="list">
+          <li>1 store connected</li>
+          <li>SupportAgent (100 tickets/mo)</li>
+          <li>DisputeAgent (10 disputes/mo)</li>
+          <li>Basic inventory alerts</li>
+          <li>Slack notifications</li>
+          <li>Community support</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Get Started</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">MOST POPULAR</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price">$299<span class="pricing-period">/mo</span></div>
+        <div class="pricing-note">Per store, billed monthly</div>
+        <ul class="pricing-features" role="list">
+          <li>Up to 3 stores</li>
+          <li>All three agents, unlimited</li>
+          <li>Full dashboard + audit log</li>
+          <li>PDF evidence bundles</li>
+          <li>Custom reply templates</li>
+          <li>Slack + email notifications</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center;">Book a Demo</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-note">For agencies &amp; multi-brand ops</div>
+        <ul class="pricing-features" role="list">
+          <li>Unlimited stores</li>
+          <li>White-label dashboard</li>
+          <li>Custom agent workflows</li>
+          <li>SSO + role-based access</li>
+          <li>API access</li>
+          <li>Dedicated account manager</li>
+          <li>SLA guarantee</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center;">Contact Sales</a>
       </div>
     </div>
   </div>
@@ -400,7 +481,7 @@
 
 
 <!-- ========== IMPLEMENTATION TIMELINE ========== -->
-<section class="section" id="roadmap">
+<section class="section alt" id="roadmap">
   <div class="section-inner">
     <div class="section-label fade-in">IMPLEMENTATION</div>
     <h2 class="section-title fade-in">8 days to a working MVP</h2>
@@ -414,8 +495,8 @@
       </div>
       <div class="timeline-item fade-in">
         <div class="timeline-duration">Day 1 — 1.5</div>
-        <h3>Shopify + Gmail Connectors</h3>
-        <p>OAuth flows, webhook endpoints with HMAC verification, Gmail push/polling.</p>
+        <h3>Platform Connectors</h3>
+        <p>Shopify OAuth + webhooks first. Adapter pattern for WooCommerce, BigCommerce next. Gmail push/polling.</p>
       </div>
       <div class="timeline-item fade-in">
         <div class="timeline-duration">Day 1.5 — 3.5</div>
@@ -453,7 +534,7 @@
   <div class="section-inner section-center">
     <div class="section-label fade-in">WHAT'S NEXT</div>
     <h2 class="fade-in">Put your ops on autopilot</h2>
-    <p class="fade-in">White-label architecture means every feature multiplies across stores.</p>
+    <p class="fade-in">White-label architecture means every feature multiplies across stores and platforms.</p>
     <div style="position:relative;z-index:1;">
       <div class="stretch-grid fade-in">
         <div class="stretch-item">
@@ -461,8 +542,8 @@
           <p>Auto-trigger retention campaigns when cancellation intent is detected. Offer discounts, pause options, or product swaps based on customer LTV.</p>
         </div>
         <div class="stretch-item">
-          <h3>Omnichannel Support</h3>
-          <p>Extend connectors to Amazon, Etsy, and other marketplaces. Unified inbox for all channels with platform-specific formatting.</p>
+          <h3>Marketplace Expansion</h3>
+          <p>Deep connectors for Amazon Seller Central, Etsy, Walmart Marketplace, and eBay. Unified ops across DTC and marketplace channels.</p>
         </div>
         <div class="stretch-item">
           <h3>Merchant Financing</h3>
@@ -480,7 +561,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <span class="logo-text">OPSFLOW</span>
-        <p>Autonomous ops automation for Shopify brands.</p>
+        <p>Autonomous ops automation for e-commerce brands.</p>
       </div>
       <div class="footer-col">
         <h4>Product</h4>
@@ -488,7 +569,7 @@
           <li><a href="#features">Platform</a></li>
           <li><a href="#architecture">Architecture</a></li>
           <li><a href="#dashboard">Dashboard</a></li>
-          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -523,7 +604,6 @@
   const r = document.documentElement;
   let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
   r.setAttribute('data-theme', d);
-
   function updateIcon() {
     if (!t) return;
     t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
@@ -531,24 +611,15 @@
       ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
       : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   }
-
   updateIcon();
-
-  t && t.addEventListener('click', () => {
-    d = d === 'dark' ? 'light' : 'dark';
-    r.setAttribute('data-theme', d);
-    updateIcon();
-  });
+  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); updateIcon(); });
 })();
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
 
@@ -558,7 +629,7 @@ const kpiObs = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const el = entry.target;
       const text = el.textContent;
-      const match = text.match(/^([\$<]?)(\d+\.?\d*)(k|%|min|days|)?$/);
+      const match = text.match(/^([\$<]?)(\d+\.?\d*)(k|%|min|m|days|)?$/);
       if (match) {
         const prefix = match[1], target = parseFloat(match[2]), suffix = match[3] || '';
         const duration = 600, start = performance.now();
@@ -576,11 +647,14 @@ const kpiObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.kpi-value').forEach(el => kpiObs.observe(el));
 
-// Dashboard tabs
+// Dashboard tabs — show/hide panels
 document.querySelectorAll('.dash-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
+    const panel = document.getElementById('tab-' + tab.dataset.tab);
+    if (panel) panel.classList.add('active');
   });
 });
 </script>
