@@ -318,6 +318,12 @@
         <h3>Ledger</h3>
         <p>Connect Meta, TikTok, and Google ad accounts. Set COGS per SKU. See real profit per order, per product, per channel — not just revenue.</p>
       </div>
+
+      <div class="feature-card fade-in">
+        <div class="feature-label">AD CAMPAIGNS</div>
+        <h3>Signal</h3>
+        <p>Monitors ad performance across Meta, TikTok, and Google. Auto-adjusts budgets, scales winners, pauses underperformers. Optimizes for true profit via Ledger — not just ROAS.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -479,6 +485,7 @@
           <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
           <div class="dash-tab" data-tab="profit">Profitability</div>
           <div class="dash-tab" data-tab="inventory">Inventory</div>
+          <div class="dash-tab" data-tab="signal">Ad Campaigns</div>
         </div>
 
         <!-- ========== DISPUTES TAB ========== -->
@@ -961,6 +968,72 @@
               <div class="dash-sku-stock">724</div>
               <div class="dash-sku-cover" style="color:var(--color-brand);">52d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== AD CAMPAIGNS (SIGNAL) TAB ========== -->
+        <div class="tab-panel" id="tab-signal">
+          <div class="dash-kpis">
+            <div class="dash-kpi"><div class="dash-kpi-label">Total Spend (30d)</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Across 3 channels</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Blended ROAS</div><div class="dash-kpi-value">3.08x</div><div class="dash-kpi-delta positive">&uarr; 0.4x MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">CPA</div><div class="dash-kpi-value">$22.30</div><div class="dash-kpi-delta positive">&darr; $3.10 MoM</div></div>
+            <div class="dash-kpi"><div class="dash-kpi-label">Profit-Adj ROAS</div><div class="dash-kpi-value">2.41x</div><div class="dash-kpi-delta positive">Via Ledger</div></div>
+          </div>
+
+          <!-- Channel breakdown -->
+          <div class="dash-row dash-row-2">
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Channel Performance</div>
+                  <div class="dash-panel-subtitle">Last 30 days by platform</div>
+                </div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Meta Ads</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:55%;background:var(--color-brand);"></div></div>
+                <div class="dash-bar-val">$22.7k</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">TikTok Ads</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:28%;background:var(--color-info);"></div></div>
+                <div class="dash-bar-val">$11.5k</div>
+              </div>
+              <div class="dash-bar-row">
+                <div class="dash-bar-label">Google Ads</div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:17%;background:var(--color-neutral);"></div></div>
+                <div class="dash-bar-val">$7.0k</div>
+              </div>
+            </div>
+
+            <div class="dash-panel">
+              <div class="dash-panel-header">
+                <div>
+                  <div class="dash-panel-title">Recent Actions</div>
+                  <div class="dash-panel-subtitle">Auto-adjustments by Signal</div>
+                </div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
+                <div class="dash-badge-name">Scaled "Spring Serum" ad set +30%</div>
+                <div style="font-size:11px;color:var(--color-neutral);">2h ago</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
+                <div class="dash-badge-name">Paused "Broad — Lookalike" (CPA &gt;$40)</div>
+                <div style="font-size:11px;color:var(--color-neutral);">5h ago</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
+                <div class="dash-badge-name">Shifted $2k from Google → Meta</div>
+                <div style="font-size:11px;color:var(--color-neutral);">8h ago</div>
+              </div>
+              <div class="dash-badge-row">
+                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
+                <div class="dash-badge-name">Alert: TikTok CPM up 22% this week</div>
+                <div style="font-size:11px;color:var(--color-neutral);">1d ago</div>
+              </div>
             </div>
           </div>
         </div>

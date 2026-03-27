@@ -606,6 +606,7 @@
     <a href="#support" class="sidebar-link">Resolve</a>
     <a href="#retention" class="sidebar-link">Pulse</a>
     <a href="#inventory" class="sidebar-link">Supply</a>
+    <a href="#signal" class="sidebar-link">Signal</a>
   </div>
   <div class="sidebar-group">
     <div class="sidebar-group-title">Integrations</div>
@@ -670,6 +671,13 @@
       </div>
       <h3>Ledger</h3>
       <p>Real P&amp;L with ad spend and COGS</p>
+    </a>
+    <a class="docs-card" href="#signal">
+      <div class="docs-card-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <h3>Signal</h3>
+      <p>Auto-manage ad budgets across channels</p>
     </a>
   </div>
 
@@ -971,6 +979,42 @@
   <div class="formula-block">
     <code>true_profit = revenue − ad_spend − cogs − shipping − fees − returns − chargebacks</code>
     <p>Available at store, channel, product, and order level. Updated in real-time.</p>
+  </div>
+
+
+  <!-- SIGNAL -->
+  <h2 id="signal">Signal</h2>
+  <p class="section-desc">Autonomous ad campaign management across Meta, TikTok, and Google. Monitors performance, adjusts budgets, and optimizes for true profit — not just ROAS.</p>
+
+  <h3>Setup</h3>
+  <p>Connect your ad accounts via OAuth (Meta Business, TikTok for Business, Google Ads). Signal begins monitoring immediately and enters observation mode for 48 hours before making any budget changes.</p>
+
+  <h3>What Signal does</h3>
+  <div class="feature-grid">
+    <div class="feature-item">
+      <div class="feature-item-label">Budget Scaling</div>
+      <p class="feature-item-desc">Auto-increases budget on ad sets exceeding your ROAS target</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-label">Pause Underperformers</div>
+      <p class="feature-item-desc">Stops spend on campaigns where CPA exceeds your threshold</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-label">Cross-Channel Reallocation</div>
+      <p class="feature-item-desc">Shifts budget from low-ROAS channels to high-ROAS ones</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-item-label">Profit-Adjusted Optimization</div>
+      <p class="feature-item-desc">Uses Ledger's true margin data, not just revenue-based ROAS</p>
+    </div>
+  </div>
+
+  <h3>Cross-agent intelligence</h3>
+  <p>Signal doesn't optimize in a vacuum. It pulls margin data from Ledger (so a 4x ROAS product with 10% margins gets treated differently than a 2x ROAS product with 60% margins), subscriber LTV from Pulse (so it values subscription-converting ads higher), and inventory levels from Supply (so it doesn't scale spend on products about to stock out).</p>
+
+  <div class="callout info">
+    <svg class="callout-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <div><strong>Observation mode.</strong> Signal watches for 48 hours before making any changes. All proposed adjustments are queued for your approval during this period.</div>
   </div>
 
 
