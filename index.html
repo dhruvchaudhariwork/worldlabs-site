@@ -337,14 +337,72 @@
     <p class="section-desc fade-in">The dashboard isn't where you do the work — it's where you see what your agents already did.</p>
 
     <style>
-      .dash-row { display: grid; gap: 12px; margin-bottom: 12px; }
-      .dash-row-2 { grid-template-columns: 1fr 1fr; }
-      .dash-row-3 { grid-template-columns: 1fr 1fr 1fr; }
-      .dash-row-5 { grid-template-columns: repeat(5, 1fr); }
-      .dash-panel {
+      /* ── Card system (Figma-inspired) ─────────────────────────────── */
+      .dash-card {
+        background: var(--color-surface);
         border: 1px solid var(--color-border);
-        border-radius: 8px;
-        padding: 16px;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      }
+      .dash-card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .dash-card-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--color-text-tertiary);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .dash-card-big-number {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.1;
+      }
+      .dash-card-trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 5px;
+      }
+      .dash-card-trend.up   { color: var(--color-positive); }
+      .dash-card-trend.down { color: var(--color-negative); }
+      .dash-card-trend.neu  { color: var(--color-neutral); }
+      .dash-view-report {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--color-brand);
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: default;
+        opacity: 0.9;
+        flex-shrink: 0;
+      }
+      .dash-view-report:hover { opacity: 1; }
+
+      /* ── Grid layouts ─────────────────────────────────────────────── */
+      .dash-row { display: grid; gap: 12px; margin-bottom: 12px; }
+      .dash-row-2-wide { grid-template-columns: 3fr 2fr; }
+      .dash-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+      .dash-row-2 { grid-template-columns: 1fr 1fr; }
+      .dash-row-5 { grid-template-columns: repeat(5, 1fr); }
+
+      /* ── Legacy panel (other tabs keep existing look, just re-skinned) */
+      .dash-panel {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        padding: 18px 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       }
       .dash-panel-header {
         display: flex; align-items: center; justify-content: space-between;
@@ -362,8 +420,135 @@
         background: var(--color-bg); border: 1px solid var(--color-border);
         display: flex; align-items: center; justify-content: center;
       }
+
+      /* ── Bar chart (vertical, Figma-style) ───────────────────────── */
+      .dash-bar-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 6px;
+        height: 80px;
+        margin-top: 8px;
+      }
+      .dash-bar-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        height: 100%;
+        justify-content: flex-end;
+      }
+      .dash-bar-stick {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        background: var(--color-brand);
+        min-height: 4px;
+        opacity: 0.85;
+      }
+      .dash-bar-col.current .dash-bar-stick { opacity: 1; }
+      .dash-bar-x-label {
+        font-size: 9px;
+        color: var(--color-text-tertiary);
+        font-variant-numeric: tabular-nums;
+        margin-top: 3px;
+      }
+
+      /* ── Donut / ring chart ───────────────────────────────────────── */
+      .dash-donut-wrap {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 8px;
+      }
+      .dash-donut-legend {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        flex: 1;
+      }
+      .dash-donut-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 11px;
+        color: var(--color-text-secondary);
+      }
+      .dash-donut-legend-dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .dash-donut-legend-pct {
+        margin-left: auto;
+        font-weight: 700;
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ── Circular progress rings ──────────────────────────────────── */
+      .dash-rings-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 12px 0 8px;
+      }
+
+      /* ── Dispute list ─────────────────────────────────────────────── */
+      .dash-dispute-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 12.5px;
+      }
+      .dash-dispute-row:last-child { border-bottom: none; }
+      .dash-dispute-icon {
+        width: 28px; height: 28px; border-radius: 8px;
+        background: var(--color-bg);
+        border: 1px solid var(--color-border);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        font-size: 10px;
+        font-weight: 800;
+        color: var(--color-text-secondary);
+      }
+      .dash-dispute-name {
+        flex: 1;
+        font-weight: 600;
+        color: var(--color-text);
+        font-size: 12px;
+      }
+      .dash-dispute-amount {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--color-text);
+        font-variant-numeric: tabular-nums;
+        margin-right: 6px;
+      }
+      .dash-pill {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      .dash-pill-deflected { background: var(--color-positive-bg); color: var(--color-positive); }
+      .dash-pill-active    { background: var(--color-caution-bg);  color: var(--color-caution); }
+      .dash-pill-won       { background: var(--color-brand-muted);  color: var(--color-brand); }
+
+      /* ── Sparkline / line chart ───────────────────────────────────── */
+      .dash-sparkline-wrap {
+        margin-top: 10px;
+      }
+
+      /* ── Legacy mini-KPI (profitability tab) ──────────────────────── */
       .dash-mini-kpi {
-        border: 1px solid var(--color-border); border-radius: 8px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
         padding: 14px 16px;
       }
       .dash-mini-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
@@ -372,6 +557,8 @@
       .dash-mini-kpi-delta.pos { color: var(--color-positive); }
       .dash-mini-kpi-delta.neg { color: var(--color-negative); }
       .dash-mini-kpi-delta.neu { color: var(--color-neutral); }
+
+      /* ── Legacy bar row (support/subs/signal tabs) ────────────────── */
       .dash-bar-row {
         display: flex; align-items: center; gap: 10px;
         padding: 8px 0;
@@ -383,6 +570,7 @@
       .dash-bar-track { flex: 1; height: 6px; background: var(--color-border); border-radius: 3px; overflow: hidden; }
       .dash-bar-fill { height: 100%; border-radius: 3px; }
       .dash-bar-val { min-width: 40px; text-align: right; color: var(--color-text-tertiary); font-weight: 600; font-variant-numeric: tabular-nums; }
+
       .dash-badge-row {
         display: flex; align-items: center; gap: 10px;
         padding: 9px 0;
@@ -394,6 +582,7 @@
       .dash-badge-name { flex: 1; color: var(--color-text-secondary); font-weight: 500; }
       .dash-badge-val { font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
       .dash-badge-pct { font-size: 11px; color: var(--color-text-tertiary); min-width: 42px; text-align: right; }
+
       .dash-toggle-group {
         display: flex; gap: 0; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;
       }
@@ -402,18 +591,17 @@
         color: var(--color-text-tertiary); background: transparent; border: none; cursor: default;
       }
       .dash-toggle-btn.active { background: var(--color-text); color: var(--color-bg); }
+
       .dash-date-badge {
         font-size: 11px; padding: 4px 10px; border: 1px solid var(--color-border);
         border-radius: 6px; color: var(--color-text-tertiary); font-weight: 500;
         display: flex; align-items: center; gap: 5px;
       }
-      .dash-status-dot {
-        display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 4px;
-      }
-      .dash-donut-container { display: flex; align-items: center; justify-content: center; padding: 8px 0; }
+
       .dash-legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 8px; }
       .dash-legend-item { font-size: 11px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 5px; }
       .dash-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+
       .dash-ticket-row {
         display: grid; grid-template-columns: 1fr auto auto; gap: 12px;
         padding: 10px 0; border-bottom: 1px solid var(--color-border);
@@ -429,6 +617,7 @@
       .dash-tag-auto { background: var(--color-positive-bg); color: var(--color-positive); }
       .dash-tag-queue { background: var(--color-caution-bg); color: var(--color-caution); }
       .dash-tag-escalate { background: var(--color-negative-bg); color: var(--color-negative); }
+
       .dash-sku-row {
         display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
         padding: 9px 0; border-bottom: 1px solid var(--color-border);
@@ -439,6 +628,7 @@
       .dash-sku-stock { font-variant-numeric: tabular-nums; color: var(--color-text-secondary); text-align: right; }
       .dash-sku-cover { font-variant-numeric: tabular-nums; text-align: right; }
       .dash-sku-status { text-align: right; }
+
       .dash-status-pill {
         font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;
       }
@@ -446,24 +636,59 @@
       .pill-low { background: var(--color-caution-bg); color: var(--color-caution); }
       .pill-ok { background: var(--color-positive-bg); color: var(--color-positive); }
       .pill-over { background: var(--color-brand-muted); color: var(--color-brand); }
+
+      /* ── Legacy KPI strip (all tabs) ──────────────────────────────── */
+      .dash-kpis {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+      .dash-kpi {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      }
+      .dash-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
+      .dash-kpi-value { font-size: 20px; font-weight: 800; color: var(--color-text); font-variant-numeric: tabular-nums lining-nums; }
+      .dash-kpi-delta { font-size: 11px; font-weight: 500; margin-top: 3px; }
+      .dash-kpi-delta.positive { color: var(--color-positive); }
+      .dash-kpi-delta.negative { color: var(--color-negative); }
+      .dash-kpi-delta.neutral  { color: var(--color-neutral); }
+
+      /* ── Retry timeline (subscriptions) ──────────────────────────── */
+      .retry-timeline {
+        display: flex; border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden;
+      }
+      .retry-step {
+        flex: 1; padding: 10px 12px; text-align: center;
+        border-right: 1px solid var(--color-border); font-size: 11px;
+      }
+      .retry-step:last-child { border-right: none; }
+
+      /* ── Responsive ───────────────────────────────────────────────── */
+      @media (max-width: 900px) {
+        .dash-row-2-wide { grid-template-columns: 1fr; }
+      }
       @media (max-width: 768px) {
-        .dash-row-2, .dash-row-3 { grid-template-columns: 1fr; }
+        .dash-row-2, .dash-row-3, .dash-row-2-wide { grid-template-columns: 1fr; }
         .dash-row-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .dash-kpis { grid-template-columns: repeat(2, 1fr); }
         .dash-panel { padding: 12px; }
+        .dash-card  { padding: 14px; }
         .dash-panel-header { flex-direction: column; align-items: flex-start; gap: 8px; }
         .dash-bar-label { min-width: 80px; font-size: 11px; }
         .dash-ticket-row { grid-template-columns: 1fr auto; gap: 8px; }
         .dash-ticket-row > div:last-child { display: none; }
         .dash-sku-row { grid-template-columns: 1fr auto auto; gap: 8px; font-size: 11px; }
         .dash-sku-stock { display: none; }
-        .intent-grid { grid-template-columns: repeat(2, 1fr); }
-        .retry-timeline { flex-direction: column; }
-        .retry-step:first-child { border-radius: 8px 8px 0 0; }
-        .retry-step:last-child { border-radius: 0 0 8px 8px; }
-        .retry-step + .retry-step { border-left: 1px solid var(--color-border); border-top: none; }
         .dash-mini-kpi { padding: 10px 12px; }
         .dash-mini-kpi-value { font-size: 18px; }
+        .retry-timeline { flex-direction: column; }
+        .retry-step { border-right: none; border-bottom: 1px solid var(--color-border); }
+        .retry-step:last-child { border-bottom: none; }
       }
       @media (max-width: 480px) {
         .dash-kpis { grid-template-columns: 1fr; }
@@ -472,13 +697,16 @@
     </style>
 
     <div class="dashboard-mock fade-in">
+      <!-- Browser chrome -->
       <div class="dash-toolbar">
         <div class="dash-dot red"></div>
         <div class="dash-dot yellow"></div>
         <div class="dash-dot green"></div>
         <div class="dash-url">optonomous.ai/dashboard</div>
       </div>
+
       <div class="dash-content">
+        <!-- Tab navigation -->
         <div class="dash-tabs">
           <div class="dash-tab active" data-tab="disputes">Disputes</div>
           <div class="dash-tab" data-tab="support">Support</div>
@@ -488,155 +716,253 @@
           <div class="dash-tab" data-tab="signal">Ad Campaigns</div>
         </div>
 
-        <!-- ========== DISPUTES TAB ========== -->
+        <!-- ========== DISPUTES TAB — Figma-inspired card layout ===== -->
         <div class="tab-panel active" id="tab-disputes">
-          <!-- Top KPIs -->
-          <div class="dash-kpis">
-            <div class="dash-kpi">
-              <div class="dash-kpi-label">Chargeback Ratio</div>
-              <div class="dash-kpi-value">0.41%</div>
-              <div class="dash-kpi-delta positive">&darr; 0.23% from last month</div>
-            </div>
-            <div class="dash-kpi">
-              <div class="dash-kpi-label">Deflected</div>
-              <div class="dash-kpi-value">23</div>
-              <div class="dash-kpi-delta positive">Via Disputely</div>
-            </div>
-            <div class="dash-kpi">
-              <div class="dash-kpi-label">Win Rate</div>
-              <div class="dash-kpi-value">87%</div>
-              <div class="dash-kpi-delta positive">+12% MoM</div>
-            </div>
-            <div class="dash-kpi">
-              <div class="dash-kpi-label">Saved</div>
-              <div class="dash-kpi-value">$18.2k</div>
-              <div class="dash-kpi-delta positive">This quarter</div>
-            </div>
-          </div>
 
-          <!-- Disputes Over Time chart -->
-          <div class="dash-panel" style="margin-bottom:12px;">
-            <div class="dash-panel-header">
-              <div>
-                <div class="dash-panel-title">
-                  <div class="dash-panel-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                  Disputes Over Time
-                </div>
-                <div class="dash-panel-subtitle">With vs without Disputely protection</div>
-              </div>
-              <div class="dash-date-badge">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                Feb 24 – Mar 26
-              </div>
-            </div>
-            <svg viewBox="0 0 600 160" style="width:100%;height:auto;">
-              <!-- Grid lines -->
-              <line x1="40" y1="20" x2="580" y2="20" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="40" y1="60" x2="580" y2="60" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="40" y1="100" x2="580" y2="100" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="40" y1="140" x2="580" y2="140" stroke="var(--color-border)" stroke-width="0.5"/>
-              <!-- Y labels -->
-              <text x="30" y="24" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">12</text>
-              <text x="30" y="64" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">8</text>
-              <text x="30" y="104" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">4</text>
-              <text x="30" y="144" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">0</text>
-              <!-- X labels -->
-              <text x="85" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 1</text>
-              <text x="220" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 2</text>
-              <text x="355" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 3</text>
-              <text x="490" y="155" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Week 4</text>
-              <!-- Without Disputely (red area) -->
-              <path d="M85,100 L220,80 L355,50 L490,40 L490,140 L355,140 L220,140 L85,140 Z" fill="var(--color-negative-bg)" stroke="none"/>
-              <polyline points="85,100 220,80 355,50 490,40" fill="none" stroke="var(--color-negative)" stroke-width="2" stroke-dasharray="6,3" opacity="0.6"/>
-              <!-- With Disputely (green area) -->
-              <path d="M85,130 L220,125 L355,120 L490,125 L490,140 L355,140 L220,140 L85,140 Z" fill="var(--color-positive-bg)" stroke="none"/>
-              <polyline points="85,130 220,125 355,120 490,125" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
-              <!-- Dots -->
-              <circle cx="85" cy="100" r="3" fill="var(--color-negative)" opacity="0.5"/>
-              <circle cx="220" cy="80" r="3" fill="var(--color-negative)" opacity="0.5"/>
-              <circle cx="355" cy="50" r="3" fill="var(--color-negative)" opacity="0.5"/>
-              <circle cx="490" cy="40" r="3" fill="var(--color-negative)" opacity="0.5"/>
-              <circle cx="85" cy="130" r="3" fill="var(--color-positive)"/>
-              <circle cx="220" cy="125" r="3" fill="var(--color-positive)"/>
-              <circle cx="355" cy="120" r="3" fill="var(--color-positive)"/>
-              <circle cx="490" cy="125" r="3" fill="var(--color-positive)"/>
-            </svg>
-            <div class="dash-legend">
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-negative);opacity:0.6;"></div>Without Disputely</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-positive);"></div>With Disputely</div>
-            </div>
-          </div>
+          <!-- Row 1: Saved This Quarter (wide) + Dispute Sources (donut) -->
+          <div class="dash-row dash-row-2-wide">
 
-          <!-- Bottom row: Reason Breakdown + Alert Prevention -->
-          <div class="dash-row dash-row-2">
-            <div class="dash-panel">
-              <div class="dash-panel-header">
+            <!-- LEFT: Saved This Quarter — bar chart card -->
+            <div class="dash-card">
+              <div class="dash-card-header">
                 <div>
-                  <div class="dash-panel-title">Reason Breakdown</div>
-                  <div class="dash-panel-subtitle">Analysis by category</div>
+                  <div class="dash-card-title">Saved This Quarter</div>
+                  <div class="dash-card-big-number">$18.2k</div>
+                  <div class="dash-card-trend up">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 9.5V2.5M2.5 6L6 2.5L9.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    34% vs last quarter
+                  </div>
                 </div>
-                <div class="dash-toggle-group">
-                  <div class="dash-toggle-btn active">All</div>
-                  <div class="dash-toggle-btn">Alerts</div>
-                  <div class="dash-toggle-btn">Disputes</div>
+                <a class="dash-view-report" href="#">View Report</a>
+              </div>
+              <!-- Vertical bar chart: Oct–Mar -->
+              <div style="margin-top:4px;">
+                <div class="dash-bar-chart">
+                  <!-- Oct -->
+                  <div class="dash-bar-col">
+                    <div class="dash-bar-stick" style="height:35%;opacity:0.5;"></div>
+                  </div>
+                  <!-- Nov -->
+                  <div class="dash-bar-col">
+                    <div class="dash-bar-stick" style="height:48%;opacity:0.55;"></div>
+                  </div>
+                  <!-- Dec -->
+                  <div class="dash-bar-col">
+                    <div class="dash-bar-stick" style="height:58%;opacity:0.65;"></div>
+                  </div>
+                  <!-- Jan -->
+                  <div class="dash-bar-col">
+                    <div class="dash-bar-stick" style="height:70%;opacity:0.75;"></div>
+                  </div>
+                  <!-- Feb -->
+                  <div class="dash-bar-col">
+                    <div class="dash-bar-stick" style="height:82%;opacity:0.88;"></div>
+                  </div>
+                  <!-- Mar (current) -->
+                  <div class="dash-bar-col current">
+                    <div class="dash-bar-stick" style="height:100%;"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Product Not Received</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:45%;background:var(--color-brand);"></div></div>
-                <div class="dash-bar-val">12</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Subscription Cancelled</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:30%;background:var(--color-neutral);"></div></div>
-                <div class="dash-bar-val">8</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Not as Described</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:15%;background:var(--color-caution);"></div></div>
-                <div class="dash-bar-val">4</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Fraud</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:10%;background:var(--color-negative);"></div></div>
-                <div class="dash-bar-val">3</div>
+                <div style="display:flex;gap:6px;margin-top:0;">
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Oct</div>
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Nov</div>
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Dec</div>
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Jan</div>
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Feb</div>
+                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Mar</div>
+                </div>
               </div>
             </div>
 
-            <div class="dash-panel">
-              <div class="dash-panel-header">
+            <!-- RIGHT: Dispute Sources — donut/ring chart -->
+            <div class="dash-card">
+              <div class="dash-card-header">
                 <div>
-                  <div class="dash-panel-title">Alert Prevention</div>
-                  <div class="dash-panel-subtitle">Early warning system</div>
+                  <div class="dash-card-title">Dispute Sources</div>
+                </div>
+                <a class="dash-view-report" href="#">View Report</a>
+              </div>
+              <div class="dash-donut-wrap">
+                <!-- Donut SVG — segments for Visa RDR 52%, Ethoca 26%, CDRN 15%, Unresolved 7% -->
+                <!-- r=38, circumference=238.76. Each segment uses dashoffset=-(prior cumulative arc) -->
+                <svg width="100" height="100" viewBox="0 0 100 100" style="flex-shrink:0;">
+                  <!-- Track ring -->
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="var(--color-border)" stroke-width="14"/>
+                  <!-- Visa RDR 52% — brand color — offset 0 -->
+                  <circle cx="50" cy="50" r="38" fill="none"
+                    stroke="var(--color-brand)"
+                    stroke-width="14"
+                    stroke-dasharray="124.16 238.76"
+                    stroke-dashoffset="0"
+                    transform="rotate(-90 50 50)"/>
+                  <!-- Ethoca 26% — positive — offset -124.16 -->
+                  <circle cx="50" cy="50" r="38" fill="none"
+                    stroke="var(--color-positive)"
+                    stroke-width="14"
+                    stroke-dasharray="62.08 238.76"
+                    stroke-dashoffset="-124.16"
+                    transform="rotate(-90 50 50)"/>
+                  <!-- CDRN 15% — caution — offset -186.23 -->
+                  <circle cx="50" cy="50" r="38" fill="none"
+                    stroke="var(--color-caution)"
+                    stroke-width="14"
+                    stroke-dasharray="35.81 238.76"
+                    stroke-dashoffset="-186.23"
+                    transform="rotate(-90 50 50)"/>
+                  <!-- Unresolved 7% — negative — offset -222.05 -->
+                  <circle cx="50" cy="50" r="38" fill="none"
+                    stroke="var(--color-negative)"
+                    stroke-width="14"
+                    stroke-dasharray="16.71 238.76"
+                    stroke-dashoffset="-222.05"
+                    transform="rotate(-90 50 50)"/>
+                </svg>
+                <div class="dash-donut-legend">
+                  <div class="dash-donut-legend-item">
+                    <div class="dash-donut-legend-dot" style="background:var(--color-brand);"></div>
+                    <span>Visa RDR</span>
+                    <span class="dash-donut-legend-pct">52%</span>
+                  </div>
+                  <div class="dash-donut-legend-item">
+                    <div class="dash-donut-legend-dot" style="background:var(--color-positive);"></div>
+                    <span>Ethoca</span>
+                    <span class="dash-donut-legend-pct">26%</span>
+                  </div>
+                  <div class="dash-donut-legend-item">
+                    <div class="dash-donut-legend-dot" style="background:var(--color-caution);"></div>
+                    <span>CDRN</span>
+                    <span class="dash-donut-legend-pct">15%</span>
+                  </div>
+                  <div class="dash-donut-legend-item">
+                    <div class="dash-donut-legend-dot" style="background:var(--color-negative);"></div>
+                    <span>Unresolved</span>
+                    <span class="dash-donut-legend-pct">7%</span>
+                  </div>
                 </div>
               </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
-                <div class="dash-badge-name">Visa RDR</div>
-                <div class="dash-badge-val">14</div>
-                <div class="dash-badge-pct">51.9%</div>
+            </div>
+          </div><!-- /row 1 -->
+
+          <!-- Row 2: Win Rate + Recent Disputes + Chargeback Ratio -->
+          <div class="dash-row dash-row-3">
+
+            <!-- Card 1: Win Rate — circular progress ring -->
+            <div class="dash-card" style="text-align:center;">
+              <div class="dash-card-title" style="text-align:left;">Win Rate</div>
+              <div class="dash-rings-wrap">
+                <!-- Outer decorative ring -->
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <!-- Track -->
+                  <circle cx="60" cy="60" r="48" fill="none" stroke="var(--color-border)" stroke-width="10"/>
+                  <!-- Progress ring 87% — r=48, circ=301.59, 87%=262.39 -->
+                  <circle cx="60" cy="60" r="48" fill="none"
+                    stroke="var(--color-brand)"
+                    stroke-width="10"
+                    stroke-dasharray="262.39 301.59"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round"
+                    transform="rotate(-90 60 60)"/>
+                  <!-- Second inner ring (decorative, Figma-style overlap) -->
+                  <circle cx="60" cy="60" r="34" fill="none" stroke="var(--color-border)" stroke-width="8"/>
+                  <!-- Inner ring 92% (win+deflect combined) — r=34, circ=213.63, 92%=196.54 -->
+                  <circle cx="60" cy="60" r="34" fill="none"
+                    stroke="var(--color-positive)"
+                    stroke-width="8"
+                    stroke-dasharray="196.54 213.63"
+                    stroke-dashoffset="0"
+                    stroke-linecap="round"
+                    transform="rotate(-90 60 60)"/>
+                  <!-- Center label -->
+                  <text x="60" y="56" text-anchor="middle" fill="var(--color-text)" font-size="18" font-weight="800" font-family="var(--font-body)">87%</text>
+                  <text x="60" y="69" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-body)">Win Rate</text>
+                </svg>
               </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-brand);"></div>
-                <div class="dash-badge-name">ETHOCA</div>
-                <div class="dash-badge-val">7</div>
-                <div class="dash-badge-pct">25.9%</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
-                <div class="dash-badge-name">CDRN</div>
-                <div class="dash-badge-val">4</div>
-                <div class="dash-badge-pct">14.8%</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
-                <div class="dash-badge-name">Unresolved</div>
-                <div class="dash-badge-val">2</div>
-                <div class="dash-badge-pct">7.4%</div>
+              <div class="dash-card-trend up" style="justify-content:center;">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 9.5V2.5M2.5 6L6 2.5L9.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                12% MoM
               </div>
             </div>
-          </div>
-        </div>
+
+            <!-- Card 2: Recent Disputes — list with thumbnails + status pills -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div class="dash-card-title">Recent Disputes</div>
+                <a class="dash-view-report" href="#">View Report</a>
+              </div>
+              <!-- Row 1 -->
+              <div class="dash-dispute-row">
+                <div class="dash-dispute-icon">VS</div>
+                <div class="dash-dispute-name">Pro Vitamin C Serum</div>
+                <div class="dash-dispute-amount">$89</div>
+                <div class="dash-pill dash-pill-deflected">Deflected</div>
+              </div>
+              <!-- Row 2 -->
+              <div class="dash-dispute-row">
+                <div class="dash-dispute-icon">MC</div>
+                <div class="dash-dispute-name">Glow Bundle — 3pk</div>
+                <div class="dash-dispute-amount">$147</div>
+                <div class="dash-pill dash-pill-active">Active</div>
+              </div>
+              <!-- Row 3 -->
+              <div class="dash-dispute-row">
+                <div class="dash-dispute-icon">VS</div>
+                <div class="dash-dispute-name">Hydra Serum 30ml</div>
+                <div class="dash-dispute-amount">$62</div>
+                <div class="dash-pill dash-pill-won">Won</div>
+              </div>
+              <!-- Row 4 -->
+              <div class="dash-dispute-row">
+                <div class="dash-dispute-icon">AM</div>
+                <div class="dash-dispute-name">Repair Mask 200ml</div>
+                <div class="dash-dispute-amount">$54</div>
+                <div class="dash-pill dash-pill-deflected">Deflected</div>
+              </div>
+            </div>
+
+            <!-- Card 3: Chargeback Ratio — big number + sparkline -->
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <div>
+                  <div class="dash-card-title">Chargeback Ratio</div>
+                  <div class="dash-card-big-number">0.41%</div>
+                  <div class="dash-card-trend down">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2.5V9.5M9.5 6L6 9.5L2.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    0.23% from last month
+                  </div>
+                </div>
+              </div>
+              <!-- Sparkline: ratio dropping over 6 months -->
+              <div class="dash-sparkline-wrap">
+                <svg viewBox="0 0 200 60" style="width:100%;height:auto;">
+                  <!-- Light fill area -->
+                  <path d="M0,8 C20,10 40,16 60,22 C80,28 100,32 120,38 C140,44 160,48 180,50 L200,52 L200,60 L0,60 Z"
+                    fill="var(--color-positive-bg)" stroke="none"/>
+                  <!-- Line -->
+                  <path d="M0,8 C20,10 40,16 60,22 C80,28 100,32 120,38 C140,44 160,48 180,50 L200,52"
+                    fill="none" stroke="var(--color-positive)" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Data points -->
+                  <circle cx="0"   cy="8"  r="3" fill="var(--color-positive)"/>
+                  <circle cx="40"  cy="16" r="2.5" fill="var(--color-positive)"/>
+                  <circle cx="80"  cy="26" r="2.5" fill="var(--color-positive)"/>
+                  <circle cx="120" cy="38" r="2.5" fill="var(--color-positive)"/>
+                  <circle cx="160" cy="47" r="2.5" fill="var(--color-positive)"/>
+                  <circle cx="200" cy="52" r="3" fill="var(--color-positive)"/>
+                </svg>
+                <!-- Month labels -->
+                <div style="display:flex;justify-content:space-between;margin-top:2px;">
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Oct</span>
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Nov</span>
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Dec</span>
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Jan</span>
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Feb</span>
+                  <span style="font-size:9px;color:var(--color-text-tertiary);">Mar</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /row 2 -->
+
+        </div><!-- /tab-disputes -->
 
         <!-- ========== SUPPORT TAB ========== -->
         <div class="tab-panel" id="tab-support">
@@ -647,7 +973,6 @@
             <div class="dash-kpi"><div class="dash-kpi-label">CSAT</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
           </div>
 
-          <!-- Intent breakdown + recent tickets -->
           <div class="dash-row dash-row-2">
             <div class="dash-panel">
               <div class="dash-panel-header">
@@ -712,7 +1037,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- /tab-support -->
 
         <!-- ========== SUBSCRIPTIONS TAB ========== -->
         <div class="tab-panel" id="tab-subscriptions">
@@ -757,7 +1082,7 @@
               </svg>
             </div>
 
-            <!-- Recovery & Churn -->
+            <!-- Payment Recovery & Churn Signals -->
             <div class="dash-panel">
               <div class="dash-panel-header">
                 <div>
@@ -775,7 +1100,32 @@
                   <div class="dash-mini-kpi-value" style="font-size:18px;color:var(--color-positive);">34</div>
                 </div>
               </div>
-              <div class="dash-panel-title" style="margin-bottom:8px;font-size:12px;">Churn Signals</div>
+              <!-- Retry timeline -->
+              <div style="font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin-bottom:8px;">Retry Schedule</div>
+              <div class="retry-timeline">
+                <div class="retry-step">
+                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 1</div>
+                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">18</div>
+                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
+                </div>
+                <div class="retry-step">
+                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 3</div>
+                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">9</div>
+                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
+                </div>
+                <div class="retry-step">
+                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 7</div>
+                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">7</div>
+                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
+                </div>
+                <div class="retry-step">
+                  <div style="font-size:10px;color:var(--color-text-tertiary);">Failed</div>
+                  <div style="font-size:13px;font-weight:800;color:var(--color-negative);">13</div>
+                  <div style="font-size:9px;color:var(--color-text-tertiary);">churned</div>
+                </div>
+              </div>
+              <!-- Churn Signals -->
+              <div style="font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin:12px 0 8px;">Churn Signals</div>
               <div class="dash-badge-row">
                 <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
                 <div class="dash-badge-name">Cancel intent in support</div>
@@ -793,7 +1143,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- /tab-subscriptions -->
 
         <!-- ========== PROFITABILITY TAB ========== -->
         <div class="tab-panel" id="tab-profit">
@@ -888,11 +1238,11 @@
               <!-- Revenue (solid, dark) -->
               <path d="M137,98 L224,82 L311,75 L398,58 L485,42 L550,28 L550,155 L137,155 Z" fill="var(--color-text)" opacity="0.04" stroke="none"/>
               <polyline points="137,98 224,82 311,75 398,58 485,42 550,28" fill="none" stroke="var(--color-text)" stroke-width="2.5" opacity="0.8"/>
-              <!-- Ad Spend (dashed, blue) -->
+              <!-- Ad Spend (dashed, brand) -->
               <polyline points="137,130 224,126 311,120 398,118 485,115 550,112" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-dasharray="5,3"/>
               <!-- Net Profit (green) -->
               <polyline points="137,138 224,132 311,128 398,120 485,112 550,105" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
-              <!-- Dots -->
+              <!-- Latest dots -->
               <circle cx="550" cy="28" r="3" fill="var(--color-text)" opacity="0.8"/>
               <circle cx="550" cy="112" r="2.5" fill="var(--color-brand)"/>
               <circle cx="550" cy="105" r="2.5" fill="var(--color-positive)"/>
@@ -903,7 +1253,7 @@
               <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-positive);"></div>Net Profit</div>
             </div>
           </div>
-        </div>
+        </div><!-- /tab-profit -->
 
         <!-- ========== INVENTORY TAB ========== -->
         <div class="tab-panel" id="tab-inventory">
@@ -970,7 +1320,7 @@
               <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
             </div>
           </div>
-        </div>
+        </div><!-- /tab-inventory -->
 
         <!-- ========== AD CAMPAIGNS (SIGNAL) TAB ========== -->
         <div class="tab-panel" id="tab-signal">
@@ -981,7 +1331,6 @@
             <div class="dash-kpi"><div class="dash-kpi-label">Profit-Adj ROAS</div><div class="dash-kpi-value">2.41x</div><div class="dash-kpi-delta positive">Via Ledger</div></div>
           </div>
 
-          <!-- Channel breakdown -->
           <div class="dash-row dash-row-2">
             <div class="dash-panel">
               <div class="dash-panel-header">
@@ -997,7 +1346,7 @@
               </div>
               <div class="dash-bar-row">
                 <div class="dash-bar-label">TikTok Ads</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:28%;background:var(--color-info);"></div></div>
+                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:28%;background:var(--color-info, var(--color-neutral));"></div></div>
                 <div class="dash-bar-val">$11.5k</div>
               </div>
               <div class="dash-bar-row">
@@ -1036,14 +1385,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- /tab-signal -->
 
-      </div>
-    </div>
-  </div>
+      </div><!-- /.dash-content -->
+    </div><!-- /.dashboard-mock -->
+  </div><!-- /.section-inner -->
 </section>
-
-
 <!-- Savings Calculator -->
 <section class="section" id="calculator" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
