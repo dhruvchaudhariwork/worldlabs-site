@@ -60,9 +60,133 @@
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
 </style>
+<style>
+  /* ========== Loading Screen ========== */
+  .loader-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0a0a;
+    display: flex;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .loader-screen.out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loader-label {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-family: var(--font-body);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: loaderSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+  }
+
+  .loader-words {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loader-word {
+    position: absolute;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: rgba(245, 245, 245, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .loader-word.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .loader-word.exit {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  .loader-counter {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    color: #f5f5f5;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: loaderSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
+  }
+
+  .loader-bar-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(31, 31, 31, 0.5);
+  }
+
+  .loader-bar-fill {
+    height: 100%;
+    transform-origin: left;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+    box-shadow: 0 0 8px rgba(137, 170, 204, 0.35);
+    transition: transform 0.1s linear;
+  }
+
+  @keyframes loaderSlideIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (min-width: 768px) {
+    .loader-label { top: 3rem; left: 3rem; font-size: 0.875rem; }
+    .loader-counter { bottom: 3rem; right: 3rem; }
+  }
+
+  /* Hide page content until loader finishes */
+  .page-content {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  .page-content.visible {
+    opacity: 1;
+  }
+</style>
 </head>
 <body>
 
+<!-- Loading Screen -->
+<div class="loader-screen" id="loader">
+  <div class="loader-label">Optonomous</div>
+  <div class="loader-words" id="loader-words">
+    <span class="loader-word active" data-word="0">Build</span>
+    <span class="loader-word" data-word="1">Connect</span>
+    <span class="loader-word" data-word="2">Automate</span>
+  </div>
+  <div class="loader-counter" id="loader-counter">000</div>
+  <div class="loader-bar-track">
+    <div class="loader-bar-fill" id="loader-bar"></div>
+  </div>
+</div>
+
+<div class="page-content" id="page-content">
 <!-- Header -->
 <header class="site-header">
   <div class="header-inner">
@@ -851,6 +975,8 @@
 </section>
 
 
+</div><!-- end page-content -->
+
 <!-- Footer -->
 <footer class="site-footer">
   <div class="footer-inner">
@@ -860,7 +986,7 @@
         <a href="./docs.html">Docs</a>
         <a href="./about.html">About</a>
         <a href="./pitch.html">Investors</a>
-        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+
       </div>
     </div>
   </div>
@@ -921,6 +1047,50 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// ── Loading screen ──
+(function(){
+  const loader = document.getElementById('loader');
+  const counter = document.getElementById('loader-counter');
+  const bar = document.getElementById('loader-bar');
+  const page = document.getElementById('page-content');
+  const words = document.querySelectorAll('.loader-word');
+  if (!loader) return;
+
+  let wordIndex = 0;
+  const wordInterval = setInterval(() => {
+    if (wordIndex >= words.length - 1) { clearInterval(wordInterval); return; }
+    words[wordIndex].classList.remove('active');
+    words[wordIndex].classList.add('exit');
+    wordIndex++;
+    words[wordIndex].classList.add('active');
+  }, 900);
+
+  const duration = 2700;
+  const start = performance.now();
+  let done = false;
+
+  function tick(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration * 100, 100);
+    counter.textContent = Math.round(progress).toString().padStart(3, '0');
+    bar.style.transform = 'scaleX(' + (progress / 100) + ')';
+
+    if (progress < 100) {
+      requestAnimationFrame(tick);
+    } else if (!done) {
+      done = true;
+      setTimeout(() => {
+        loader.classList.add('out');
+        setTimeout(() => {
+          loader.style.display = 'none';
+          page.classList.add('visible');
+        }, 600);
+      }, 400);
+    }
+  }
+  requestAnimationFrame(tick);
+})();
 
 // Mobile menu
 (function(){
