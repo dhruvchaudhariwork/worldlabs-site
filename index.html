@@ -1044,6 +1044,284 @@
 </section>
 
 
+<!-- Savings Calculator -->
+<section class="section" id="calculator" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">SAVINGS CALCULATOR</div>
+    <h2 class="section-title fade-in">See what you're really spending on ops</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Configure your current setup and see how much Optonomous saves you.</p>
+
+    <div class="calc-container fade-in">
+      <!-- LEFT: Inputs -->
+      <div class="calc-form">
+
+        <!-- Monthly orders -->
+        <div class="calc-section">
+          <h3 class="calc-h3">Monthly orders</h3>
+          <input type="range" id="calc-orders" min="500" max="50000" step="500" value="5000" class="calc-slider">
+          <div class="calc-range-labels"><span>500</span><span id="calc-orders-val" style="color:var(--color-brand);font-weight:700;">5,000</span><span>50,000</span></div>
+        </div>
+
+        <!-- Support tickets -->
+        <div class="calc-section">
+          <h3 class="calc-h3">Support tickets / month</h3>
+          <input type="range" id="calc-tickets" min="100" max="10000" step="100" value="2000" class="calc-slider">
+          <div class="calc-range-labels"><span>100</span><span id="calc-tickets-val" style="color:var(--color-brand);font-weight:700;">2,000</span><span>10,000</span></div>
+        </div>
+
+        <!-- Current tools -->
+        <div class="calc-section">
+          <h3 class="calc-h3">Which tools are you paying for?</h3>
+          <div class="calc-checks">
+            <label class="calc-check"><input type="checkbox" id="calc-helpdesk" checked><span class="calc-check-box"></span><span>Helpdesk (Gorgias, Zendesk)</span><span class="calc-check-price">~$360/mo</span></label>
+            <label class="calc-check"><input type="checkbox" id="calc-subscriptions" checked><span class="calc-check-box"></span><span>Subscriptions (ReCharge, Loop)</span><span class="calc-check-price">~$300/mo</span></label>
+            <label class="calc-check"><input type="checkbox" id="calc-analytics"><span class="calc-check-box"></span><span>Analytics (Triple Whale, TrueProfit)</span><span class="calc-check-price">~$200/mo</span></label>
+            <label class="calc-check"><input type="checkbox" id="calc-chargebacks"><span class="calc-check-box"></span><span>Chargebacks (Chargebacks911)</span><span class="calc-check-price">~$150/mo</span></label>
+            <label class="calc-check"><input type="checkbox" id="calc-adtool"><span class="calc-check-box"></span><span>Ad management tool</span><span class="calc-check-price">~$200/mo</span></label>
+            <label class="calc-check"><input type="checkbox" id="calc-va" checked><span class="calc-check-box"></span><span>VA / ops assistant</span><span class="calc-check-price">~$1,500/mo</span></label>
+          </div>
+        </div>
+
+        <!-- Stores -->
+        <div class="calc-section" style="border-bottom:none;">
+          <h3 class="calc-h3">Number of Shopify stores</h3>
+          <div class="calc-radio-row">
+            <label class="calc-radio"><input type="radio" name="calc-stores" value="1" checked><span class="calc-radio-dot"></span>1 store</label>
+            <label class="calc-radio"><input type="radio" name="calc-stores" value="2"><span class="calc-radio-dot"></span>2 stores</label>
+            <label class="calc-radio"><input type="radio" name="calc-stores" value="3"><span class="calc-radio-dot"></span>3+ stores</label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Results -->
+      <div class="calc-results">
+        <h3 class="calc-h3" style="margin-bottom:var(--space-2);">Estimated monthly cost</h3>
+        <p style="font-size:13px;color:var(--color-text-tertiary);margin-bottom:var(--space-6);">Based on your current stack and volume</p>
+
+        <div class="calc-card">
+          <div class="calc-card-label">Your current tool stack costs</div>
+          <div class="calc-card-price" id="calc-current">$2,160</div>
+          <div class="calc-card-sub">+ time spent managing each tool</div>
+        </div>
+
+        <div class="calc-card">
+          <div class="calc-card-label">Typical agency / ops hire</div>
+          <div class="calc-card-price" id="calc-hire">$6,500</div>
+          <div class="calc-card-sub">+ 4-6 week ramp time</div>
+        </div>
+
+        <div class="calc-card calc-card-brand">
+          <div class="calc-card-label" style="color:rgba(255,255,255,0.8);">With Optonomous</div>
+          <div class="calc-card-price" id="calc-opto" style="color:#fff;">$499</div>
+          <div class="calc-card-sub" style="color:rgba(255,255,255,0.7);">All 7 agents. One platform. No headcount.</div>
+        </div>
+
+        <div class="calc-savings-row">
+          <span>You save</span>
+          <span class="calc-savings-val" id="calc-savings">$1,661/mo</span>
+        </div>
+        <div class="calc-savings-row" style="margin-top:var(--space-1);">
+          <span>Annual savings</span>
+          <span class="calc-savings-val" id="calc-annual">$19,932/yr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .calc-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+  .calc-form {
+    padding: var(--space-8) var(--space-8);
+    background: var(--color-surface);
+  }
+  .calc-results {
+    padding: var(--space-8) var(--space-8);
+    border-left: 1px solid var(--color-border);
+  }
+  .calc-section {
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .calc-section:first-child { padding-top: 0; }
+  .calc-h3 {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    color: var(--color-text);
+  }
+  .calc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-border);
+    outline: none;
+    cursor: pointer;
+  }
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    cursor: pointer;
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 0 0 2px var(--color-brand);
+  }
+  .calc-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    cursor: pointer;
+    border: 2px solid var(--color-bg);
+    box-shadow: 0 0 0 2px var(--color-brand);
+  }
+  .calc-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-2);
+  }
+  .calc-checks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .calc-check {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: 13.5px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+  .calc-check input { display: none; }
+  .calc-check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+  .calc-check input:checked + .calc-check-box {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+  }
+  .calc-check input:checked + .calc-check-box::after {
+    content: '';
+    width: 10px;
+    height: 6px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translateY(-1px);
+  }
+  .calc-check-price {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-radio-row {
+    display: flex;
+    gap: var(--space-5);
+  }
+  .calc-radio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 13.5px;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+  .calc-radio input { display: none; }
+  .calc-radio-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .calc-radio input:checked + .calc-radio-dot {
+    border-color: var(--color-brand);
+  }
+  .calc-radio input:checked + .calc-radio-dot::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-brand);
+  }
+  .calc-card {
+    padding: var(--space-5);
+    border-radius: 12px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--space-3);
+  }
+  .calc-card-brand {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+  }
+  .calc-card-label {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-1);
+  }
+  .calc-card-price {
+    font-family: var(--font-body);
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-card-sub {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-top: 2px;
+  }
+  .calc-savings-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+  .calc-savings-val {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--color-positive);
+  }
+  @media (max-width: 768px) {
+    .calc-container { grid-template-columns: 1fr; }
+    .calc-results { border-left: none; border-top: 1px solid var(--color-border); }
+    .calc-radio-row { flex-direction: column; gap: var(--space-2); }
+  }
+</style>
+
 </div><!-- end page-content -->
 
 <!-- Footer -->
@@ -1116,6 +1394,83 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// ── Savings Calculator ──
+(function(){
+  const orders = document.getElementById('calc-orders');
+  const tickets = document.getElementById('calc-tickets');
+  const ordersVal = document.getElementById('calc-orders-val');
+  const ticketsVal = document.getElementById('calc-tickets-val');
+  if (!orders) return;
+
+  const tools = {
+    helpdesk: { el: document.getElementById('calc-helpdesk'), base: 360 },
+    subscriptions: { el: document.getElementById('calc-subscriptions'), base: 300 },
+    analytics: { el: document.getElementById('calc-analytics'), base: 200 },
+    chargebacks: { el: document.getElementById('calc-chargebacks'), base: 150 },
+    adtool: { el: document.getElementById('calc-adtool'), base: 200 },
+    va: { el: document.getElementById('calc-va'), base: 1500 },
+  };
+
+  function getStores() {
+    const checked = document.querySelector('input[name="calc-stores"]:checked');
+    return checked ? parseInt(checked.value) : 1;
+  }
+
+  function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+  function calc() {
+    const o = parseInt(orders.value);
+    const t = parseInt(tickets.value);
+    const s = getStores();
+    ordersVal.textContent = o.toLocaleString();
+    ticketsVal.textContent = t.toLocaleString();
+
+    // Current tool stack cost
+    let currentCost = 0;
+    for (const key in tools) {
+      if (tools[key].el && tools[key].el.checked) {
+        let cost = tools[key].base;
+        // Scale helpdesk with tickets (Gorgias charges per ticket over 2000)
+        if (key === 'helpdesk' && t > 2000) cost += (t - 2000) * 0.36;
+        // Scale VA with order volume
+        if (key === 'va' && o > 5000) cost += Math.floor((o - 5000) / 5000) * 500;
+        currentCost += cost;
+      }
+    }
+    currentCost *= s > 2 ? 2.5 : s;
+
+    // Ops hire cost
+    const hireCost = 4500 + (s * 2000);
+
+    // Optonomous cost (tiered by orders)
+    let optoCost;
+    if (o <= 5000) optoCost = 299;
+    else if (o <= 15000) optoCost = 499;
+    else if (o <= 30000) optoCost = 999;
+    else optoCost = 1499;
+    if (s > 1) optoCost *= (s > 2 ? 2.2 : 1.7);
+    optoCost = Math.round(optoCost);
+
+    const savings = Math.max(0, currentCost - optoCost);
+
+    document.getElementById('calc-current').textContent = fmt(currentCost);
+    document.getElementById('calc-hire').textContent = fmt(hireCost);
+    document.getElementById('calc-opto').textContent = fmt(optoCost);
+    document.getElementById('calc-savings').textContent = fmt(savings) + '/mo';
+    document.getElementById('calc-annual').textContent = fmt(savings * 12) + '/yr';
+  }
+
+  // Bind events
+  orders.addEventListener('input', calc);
+  tickets.addEventListener('input', calc);
+  for (const key in tools) {
+    if (tools[key].el) tools[key].el.addEventListener('change', calc);
+  }
+  document.querySelectorAll('input[name="calc-stores"]').forEach(r => r.addEventListener('change', calc));
+
+  calc(); // Initial calculation
+})();
 
 // ── Loading screen ──
 (function(){
