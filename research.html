@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Research — Optonomous</title>
+<meta name="description" content="An audio data research company — trusted by top AI labs to develop the proprietary audio datasets that power their models." />
+<link rel="icon" type="image/svg+xml" href="./research-assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#EFEEE8;
+    --bg-card:#F6F5F1;
+    --ink:#1A1A19;
+    --ink-soft:#5C5C57;
+    --line:#D7D7CF;
+    --dark:#161615;
+    --dark-card:#222220;
+    --dark-line:#33332F;
+    --white:#FFFFFF;
+    --radius:14px;
+    --pill:48px;
+    --maxw:1240px;
+    --serif:"Besley", Georgia, serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.08}
+  em{font-style:italic}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--sans);font-weight:500;
+    font-size:15px;padding:13px 26px;border-radius:var(--pill);border:1px solid transparent;
+    cursor:pointer;transition:.18s ease;white-space:nowrap}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#000}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .btn-light{background:#fff;color:var(--ink)}
+  .btn-light:hover{background:#f0f0ec}
+  .btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.32)}
+  .btn-outline-light:hover{border-color:#fff}
+
+  /* ---------- nav ---------- */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(239,238,232,.82);
+    backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.05)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .nav-logo img{height:26px}
+  .nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+  .nav-links a{font-size:15px;color:var(--ink-soft);font-weight:450;transition:.15s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .menu-toggle{display:none;background:none;border:0;cursor:pointer;font-size:24px;color:var(--ink)}
+  @media(max-width:860px){
+    .nav-links{display:none}
+    .nav-cta .back-link{display:none}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;text-align:center;padding:118px 0 130px}
+  .hero-mask{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    opacity:.9;z-index:0;pointer-events:none}
+  .hero .wrap{position:relative;z-index:1}
+  .hero h1{font-size:clamp(44px,7vw,86px);line-height:1.02;letter-spacing:-.02em;max-width:13ch;margin:0 auto 38px}
+  .hero h1 em{font-weight:400}
+
+  /* ---------- section scaffolding ---------- */
+  section{padding:96px 0}
+  .sec-num{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:40px;font-weight:500}
+  .sec-num .n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
+    border:1px solid var(--line);border-radius:50%;font-family:var(--serif);font-size:13px}
+  .lead{font-family:var(--serif);font-size:clamp(28px,3.4vw,44px);line-height:1.18;
+    font-weight:500;letter-spacing:-.015em;max-width:18ch}
+  .lead .muted{color:var(--ink-soft)}
+
+  /* ---------- mission ---------- */
+  .mission .lead{max-width:24ch}
+  .mission .sub{color:var(--ink-soft)}
+
+  /* ---------- process ---------- */
+  .process h2{font-size:clamp(28px,3.6vw,46px);max-width:16ch;margin-bottom:64px}
+  .process h2 em{color:var(--ink-soft)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--line);
+    border-radius:var(--radius);overflow:hidden;background:var(--line)}
+  .step{background:var(--bg-card);padding:30px 28px 34px;display:flex;flex-direction:column;gap:14px;min-height:248px}
+  .step .gfx{height:96px;display:flex;align-items:center;justify-content:flex-start}
+  .step .gfx img{height:100%;width:auto}
+  .step .ri{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:15px}
+  .step h3{font-size:22px;font-weight:500}
+  .step p{color:var(--ink-soft);font-size:15px;line-height:1.5}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
+
+  /* ---------- trust ---------- */
+  .trust{padding:84px 0}
+  .trust p{font-family:var(--serif);font-size:clamp(24px,3vw,38px);line-height:1.22;
+    font-weight:500;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
+  .trust .muted{color:var(--ink-soft)}
+
+  /* ---------- datasets (dark) ---------- */
+  .datasets{background:var(--dark);color:#fff}
+  .datasets .sec-num{color:rgba(255,255,255,.55)}
+  .datasets .sec-num .n{border-color:var(--dark-line)}
+  .datasets h2{font-size:clamp(28px,3.6vw,46px);max-width:18ch;margin-bottom:56px;color:#fff}
+  .ds-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .ds-card{background:var(--dark-card);border:1px solid var(--dark-line);border-radius:var(--radius);
+    padding:30px;position:relative;overflow:hidden;min-height:200px}
+  .ds-card .ico{width:42px;height:42px;display:flex;align-items:center;justify-content:center;
+    background:#fff;border-radius:11px;margin-bottom:22px}
+  .ds-card .ico img{width:22px;height:22px}
+  .ds-card h3{font-size:24px;color:#fff;margin-bottom:12px;font-weight:500}
+  .ds-card p{color:rgba(255,255,255,.62);font-size:15px;max-width:42ch}
+  .ds-card.has-map{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+  .ds-card.has-map .map{margin:-30px -30px -30px 0;height:calc(100% + 60px)}
+  .ds-card.has-map .map img{width:100%;height:100%;object-fit:cover;opacity:.85}
+  @media(max-width:860px){
+    .ds-grid{grid-template-columns:1fr}
+    .ds-card.has-map{grid-column:span 1;grid-template-columns:1fr}
+    .ds-card.has-map .map{margin:18px 0 0;height:auto}
+  }
+  .ds-note{margin-top:40px;border-top:1px solid var(--dark-line);padding-top:34px;
+    display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+  .ds-note h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:10px;max-width:24ch}
+  .ds-note p{color:rgba(255,255,255,.6);font-size:15px;max-width:46ch}
+
+  /* ---------- access ---------- */
+  .access{background:var(--dark);color:#fff;padding-top:40px}
+  .access h2{font-family:var(--serif);font-size:clamp(26px,3vw,38px);margin-bottom:48px;font-weight:500}
+  .access-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .ac{border-top:1px solid var(--dark-line);padding-top:22px}
+  .ac .step-h{font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:12px}
+  .ac p{color:rgba(255,255,255,.6);font-size:15px}
+  @media(max-width:860px){.access-grid{grid-template-columns:1fr}}
+
+  /* ---------- careers ---------- */
+  .careers{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .careers h2{font-size:clamp(30px,3.6vw,48px);max-width:12ch;margin-bottom:20px}
+  .careers p{color:var(--ink-soft);font-size:17px;margin-bottom:28px;max-width:34ch}
+  .careers .art{border-radius:var(--radius);overflow:hidden}
+  @media(max-width:860px){.careers{grid-template-columns:1fr;gap:36px}}
+
+  /* ---------- news ---------- */
+  .news .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:42px}
+  .news h2{font-size:clamp(28px,3.4vw,44px)}
+  .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .news-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:.18s;display:flex;flex-direction:column}
+  .news-card:hover{transform:translateY(-4px)}
+  .news-card .thumb{aspect-ratio:16/10;overflow:hidden;background:#ddd}
+  .news-card .thumb img{width:100%;height:100%;object-fit:cover}
+  .news-card .body{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .news-card h3{font-size:20px;font-weight:500;line-height:1.2}
+  .news-card .meta{margin-top:auto;color:var(--ink-soft);font-size:13px;
+    display:flex;gap:10px;align-items:center}
+  .news-card .tag{border:1px solid var(--line);border-radius:var(--pill);padding:3px 11px;font-size:12px}
+  @media(max-width:860px){.news-grid{grid-template-columns:1fr}}
+
+  /* ---------- footer cta ---------- */
+  .footer-cta{background:var(--dark);color:#fff;text-align:center;padding:110px 0}
+  .footer-cta h2{font-size:clamp(34px,5vw,64px);margin-bottom:36px}
+  .footer-cta h2 em{color:rgba(255,255,255,.6)}
+  .footer-cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer.site{background:var(--dark);color:rgba(255,255,255,.6);border-top:1px solid var(--dark-line);padding:40px 0}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px}
+  .foot-links{display:flex;gap:24px}
+  .foot-links a:hover{color:#fff}
+</style>
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-logo" aria-label="David AI"><img src="./research-assets/wordmark-dark.svg" alt="David AI" /></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#datasets">Datasets</a></li>
+        <li><a href="#careers">Careers</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="./index.html" class="back-link nav-links" style="font-size:15px;color:var(--ink-soft)">← Optonomous</a>
+      <a href="#contact" class="btn btn-dark">Work with us</a>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <img class="hero-mask" src="./research-assets/hero-mask.png" alt="" aria-hidden="true" />
+  <div class="wrap">
+    <h1>AI is <em>meaningful</em> when you can naturally interact with it.</h1>
+    <a href="#datasets" class="btn btn-dark">Explore datasets</a>
+  </div>
+</section>
+
+<!-- ======================= MISSION ======================= -->
+<section id="mission" class="mission">
+  <div class="wrap">
+    <div class="sec-num"><span class="n">1</span> Mission</div>
+    <h2 class="lead">We are an audio data research company.
+      <span class="muted">Our mission is to bring AI into the real world through voice, the most important interface to human interaction.</span>
+    </h2>
+  </div>
+</section>
+
+<!-- ======================= PROCESS ======================= -->
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="sec-num"><span class="n">2</span> Process</div>
+    <h2>We develop audio datasets with <em>the same rigor</em> researchers bring to models.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-0.avif" alt="" /></div>
+        <span class="ri">i.</span><h3>Hypothesize</h3>
+        <p>Determine an audio AI capability we wish to unlock.</p>
+      </div>
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-1.avif" alt="" /></div>
+        <span class="ri">ii.</span><h3>Design</h3>
+        <p>Architect a shape of data to teach models that capability.</p>
+      </div>
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-2.avif" alt="" /></div>
+        <span class="ri">iii.</span><h3>Experiment</h3>
+        <p>Launch a targeted data collection.</p>
+      </div>
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-3.avif" alt="" /></div>
+        <span class="ri">iv.</span><h3>Evaluate &amp; Iterate</h3>
+        <p>Measure data quality and tune the collection until a small, high-signal set is achieved.</p>
+      </div>
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-4.avif" alt="" /></div>
+        <span class="ri">v.</span><h3>Productionize</h3>
+        <p>Scale the dataset to thousands of hours.</p>
+      </div>
+      <div class="step">
+        <div class="gfx"><img src="./research-assets/process-5.avif" alt="" /></div>
+        <span class="ri">vi.</span><h3>Release</h3>
+        <p>Publish the dataset, and continuously improve it over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TRUST ======================= -->
+<section class="trust">
+  <div class="wrap">
+    <p>Our datasets are used by Fortune 100 companies and research labs <span class="muted">that work with speech recognition, translation, synthesis, and conversational AI.</span></p>
+  </div>
+</section>
+
+<!-- ======================= DATASETS (dark) ======================= -->
+<section id="datasets" class="datasets">
+  <div class="wrap">
+    <div class="sec-num"><span class="n">3</span> Featured Datasets</div>
+    <h2>A dataset suite designed for speech-to-speech, multilingual, and voice interaction systems</h2>
+    <div class="ds-grid">
+      <div class="ds-card">
+        <div class="ico"><img src="./research-assets/icon-converse.svg" alt="" /></div>
+        <h3>Converse</h3>
+        <p>Our flagship English dataset consists of channel-separated, natural two-speaker conversations spanning a wide range of topics.</p>
+      </div>
+      <div class="ds-card">
+        <div class="ico"><img src="./research-assets/icon-atlas.svg" alt="" /></div>
+        <h3>Atlas</h3>
+        <p>A multilingual dataset spanning 15+ languages. It includes metadata on dialects and accents and follows the same format as Converse.</p>
+      </div>
+      <div class="ds-card has-map">
+        <div>
+          <div class="ico"><img src="./research-assets/icon-chorus.svg" alt="" /></div>
+          <h3>Chorus</h3>
+          <p>A dataset of conversations involving three or more speakers. Originally designed for training speaker-separation and diarization models.</p>
+        </div>
+        <div class="map"><img src="./research-assets/map.avif" alt="World map of language coverage" /></div>
+      </div>
+      <div class="ds-card">
+        <div class="ico"><img src="./research-assets/icon-dialog.svg" alt="" /></div>
+        <h3>Dialog</h3>
+        <p>A collection of expert conversations across a range of domains.</p>
+      </div>
+    </div>
+
+    <div class="ds-note">
+      <div>
+        <h4>Browse more datasets or design one with us</h4>
+        <p>We offer additional proprietary datasets not listed here. Contact us to request a sample, explore more options, or collaborate on a new dataset.</p>
+      </div>
+      <a href="#contact" class="btn btn-light">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ACCESS (dark) ======================= -->
+<section class="access">
+  <div class="wrap">
+    <h2>How to access our datasets</h2>
+    <div class="access-grid">
+      <div class="ac">
+        <div class="step-h">1. Request samples</div>
+        <p>We will set up a quick call to understand your use case and then send you relevant data samples.</p>
+      </div>
+      <div class="ac">
+        <div class="step-h">2. Purchase access</div>
+        <p>Enter a data license agreement for the dataset and use-cases your team needs.</p>
+      </div>
+      <div class="ac">
+        <div class="step-h">3. Receive data</div>
+        <p>For off-the-shelf datasets, we will grant your team access within one to two days.</p>
+      </div>
+      <div class="ac">
+        <div class="step-h">Bonus: Experiment with us</div>
+        <p>We frequently partner with research teams to design new shapes of data for any use case.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CAREERS ======================= -->
+<section id="careers">
+  <div class="wrap">
+    <div class="sec-num"><span class="n">4</span> Careers</div>
+    <div class="careers">
+      <div>
+        <h2>Join us to shape the future of audio AI</h2>
+        <p>We're hiring for research, engineering, and operations roles.</p>
+        <a href="#contact" class="btn btn-dark">See open roles</a>
+      </div>
+      <div class="art"><img src="./research-assets/careers.png" alt="Careers illustration" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= NEWS ======================= -->
+<section id="news" class="news">
+  <div class="wrap">
+    <div class="sec-num"><span class="n">5</span> News</div>
+    <div class="head">
+      <h2>Updates on our progress</h2>
+      <a href="#" class="btn btn-ghost">View all</a>
+    </div>
+    <div class="news-grid">
+      <a class="news-card" href="#">
+        <div class="thumb"><img src="./research-assets/news-seriesb.png" alt="Series B announcement" /></div>
+        <div class="body">
+          <h3>Announcing Our $50M Series B Led by Meritech</h3>
+          <div class="meta"><span class="tag">News</span> Oct 8, 2025</div>
+        </div>
+      </a>
+      <a class="news-card" href="#">
+        <div class="thumb"><img src="./research-assets/news-seriesa.png" alt="Series A announcement" /></div>
+        <div class="body">
+          <h3>Announcing Our $25M Series A Led by Alt Capital</h3>
+          <div class="meta"><span class="tag">News</span> May 22, 2025</div>
+        </div>
+      </a>
+      <a class="news-card" href="#">
+        <div class="thumb"><img src="./research-assets/news-seed.png" alt="Seed round announcement" /></div>
+        <div class="body">
+          <h3>Announcing Our $5M Seed Round Led by First Round</h3>
+          <div class="meta"><span class="tag">News</span> Jan 16, 2025</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER CTA ======================= -->
+<section id="contact" class="footer-cta">
+  <div class="wrap">
+    <h2>Interested in <em>working with us?</em></h2>
+    <div class="row">
+      <a href="mailto:hello@optonomous.ai" class="btn btn-light">Contact us</a>
+      <a href="#careers" class="btn btn-outline-light">See open roles</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-inner">
+    <div>© 2026 Optonomous Research. All rights reserved.</div>
+    <div class="foot-links">
+      <a href="#">Terms of service</a>
+      <a href="#">Privacy policy</a>
+      <a href="./index.html">Back to Optonomous</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
