@@ -53,6 +53,18 @@
     margin-top: var(--space-3);
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
+  .hero-consent {
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-top: var(--space-4);
+    max-width: 46ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .hero-consent a { color: var(--color-text-secondary); text-decoration: underline; }
+  .hero-consent a:hover { color: var(--color-text); }
 </style>
 <style>
   /* ========== Loading Screen ========== */
@@ -190,8 +202,9 @@
     <nav>
       <ul class="nav-links" role="list">
         <li><a href="#features">Platform</a></li>
-        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#data-program">Earn</a></li>
         <li><a href="./research.html">Research</a></li>
+        <li><a href="./trust.html">Data &amp; Trust</a></li>
       </ul>
     </nav>
     <div class="nav-right">
@@ -210,8 +223,9 @@
 <!-- Mobile nav overlay -->
 <nav class="mobile-nav" id="mobile-nav">
   <a href="#features" data-mobile-link>Platform</a>
-  <a href="#dashboard" data-mobile-link>Dashboard</a>
+  <a href="#data-program" data-mobile-link>Earn</a>
   <a href="./research.html">Research</a>
+  <a href="./trust.html">Data &amp; Trust</a>
   <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Book a Demo</a>
   <a href="./app.html" data-mobile-link>Log in</a>
 </nav>
@@ -228,6 +242,7 @@
       <button class="btn btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
     </div>
     <div class="waitlist-msg" id="waitlist-msg"></div>
+    <p class="hero-consent">By joining you agree to our <a href="./terms.html">Terms</a> and <a href="./privacy.html">Privacy Policy</a>. The data revenue-share program is <strong>opt-in</strong>, captured separately when you connect your store — see <a href="./trust.html">Data &amp; Trust</a>.</p>
   </div>
 </section>
 
@@ -1388,6 +1403,32 @@
     </div><!-- /.dashboard-mock -->
   </div><!-- /.section-inner -->
 </section>
+
+<!-- Data Revenue Share -->
+<section class="section" id="data-program" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">EARN FROM YOUR OPS · OPTIONAL</div>
+    <h2 class="section-title fade-in">Your store's work is worth something. Get paid for it.</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Optonomous agents already run your operations. Opt in to our data program and we turn that work into <strong>de-identified</strong> research datasets for AI labs — and share the revenue back with you, offsetting (or exceeding) your subscription. It's optional, reversible, and your customers' personal and payment data never leave your store.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);max-width:760px;margin:0 auto var(--space-8);text-align:left;">
+      <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we share</h3>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">De-identified agent actions and outcomes, PII-scrubbed support conversations, and de-identified or aggregated purchase signal — all derived from your operations.</p>
+      </div>
+      <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we never share</h3>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Your customers' names, emails, and addresses (PII), and any card or payment data (PCI). Both are excluded at source — and nothing is shared without your opt-in.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
+      <a href="./trust.html" class="btn btn-primary">How your data is protected</a>
+      <a href="./research.html" class="btn btn-secondary">See what we build with it →</a>
+    </div>
+  </div>
+</section>
+
 <!-- Savings Calculator -->
 <section class="section" id="calculator" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
@@ -1672,10 +1713,14 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-bottom">
-      <p>&copy; 2026 Optonomous.</p>
-      <div style="display:flex;gap:var(--space-4);align-items:center;">
+      <p>&copy; 2026 Optonomous, Inc.</p>
+      <div style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap;">
+        <a href="#data-program">Earn</a>
         <a href="./research.html">Research</a>
-
+        <a href="./trust.html">Data &amp; Trust</a>
+        <a href="./privacy.html">Privacy</a>
+        <a href="./terms.html">Terms</a>
+        <a href="./dpa.html">DPA</a>
       </div>
     </div>
   </div>
