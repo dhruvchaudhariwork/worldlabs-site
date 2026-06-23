@@ -176,6 +176,21 @@
   .ds-grid .ds-card{min-height:0}
   .ds-card .kicker{font-size:12.5px;color:var(--muted);font-weight:500;margin:-4px 0 10px}
   @media(max-width:880px){.ds-grid{grid-template-columns:1fr}}
+  .ds-card .badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:#fff;border:1px solid var(--line);
+    border-radius:48px;padding:4px 11px;margin-bottom:14px}
+  .ds-card .badge .dot{width:7px;height:7px;border-radius:50%;background:#2FA84F}
+
+  /* dataset tiers */
+  .ds-tier{margin:48px 0 18px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .ds-tier .lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(255,255,255,.62);font-weight:600}
+  .ds-tier .note{font-size:13.5px;color:rgba(255,255,255,.42)}
+  .ds-secondary{grid-template-columns:repeat(3,1fr)}
+  .ds-secondary .ds-card{padding:24px}
+  .ds-secondary .ds-card h3{font-size:21px}
+  .ds-secondary .spec dd{font-size:12.5px}
+  @media(max-width:880px){.ds-secondary{grid-template-columns:1fr}}
 
   /* chips / task types */
   .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
@@ -332,7 +347,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">3</span><span class="dash"></span>Featured Datasets</div>
     <h2>The datasets only an autonomous-ops platform can produce</h2>
-    <p class="sub">Because we operate the agents ourselves, our flagship data is generated first-party — captured as real work happens, labeled with verified business outcomes. It can't be scraped, synthesized, or brokered.</p>
+    <p class="sub">We lead with what nobody else has: agentic data and evals built from our agents' <em>verified</em> operational outcomes — train on <strong>Trace</strong> and <strong>Dialogue</strong>, evaluate on <strong>Crucible</strong>. Purchase and reference data is a secondary tier below.</p>
 
     <!-- FLAGSHIP: Agent Trajectory Dataset -->
     <article class="ds-flagship">
@@ -363,10 +378,30 @@
       </dl>
     </article>
 
-    <!-- DIFFERENTIATED + REFRAMED DATASETS -->
+    <!-- PRIMARY TIER: agentic — the differentiated products -->
     <div class="ds-grid">
 
-      <!-- Differentiator 2: De-identified support corpora -->
+      <!-- Differentiator: Agentic Commerce Benchmark (evals) -->
+      <article class="ds-card">
+        <span class="badge"><span class="dot"></span>Eval · recurring</span>
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5M4 19h16"/><path d="M8 16V9M12 16V6M16 16v-4"/><path d="m18 4 1.5 1.5L22 3"/></svg></span>
+        <h3>Crucible</h3>
+        <p class="kicker">Agentic Commerce Benchmark</p>
+        <p>A held-out, outcome-labeled evaluation set built from our verified operational outcomes. It asks whether an agent can actually win the dispute, resolve the ticket, or reorder correctly — then scores its decisions against the outcome our agents achieved in production.</p>
+        <p class="why" style="font-size:14px;color:var(--ink);font-weight:500;margin-top:10px">Only verified outcomes make a real agentic eval possible. Each cycle ships a fresh, uncontaminated split, so labs can benchmark every model generation against ground truth they can't train on.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>task_id</code>, <code>scenario_context</code>, <code>allowed_tools</code>, <code>gold_outcome</code>, <code>scoring_rubric</code>, <code>difficulty</code>, <code>split</code> (held-out)</dd></div>
+          <div class="row"><dt>Task types</dt><dd>Ticket resolution, chargeback dispute, inventory reorder, ad optimization, subscription management</dd></div>
+          <div class="row"><dt>Scenario count</dt><dd><span class="ph">[ scenarios — TBD ]</span> across <span class="ph">[ # task types ]</span></dd></div>
+          <div class="row"><dt>Refresh / contamination</dt><dd>Fresh held-out split each cycle to prevent contamination · <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd><span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Subscription</span><span class="lic alt">Per eval cycle</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request the benchmark spec →</a>
+      </article>
+
+      <!-- Differentiator: De-identified support corpora -->
       <article class="ds-card">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></span>
         <h3>Dialogue</h3>
@@ -383,41 +418,52 @@
         <a class="sample" href="#contact">Request sample →</a>
       </article>
 
-      <!-- Atlas: scoped by consent -->
-      <article class="ds-card">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
-        <h3>Atlas</h3>
-        <p class="kicker">Cross-Market Purchase Index</p>
-        <p>Aggregated purchase signals across markets, with currency, category, and channel metadata. Coverage is limited to regions where we hold a documented consent basis — each record carries its own jurisdiction.</p>
-        <dl class="spec">
-          <div class="row"><dt>Schema / fields</dt><dd><code>region</code>, <code>currency</code>, <code>category</code>, <code>channel</code>, <code>basket_value_band</code>, <code>consent_basis</code>, <code>jurisdiction</code></dd></div>
-          <div class="row"><dt>Record count</dt><dd><span class="ph">[ records — TBD ]</span></dd></div>
-          <div class="row"><dt>Geo / jurisdiction</dt><dd>Per-region consent basis: <span class="ph">[ region → legal basis, TBD ]</span> — scoped to defensible regions only</dd></div>
-          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
-          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
-          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share, validated per jurisdiction</dd></div>
-        </dl>
-        <a class="sample" href="#contact">Request sample →</a>
-      </article>
+    </div>
 
-      <!-- Tally (was Ledger) -->
+    <!-- SECONDARY TIER: purchase & reference data -->
+    <div class="ds-tier">
+      <span class="lbl">Purchase &amp; reference data</span>
+      <span class="note">Supporting datasets — secondary to our agentic products.</span>
+    </div>
+    <div class="ds-grid ds-secondary">
+
+      <!-- Tally (basket purchases; Atlas cross-market folded in) -->
       <article class="ds-card">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18l-3-2-3 2-3-2-2 2V3z"/><path d="M9 8h6M9 12h6"/></svg></span>
         <h3>Tally</h3>
         <p class="kicker">Basket-Level Purchase Records</p>
-        <p>Itemized, basket-level purchase records across merchants and categories. All PCI/payment data is excluded at source.</p>
+        <p>Itemized, basket-level purchase records — U.S. core, with cross-market coverage added only where we hold a documented consent basis. All PCI/payment data is excluded at source.</p>
         <dl class="spec">
-          <div class="row"><dt>Schema / fields</dt><dd><code>basket_id</code>, <code>line_items[]</code> (sku, qty, price), <code>category</code>, <code>merchant_segment</code>, <code>ts</code> — no card or payment fields</dd></div>
+          <div class="row"><dt>Schema / fields</dt><dd><code>basket_id</code>, <code>line_items[]</code> (sku, qty, price), <code>category</code>, <code>region</code>, <code>merchant_segment</code>, <code>consent_basis</code>, <code>jurisdiction</code>, <code>ts</code> — no card or payment fields</dd></div>
           <div class="row"><dt>Record count</dt><dd><span class="ph">[ baskets — TBD ]</span></dd></div>
+          <div class="row"><dt>Origin</dt><dd>Merchant-authorized platform connection (e.g. Shopify Admin API) — see <a href="#provenance" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Data rights</a></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd>U.S. core · cross-market <span class="ph">[ region → legal basis, TBD ]</span>, scoped to defensible regions only</dd></div>
           <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
-          <div class="row"><dt>Geo / jurisdiction</dt><dd><span class="ph">[ region — TBD ]</span></dd></div>
           <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
           <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
         </dl>
         <a class="sample" href="#contact">Request sample →</a>
       </article>
 
-      <!-- Registry (was Catalog) -->
+      <!-- Cohort: k-anonymous aggregates -->
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15.5 19c0-2 .8-3.4 2.2-4"/></svg></span>
+        <h3>Cohort</h3>
+        <p class="kicker">Aggregated Purchase Cohorts</p>
+        <p>k-anonymous, aggregated purchase cohorts for retention and LTV modeling. Records describe grouped segments that meet a minimum k-anonymity threshold — no individual- or household-level tracking.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>cohort_id</code>, <code>segment_definition</code>, <code>k_min</code>, <code>aggregate_metrics{}</code> (retention, repeat-rate, LTV band), <code>period</code></dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ cohorts — TBD ]</span> · min cohort size <span class="ph">[ k — TBD ]</span></dd></div>
+          <div class="row"><dt>Origin</dt><dd>Aggregated from merchant-authorized platform data — see <a href="#provenance" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Data rights</a></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd>Aggregate only · <span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share · no re-identifiable trajectories</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
+      </article>
+
+      <!-- Registry: product/pricing reference graph -->
       <article class="ds-card">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
         <h3>Registry</h3>
@@ -426,27 +472,10 @@
         <dl class="spec">
           <div class="row"><dt>Schema / fields</dt><dd><code>sku</code>, <code>title</code>, <code>attributes{}</code>, <code>category_path</code>, <code>price_history[]</code>, <code>image_ref</code>, <code>retailer</code></dd></div>
           <div class="row"><dt>Record count</dt><dd><span class="ph">[ products — TBD ]</span></dd></div>
-          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Origin</dt><dd>Merchant-authorized platform catalog data — see <a href="#provenance" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Data rights</a></dd></div>
           <div class="row"><dt>Geo / jurisdiction</dt><dd>Product reference data · <span class="ph">[ region — TBD ]</span></dd></div>
-          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
-          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
-        </dl>
-        <a class="sample" href="#contact">Request sample →</a>
-      </article>
-
-      <!-- Cohort: reframed around k-anonymity, demoted to last -->
-      <article class="ds-card">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15.5 19c0-2 .8-3.4 2.2-4"/></svg></span>
-        <h3>Cohort</h3>
-        <p class="kicker">Aggregated Purchase Cohorts</p>
-        <p>k-anonymous, aggregated purchase cohorts for retention and LTV modeling. Records describe grouped segments that meet a minimum k-anonymity threshold — there is no individual- or household-level tracking.</p>
-        <dl class="spec">
-          <div class="row"><dt>Schema / fields</dt><dd><code>cohort_id</code>, <code>segment_definition</code>, <code>k_min</code>, <code>aggregate_metrics{}</code> (retention, repeat-rate, LTV band), <code>period</code></dd></div>
-          <div class="row"><dt>Record count</dt><dd><span class="ph">[ cohorts — TBD ]</span> · min cohort size <span class="ph">[ k — TBD ]</span></dd></div>
           <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
-          <div class="row"><dt>Geo / jurisdiction</dt><dd>Aggregate only · <span class="ph">[ region — TBD ]</span></dd></div>
           <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
-          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share · aggregated, no re-identifiable trajectories</dd></div>
         </dl>
         <a class="sample" href="#contact">Request sample →</a>
       </article>
@@ -481,12 +510,12 @@
   <div class="wrap">
     <div class="eyebrow"><span class="num">4</span><span class="dash"></span>Provenance &amp; Methodology</div>
     <h2>First-party data, built on a platform we operate end-to-end</h2>
-    <p class="lead-sub">Every record originates inside Optonomous — generated as our own agents run real merchant operations — and passes a fixed de-identification pipeline before it can ever be licensed. We do not broker third-party panels.</p>
+    <p class="lead-sub">Our agentic data is generated inside Optonomous, as our own agents run real merchant operations. Our purchase and reference data flows in from merchants' connected commerce platforms. Both pass a fixed de-identification pipeline before anything can be licensed — and we never broker third-party panels.</p>
     <div class="prov-grid">
       <div class="prov-card lead">
         <div class="pn">i. — our core advantage</div>
-        <h3>First-party origin</h3>
-        <p>The data is generated on infrastructure we own and operate. Our agents do the work — resolving tickets, disputing chargebacks, reordering inventory — and the trajectory <em>is</em> the byproduct. Nothing is scraped, purchased, or assembled from brokered panels, so we control the full pipeline from capture to release and can attest to where every record came from.</p>
+        <h3>First-party origin (agentic datasets)</h3>
+        <p>Our agentic datasets — <strong>Trace</strong>, <strong>Crucible</strong>, and <strong>Dialogue</strong> — are generated on infrastructure we own and operate. Our agents do the work — resolving tickets, disputing chargebacks, reordering inventory — and the trajectory <em>is</em> the byproduct. Nothing here is scraped, purchased, or assembled from brokered panels, so we control that pipeline end to end and can attest to where every record came from. (Our purchase and reference datasets have a different origin — see <em>Data rights</em>.)</p>
       </div>
       <div class="prov-card">
         <div class="pn">ii.</div>
@@ -495,6 +524,11 @@
       </div>
       <div class="prov-card">
         <div class="pn">iii.</div>
+        <h3>Data rights &amp; platform sources</h3>
+        <p>Our purchase and reference datasets (<strong>Tally</strong>, <strong>Cohort</strong>, <strong>Registry</strong>) don't originate on our own infrastructure — they flow from merchants' commerce platforms (e.g. the Shopify Admin API) through merchant-authorized connections. Onward licensing of these derivatives is governed by each merchant's authorization and the applicable platform partner terms: <span class="ph">[ platform-source licensing basis — pending counsel ]</span>.</p>
+      </div>
+      <div class="prov-card">
+        <div class="pn">iv.</div>
         <h3>De-identification</h3>
         <p>A fixed pipeline runs before any data becomes licensable:</p>
         <ul>
@@ -504,7 +538,7 @@
         </ul>
       </div>
       <div class="prov-card">
-        <div class="pn">iv.</div>
+        <div class="pn">v.</div>
         <h3>Opt-out &amp; deletion</h3>
         <p>Merchants can opt out at any time, which halts new collection immediately. Deletion requests propagate to derived datasets in line with our retention and re-release policy, and downstream licensees are notified per contract.</p>
       </div>
