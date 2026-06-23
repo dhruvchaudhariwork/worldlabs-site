@@ -4,178 +4,178 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Research — Optonomous</title>
-<meta name="description" content="An audio data research company — trusted by top AI labs to develop the proprietary audio datasets that power their models." />
-<link rel="icon" type="image/svg+xml" href="./research-assets/favicon.svg" />
+<meta name="description" content="Optonomous is a commerce data research company — building the proprietary purchase datasets that power retail and ecommerce AI." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%231A1A19'/%3E%3Cg fill='%23fff'%3E%3Crect x='5' y='9' width='2' height='6'/%3E%3Crect x='9' y='6' width='2' height='12'/%3E%3Crect x='13' y='8' width='2' height='8' fill='%23F4801F'/%3E%3Crect x='17' y='10' width='2' height='4' fill='%232F46EA'/%3E%3C/g%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;450;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg:#EFEEE8;
-    --bg-card:#F6F5F1;
+    --bg-2:#F6F5EF;
     --ink:#1A1A19;
-    --ink-soft:#5C5C57;
-    --line:#D7D7CF;
-    --dark:#161615;
-    --dark-card:#222220;
-    --dark-line:#33332F;
-    --white:#FFFFFF;
-    --radius:14px;
+    --muted:#9A998E;      /* warm taupe for serif continuations */
+    --body:#5C5C55;
+    --line:#D8D7CD;
+    --dark:#1B1A16;
+    --dark-2:#232118;
+    --dark-line:#34322A;
+    --cream:#ECEBE2;      /* cream cards on dark */
     --pill:48px;
-    --maxw:1240px;
-    --serif:"Besley", Georgia, serif;
-    --sans:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --radius:14px;
+    --maxw:1200px;
+    --serif:"Besley",Georgia,serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{
-    font-family:var(--sans);
-    background:var(--bg);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-    line-height:1.5;
-    font-size:16px;
-  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.5;font-size:16px}
   a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.08}
-  em{font-style:italic}
+  svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.015em;line-height:1.06}
+  em{font-style:italic;font-weight:400}
 
-  /* ---------- buttons ---------- */
+  /* buttons */
   .btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--sans);font-weight:500;
     font-size:15px;padding:13px 26px;border-radius:var(--pill);border:1px solid transparent;
-    cursor:pointer;transition:.18s ease;white-space:nowrap}
+    cursor:pointer;transition:.18s;white-space:nowrap}
   .btn-dark{background:var(--ink);color:#fff}
   .btn-dark:hover{background:#000}
   .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--ink)}
   .btn-light{background:#fff;color:var(--ink)}
-  .btn-light:hover{background:#f0f0ec}
-  .btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.32)}
+  .btn-light:hover{background:#eceadf}
+  .btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.34)}
   .btn-outline-light:hover{border-color:#fff}
 
-  /* ---------- nav ---------- */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(239,238,232,.82);
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(239,238,232,.82);
     backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.05)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
-  .nav-logo img{height:26px}
-  .nav-links{display:flex;align-items:center;gap:34px;list-style:none}
-  .nav-links a{font-size:15px;color:var(--ink-soft);font-weight:450;transition:.15s}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand .mark{width:26px;height:26px;border-radius:6px;background:var(--ink);
+    display:flex;align-items:center;justify-content:center}
+  .brand .name{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+  .nav-links a{font-size:15px;color:var(--body);font-weight:450;transition:.15s}
   .nav-links a:hover{color:var(--ink)}
-  .nav-cta{display:flex;align-items:center;gap:14px}
-  .menu-toggle{display:none;background:none;border:0;cursor:pointer;font-size:24px;color:var(--ink)}
-  @media(max-width:860px){
-    .nav-links{display:none}
-    .nav-cta .back-link{display:none}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .nav-right .back{font-size:14px;color:var(--muted)}
+  .nav-right .back:hover{color:var(--ink)}
+  @media(max-width:880px){.nav-links,.nav-right .back{display:none}}
+
+  /* hero */
+  .hero{padding:64px 0 96px}
+  .hero .bars{width:100%;height:clamp(120px,17vw,210px);margin-bottom:48px}
+  .hero h1{font-size:clamp(40px,6.4vw,82px);line-height:1.02;max-width:15ch;margin-bottom:40px}
+  .hero h1 em{color:var(--ink)}
+
+  /* sections */
+  section{padding:104px 0}
+  .eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:40px;
+    font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--body);font-weight:500}
+  .eyebrow .num{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;
+    display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif);
+    font-size:13px;letter-spacing:0;color:var(--ink)}
+  .eyebrow .dash{width:34px;height:1px;background:var(--line)}
+  .lead{font-family:var(--serif);font-size:clamp(28px,3.6vw,46px);line-height:1.16;
+    font-weight:500;max-width:18ch}
+  .lead .muted{color:var(--muted)}
+
+  /* mission */
+  .mission .lead{max-width:21ch}
+
+  /* process */
+  .process h2{font-size:clamp(28px,3.8vw,48px);max-width:15ch;margin-bottom:8px}
+  .process h2 .muted{color:var(--muted)}
+  .proc-layout{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.25fr);gap:56px;
+    margin-top:56px;align-items:start}
+  .proc-steps{display:flex;flex-direction:column;gap:40px}
+  .proc-step{transition:opacity .3s;opacity:.32}
+  .proc-step.active{opacity:1}
+  .proc-step .ri{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:15px}
+  .proc-step h3{font-size:24px;margin:8px 0 10px}
+  .proc-step p{color:var(--body);font-size:15px;max-width:34ch}
+  .proc-visual{position:sticky;top:120px;aspect-ratio:1/.84;border-radius:var(--radius);
+    background:var(--bg-2);border:1px solid var(--line);overflow:hidden}
+  .proc-visual .frame{position:absolute;inset:0;opacity:0;transition:opacity .45s}
+  .proc-visual .frame.active{opacity:1}
+  .proc-visual svg{width:100%;height:100%}
+  @media(max-width:880px){
+    .proc-layout{grid-template-columns:1fr;gap:32px}
+    .proc-visual{position:relative;top:0;order:-1}
+    .proc-step{opacity:1}
   }
 
-  /* ---------- hero ---------- */
-  .hero{position:relative;overflow:hidden;text-align:center;padding:118px 0 130px}
-  .hero-mask{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-    opacity:.9;z-index:0;pointer-events:none}
-  .hero .wrap{position:relative;z-index:1}
-  .hero h1{font-size:clamp(44px,7vw,86px);line-height:1.02;letter-spacing:-.02em;max-width:13ch;margin:0 auto 38px}
-  .hero h1 em{font-weight:400}
+  /* trust */
+  .trust .big{font-family:var(--serif);font-size:clamp(26px,3.4vw,42px);line-height:1.18;
+    font-weight:500;max-width:22ch}
+  .trust .muted{color:var(--muted)}
 
-  /* ---------- section scaffolding ---------- */
-  section{padding:96px 0}
-  .sec-num{display:flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.14em;
-    text-transform:uppercase;color:var(--ink-soft);margin-bottom:40px;font-weight:500}
-  .sec-num .n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;
-    border:1px solid var(--line);border-radius:50%;font-family:var(--serif);font-size:13px}
-  .lead{font-family:var(--serif);font-size:clamp(28px,3.4vw,44px);line-height:1.18;
-    font-weight:500;letter-spacing:-.015em;max-width:18ch}
-  .lead .muted{color:var(--ink-soft)}
-
-  /* ---------- mission ---------- */
-  .mission .lead{max-width:24ch}
-  .mission .sub{color:var(--ink-soft)}
-
-  /* ---------- process ---------- */
-  .process h2{font-size:clamp(28px,3.6vw,46px);max-width:16ch;margin-bottom:64px}
-  .process h2 em{color:var(--ink-soft)}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--line);
-    border-radius:var(--radius);overflow:hidden;background:var(--line)}
-  .step{background:var(--bg-card);padding:30px 28px 34px;display:flex;flex-direction:column;gap:14px;min-height:248px}
-  .step .gfx{height:96px;display:flex;align-items:center;justify-content:flex-start}
-  .step .gfx img{height:100%;width:auto}
-  .step .ri{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:15px}
-  .step h3{font-size:22px;font-weight:500}
-  .step p{color:var(--ink-soft);font-size:15px;line-height:1.5}
-  @media(max-width:860px){.steps{grid-template-columns:1fr}}
-
-  /* ---------- trust ---------- */
-  .trust{padding:84px 0}
-  .trust p{font-family:var(--serif);font-size:clamp(24px,3vw,38px);line-height:1.22;
-    font-weight:500;letter-spacing:-.015em;max-width:22ch;color:var(--ink)}
-  .trust .muted{color:var(--ink-soft)}
-
-  /* ---------- datasets (dark) ---------- */
+  /* datasets dark */
   .datasets{background:var(--dark);color:#fff}
-  .datasets .sec-num{color:rgba(255,255,255,.55)}
-  .datasets .sec-num .n{border-color:var(--dark-line)}
-  .datasets h2{font-size:clamp(28px,3.6vw,46px);max-width:18ch;margin-bottom:56px;color:#fff}
-  .ds-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .ds-card{background:var(--dark-card);border:1px solid var(--dark-line);border-radius:var(--radius);
-    padding:30px;position:relative;overflow:hidden;min-height:200px}
-  .ds-card .ico{width:42px;height:42px;display:flex;align-items:center;justify-content:center;
-    background:#fff;border-radius:11px;margin-bottom:22px}
-  .ds-card .ico img{width:22px;height:22px}
-  .ds-card h3{font-size:24px;color:#fff;margin-bottom:12px;font-weight:500}
-  .ds-card p{color:rgba(255,255,255,.62);font-size:15px;max-width:42ch}
-  .ds-card.has-map{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
-  .ds-card.has-map .map{margin:-30px -30px -30px 0;height:calc(100% + 60px)}
-  .ds-card.has-map .map img{width:100%;height:100%;object-fit:cover;opacity:.85}
-  @media(max-width:860px){
-    .ds-grid{grid-template-columns:1fr}
-    .ds-card.has-map{grid-column:span 1;grid-template-columns:1fr}
-    .ds-card.has-map .map{margin:18px 0 0;height:auto}
-  }
-  .ds-note{margin-top:40px;border-top:1px solid var(--dark-line);padding-top:34px;
-    display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
-  .ds-note h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:10px;max-width:24ch}
-  .ds-note p{color:rgba(255,255,255,.6);font-size:15px;max-width:46ch}
+  .datasets .eyebrow{color:rgba(255,255,255,.6)}
+  .datasets .eyebrow .num{border-color:var(--dark-line);color:#fff}
+  .datasets .eyebrow .dash{background:var(--dark-line)}
+  .datasets h2{font-size:clamp(28px,3.8vw,48px);max-width:20ch;color:#fff;margin-bottom:52px}
+  .ds-rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(360px,1fr);gap:20px;
+    overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;margin:0 -40px;padding-left:40px;padding-right:40px}
+  .ds-rail::-webkit-scrollbar{height:8px}
+  .ds-rail::-webkit-scrollbar-thumb{background:var(--dark-line);border-radius:8px}
+  .ds-card{scroll-snap-align:start;background:var(--cream);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;min-height:340px}
+  .ds-card .ico{width:38px;height:38px;border-radius:9px;background:#fff;border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;color:var(--ink)}
+  .ds-card h3{font-size:24px;margin-bottom:10px}
+  .ds-card p{color:var(--body);font-size:14.5px;line-height:1.5}
+  .ds-card .viz{margin-top:auto;padding-top:22px}
+  .ds-card .viz svg{width:100%;height:120px}
+  .ds-note{margin-top:34px;background:var(--dark-2);border:1px solid var(--dark-line);
+    border-radius:var(--radius);padding:28px 30px;display:flex;justify-content:space-between;
+    align-items:center;gap:32px;flex-wrap:wrap}
+  .ds-note h4{font-family:var(--serif);font-size:22px;font-weight:500;margin-bottom:8px}
+  .ds-note p{color:rgba(255,255,255,.6);font-size:14.5px;max-width:52ch}
 
-  /* ---------- access ---------- */
-  .access{background:var(--dark);color:#fff;padding-top:40px}
-  .access h2{font-family:var(--serif);font-size:clamp(26px,3vw,38px);margin-bottom:48px;font-weight:500}
-  .access-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  /* access (dark) */
+  .access{background:var(--dark);color:#fff;padding-top:0}
+  .access h2{font-family:var(--serif);font-size:clamp(26px,3vw,38px);font-weight:500;margin-bottom:46px}
+  .access-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
   .ac{border-top:1px solid var(--dark-line);padding-top:22px}
-  .ac .step-h{font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:12px}
-  .ac p{color:rgba(255,255,255,.6);font-size:15px}
-  @media(max-width:860px){.access-grid{grid-template-columns:1fr}}
+  .ac .h{font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:12px}
+  .ac p{color:rgba(255,255,255,.58);font-size:14.5px}
+  .ac a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  @media(max-width:880px){.access-grid{grid-template-columns:1fr}}
 
-  /* ---------- careers ---------- */
-  .careers{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-  .careers h2{font-size:clamp(30px,3.6vw,48px);max-width:12ch;margin-bottom:20px}
-  .careers p{color:var(--ink-soft);font-size:17px;margin-bottom:28px;max-width:34ch}
-  .careers .art{border-radius:var(--radius);overflow:hidden}
-  @media(max-width:860px){.careers{grid-template-columns:1fr;gap:36px}}
+  /* careers */
+  .careers .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  .careers h2{font-size:clamp(30px,3.8vw,50px);max-width:11ch;margin-bottom:18px}
+  .careers p{color:var(--body);font-size:17px;margin-bottom:28px;max-width:32ch}
+  .careers .art{border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line)}
+  .careers .art svg{width:100%;height:340px}
+  @media(max-width:880px){.careers .grid{grid-template-columns:1fr;gap:36px}}
 
-  /* ---------- news ---------- */
-  .news .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:42px}
-  .news h2{font-size:clamp(28px,3.4vw,44px)}
+  /* news */
+  .news .head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:24px}
+  .news h2{font-size:clamp(28px,3.6vw,46px)}
   .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .news-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);
-    overflow:hidden;transition:.18s;display:flex;flex-direction:column}
+  .news-card{display:flex;flex-direction:column;transition:.18s}
   .news-card:hover{transform:translateY(-4px)}
-  .news-card .thumb{aspect-ratio:16/10;overflow:hidden;background:#ddd}
-  .news-card .thumb img{width:100%;height:100%;object-fit:cover}
-  .news-card .body{padding:22px;display:flex;flex-direction:column;gap:14px;flex:1}
-  .news-card h3{font-size:20px;font-weight:500;line-height:1.2}
-  .news-card .meta{margin-top:auto;color:var(--ink-soft);font-size:13px;
-    display:flex;gap:10px;align-items:center}
-  .news-card .tag{border:1px solid var(--line);border-radius:var(--pill);padding:3px 11px;font-size:12px}
-  @media(max-width:860px){.news-grid{grid-template-columns:1fr}}
+  .news-card .thumb{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin-bottom:18px}
+  .news-card .thumb svg{width:100%;height:200px;display:block}
+  .news-card h3{font-size:21px;line-height:1.2;margin-bottom:14px}
+  .news-card .meta{margin-top:auto;color:var(--muted);font-size:13.5px}
+  @media(max-width:880px){.news-grid{grid-template-columns:1fr}}
 
-  /* ---------- footer cta ---------- */
-  .footer-cta{background:var(--dark);color:#fff;text-align:center;padding:110px 0}
-  .footer-cta h2{font-size:clamp(34px,5vw,64px);margin-bottom:36px}
-  .footer-cta h2 em{color:rgba(255,255,255,.6)}
-  .footer-cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-
-  footer.site{background:var(--dark);color:rgba(255,255,255,.6);border-top:1px solid var(--dark-line);padding:40px 0}
+  /* footer cta */
+  .footer-cta{background:var(--dark);color:#fff;padding:120px 0 90px}
+  .footer-cta .row{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+  .footer-cta h2{font-size:clamp(36px,5.4vw,68px);max-width:11ch}
+  .footer-cta h2 em{color:rgba(255,255,255,.55)}
+  .footer-cta .cta{display:flex;gap:14px;flex-wrap:wrap}
+  footer.site{background:var(--dark);color:rgba(255,255,255,.55);
+    border-top:1px solid var(--dark-line);padding:34px 0}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:14px}
   .foot-links{display:flex;gap:24px}
   .foot-links a:hover{color:#fff}
@@ -183,10 +183,19 @@
 </head>
 <body>
 
-<!-- ======================= NAV ======================= -->
+<!-- ===================== NAV ===================== -->
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="nav-logo" aria-label="David AI"><img src="./research-assets/wordmark-dark.svg" alt="David AI" /></a>
+    <a href="#top" class="brand" aria-label="Optonomous Research">
+      <span class="mark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+          <rect x="3" y="9" width="2" height="6"/><rect x="7" y="5" width="2" height="14"/>
+          <rect x="11" y="8" width="2" height="8" fill="#F4801F"/><rect x="15" y="3" width="2" height="18"/>
+          <rect x="19" y="10" width="2" height="4" fill="#2F46EA"/>
+        </svg>
+      </span>
+      <span class="name">Optonomous</span>
+    </a>
     <nav>
       <ul class="nav-links">
         <li><a href="#mission">Mission</a></li>
@@ -196,201 +205,161 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="nav-cta">
-      <a href="./index.html" class="back-link nav-links" style="font-size:15px;color:var(--ink-soft)">← Optonomous</a>
+    <div class="nav-right">
+      <a href="./index.html" class="back">← Optonomous platform</a>
       <a href="#contact" class="btn btn-dark">Work with us</a>
     </div>
   </div>
 </header>
-
 <a id="top"></a>
 
-<!-- ======================= HERO ======================= -->
+<!-- ===================== HERO ===================== -->
 <section class="hero">
-  <img class="hero-mask" src="./research-assets/hero-mask.png" alt="" aria-hidden="true" />
   <div class="wrap">
-    <h1>AI is <em>meaningful</em> when you can naturally interact with it.</h1>
+    <svg class="bars" id="hero-bars" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+    <h1>AI is <em>commercial</em> when it understands what people actually buy.</h1>
     <a href="#datasets" class="btn btn-dark">Explore datasets</a>
   </div>
 </section>
 
-<!-- ======================= MISSION ======================= -->
+<!-- ===================== MISSION ===================== -->
 <section id="mission" class="mission">
   <div class="wrap">
-    <div class="sec-num"><span class="n">1</span> Mission</div>
-    <h2 class="lead">We are an audio data research company.
-      <span class="muted">Our mission is to bring AI into the real world through voice, the most important interface to human interaction.</span>
-    </h2>
+    <div class="eyebrow"><span class="num">1</span><span class="dash"></span>Mission</div>
+    <p class="lead">We are a commerce data research company.
+      <span class="muted">Our mission is to bring AI into the real economy through purchase behavior — the clearest signal of what people truly want.</span></p>
   </div>
 </section>
 
-<!-- ======================= PROCESS ======================= -->
+<!-- ===================== PROCESS ===================== -->
 <section id="process" class="process">
   <div class="wrap">
-    <div class="sec-num"><span class="n">2</span> Process</div>
-    <h2>We develop audio datasets with <em>the same rigor</em> researchers bring to models.</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-0.avif" alt="" /></div>
-        <span class="ri">i.</span><h3>Hypothesize</h3>
-        <p>Determine an audio AI capability we wish to unlock.</p>
+    <div class="eyebrow"><span class="num">2</span><span class="dash"></span>Process</div>
+    <h2>We build purchase datasets with <span class="muted">the same rigor researchers bring to models.</span></h2>
+    <div class="proc-layout">
+      <div class="proc-steps" id="proc-steps">
+        <div class="proc-step" data-i="0"><span class="ri">i.</span><h3>Hypothesize</h3><p>Identify a commerce capability we want to unlock — basket prediction, demand forecasting, return-risk.</p></div>
+        <div class="proc-step" data-i="1"><span class="ri">ii.</span><h3>Design</h3><p>Architect the shape of transaction data needed to teach a model that capability.</p></div>
+        <div class="proc-step" data-i="2"><span class="ri">iii.</span><h3>Source</h3><p>Aggregate consented, privacy-safe purchase signals at the right granularity.</p></div>
+        <div class="proc-step" data-i="3"><span class="ri">iv.</span><h3>Evaluate &amp; Iterate</h3><p>Measure data quality and tune the collection until a small, high-signal set is achieved.</p></div>
+        <div class="proc-step" data-i="4"><span class="ri">v.</span><h3>Productionize</h3><p>Scale the dataset across millions of orders, SKUs, and merchants.</p></div>
+        <div class="proc-step" data-i="5"><span class="ri">vi.</span><h3>Release</h3><p>Publish the dataset, and continuously refresh it over time.</p></div>
       </div>
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-1.avif" alt="" /></div>
-        <span class="ri">ii.</span><h3>Design</h3>
-        <p>Architect a shape of data to teach models that capability.</p>
-      </div>
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-2.avif" alt="" /></div>
-        <span class="ri">iii.</span><h3>Experiment</h3>
-        <p>Launch a targeted data collection.</p>
-      </div>
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-3.avif" alt="" /></div>
-        <span class="ri">iv.</span><h3>Evaluate &amp; Iterate</h3>
-        <p>Measure data quality and tune the collection until a small, high-signal set is achieved.</p>
-      </div>
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-4.avif" alt="" /></div>
-        <span class="ri">v.</span><h3>Productionize</h3>
-        <p>Scale the dataset to thousands of hours.</p>
-      </div>
-      <div class="step">
-        <div class="gfx"><img src="./research-assets/process-5.avif" alt="" /></div>
-        <span class="ri">vi.</span><h3>Release</h3>
-        <p>Publish the dataset, and continuously improve it over time.</p>
-      </div>
+      <div class="proc-visual" id="proc-visual"></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= TRUST ======================= -->
+<!-- ===================== TRUST ===================== -->
 <section class="trust">
   <div class="wrap">
-    <p>Our datasets are used by Fortune 100 companies and research labs <span class="muted">that work with speech recognition, translation, synthesis, and conversational AI.</span></p>
+    <p class="big">Our datasets are used by leading retailers and AI labs <span class="muted">that work with recommendation, demand forecasting, pricing, fraud, and agentic shopping.</span></p>
   </div>
 </section>
 
-<!-- ======================= DATASETS (dark) ======================= -->
+<!-- ===================== DATASETS (dark) ===================== -->
 <section id="datasets" class="datasets">
   <div class="wrap">
-    <div class="sec-num"><span class="n">3</span> Featured Datasets</div>
-    <h2>A dataset suite designed for speech-to-speech, multilingual, and voice interaction systems</h2>
-    <div class="ds-grid">
-      <div class="ds-card">
-        <div class="ico"><img src="./research-assets/icon-converse.svg" alt="" /></div>
-        <h3>Converse</h3>
-        <p>Our flagship English dataset consists of channel-separated, natural two-speaker conversations spanning a wide range of topics.</p>
-      </div>
-      <div class="ds-card">
-        <div class="ico"><img src="./research-assets/icon-atlas.svg" alt="" /></div>
+    <div class="eyebrow"><span class="num">3</span><span class="dash"></span>Featured Datasets</div>
+    <h2>A dataset suite designed for recommendation, forecasting, and agentic commerce</h2>
+    <div class="ds-rail">
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18l-3-2-3 2-3-2-2 2V3z"/><path d="M9 8h6M9 12h6"/></svg></span>
+        <h3>Ledger</h3>
+        <p>Our flagship U.S. dataset of itemized, basket-level purchases across thousands of merchants and categories.</p>
+        <div class="viz" data-viz="ledger"></div>
+      </article>
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
         <h3>Atlas</h3>
-        <p>A multilingual dataset spanning 15+ languages. It includes metadata on dialects and accents and follows the same format as Converse.</p>
-      </div>
-      <div class="ds-card has-map">
-        <div>
-          <div class="ico"><img src="./research-assets/icon-chorus.svg" alt="" /></div>
-          <h3>Chorus</h3>
-          <p>A dataset of conversations involving three or more speakers. Originally designed for training speaker-separation and diarization models.</p>
-        </div>
-        <div class="map"><img src="./research-assets/map.avif" alt="World map of language coverage" /></div>
-      </div>
-      <div class="ds-card">
-        <div class="ico"><img src="./research-assets/icon-dialog.svg" alt="" /></div>
-        <h3>Dialog</h3>
-        <p>A collection of expert conversations across a range of domains.</p>
-      </div>
+        <p>A multi-market dataset spanning 15+ countries, with currency, category, and channel metadata in the same format as Ledger.</p>
+        <div class="viz" data-viz="atlas"></div>
+      </article>
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15.5 19c0-2 .8-3.4 2.2-4"/></svg></span>
+        <h3>Cohort</h3>
+        <p>Longitudinal purchase histories that follow households over time. Built for retention, LTV, and repeat-purchase modeling.</p>
+        <div class="viz" data-viz="cohort"></div>
+      </article>
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <h3>Catalog</h3>
+        <p>A structured product graph of SKUs, attributes, images, and pricing across domains and retailers.</p>
+        <div class="viz" data-viz="catalog"></div>
+      </article>
     </div>
 
     <div class="ds-note">
       <div>
         <h4>Browse more datasets or design one with us</h4>
-        <p>We offer additional proprietary datasets not listed here. Contact us to request a sample, explore more options, or collaborate on a new dataset.</p>
+        <p>We offer additional proprietary commerce datasets not listed here. Contact us to request a sample, explore more options, or collaborate on a new dataset.</p>
       </div>
       <a href="#contact" class="btn btn-light">Contact us</a>
     </div>
   </div>
 </section>
 
-<!-- ======================= ACCESS (dark) ======================= -->
+<!-- ===================== ACCESS (dark) ===================== -->
 <section class="access">
   <div class="wrap">
     <h2>How to access our datasets</h2>
     <div class="access-grid">
-      <div class="ac">
-        <div class="step-h">1. Request samples</div>
-        <p>We will set up a quick call to understand your use case and then send you relevant data samples.</p>
-      </div>
-      <div class="ac">
-        <div class="step-h">2. Purchase access</div>
-        <p>Enter a data license agreement for the dataset and use-cases your team needs.</p>
-      </div>
-      <div class="ac">
-        <div class="step-h">3. Receive data</div>
-        <p>For off-the-shelf datasets, we will grant your team access within one to two days.</p>
-      </div>
-      <div class="ac">
-        <div class="step-h">Bonus: Experiment with us</div>
-        <p>We frequently partner with research teams to design new shapes of data for any use case.</p>
-      </div>
+      <div class="ac"><div class="h">1. Request samples</div><p>We'll set up a quick call to understand your use case, then send you relevant data samples.</p></div>
+      <div class="ac"><div class="h">2. Purchase access</div><p>Enter a data license agreement for the dataset and use-cases your team needs.</p></div>
+      <div class="ac"><div class="h">3. Receive data</div><p>For off-the-shelf datasets, we'll grant your team access within one to two days.</p></div>
+      <div class="ac"><div class="h">Bonus: Experiment with us</div><p>We frequently partner with research teams to design new shapes of commerce data. <a href="#contact">Contact us</a> for more.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= CAREERS ======================= -->
-<section id="careers">
+<!-- ===================== CAREERS ===================== -->
+<section id="careers" class="careers">
   <div class="wrap">
-    <div class="sec-num"><span class="n">4</span> Careers</div>
-    <div class="careers">
+    <div class="eyebrow"><span class="num">4</span><span class="dash"></span>Careers</div>
+    <div class="grid">
       <div>
-        <h2>Join us to shape the future of audio AI</h2>
-        <p>We're hiring for research, engineering, and operations roles.</p>
+        <h2>Join us to shape the future of commerce AI</h2>
+        <p>We're hiring across research, engineering, and operations.</p>
         <a href="#contact" class="btn btn-dark">See open roles</a>
       </div>
-      <div class="art"><img src="./research-assets/careers.png" alt="Careers illustration" /></div>
+      <div class="art" id="careers-art"></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= NEWS ======================= -->
+<!-- ===================== NEWS ===================== -->
 <section id="news" class="news">
   <div class="wrap">
-    <div class="sec-num"><span class="n">5</span> News</div>
+    <div class="eyebrow"><span class="num">5</span><span class="dash"></span>News</div>
     <div class="head">
       <h2>Updates on our progress</h2>
       <a href="#" class="btn btn-ghost">View all</a>
     </div>
     <div class="news-grid">
       <a class="news-card" href="#">
-        <div class="thumb"><img src="./research-assets/news-seriesb.png" alt="Series B announcement" /></div>
-        <div class="body">
-          <h3>Announcing Our $50M Series B Led by Meritech</h3>
-          <div class="meta"><span class="tag">News</span> Oct 8, 2025</div>
-        </div>
+        <div class="thumb" data-news="0"></div>
+        <h3>Announcing Ledger: Basket-Level Purchase Data at Scale</h3>
+        <div class="meta">Jun 12, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
       <a class="news-card" href="#">
-        <div class="thumb"><img src="./research-assets/news-seriesa.png" alt="Series A announcement" /></div>
-        <div class="body">
-          <h3>Announcing Our $25M Series A Led by Alt Capital</h3>
-          <div class="meta"><span class="tag">News</span> May 22, 2025</div>
-        </div>
+        <div class="thumb" data-news="1"></div>
+        <h3>Optonomous Raises $30M to Build Commerce Datasets</h3>
+        <div class="meta">Apr 2, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
       <a class="news-card" href="#">
-        <div class="thumb"><img src="./research-assets/news-seed.png" alt="Seed round announcement" /></div>
-        <div class="body">
-          <h3>Announcing Our $5M Seed Round Led by First Round</h3>
-          <div class="meta"><span class="tag">News</span> Jan 16, 2025</div>
-        </div>
+        <div class="thumb" data-news="2"></div>
+        <h3>Atlas Expands Purchase Coverage to 15+ Markets</h3>
+        <div class="meta">Feb 18, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ======================= FOOTER CTA ======================= -->
+<!-- ===================== FOOTER CTA ===================== -->
 <section id="contact" class="footer-cta">
-  <div class="wrap">
+  <div class="wrap row">
     <h2>Interested in <em>working with us?</em></h2>
-    <div class="row">
+    <div class="cta">
       <a href="mailto:hello@optonomous.ai" class="btn btn-light">Contact us</a>
       <a href="#careers" class="btn btn-outline-light">See open roles</a>
     </div>
@@ -399,14 +368,154 @@
 
 <footer class="site">
   <div class="wrap foot-inner">
-    <div>© 2026 Optonomous Research. All rights reserved.</div>
+    <div>© 2026 Optonomous, Inc. All rights reserved.</div>
     <div class="foot-links">
       <a href="#">Terms of service</a>
       <a href="#">Privacy policy</a>
-      <a href="./index.html">Back to Optonomous</a>
+      <a href="./index.html">Back to platform</a>
     </div>
   </div>
 </footer>
 
+<script>
+/* ---------- shared palette / helpers ---------- */
+const ACCENT = ['#E5147F','#F4801F','#FBBC2E','#2FA84F','#2F46EA','#5A2DE0'];
+const DARKS  = ['#1A1A19','#3A3A36','#56564F','#7C7B72','#A9A89E'];
+const NS = 'http://www.w3.org/2000/svg';
+function rand(seed){ // deterministic pseudo-random per index
+  let x = Math.sin(seed*999.13)*43758.5453; return x - Math.floor(x);
+}
+
+/* ---------- hero "barcode" bars ---------- */
+(function(){
+  const svg = document.getElementById('hero-bars');
+  const W=1200, H=200, pitch=26, bw=15, n=Math.floor(W/pitch);
+  // colour zones across the row (fraction -> colour)
+  function zoneColor(f){
+    if(f<0.04) return ACCENT[0];
+    if(f<0.20) return null;            // dark gradient
+    if(f<0.33) return ACCENT[1];
+    if(f<0.45) return ACCENT[2];
+    if(f<0.57) return null;
+    if(f<0.64) return ACCENT[5];
+    if(f<0.71) return ACCENT[4];
+    if(f<0.90) return null;
+    if(f<0.95) return ACCENT[0];
+    return null;
+  }
+  let defs='<defs>';
+  DARKS.forEach((c,i)=>{defs+=`<linearGradient id="g${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${c}" stop-opacity="0.15"/></linearGradient>`;});
+  defs+='</defs>';
+  let r=defs;
+  for(let i=0;i<n;i++){
+    const f=i/n, rr=rand(i+1);
+    const h=70+rr*130, y=(H-h)/2 + (rr-0.5)*30;
+    const x=i*pitch+(pitch-bw)/2;
+    const ac=zoneColor(f);
+    const fill = ac ? ac : `url(#g${Math.floor(rr*DARKS.length)})`;
+    r+=`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${h.toFixed(1)}" fill="${fill}"/>`;
+  }
+  svg.innerHTML=r;
+})();
+
+/* ---------- process step graphics ---------- */
+(function(){
+  const host=document.getElementById('proc-visual');
+  const W=600,H=504;
+  const rainbow='<defs><linearGradient id="rb" x1="0" y1="0" x2="1" y2="1">'+
+    ACCENT.map((c,i)=>`<stop offset="${i/(ACCENT.length-1)}" stop-color="${c}"/>`).join('')+
+    '</linearGradient><radialGradient id="soft"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset="1" stop-color="#fff" stop-opacity=".0"/></radialGradient></defs>';
+  function barField(cx,cy,cols,gap,maxh,clip){
+    let s='';
+    for(let i=0;i<cols;i++){
+      const t=i/(cols-1), h=maxh*(0.45+0.55*Math.sin(t*Math.PI));
+      const x=cx-(cols*gap)/2+i*gap;
+      s+=`<rect x="${x.toFixed(1)}" y="${(cy-h/2).toFixed(1)}" width="3" height="${h.toFixed(1)}" rx="1.5" fill="#8E8D84" ${clip?`clip-path="${clip}"`:''}/>`;
+    }
+    return s;
+  }
+  function frame(i){
+    let inner=rainbow;
+    const cx=W/2, cy=H/2;
+    if(i===0){ // two clusters converging
+      inner+=`<circle cx="${cx-95}" cy="${cy}" r="92" fill="#EDECE3"/><circle cx="${cx+95}" cy="${cy}" r="92" fill="#EDECE3"/>`;
+      inner+=barField(cx-95,cy,22,7,150);
+      inner+=barField(cx+95,cy,22,7,150);
+      inner+=`<ellipse cx="${cx}" cy="${cy}" rx="14" ry="46" fill="url(#rb)"/>`;
+      inner+=`<text x="${cx-200}" y="${cy+4}" font-family="Besley,serif" font-style="italic" font-size="20" fill="#9A998E">a.</text><text x="${cx+188}" y="${cy+4}" font-family="Besley,serif" font-style="italic" font-size="20" fill="#9A998E">b.</text>`;
+    } else if(i===1){ // grid shifting into circle
+      inner+=`<circle cx="${cx+60}" cy="${cy}" r="110" fill="url(#rb)" opacity=".9"/>`;
+      inner+=barField(cx-40,cy,40,8,180);
+    } else if(i===2){ // staggered layers -> diamond
+      for(let k=0;k<3;k++) inner+=barField(cx-30,cy-70+k*70,26,7,80);
+      inner+=`<rect x="${cx+70}" y="${cy-46}" width="92" height="92" rx="10" transform="rotate(45 ${cx+116} ${cy})" fill="url(#rb)"/>`;
+      ['1.','2.','3.'].forEach((t,k)=>inner+=`<text x="${cx-150}" y="${cy-58+k*70}" font-family="Besley,serif" font-style="italic" font-size="18" fill="#9A998E">${t}</text>`);
+    } else if(i===3){ // broken ring with rainbow quadrant
+      const N=44;
+      for(let k=0;k<N;k++){ if(k>30&&k<36) continue; const a=k/N*Math.PI*2, r1=110,r2=140;
+        inner+=`<line x1="${(cx+Math.cos(a)*r1).toFixed(1)}" y1="${(cy+Math.sin(a)*r1).toFixed(1)}" x2="${(cx+Math.cos(a)*r2).toFixed(1)}" y2="${(cy+Math.sin(a)*r2).toFixed(1)}" stroke="#8E8D84" stroke-width="3"/>`; }
+      inner+=`<path d="M${cx} ${cy} L${cx+135} ${cy} A135 135 0 0 1 ${cx} ${cy+135} Z" fill="url(#rb)" opacity=".85"/>`;
+    } else if(i===4){ // waveform of rainbow bars
+      const cols=46;
+      for(let k=0;k<cols;k++){ const t=k/(cols-1), h=40+Math.abs(Math.sin(t*Math.PI*2))*200;
+        inner+=`<rect x="${(cx-cols*9/2+k*9).toFixed(1)}" y="${(cy-h/2).toFixed(1)}" width="4" height="${h.toFixed(1)}" rx="2" fill="${ACCENT[k%ACCENT.length]}" opacity=".9"/>`; }
+    } else { // release - clean bars
+      inner+=barField(cx,cy,40,9,200);
+      inner+=`<circle cx="${cx}" cy="${cy}" r="34" fill="url(#rb)"/>`;
+    }
+    return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;
+  }
+  let html='';
+  for(let i=0;i<6;i++) html+=`<div class="frame${i===0?' active':''}" data-f="${i}">${frame(i)}</div>`;
+  host.innerHTML=html;
+
+  // scroll-driven active step
+  const steps=[...document.querySelectorAll('.proc-step')];
+  const frames=[...host.querySelectorAll('.frame')];
+  function setActive(i){
+    steps.forEach((s,k)=>s.classList.toggle('active',k===i));
+    frames.forEach((f,k)=>f.classList.toggle('active',k===i));
+  }
+  setActive(0);
+  const io=new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting) setActive(+e.target.dataset.i); });
+  },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+  steps.forEach(s=>io.observe(s));
+})();
+
+/* ---------- dataset card mini-visuals ---------- */
+(function(){
+  function ledger(){let r='';for(let i=0;i<34;i++){const h=10+rand(i+5)*46;r+=`<rect x="${i*9}" y="${56-h/2}" width="4" height="${h}" rx="1" fill="${i%7===0?ACCENT[1]:'#2A2A27'}"/>`;}return `<svg viewBox="0 0 306 120"><g transform="translate(8,16)">${r}</g><g transform="translate(8,96)">${Array.from({length:40},(_,i)=>`<rect x="${i*7.4}" width="${i%3?2:4}" height="20" fill="#1A1A19"/>`).join('')}</g></svg>`;}
+  function atlas(){let dots='';for(let y=0;y<6;y++)for(let x=0;x<14;x++){const on=rand(x*7+y)>0.42;dots+=`<circle cx="${10+x*21}" cy="${12+y*18}" r="3" fill="${on?'#56564F':'#CFCEC4'}"/>`;}return `<svg viewBox="0 0 306 120">${dots}<text x="20" y="64" font-family="Besley,serif" font-size="22" fill="${ACCENT[0]}">$</text><text x="150" y="44" font-family="Besley,serif" font-size="22" fill="${ACCENT[4]}">€</text><text x="250" y="84" font-family="Besley,serif" font-size="22" fill="${ACCENT[1]}">¥</text></svg>`;}
+  function cohort(){let s='';for(let row=0;row<3;row++){s+=`<line x1="14" y1="${24+row*36}" x2="292" y2="${24+row*36}" stroke="#D2D1C7" stroke-width="2"/>`;for(let c=0;c<6;c++){s+=`<circle cx="${30+c*48}" cy="${24+row*36}" r="9" fill="${c<=row+2?ACCENT[(row+c)%ACCENT.length]:'#D2D1C7'}"/>`;}}return `<svg viewBox="0 0 306 120">${s}</svg>`;}
+  function catalog(){let s='';for(let y=0;y<3;y++)for(let x=0;x<6;x++){const c=ACCENT[(x+y)%ACCENT.length];s+=`<rect x="${10+x*48}" y="${8+y*38}" width="40" height="30" rx="6" fill="#fff" stroke="#D2D1C7"/><rect x="${16+x*48}" y="${14+y*38}" width="16" height="6" rx="3" fill="${c}"/><rect x="${16+x*48}" y="${24+y*38}" width="26" height="4" rx="2" fill="#D2D1C7"/>`;}return `<svg viewBox="0 0 306 120">${s}</svg>`;}
+  const map={ledger,atlas,cohort,catalog};
+  document.querySelectorAll('[data-viz]').forEach(el=>{el.innerHTML=map[el.dataset.viz]();});
+})();
+
+/* ---------- careers illustration (rainbow stripes) ---------- */
+(function(){
+  const host=document.getElementById('careers-art');
+  let lines='';const cols=ACCENT.concat(['#1A1A19','#7C7B72']);
+  for(let i=0;i<26;i++){const w=80+rand(i)*380;const c=cols[i%cols.length];
+    lines+=`<rect x="40" y="${24+i*16}" width="${w}" height="7" rx="3.5" fill="${c}"/>`;}
+  host.innerHTML=`<svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice">${lines}</svg>`;
+})();
+
+/* ---------- news thumbnails ---------- */
+(function(){
+  const grads=[[ACCENT[1],ACCENT[2]],[ACCENT[4],ACCENT[5]],[ACCENT[0],ACCENT[1]]];
+  document.querySelectorAll('[data-news]').forEach(el=>{
+    const i=+el.dataset.news, g=grads[i];
+    let bars='';for(let k=0;k<28;k++){const h=20+rand(k+i*30)*110;bars+=`<rect x="${k*11}" y="${130-h}" width="6" height="${h}" rx="2" fill="rgba(255,255,255,.85)"/>`;}
+    el.innerHTML=`<svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="ng${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${g[0]}"/><stop offset="1" stop-color="${g[1]}"/></linearGradient></defs>
+      <rect width="320" height="200" fill="url(#ng${i})"/>
+      <g transform="translate(4,40)" opacity=".9">${bars}</g>
+      <text x="20" y="34" font-family="Besley,serif" font-weight="600" font-size="16" fill="#fff">Optonomous</text>
+    </svg>`;
+  });
+})();
+</script>
 </body>
 </html>
