@@ -148,6 +148,74 @@
   .ac a{color:#fff;text-decoration:underline;text-underline-offset:3px}
   @media(max-width:880px){.access-grid{grid-template-columns:1fr}}
 
+  /* hero supporting copy */
+  .hero .sub{font-size:clamp(16px,1.7vw,19px);color:var(--body);max-width:48ch;
+    margin:-16px 0 34px;line-height:1.55}
+
+  /* datasets intro subhead */
+  .datasets .sub{font-size:17px;color:rgba(255,255,255,.66);max-width:56ch;
+    margin:-36px 0 48px;line-height:1.55}
+
+  /* flagship dataset */
+  .ds-flagship{background:var(--cream);border-radius:var(--radius);padding:36px;margin-bottom:20px;
+    display:grid;grid-template-columns:1fr 1fr;gap:36px 40px;align-items:start}
+  .ds-flagship .badge{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:#fff;border:1px solid var(--line);
+    border-radius:48px;padding:5px 12px;margin-bottom:18px}
+  .ds-flagship .badge .dot{width:7px;height:7px;border-radius:50%;background:#2FA84F}
+  .ds-flagship .kicker{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:4px}
+  .ds-flagship h3{font-size:clamp(28px,3.4vw,38px);margin-bottom:14px}
+  .ds-flagship .intro{font-size:16px;color:var(--body);line-height:1.55;margin-bottom:14px}
+  .ds-flagship .why{font-size:14.5px;color:var(--ink);font-weight:500;line-height:1.5}
+  .ds-flagship .viz svg{width:100%;height:300px}
+  .ds-flagship .spec{grid-column:1/-1}
+  @media(max-width:880px){.ds-flagship{grid-template-columns:1fr;padding:26px}.ds-flagship .viz svg{height:250px}}
+
+  /* dataset grid (replaces rail) */
+  .ds-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .ds-grid .ds-card{min-height:0}
+  .ds-card .kicker{font-size:12.5px;color:var(--muted);font-weight:500;margin:-4px 0 10px}
+  @media(max-width:880px){.ds-grid{grid-template-columns:1fr}}
+
+  /* chips / task types */
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .chip{font-size:12px;border:1px solid var(--line);border-radius:48px;padding:4px 11px;color:var(--body);background:#fff}
+
+  /* data card — datasheet spec sheet */
+  .spec{margin-top:18px;border-top:1px solid var(--line)}
+  .spec .row{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .spec dt{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;padding-top:2px}
+  .spec dd{font-size:13px;color:var(--ink);line-height:1.5}
+  .spec dd code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+    background:#E7E6DC;border-radius:4px;padding:1px 5px;color:#33322B}
+  .ph{display:inline-block;background:#E7E6DB;border:1px dashed #B6B5A8;border-radius:5px;
+    padding:0 7px;font-size:11.5px;color:#6C6B61;letter-spacing:.02em}
+  .lic{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    background:var(--ink);color:#fff;border-radius:4px;padding:2px 7px;margin-right:6px}
+  .lic.alt{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .sample{margin-top:18px;font-size:13.5px;font-weight:600;color:var(--ink);display:inline-flex;gap:6px;
+    align-items:center;transition:gap .15s}
+  .sample:hover{gap:10px}
+
+  /* provenance / methodology */
+  .prov h2{font-size:clamp(28px,3.6vw,46px);max-width:18ch;margin-bottom:18px}
+  .prov .lead-sub{font-size:17px;color:var(--body);max-width:60ch;line-height:1.55}
+  .prov-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+  .prov-card{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:var(--bg-2)}
+  .prov-card.lead{grid-column:1/-1;background:var(--ink);color:#fff;border-color:var(--ink)}
+  .prov-card .pn{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-bottom:10px}
+  .prov-card.lead .pn{color:rgba(255,255,255,.55)}
+  .prov-card h3{font-size:22px;margin-bottom:12px}
+  .prov-card.lead h3{color:#fff;font-size:clamp(22px,2.4vw,28px);max-width:22ch}
+  .prov-card p{font-size:14.5px;color:var(--body);line-height:1.55;max-width:54ch}
+  .prov-card.lead p{color:rgba(255,255,255,.74);font-size:16px;max-width:60ch}
+  .prov-card ul{margin:14px 0 0;padding-left:18px}
+  .prov-card li{font-size:14px;color:var(--body);line-height:1.5;margin-bottom:7px}
+  .guarantees{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+  .guarantees .g{font-size:13px;font-weight:500;border:1px solid var(--line);border-radius:48px;
+    padding:9px 16px;background:#fff;color:var(--ink)}
+  @media(max-width:880px){.prov-grid{grid-template-columns:1fr}}
+
   /* careers */
   .careers .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
   .careers h2{font-size:clamp(30px,3.8vw,50px);max-width:11ch;margin-bottom:18px}
@@ -200,6 +268,7 @@
       <ul class="nav-links">
         <li><a href="#mission">Mission</a></li>
         <li><a href="#datasets">Datasets</a></li>
+        <li><a href="#provenance">Provenance</a></li>
         <li><a href="#careers">Careers</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -217,7 +286,8 @@
 <section class="hero">
   <div class="wrap">
     <svg class="bars" id="hero-bars" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
-    <h1>AI is <em>commercial</em> when it understands what people actually buy.</h1>
+    <h1>Better agents learn from <em>real operations</em>.</h1>
+    <p class="sub">Optonomous runs autonomous agents inside real Shopify businesses — and turns that work into first-party, consented, outcome-labeled datasets that AI labs can't get anywhere else.</p>
     <a href="#datasets" class="btn btn-dark">Explore datasets</a>
   </div>
 </section>
@@ -226,8 +296,8 @@
 <section id="mission" class="mission">
   <div class="wrap">
     <div class="eyebrow"><span class="num">1</span><span class="dash"></span>Mission</div>
-    <p class="lead">We are a commerce data research company.
-      <span class="muted">Our mission is to bring AI into the real economy through purchase behavior — the clearest signal of what people truly want.</span></p>
+    <p class="lead">We are an agentic commerce data research company.
+      <span class="muted">Our mission is to bring AI into the real economy through the work of autonomous agents operating real businesses — the richest signal of how commerce actually gets done.</span></p>
   </div>
 </section>
 
@@ -235,15 +305,15 @@
 <section id="process" class="process">
   <div class="wrap">
     <div class="eyebrow"><span class="num">2</span><span class="dash"></span>Process</div>
-    <h2>We build purchase datasets with <span class="muted">the same rigor researchers bring to models.</span></h2>
+    <h2>We build agentic datasets with <span class="muted">the same rigor researchers bring to models.</span></h2>
     <div class="proc-layout">
       <div class="proc-steps" id="proc-steps">
-        <div class="proc-step" data-i="0"><span class="ri">i.</span><h3>Hypothesize</h3><p>Identify a commerce capability we want to unlock — basket prediction, demand forecasting, return-risk.</p></div>
-        <div class="proc-step" data-i="1"><span class="ri">ii.</span><h3>Design</h3><p>Architect the shape of transaction data needed to teach a model that capability.</p></div>
-        <div class="proc-step" data-i="2"><span class="ri">iii.</span><h3>Source</h3><p>Aggregate consented, privacy-safe purchase signals at the right granularity.</p></div>
-        <div class="proc-step" data-i="3"><span class="ri">iv.</span><h3>Evaluate &amp; Iterate</h3><p>Measure data quality and tune the collection until a small, high-signal set is achieved.</p></div>
-        <div class="proc-step" data-i="4"><span class="ri">v.</span><h3>Productionize</h3><p>Scale the dataset across millions of orders, SKUs, and merchants.</p></div>
-        <div class="proc-step" data-i="5"><span class="ri">vi.</span><h3>Release</h3><p>Publish the dataset, and continuously refresh it over time.</p></div>
+        <div class="proc-step" data-i="0"><span class="ri">i.</span><h3>Hypothesize</h3><p>Identify an agentic-commerce capability worth unlocking — dispute resolution, reorder timing, support deflection.</p></div>
+        <div class="proc-step" data-i="1"><span class="ri">ii.</span><h3>Design</h3><p>Architect the trajectory and label schema needed to teach a model that capability.</p></div>
+        <div class="proc-step" data-i="2"><span class="ri">iii.</span><h3>Capture</h3><p>Capture it first-party as our agents operate real merchant ops — context, actions, results, and verified outcomes. <a href="#provenance" style="color:inherit;text-decoration:underline;text-underline-offset:3px">See our methodology →</a></p></div>
+        <div class="proc-step" data-i="3"><span class="ri">iv.</span><h3>De-identify</h3><p>Redact PII at source, score re-identification risk against k-anonymity thresholds, and exclude all PCI/payment data.</p></div>
+        <div class="proc-step" data-i="4"><span class="ri">v.</span><h3>Evaluate &amp; Iterate</h3><p>Measure data quality and tune the collection until a small, high-signal set is achieved.</p></div>
+        <div class="proc-step" data-i="5"><span class="ri">vi.</span><h3>Release</h3><p>Publish the dataset, and continuously refresh it as our agents keep operating.</p></div>
       </div>
       <div class="proc-visual" id="proc-visual"></div>
     </div>
@@ -253,7 +323,7 @@
 <!-- ===================== TRUST ===================== -->
 <section class="trust">
   <div class="wrap">
-    <p class="big">Our datasets are used by leading retailers and AI labs <span class="muted">that work with recommendation, demand forecasting, pricing, fraud, and agentic shopping.</span></p>
+    <p class="big">Our datasets are built for AI labs and platforms <span class="muted">training autonomous agents for customer support, payments, fulfillment, and commerce operations.</span></p>
   </div>
 </section>
 
@@ -261,32 +331,126 @@
 <section id="datasets" class="datasets">
   <div class="wrap">
     <div class="eyebrow"><span class="num">3</span><span class="dash"></span>Featured Datasets</div>
-    <h2>A dataset suite designed for recommendation, forecasting, and agentic commerce</h2>
-    <div class="ds-rail">
+    <h2>The datasets only an autonomous-ops platform can produce</h2>
+    <p class="sub">Because we operate the agents ourselves, our flagship data is generated first-party — captured as real work happens, labeled with verified business outcomes. It can't be scraped, synthesized, or brokered.</p>
+
+    <!-- FLAGSHIP: Agent Trajectory Dataset -->
+    <article class="ds-flagship">
+      <div class="lead-col">
+        <span class="badge"><span class="dot"></span>Flagship · RL-ready</span>
+        <p class="kicker">Agent Trajectory Dataset</p>
+        <h3>Trace</h3>
+        <p class="intro">De-identified records of Optonomous agents performing real e-commerce operations, captured end-to-end as structured trajectories:
+          <code>context → reasoning → tool_call → tool_result → outcome → reward_signal</code>.</p>
+        <p class="why">Every trajectory carries a verified business outcome and reward signal — the outcome-labeled, RL-ready agentic data only a platform that runs the operations can produce.</p>
+        <div class="chips">
+          <span class="chip">Ticket resolution</span>
+          <span class="chip">Chargeback dispute</span>
+          <span class="chip">Inventory reorder</span>
+          <span class="chip">Ad optimization</span>
+          <span class="chip">Subscription management</span>
+        </div>
+      </div>
+      <div class="viz" data-viz="trace"></div>
+      <dl class="spec">
+        <div class="row"><dt>Schema / fields</dt><dd><code>task_type</code>, <code>context</code>, <code>reasoning_trace</code>, <code>tool_call</code>, <code>tool_result</code>, <code>outcome</code>, <code>reward_signal</code>, <code>outcome_verified</code>, <code>ts</code>, <code>merchant_segment</code> (de-identified)</dd></div>
+        <div class="row"><dt>Record count</dt><dd><span class="ph">[ trajectories — TBD ]</span> across <span class="ph">[ # task types ]</span></dd></div>
+        <div class="row"><dt>Freshness</dt><dd>Continuously generated as agents operate; refreshed <span class="ph">[ cadence — e.g. weekly, TBD ]</span></dd></div>
+        <div class="row"><dt>Geo / jurisdiction</dt><dd><span class="ph">[ region — e.g. US, TBD ]</span> · jurisdiction tagged per record</dd></div>
+        <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span><span class="lic alt">Exclusive on request</span></dd></div>
+        <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
+        <div class="row"><dt>Sample</dt><dd><a class="sample" href="#contact">Request a sample trajectory set →</a></dd></div>
+      </dl>
+    </article>
+
+    <!-- DIFFERENTIATED + REFRAMED DATASETS -->
+    <div class="ds-grid">
+
+      <!-- Differentiator 2: De-identified support corpora -->
       <article class="ds-card">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18l-3-2-3 2-3-2-2 2V3z"/><path d="M9 8h6M9 12h6"/></svg></span>
-        <h3>Ledger</h3>
-        <p>Our flagship U.S. dataset of itemized, basket-level purchases across thousands of merchants and categories.</p>
-        <div class="viz" data-viz="ledger"></div>
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></span>
+        <h3>Dialogue</h3>
+        <p class="kicker">Support Conversation Corpus</p>
+        <p>Multi-turn, intent-labeled customer-support conversations, fully PII-scrubbed. Built for training and evaluating customer-service agents.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>conversation_id</code>, <code>turns[]</code> (role, text_redacted), <code>intent_label</code>, <code>resolution_label</code>, <code>channel</code>, <code>language</code></dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ conversations — TBD ]</span></dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd><span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
       </article>
+
+      <!-- Atlas: scoped by consent -->
       <article class="ds-card">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
         <h3>Atlas</h3>
-        <p>A multi-market dataset spanning 15+ countries, with currency, category, and channel metadata in the same format as Ledger.</p>
-        <div class="viz" data-viz="atlas"></div>
+        <p class="kicker">Cross-Market Purchase Index</p>
+        <p>Aggregated purchase signals across markets, with currency, category, and channel metadata. Coverage is limited to regions where we hold a documented consent basis — each record carries its own jurisdiction.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>region</code>, <code>currency</code>, <code>category</code>, <code>channel</code>, <code>basket_value_band</code>, <code>consent_basis</code>, <code>jurisdiction</code></dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ records — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd>Per-region consent basis: <span class="ph">[ region → legal basis, TBD ]</span> — scoped to defensible regions only</dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share, validated per jurisdiction</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
       </article>
+
+      <!-- Tally (was Ledger) -->
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h14v18l-3-2-3 2-3-2-2 2V3z"/><path d="M9 8h6M9 12h6"/></svg></span>
+        <h3>Tally</h3>
+        <p class="kicker">Basket-Level Purchase Records</p>
+        <p>Itemized, basket-level purchase records across merchants and categories. All PCI/payment data is excluded at source.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>basket_id</code>, <code>line_items[]</code> (sku, qty, price), <code>category</code>, <code>merchant_segment</code>, <code>ts</code> — no card or payment fields</dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ baskets — TBD ]</span></dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd><span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
+      </article>
+
+      <!-- Registry (was Catalog) -->
+      <article class="ds-card">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <h3>Registry</h3>
+        <p class="kicker">Product &amp; Pricing Graph</p>
+        <p>A structured product graph of SKUs, attributes, images, and pricing across domains and retailers. Product-level reference data — no personal data.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>sku</code>, <code>title</code>, <code>attributes{}</code>, <code>category_path</code>, <code>price_history[]</code>, <code>image_ref</code>, <code>retailer</code></dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ products — TBD ]</span></dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd>Product reference data · <span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
+      </article>
+
+      <!-- Cohort: reframed around k-anonymity, demoted to last -->
       <article class="ds-card">
         <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 2.5-5 6-5s6 2 6 5M15.5 19c0-2 .8-3.4 2.2-4"/></svg></span>
         <h3>Cohort</h3>
-        <p>Longitudinal purchase histories that follow households over time. Built for retention, LTV, and repeat-purchase modeling.</p>
-        <div class="viz" data-viz="cohort"></div>
+        <p class="kicker">Aggregated Purchase Cohorts</p>
+        <p>k-anonymous, aggregated purchase cohorts for retention and LTV modeling. Records describe grouped segments that meet a minimum k-anonymity threshold — there is no individual- or household-level tracking.</p>
+        <dl class="spec">
+          <div class="row"><dt>Schema / fields</dt><dd><code>cohort_id</code>, <code>segment_definition</code>, <code>k_min</code>, <code>aggregate_metrics{}</code> (retention, repeat-rate, LTV band), <code>period</code></dd></div>
+          <div class="row"><dt>Record count</dt><dd><span class="ph">[ cohorts — TBD ]</span> · min cohort size <span class="ph">[ k — TBD ]</span></dd></div>
+          <div class="row"><dt>Freshness</dt><dd>Refreshed <span class="ph">[ cadence — TBD ]</span></dd></div>
+          <div class="row"><dt>Geo / jurisdiction</dt><dd>Aggregate only · <span class="ph">[ region — TBD ]</span></dd></div>
+          <div class="row"><dt>License</dt><dd><span class="lic">Non-exclusive</span></dd></div>
+          <div class="row"><dt>Consent basis</dt><dd>Merchant opt-in + revenue share · aggregated, no re-identifiable trajectories</dd></div>
+        </dl>
+        <a class="sample" href="#contact">Request sample →</a>
       </article>
-      <article class="ds-card">
-        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-        <h3>Catalog</h3>
-        <p>A structured product graph of SKUs, attributes, images, and pricing across domains and retailers.</p>
-        <div class="viz" data-viz="catalog"></div>
-      </article>
+
     </div>
 
     <div class="ds-note">
@@ -312,10 +476,53 @@
   </div>
 </section>
 
+<!-- ===================== PROVENANCE / METHODOLOGY ===================== -->
+<section id="provenance" class="prov">
+  <div class="wrap">
+    <div class="eyebrow"><span class="num">4</span><span class="dash"></span>Provenance &amp; Methodology</div>
+    <h2>First-party data, built on a platform we operate end-to-end</h2>
+    <p class="lead-sub">Every record originates inside Optonomous — generated as our own agents run real merchant operations — and passes a fixed de-identification pipeline before it can ever be licensed. We do not broker third-party panels.</p>
+    <div class="prov-grid">
+      <div class="prov-card lead">
+        <div class="pn">i. — our core advantage</div>
+        <h3>First-party origin</h3>
+        <p>The data is generated on infrastructure we own and operate. Our agents do the work — resolving tickets, disputing chargebacks, reordering inventory — and the trajectory <em>is</em> the byproduct. Nothing is scraped, purchased, or assembled from brokered panels, so we control the full pipeline from capture to release and can attest to where every record came from.</p>
+      </div>
+      <div class="prov-card">
+        <div class="pn">ii.</div>
+        <h3>Consent</h3>
+        <p>Data is collected only from merchants who explicitly enroll in our opt-in + revenue-share program. Merchants share in the revenue from datasets derived from their operations, which aligns incentives and keeps consent active rather than buried in terms.</p>
+      </div>
+      <div class="prov-card">
+        <div class="pn">iii.</div>
+        <h3>De-identification</h3>
+        <p>A fixed pipeline runs before any data becomes licensable:</p>
+        <ul>
+          <li>PII redaction before data leaves its source system</li>
+          <li>Re-identification risk scoring against k-anonymity thresholds</li>
+          <li>Hard exclusion of all PCI / payment data at source — it never enters the sellable pipeline</li>
+        </ul>
+      </div>
+      <div class="prov-card">
+        <div class="pn">iv.</div>
+        <h3>Opt-out &amp; deletion</h3>
+        <p>Merchants can opt out at any time, which halts new collection immediately. Deletion requests propagate to derived datasets in line with our retention and re-release policy, and downstream licensees are notified per contract.</p>
+      </div>
+    </div>
+    <div class="guarantees">
+      <span class="g">No PII in sellable data</span>
+      <span class="g">No PCI / payment data, ever</span>
+      <span class="g">First-party only — no brokered panels</span>
+      <span class="g">Consented + revenue-shared</span>
+      <span class="g">k-anonymity risk scoring</span>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== CAREERS ===================== -->
 <section id="careers" class="careers">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">4</span><span class="dash"></span>Careers</div>
+    <div class="eyebrow"><span class="num">5</span><span class="dash"></span>Careers</div>
     <div class="grid">
       <div>
         <h2>Join us to shape the future of commerce AI</h2>
@@ -330,7 +537,7 @@
 <!-- ===================== NEWS ===================== -->
 <section id="news" class="news">
   <div class="wrap">
-    <div class="eyebrow"><span class="num">5</span><span class="dash"></span>News</div>
+    <div class="eyebrow"><span class="num">6</span><span class="dash"></span>News</div>
     <div class="head">
       <h2>Updates on our progress</h2>
       <a href="#" class="btn btn-ghost">View all</a>
@@ -338,17 +545,17 @@
     <div class="news-grid">
       <a class="news-card" href="#">
         <div class="thumb" data-news="0"></div>
-        <h3>Announcing Ledger: Basket-Level Purchase Data at Scale</h3>
+        <h3>Introducing Trace: RL-Ready Agent Trajectory Data</h3>
         <div class="meta">Jun 12, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
       <a class="news-card" href="#">
         <div class="thumb" data-news="1"></div>
-        <h3>Optonomous Raises $30M to Build Commerce Datasets</h3>
+        <h3>Optonomous Raises a Series A to Build First-Party Agentic Data</h3>
         <div class="meta">Apr 2, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
       <a class="news-card" href="#">
         <div class="thumb" data-news="2"></div>
-        <h3>Atlas Expands Purchase Coverage to 15+ Markets</h3>
+        <h3>Atlas: Cross-Market Coverage, Scoped by Per-Region Consent</h3>
         <div class="meta">Feb 18, 2026&nbsp;&nbsp;·&nbsp;&nbsp;News</div>
       </a>
     </div>
@@ -489,8 +696,23 @@ function rand(seed){ // deterministic pseudo-random per index
   function atlas(){let dots='';for(let y=0;y<6;y++)for(let x=0;x<14;x++){const on=rand(x*7+y)>0.42;dots+=`<circle cx="${10+x*21}" cy="${12+y*18}" r="3" fill="${on?'#56564F':'#CFCEC4'}"/>`;}return `<svg viewBox="0 0 306 120">${dots}<text x="20" y="64" font-family="Besley,serif" font-size="22" fill="${ACCENT[0]}">$</text><text x="150" y="44" font-family="Besley,serif" font-size="22" fill="${ACCENT[4]}">€</text><text x="250" y="84" font-family="Besley,serif" font-size="22" fill="${ACCENT[1]}">¥</text></svg>`;}
   function cohort(){let s='';for(let row=0;row<3;row++){s+=`<line x1="14" y1="${24+row*36}" x2="292" y2="${24+row*36}" stroke="#D2D1C7" stroke-width="2"/>`;for(let c=0;c<6;c++){s+=`<circle cx="${30+c*48}" cy="${24+row*36}" r="9" fill="${c<=row+2?ACCENT[(row+c)%ACCENT.length]:'#D2D1C7'}"/>`;}}return `<svg viewBox="0 0 306 120">${s}</svg>`;}
   function catalog(){let s='';for(let y=0;y<3;y++)for(let x=0;x<6;x++){const c=ACCENT[(x+y)%ACCENT.length];s+=`<rect x="${10+x*48}" y="${8+y*38}" width="40" height="30" rx="6" fill="#fff" stroke="#D2D1C7"/><rect x="${16+x*48}" y="${14+y*38}" width="16" height="6" rx="3" fill="${c}"/><rect x="${16+x*48}" y="${24+y*38}" width="26" height="4" rx="2" fill="#D2D1C7"/>`;}return `<svg viewBox="0 0 306 120">${s}</svg>`;}
-  const map={ledger,atlas,cohort,catalog};
-  document.querySelectorAll('[data-viz]').forEach(el=>{el.innerHTML=map[el.dataset.viz]();});
+  function trace(){
+    const steps=[['context','#7C7B72'],['reasoning','#7C7B72'],['tool_call',ACCENT[4]],['tool_result','#7C7B72'],['outcome',ACCENT[5]],['reward_signal',ACCENT[3]]];
+    const x=44,w=232,h=34,gap=14,top=8;
+    let s=`<line x1="${x+14}" y1="${top+h/2}" x2="${x+14}" y2="${top+(steps.length-1)*(h+gap)+h/2}" stroke="#CFCEC4" stroke-width="2"/>`;
+    steps.forEach((st,i)=>{
+      const y=top+i*(h+gap), reward=i===steps.length-1;
+      s+=`<circle cx="${x+14}" cy="${y+h/2}" r="6" fill="${st[1]}"/>`;
+      s+=`<rect x="${x+30}" y="${y}" width="${w}" height="${h}" rx="8" fill="#fff" stroke="${reward?ACCENT[3]:'#DAD9CF'}" stroke-width="${reward?2:1}"/>`;
+      s+=`<text x="${x+44}" y="${y+h/2+4}" font-family="ui-monospace,Menlo,monospace" font-size="13" fill="#33322B">${st[0]}</text>`;
+      if(reward) s+=`<path d="M${x+30+w-26} ${y+h/2} l5 5 l9 -11" stroke="${ACCENT[3]}" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+      if(i<steps.length-1) s+=`<path d="M${x+14} ${y+h+2} l-4 -5 M${x+14} ${y+h+2} l4 -5" stroke="#BDBCB1" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+    });
+    const vbH=top+steps.length*(h+gap);
+    return `<svg viewBox="0 0 320 ${vbH}" preserveAspectRatio="xMidYMid meet">${s}</svg>`;
+  }
+  const map={ledger,atlas,cohort,catalog,trace};
+  document.querySelectorAll('[data-viz]').forEach(el=>{const fn=map[el.dataset.viz];if(fn)el.innerHTML=fn();});
 })();
 
 /* ---------- careers illustration (rainbow stripes) ---------- */
