@@ -27,6 +27,14 @@ ul[role="list"], ol[role="list"] { list-style: none; }
 input, button, textarea, select { font: inherit; color: inherit; }
 
 h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.15; }
+
+/* Headings must never fall back to the UA's bold 700 - the theme tops out at
+   600. Display-scale headings are light; component classes override as needed. */
+h1, h2 {
+  font-weight: var(--display-weight, 300);
+  letter-spacing: var(--tracking-display, -0.03em);
+}
+h3, h4, h5, h6 { font-weight: 500; }
 p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 ::selection {

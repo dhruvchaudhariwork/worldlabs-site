@@ -12,13 +12,12 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Optonomous — Autonomous Ops for E-Commerce</title>
-<meta name="description" content="AI agents that build your Shopify store and run your ops. Support, subscriptions, inventory, chargebacks — all autonomous.">
+<title>Optonomous | Autonomous Ops for E-Commerce</title>
+<meta name="description" content="AI agents that build your Shopify store and run your ops. Support, subscriptions, inventory, chargebacks. All autonomous.">
 
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
@@ -66,191 +65,102 @@
   .hero-consent a { color: var(--color-text-secondary); text-decoration: underline; }
   .hero-consent a:hover { color: var(--color-text); }
 </style>
-<style>
-  /* ========== Loading Screen ========== */
-  .loader-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #0a0a0a;
-    display: flex;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .loader-screen.out {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .loader-label {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    font-size: 0.75rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-family: var(--font-body);
-    font-weight: 500;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: loaderSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-  }
-
-  .loader-words {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .loader-word {
-    position: absolute;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    color: rgba(245, 245, 245, 0.8);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .loader-word.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .loader-word.exit {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-
-  .loader-counter {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    color: #f5f5f5;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: loaderSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-  }
-
-  .loader-bar-track {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: rgba(31, 31, 31, 0.5);
-  }
-
-  .loader-bar-fill {
-    height: 100%;
-    transform-origin: left;
-    transform: scaleX(0);
-    background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
-    box-shadow: 0 0 8px rgba(137, 170, 204, 0.35);
-    transition: transform 0.1s linear;
-  }
-
-  @keyframes loaderSlideIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (min-width: 768px) {
-    .loader-label { top: 3rem; left: 3rem; font-size: 0.875rem; }
-    .loader-counter { bottom: 3rem; right: 3rem; }
-  }
-
-  /* Hide page content until loader finishes */
-  .page-content {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-  }
-  .page-content.visible {
-    opacity: 1;
-  }
-</style>
 </head>
 <body>
 
-<!-- Loading Screen -->
-<div class="loader-screen" id="loader">
-  <div class="loader-label">Optonomous</div>
-  <div class="loader-words" id="loader-words">
-    <span class="loader-word active" data-word="0">Build</span>
-    <span class="loader-word" data-word="1">Connect</span>
-    <span class="loader-word" data-word="2">Automate</span>
+<div id="page-content">
+
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="#" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 16h6l3-6 3 12 3-6h6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="mk-logo-text">Optonomous</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>Storefront AI</span>
+      <span>Autonomous Ops</span>
+    </div>
   </div>
-  <div class="loader-counter" id="loader-counter">000</div>
-  <div class="loader-bar-track">
-    <div class="loader-bar-fill" id="loader-bar"></div>
+
+  <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="mk-cta-btn" aria-label="Book a demo">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Book a Demo</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="#" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">01</span>Home</a>
+    <a href="#features" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Platform</a>
+    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>How It Works</a>
+    <a href="#calculator" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">04</span>Pricing</a>
+    <a href="#data-program" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>Earn</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">06</span>Research</a>
+    <a href="./trust.html" class="mk-overlay-link"><span class="mk-overlay-num">07</span>Data &amp; Trust</a>
+    <a href="./app.html" class="mk-overlay-link"><span class="mk-overlay-num">08</span>Log In</a>
+  </div>
+  <div class="mk-overlay-meta">
+    Optonomous: AI agents that build your store and run your ops. Early access · agents ship weekly.
   </div>
 </div>
 
-<div class="page-content" id="page-content">
-<!-- Header -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <span class="logo-text">OPTONOMOUS</span>
-    </a>
-    <nav>
-      <ul class="nav-links" role="list">
-        <li><a href="#features">Platform</a></li>
-        <li><a href="#data-program">Earn</a></li>
-        <li><a href="./research.html">Research</a></li>
-        <li><a href="./trust.html">Data &amp; Trust</a></li>
-      </ul>
-    </nav>
-    <div class="nav-right">
-      <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="btn-demo">Book a Demo</a>
-      <a href="./app.html" class="btn-login">Log in</a>
-      <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      </button>
-      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-      </button>
+<!-- Hero -->
+<section class="mk-hero">
+  <div class="mk-video-layer">
+    <div class="mk-video-wrap">
+      <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
+             autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
     </div>
   </div>
-</header>
 
-<!-- Mobile nav overlay -->
-<nav class="mobile-nav" id="mobile-nav">
-  <a href="#features" data-mobile-link>Platform</a>
-  <a href="#data-program" data-mobile-link>Earn</a>
-  <a href="./research.html">Research</a>
-  <a href="./trust.html">Data &amp; Trust</a>
-  <a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Book a Demo</a>
-  <a href="./app.html" data-mobile-link>Log in</a>
-</nav>
+  <div class="mk-hero-footer">
+    <div>
+      <div class="mk-subtitle">
+        <span class="mk-subtitle-dot"></span>
+        Early access · agents ship weekly
+      </div>
 
+      <h1 class="mk-heading">Autonomous ops<br>for e-commerce</h1>
 
-<!-- Hero + Waitlist -->
-<section class="hero">
-  <div class="hero-inner">
-    <h1>Autonomous ops<br>for e-commerce</h1>
-    <p class="hero-sub">AI agents that build your Shopify store and run your ops — support, subscriptions, inventory, and chargebacks. Describe your product and go live.</p>
-
-    <div class="waitlist-form" id="waitlist-form">
-      <input type="email" class="waitlist-input" placeholder="you@yourbrand.com" id="waitlist-email" required>
-      <button class="btn btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
+      <div class="mk-hero-btns">
+        <div class="mk-hero-form" id="waitlist-form">
+          <input type="email" class="mk-hero-input" placeholder="you@yourbrand.com" id="waitlist-email" required>
+          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
+        </div>
+        <a href="#how" class="mk-btn mk-btn-secondary">How It Works</a>
+      </div>
+      <div class="waitlist-msg" id="waitlist-msg"></div>
     </div>
-    <div class="waitlist-msg" id="waitlist-msg"></div>
-    <p class="hero-consent">By joining you agree to our <a href="./terms.html">Terms</a> and <a href="./privacy.html">Privacy Policy</a>. The data revenue-share program is <strong>opt-in</strong>, captured separately when you connect your store — see <a href="./trust.html">Data &amp; Trust</a>.</p>
+
+    <div class="mk-hero-tags">
+      <span class="mk-hero-tag">Support</span>
+      <span class="mk-hero-tag">Subscriptions</span>
+      <span class="mk-hero-tag">Inventory</span>
+      <span class="mk-hero-tag">Chargebacks</span>
+    </div>
   </div>
 </section>
 
 
 <!-- Platform Logos -->
 <section class="section" style="padding-top:0;">
-  <div class="section-inner section-center fade-in">
-    <div class="section-label" style="text-align:center;">LAUNCHING ON</div>
+  <div class="section-inner section-center fade-in mk-logos">
+    <div class="section-label">Launching on</div>
     <div class="logo-row" style="gap:var(--space-8);">
       <div class="logo-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</div>
       <div class="logo-item" style="opacity:0.4;">WooCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
@@ -263,7 +173,7 @@
 <!-- How It Works -->
 <section class="section" id="how">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">HOW IT WORKS</div>
+    <div class="section-label fade-in">How it works</div>
     <h2 class="section-title fade-in">Tell us what you sell. We handle the rest.</h2>
     <p class="section-desc fade-in">From building your storefront to running day-to-day operations. Three steps.</p>
 
@@ -271,7 +181,7 @@
       <div class="step-card fade-in">
         <div class="step-number">1</div>
         <h3>Build</h3>
-        <p>Describe your product. Forge analyzes top stores in your niche and generates a conversion-optimized storefront — product pages, bundles, upsells, checkout.</p>
+        <p>Describe your product. Forge analyzes top stores in your niche and generates a conversion-optimized storefront: product pages, bundles, upsells, checkout.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-number">2</div>
@@ -291,50 +201,50 @@
 <!-- Features -->
 <section class="section" id="features">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">PLATFORM</div>
+    <div class="section-label fade-in">Platform</div>
     <h2 class="section-title fade-in">Your ops team, fully automated</h2>
 
     <div class="features-grid">
       <div class="feature-card fade-in">
-        <div class="feature-label">STOREFRONT</div>
+        <div class="feature-label">Storefront</div>
         <h3>Forge</h3>
-        <p>Describe your product and the AI builds a conversion-optimized storefront — product pages, bundles, upsells, checkout flows. Iterate with prompts. Hosted and managed.</p>
+        <p>Describe your product and the AI builds a conversion-optimized storefront: product pages, bundles, upsells, checkout flows. Iterate with prompts. Hosted and managed.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">SUPPORT</div>
+        <div class="feature-label">Support</div>
         <h3>Resolve</h3>
         <p>Monitors your inbox, classifies intent, drafts replies in your brand voice, and auto-sends high-confidence responses. Escalates edge cases with full context.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">SUBSCRIPTIONS</div>
+        <div class="feature-label">Subscriptions</div>
         <h3>Pulse</h3>
-        <p>Full subscription management — billing, payment processing, failed rebill recovery with smart retry cascading, and churn prevention via save flows. PCI DSS Level 1.</p>
+        <p>Full subscription management: billing, payment processing, failed rebill recovery with smart retry cascading, and churn prevention via save flows. PCI DSS Level 1.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">INVENTORY</div>
+        <div class="feature-label">Inventory</div>
         <h3>Supply</h3>
         <p>Computes days-of-cover for every SKU. Flags stock-out risks with auto-drafted PO emails. Generates promo copy when inventory is heavy.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">DISPUTES &mdash; POWERED BY DISPUTELY</div>
+        <div class="feature-label">Disputes, powered by Disputely</div>
         <h3>Chargeback Protection</h3>
         <p>Integrated prevention and recovery via Disputely. Real-time alerts from Visa RDR, Ethoca, and CDRN networks. Auto-deflection before chargebacks hit your ratio.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">PROFITABILITY</div>
+        <div class="feature-label">Profitability</div>
         <h3>Ledger</h3>
-        <p>Connect Meta, TikTok, and Google ad accounts. Set COGS per SKU. See real profit per order, per product, per channel — not just revenue.</p>
+        <p>Connect Meta, TikTok, and Google ad accounts. Set COGS per SKU. See real profit per order, per product, per channel, not just revenue.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">AD CAMPAIGNS</div>
+        <div class="feature-label">Ad campaigns</div>
         <h3>Signal</h3>
-        <p>Monitors ad performance across Meta, TikTok, and Google. Auto-adjusts budgets, scales winners, pauses underperformers. Optimizes for true profit via Ledger — not just ROAS.</p>
+        <p>Monitors ad performance across Meta, TikTok, and Google. Auto-adjusts budgets, scales winners, pauses underperformers. Optimizes for true profit via Ledger, not just ROAS.</p>
       </div>
     </div>
   </div>
@@ -344,9 +254,9 @@
 <!-- Dashboard Mock -->
 <section class="section" id="dashboard">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">COMMAND CENTER</div>
+    <div class="section-label fade-in">Command center</div>
     <h2 class="section-title fade-in">You're the CEO, not the operator</h2>
-    <p class="section-desc fade-in">The dashboard isn't where you do the work — it's where you see what your agents already did.</p>
+    <p class="section-desc fade-in">The dashboard isn't where you do the work; it's where you see what your agents already did.</p>
 
     <style>
       /* ── Card system (Figma-inspired) ─────────────────────────────── */
@@ -373,7 +283,7 @@
       }
       .dash-card-big-number {
         font-size: 28px;
-        font-weight: 800;
+        font-weight: 600;
         color: var(--color-text);
         font-variant-numeric: tabular-nums lining-nums;
         line-height: 1.1;
@@ -403,6 +313,8 @@
 
       /* ── Grid layouts ─────────────────────────────────────────────── */
       .dash-row { display: grid; gap: 12px; margin-bottom: 12px; }
+      .dash-row-1 { grid-template-columns: 1fr; }
+      .dash-row-ring { grid-template-columns: 1fr 2fr; }  /* ring card + list */
       .dash-row-2-wide { grid-template-columns: 3fr 2fr; }
       .dash-row-3 { grid-template-columns: 1fr 1fr 1fr; }
       .dash-row-2 { grid-template-columns: 1fr 1fr; }
@@ -421,7 +333,7 @@
         margin-bottom: 12px;
       }
       .dash-panel-title {
-        font-size: 13px; font-weight: 700; color: var(--color-text);
+        font-size: 13px; font-weight: 500; color: var(--color-text);
         display: flex; align-items: center; gap: 8px;
       }
       .dash-panel-subtitle {
@@ -492,7 +404,7 @@
       }
       .dash-donut-legend-pct {
         margin-left: auto;
-        font-weight: 700;
+        font-weight: 500;
         color: var(--color-text);
         font-variant-numeric: tabular-nums;
       }
@@ -523,7 +435,7 @@
         display: flex; align-items: center; justify-content: center;
         flex-shrink: 0;
         font-size: 10px;
-        font-weight: 800;
+        font-weight: 600;
         color: var(--color-text-secondary);
       }
       .dash-dispute-name {
@@ -534,7 +446,7 @@
       }
       .dash-dispute-amount {
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 500;
         color: var(--color-text);
         font-variant-numeric: tabular-nums;
         margin-right: 6px;
@@ -543,7 +455,7 @@
         font-size: 10px;
         padding: 2px 8px;
         border-radius: 10px;
-        font-weight: 700;
+        font-weight: 500;
         letter-spacing: 0.02em;
         white-space: nowrap;
       }
@@ -564,7 +476,7 @@
         padding: 14px 16px;
       }
       .dash-mini-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
-      .dash-mini-kpi-value { font-size: 22px; font-weight: 800; color: var(--color-text); font-variant-numeric: tabular-nums; }
+      .dash-mini-kpi-value { font-size: 22px; font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums; }
       .dash-mini-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 3px; }
       .dash-mini-kpi-delta.pos { color: var(--color-positive); }
       .dash-mini-kpi-delta.neg { color: var(--color-negative); }
@@ -592,7 +504,7 @@
       .dash-badge-row:last-child { border-bottom: none; }
       .dash-badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
       .dash-badge-name { flex: 1; color: var(--color-text-secondary); font-weight: 500; }
-      .dash-badge-val { font-weight: 700; color: var(--color-text); font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
+      .dash-badge-val { font-weight: 500; color: var(--color-text); font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
       .dash-badge-pct { font-size: 11px; color: var(--color-text-tertiary); min-width: 42px; text-align: right; }
 
       .dash-toggle-group {
@@ -623,7 +535,7 @@
       .dash-ticket-subject { font-weight: 600; color: var(--color-text); }
       .dash-ticket-meta { color: var(--color-text-tertiary); font-size: 11px; }
       .dash-tag {
-        font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700;
+        font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500;
         letter-spacing: 0.03em;
       }
       .dash-tag-auto { background: var(--color-positive-bg); color: var(--color-positive); }
@@ -642,7 +554,7 @@
       .dash-sku-status { text-align: right; }
 
       .dash-status-pill {
-        font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700;
+        font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500;
       }
       .pill-critical { background: var(--color-negative-bg); color: var(--color-negative); }
       .pill-low { background: var(--color-caution-bg); color: var(--color-caution); }
@@ -664,7 +576,7 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.04);
       }
       .dash-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
-      .dash-kpi-value { font-size: 20px; font-weight: 800; color: var(--color-text); font-variant-numeric: tabular-nums lining-nums; }
+      .dash-kpi-value { font-size: 20px; font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums lining-nums; }
       .dash-kpi-delta { font-size: 11px; font-weight: 500; margin-top: 3px; }
       .dash-kpi-delta.positive { color: var(--color-positive); }
       .dash-kpi-delta.negative { color: var(--color-negative); }
@@ -685,7 +597,7 @@
         .dash-row-2-wide { grid-template-columns: 1fr; }
       }
       @media (max-width: 768px) {
-        .dash-row-2, .dash-row-3, .dash-row-2-wide { grid-template-columns: 1fr; }
+        .dash-row-2, .dash-row-3, .dash-row-2-wide, .dash-row-ring { grid-template-columns: 1fr; }
         .dash-row-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
         .dash-kpis { grid-template-columns: repeat(2, 1fr); }
         .dash-panel { padding: 12px; }
@@ -728,17 +640,17 @@
           <div class="dash-tab" data-tab="signal">Ad Campaigns</div>
         </div>
 
-        <!-- ========== DISPUTES TAB — Figma-inspired card layout ===== -->
+        <!-- ========== DISPUTES TAB - Figma-inspired card layout ===== -->
         <div class="tab-panel active" id="tab-disputes">
 
-          <!-- Row 1: Saved This Quarter (wide) + Dispute Sources (donut) -->
-          <div class="dash-row dash-row-2-wide">
+          <!-- Row 1: Saved This Quarter -->
+          <div class="dash-row dash-row-1">
 
-            <!-- LEFT: Saved This Quarter — bar chart card -->
+            <!-- LEFT: Saved This Quarter - bar chart card -->
             <div class="dash-card">
               <div class="dash-card-header">
                 <div>
-                  <div class="dash-card-title">Saved This Quarter</div>
+                  <div class="dash-card-title">Saved this quarter</div>
                   <div class="dash-card-big-number">$18.2k</div>
                   <div class="dash-card-trend up">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 9.5V2.5M2.5 6L6 2.5L9.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -786,87 +698,20 @@
               </div>
             </div>
 
-            <!-- RIGHT: Dispute Sources — donut/ring chart -->
-            <div class="dash-card">
-              <div class="dash-card-header">
-                <div>
-                  <div class="dash-card-title">Dispute Sources</div>
-                </div>
-                <a class="dash-view-report" href="#">View Report</a>
-              </div>
-              <div class="dash-donut-wrap">
-                <!-- Donut SVG — segments for Visa RDR 52%, Ethoca 26%, CDRN 15%, Unresolved 7% -->
-                <!-- r=38, circumference=238.76. Each segment uses dashoffset=-(prior cumulative arc) -->
-                <svg width="100" height="100" viewBox="0 0 100 100" style="flex-shrink:0;">
-                  <!-- Track ring -->
-                  <circle cx="50" cy="50" r="38" fill="none" stroke="var(--color-border)" stroke-width="14"/>
-                  <!-- Visa RDR 52% — brand color — offset 0 -->
-                  <circle cx="50" cy="50" r="38" fill="none"
-                    stroke="var(--color-brand)"
-                    stroke-width="14"
-                    stroke-dasharray="124.16 238.76"
-                    stroke-dashoffset="0"
-                    transform="rotate(-90 50 50)"/>
-                  <!-- Ethoca 26% — positive — offset -124.16 -->
-                  <circle cx="50" cy="50" r="38" fill="none"
-                    stroke="var(--color-positive)"
-                    stroke-width="14"
-                    stroke-dasharray="62.08 238.76"
-                    stroke-dashoffset="-124.16"
-                    transform="rotate(-90 50 50)"/>
-                  <!-- CDRN 15% — caution — offset -186.23 -->
-                  <circle cx="50" cy="50" r="38" fill="none"
-                    stroke="var(--color-caution)"
-                    stroke-width="14"
-                    stroke-dasharray="35.81 238.76"
-                    stroke-dashoffset="-186.23"
-                    transform="rotate(-90 50 50)"/>
-                  <!-- Unresolved 7% — negative — offset -222.05 -->
-                  <circle cx="50" cy="50" r="38" fill="none"
-                    stroke="var(--color-negative)"
-                    stroke-width="14"
-                    stroke-dasharray="16.71 238.76"
-                    stroke-dashoffset="-222.05"
-                    transform="rotate(-90 50 50)"/>
-                </svg>
-                <div class="dash-donut-legend">
-                  <div class="dash-donut-legend-item">
-                    <div class="dash-donut-legend-dot" style="background:var(--color-brand);"></div>
-                    <span>Visa RDR</span>
-                    <span class="dash-donut-legend-pct">52%</span>
-                  </div>
-                  <div class="dash-donut-legend-item">
-                    <div class="dash-donut-legend-dot" style="background:var(--color-positive);"></div>
-                    <span>Ethoca</span>
-                    <span class="dash-donut-legend-pct">26%</span>
-                  </div>
-                  <div class="dash-donut-legend-item">
-                    <div class="dash-donut-legend-dot" style="background:var(--color-caution);"></div>
-                    <span>CDRN</span>
-                    <span class="dash-donut-legend-pct">15%</span>
-                  </div>
-                  <div class="dash-donut-legend-item">
-                    <div class="dash-donut-legend-dot" style="background:var(--color-negative);"></div>
-                    <span>Unresolved</span>
-                    <span class="dash-donut-legend-pct">7%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div><!-- /row 1 -->
 
-          <!-- Row 2: Win Rate + Recent Disputes + Chargeback Ratio -->
-          <div class="dash-row dash-row-3">
+          <!-- Row 2: Win Rate + Recent Disputes -->
+          <div class="dash-row dash-row-ring">
 
-            <!-- Card 1: Win Rate — circular progress ring -->
+            <!-- Card 1: Win Rate - circular progress ring -->
             <div class="dash-card" style="text-align:center;">
-              <div class="dash-card-title" style="text-align:left;">Win Rate</div>
+              <div class="dash-card-title" style="text-align:left;">Win rate</div>
               <div class="dash-rings-wrap">
                 <!-- Outer decorative ring -->
                 <svg width="120" height="120" viewBox="0 0 120 120">
                   <!-- Track -->
                   <circle cx="60" cy="60" r="48" fill="none" stroke="var(--color-border)" stroke-width="10"/>
-                  <!-- Progress ring 87% — r=48, circ=301.59, 87%=262.39 -->
+                  <!-- Progress ring 87% - r=48, circ=301.59, 87%=262.39 -->
                   <circle cx="60" cy="60" r="48" fill="none"
                     stroke="var(--color-brand)"
                     stroke-width="10"
@@ -876,7 +721,7 @@
                     transform="rotate(-90 60 60)"/>
                   <!-- Second inner ring (decorative, Figma-style overlap) -->
                   <circle cx="60" cy="60" r="34" fill="none" stroke="var(--color-border)" stroke-width="8"/>
-                  <!-- Inner ring 92% (win+deflect combined) — r=34, circ=213.63, 92%=196.54 -->
+                  <!-- Inner ring 92% (win+deflect combined) - r=34, circ=213.63, 92%=196.54 -->
                   <circle cx="60" cy="60" r="34" fill="none"
                     stroke="var(--color-positive)"
                     stroke-width="8"
@@ -886,7 +731,7 @@
                     transform="rotate(-90 60 60)"/>
                   <!-- Center label -->
                   <text x="60" y="56" text-anchor="middle" fill="var(--color-text)" font-size="18" font-weight="800" font-family="var(--font-body)">87%</text>
-                  <text x="60" y="69" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-body)">Win Rate</text>
+                  <text x="60" y="69" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-body)">Win rate</text>
                 </svg>
               </div>
               <div class="dash-card-trend up" style="justify-content:center;">
@@ -895,10 +740,10 @@
               </div>
             </div>
 
-            <!-- Card 2: Recent Disputes — list with thumbnails + status pills -->
+            <!-- Card 2: Recent Disputes - list with thumbnails + status pills -->
             <div class="dash-card">
               <div class="dash-card-header">
-                <div class="dash-card-title">Recent Disputes</div>
+                <div class="dash-card-title">Recent disputes</div>
                 <a class="dash-view-report" href="#">View Report</a>
               </div>
               <!-- Row 1 -->
@@ -911,7 +756,7 @@
               <!-- Row 2 -->
               <div class="dash-dispute-row">
                 <div class="dash-dispute-icon">MC</div>
-                <div class="dash-dispute-name">Glow Bundle — 3pk</div>
+                <div class="dash-dispute-name">Glow Bundle 3pk</div>
                 <div class="dash-dispute-amount">$147</div>
                 <div class="dash-pill dash-pill-active">Active</div>
               </div>
@@ -931,46 +776,6 @@
               </div>
             </div>
 
-            <!-- Card 3: Chargeback Ratio — big number + sparkline -->
-            <div class="dash-card">
-              <div class="dash-card-header">
-                <div>
-                  <div class="dash-card-title">Chargeback Ratio</div>
-                  <div class="dash-card-big-number">0.41%</div>
-                  <div class="dash-card-trend down">
-                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 2.5V9.5M9.5 6L6 9.5L2.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    0.23% from last month
-                  </div>
-                </div>
-              </div>
-              <!-- Sparkline: ratio dropping over 6 months -->
-              <div class="dash-sparkline-wrap">
-                <svg viewBox="0 0 200 60" style="width:100%;height:auto;">
-                  <!-- Light fill area -->
-                  <path d="M0,8 C20,10 40,16 60,22 C80,28 100,32 120,38 C140,44 160,48 180,50 L200,52 L200,60 L0,60 Z"
-                    fill="var(--color-positive-bg)" stroke="none"/>
-                  <!-- Line -->
-                  <path d="M0,8 C20,10 40,16 60,22 C80,28 100,32 120,38 C140,44 160,48 180,50 L200,52"
-                    fill="none" stroke="var(--color-positive)" stroke-width="2" stroke-linecap="round"/>
-                  <!-- Data points -->
-                  <circle cx="0"   cy="8"  r="3" fill="var(--color-positive)"/>
-                  <circle cx="40"  cy="16" r="2.5" fill="var(--color-positive)"/>
-                  <circle cx="80"  cy="26" r="2.5" fill="var(--color-positive)"/>
-                  <circle cx="120" cy="38" r="2.5" fill="var(--color-positive)"/>
-                  <circle cx="160" cy="47" r="2.5" fill="var(--color-positive)"/>
-                  <circle cx="200" cy="52" r="3" fill="var(--color-positive)"/>
-                </svg>
-                <!-- Month labels -->
-                <div style="display:flex;justify-content:space-between;margin-top:2px;">
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Oct</span>
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Nov</span>
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Dec</span>
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Jan</span>
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Feb</span>
-                  <span style="font-size:9px;color:var(--color-text-tertiary);">Mar</span>
-                </div>
-              </div>
-            </div>
 
           </div><!-- /row 2 -->
 
@@ -1029,22 +834,22 @@
               </div>
               <div class="dash-ticket-row">
                 <div><div class="dash-ticket-subject">Where is my order #4821?</div><div class="dash-ticket-meta">sarah.k@gmail.com · 14m ago</div></div>
-                <div class="dash-tag dash-tag-auto">AUTO-SENT</div>
+                <div class="dash-tag dash-tag-auto">Auto-sent</div>
                 <div style="font-size:11px;color:var(--color-text-tertiary);">94%</div>
               </div>
               <div class="dash-ticket-row">
                 <div><div class="dash-ticket-subject">Want to cancel subscription</div><div class="dash-ticket-meta">mike.r@yahoo.com · 1h ago</div></div>
-                <div class="dash-tag dash-tag-queue">QUEUED</div>
+                <div class="dash-tag dash-tag-queue">Queued</div>
                 <div style="font-size:11px;color:var(--color-text-tertiary);">78%</div>
               </div>
               <div class="dash-ticket-row">
                 <div><div class="dash-ticket-subject">Item arrived damaged, need refund</div><div class="dash-ticket-meta">jen.w@outlook.com · 2h ago</div></div>
-                <div class="dash-tag dash-tag-auto">AUTO-SENT</div>
+                <div class="dash-tag dash-tag-auto">Auto-sent</div>
                 <div style="font-size:11px;color:var(--color-text-tertiary);">91%</div>
               </div>
               <div class="dash-ticket-row">
                 <div><div class="dash-ticket-subject">Can't login to account</div><div class="dash-ticket-meta">alex.t@gmail.com · 3h ago</div></div>
-                <div class="dash-tag dash-tag-escalate">ESCALATED</div>
+                <div class="dash-tag dash-tag-escalate">Escalated</div>
                 <div style="font-size:11px;color:var(--color-text-tertiary);">42%</div>
               </div>
             </div>
@@ -1117,22 +922,22 @@
               <div class="retry-timeline">
                 <div class="retry-step">
                   <div style="font-size:10px;color:var(--color-text-tertiary);">Day 1</div>
-                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">18</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">18</div>
                   <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
                 </div>
                 <div class="retry-step">
                   <div style="font-size:10px;color:var(--color-text-tertiary);">Day 3</div>
-                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">9</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">9</div>
                   <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
                 </div>
                 <div class="retry-step">
                   <div style="font-size:10px;color:var(--color-text-tertiary);">Day 7</div>
-                  <div style="font-size:13px;font-weight:800;color:var(--color-positive);">7</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">7</div>
                   <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
                 </div>
                 <div class="retry-step">
                   <div style="font-size:10px;color:var(--color-text-tertiary);">Failed</div>
-                  <div style="font-size:13px;font-weight:800;color:var(--color-negative);">13</div>
+                  <div style="font-size:13px;font-weight:600;color:var(--color-negative);">13</div>
                   <div style="font-size:9px;color:var(--color-text-tertiary);">churned</div>
                 </div>
               </div>
@@ -1221,7 +1026,7 @@
             <div class="dash-panel-header">
               <div>
                 <div class="dash-panel-title">Performance</div>
-                <div class="dash-panel-subtitle">Revenue, Ad Spend, and Net Profit — last 6 months</div>
+                <div class="dash-panel-subtitle">Revenue, Ad Spend, and Net Profit (last 6 months)</div>
               </div>
               <div class="dash-toggle-group">
                 <div class="dash-toggle-btn active">Monthly</div>
@@ -1292,13 +1097,13 @@
             <div class="dash-sku-row">
               <div class="dash-sku-name">Hydra Serum 30ml</div>
               <div class="dash-sku-stock">24</div>
-              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:700;">3d</div>
+              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:500;">3d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
             </div>
             <div class="dash-sku-row">
               <div class="dash-sku-name">Glow Drops 15ml</div>
               <div class="dash-sku-stock">51</div>
-              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:700;">5d</div>
+              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:500;">5d</div>
               <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
             </div>
             <div class="dash-sku-row">
@@ -1382,7 +1187,7 @@
               </div>
               <div class="dash-badge-row">
                 <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
-                <div class="dash-badge-name">Paused "Broad — Lookalike" (CPA &gt;$40)</div>
+                <div class="dash-badge-name">Paused "Broad Lookalike" (CPA &gt;$40)</div>
                 <div style="font-size:11px;color:var(--color-neutral);">5h ago</div>
               </div>
               <div class="dash-badge-row">
@@ -1407,18 +1212,18 @@
 <!-- Data Revenue Share -->
 <section class="section" id="data-program" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">EARN FROM YOUR OPS · OPTIONAL</div>
+    <div class="section-label fade-in">Earn from your ops · optional</div>
     <h2 class="section-title fade-in">Your store's work is worth something. Get paid for it.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Optonomous agents already run your operations. Opt in to our data program and we turn that work into <strong>de-identified</strong> research datasets for AI labs — and share the revenue back with you, offsetting (or exceeding) your subscription. It's optional, reversible, and your customers' personal and payment data never leave your store.</p>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Optonomous agents already run your operations. Opt in to our data program and we turn that work into <strong>de-identified</strong> research datasets for AI labs, and share the revenue back with you, offsetting (or exceeding) your subscription. It's optional, reversible, and your customers' personal and payment data never leave your store.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);max-width:760px;margin:0 auto var(--space-8);text-align:left;">
       <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
         <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we share</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">De-identified agent actions and outcomes, PII-scrubbed support conversations, and de-identified or aggregated purchase signal — all derived from your operations.</p>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">De-identified agent actions and outcomes, PII-scrubbed support conversations, and de-identified or aggregated purchase signal, all derived from your operations.</p>
       </div>
       <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
         <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we never share</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Your customers' names, emails, and addresses (PII), and any card or payment data (PCI). Both are excluded at source — and nothing is shared without your opt-in.</p>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Your customers' names, emails, and addresses (PII), and any card or payment data (PCI). Both are excluded at source, and nothing is shared without your opt-in.</p>
       </div>
     </div>
 
@@ -1432,7 +1237,7 @@
 <!-- Savings Calculator -->
 <section class="section" id="calculator" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">SAVINGS CALCULATOR</div>
+    <div class="section-label fade-in">Savings calculator</div>
     <h2 class="section-title fade-in">See what you're really spending on ops</h2>
     <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Configure your current setup and see how much Optonomous saves you.</p>
 
@@ -1444,14 +1249,14 @@
         <div class="calc-section">
           <h3 class="calc-h3">Monthly orders</h3>
           <input type="range" id="calc-orders" min="500" max="50000" step="500" value="5000" class="calc-slider">
-          <div class="calc-range-labels"><span>500</span><span id="calc-orders-val" style="color:var(--color-brand);font-weight:700;">5,000</span><span>50,000</span></div>
+          <div class="calc-range-labels"><span>500</span><span id="calc-orders-val" style="color:var(--color-brand);font-weight:500;">5,000</span><span>50,000</span></div>
         </div>
 
         <!-- Support tickets -->
         <div class="calc-section">
           <h3 class="calc-h3">Support tickets / month</h3>
           <input type="range" id="calc-tickets" min="100" max="10000" step="100" value="2000" class="calc-slider">
-          <div class="calc-range-labels"><span>100</span><span id="calc-tickets-val" style="color:var(--color-brand);font-weight:700;">2,000</span><span>10,000</span></div>
+          <div class="calc-range-labels"><span>100</span><span id="calc-tickets-val" style="color:var(--color-brand);font-weight:500;">2,000</span><span>10,000</span></div>
         </div>
 
         <!-- Current tools -->
@@ -1539,7 +1344,7 @@
   .calc-h3 {
     font-family: var(--font-body);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: var(--space-3);
     color: var(--color-text);
   }
@@ -1676,7 +1481,7 @@
   .calc-card-price {
     font-family: var(--font-body);
     font-size: 32px;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--color-text);
     font-variant-numeric: tabular-nums;
   }
@@ -1697,7 +1502,7 @@
   }
   .calc-savings-val {
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--color-positive);
   }
   @media (max-width: 768px) {
@@ -1707,20 +1512,58 @@
   }
 </style>
 
+<!-- Closing CTA -->
+<div class="mk-cta">
+  <section class="mk-cta-inner">
+    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
+           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+    <div class="mk-cta-content">
+      <h2>Ready to stop running ops by hand?</h2>
+      <div class="mk-cta-actions">
+        <a href="#waitlist-email" class="mk-btn-light">Join the Waitlist</a>
+        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="mk-btn-glass">Book a Demo</a>
+      </div>
+    </div>
+  </section>
+</div>
+
 </div><!-- end page-content -->
 
 <!-- Footer -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>&copy; 2026 Optonomous, Inc.</p>
-      <div style="display:flex;gap:var(--space-4);align-items:center;flex-wrap:wrap;">
-        <a href="#data-program">Earn</a>
-        <a href="./research.html">Research</a>
-        <a href="./trust.html">Data &amp; Trust</a>
-        <a href="./privacy.html">Privacy</a>
-        <a href="./terms.html">Terms</a>
-        <a href="./dpa.html">DPA</a>
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">Optonomous</div>
+      <p>AI agents that build your Shopify store and run your ops: support, subscriptions, inventory and chargebacks, handled.</p>
+      <p class="mk-footer-legal">&copy; 2026 Optonomous, Inc. Agents operate under your approval. Results vary by store.</p>
+    </div>
+
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Product</div>
+        <ul role="list">
+          <li><a href="#features">Platform</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#calculator">Pricing</a></li>
+          <li><a href="./app.html">Log In</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Company</div>
+        <ul role="list">
+          <li><a href="#data-program">Earn</a></li>
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./trust.html">Data &amp; Trust</a></li>
+          <li><a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Book a Demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+          <li><a href="./dpa.html">DPA</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1728,20 +1571,45 @@
 
 
 <script>
-// Theme
+// Menu overlay
 (function(){
-  const t = document.querySelector('[data-theme-toggle]');
-  const r = document.documentElement;
-  let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
-  r.setAttribute('data-theme', d);
-  function upd() {
-    if (!t) return;
-    t.innerHTML = d === 'dark'
-      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+
+  let open = false;
+  function set(next) {
+    open = next;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+    // Background video keeps decoding behind the overlay and steals frame budget.
+    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
   }
-  upd();
-  t && t.addEventListener('click', () => { d = d === 'dark' ? 'light' : 'dark'; r.setAttribute('data-theme', d); upd(); });
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
+})();
+
+// Background video autoplay.
+// Safari checks the `muted` *attribute* (not the property) when deciding whether
+// autoplay is allowed, and Low Power Mode blocks it outright - so set the
+// attribute up front and retry once on the first interaction.
+(function(){
+  document.querySelectorAll('video').forEach(v => {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.play().catch(() => {});
+  });
+  const retry = () => {
+    if (document.querySelector('.mk-overlay.open')) return;
+    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
+  };
+  window.addEventListener('touchstart', retry, { once: true, passive: true });
+  window.addEventListener('click', retry, { once: true });
 })();
 
 // Waitlist
@@ -1859,72 +1727,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   calc(); // Initial calculation
 })();
 
-// ── Loading screen ──
-(function(){
-  const loader = document.getElementById('loader');
-  const counter = document.getElementById('loader-counter');
-  const bar = document.getElementById('loader-bar');
-  const page = document.getElementById('page-content');
-  const words = document.querySelectorAll('.loader-word');
-  if (!loader) return;
 
-  let wordIndex = 0;
-  const wordInterval = setInterval(() => {
-    if (wordIndex >= words.length - 1) { clearInterval(wordInterval); return; }
-    words[wordIndex].classList.remove('active');
-    words[wordIndex].classList.add('exit');
-    wordIndex++;
-    words[wordIndex].classList.add('active');
-  }, 900);
 
-  const duration = 2700;
-  const start = performance.now();
-  let done = false;
 
-  function tick(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration * 100, 100);
-    counter.textContent = Math.round(progress).toString().padStart(3, '0');
-    bar.style.transform = 'scaleX(' + (progress / 100) + ')';
-
-    if (progress < 100) {
-      requestAnimationFrame(tick);
-    } else if (!done) {
-      done = true;
-      setTimeout(() => {
-        loader.classList.add('out');
-        setTimeout(() => {
-          loader.style.display = 'none';
-          page.classList.add('visible');
-        }, 600);
-      }, 400);
-    }
-  }
-  requestAnimationFrame(tick);
-})();
-
-// Mobile menu
-(function(){
-  const btn = document.getElementById('mobile-menu-btn');
-  const nav = document.getElementById('mobile-nav');
-  if (!btn || !nav) return;
-  let open = false;
-  btn.addEventListener('click', () => {
-    open = !open;
-    nav.classList.toggle('open', open);
-    btn.innerHTML = open
-      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>'
-      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-  });
-  // Close on link click
-  nav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      open = false;
-      nav.classList.remove('open');
-      btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>';
-    });
-  });
-})();
 </script>
 
 </body>
