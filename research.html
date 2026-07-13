@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research | World Labs</title>
-<meta name="description" content="The eval taxonomy: seventeen categories of expert human evaluation for game-playing AI, generative game tools, and AI-built game content.">
+<meta name="description" content="The eval taxonomy: expert human evaluation of what AI builds from a prompt, from mechanic fidelity and spec adherence to player experience and preference data.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -233,78 +233,62 @@
   <div class="section-inner">
     <div class="rs-kicker fade-in visible">Research</div>
     <h1 class="rs-title fade-in visible">The eval space</h1>
-    <p class="rs-intro fade-in visible">Games are the richest testbed AI has: strategy, perception, planning, taste, and economics in one loop. Our first focus is whole generated games, one cell of a much larger grid. This is the full taxonomy of expert human evals we're building toward, each one a distinct question, a distinct rater pool, and a distinct dataset.</p>
+    <p class="rs-intro fade-in visible">When a model generates a game, a mechanic, or a system from a prompt, two questions matter: did it build what was asked, and is what it built any good? This is the taxonomy of expert human evals we're building to answer both, each category a distinct question, a distinct rater pool, and a distinct dataset.</p>
   </div>
 </section>
 
 <!-- Taxonomy -->
 <section class="section" style="padding-top:var(--space-8);">
   <div class="section-inner">
-    <div class="rs-group fade-in">Playing intelligence</div>
+    <div class="rs-group fade-in">Prompt fidelity</div>
     <div class="rs-acc fade-in">
       <details>
-        <summary><span class="rs-num">01</span><span class="rs-acc-name">Gameplay Decisions</span><span class="rs-acc-q">Did the AI make the right decision?</span></summary>
+        <summary><span class="rs-num">01</span><span class="rs-acc-name">Game Mechanics</span><span class="rs-acc-q">Did the model build the mechanic the prompt asked for?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Did the AI make the right decision?</strong> Strategic intelligence, judged move by move.</p>
+          <p class="rs-q"><strong>Did the model build the mechanic the prompt asked for?</strong> The core generative question: prompt in, mechanic out, judged against the spec. An expert plays specifically to probe the mechanic, documents exactly where the implementation drifts from the intent, then rates whether the result was worth building at all.</p>
           <div class="rs-tags">
-            <span class="rs-tag">Macro (LoL, Dota, StarCraft)</span>
-            <span class="rs-tag">Micro &amp; mechanics</span>
-            <span class="rs-tag">Resource allocation</span>
-            <span class="rs-tag">Objective priority</span>
-            <span class="rs-tag">Risk / reward</span>
-            <span class="rs-tag">Timing</span>
-            <span class="rs-tag">Positioning</span>
-            <span class="rs-tag">Team coordination</span>
-            <span class="rs-tag">Win-condition ID</span>
+            <span class="rs-tag">Rule fidelity</span>
+            <span class="rs-tag">Twist / constraint preserved</span>
+            <span class="rs-tag">Edge-case behavior</span>
+            <span class="rs-tag">Interaction with other systems</span>
+            <span class="rs-tag">Exploit &amp; softlock probing</span>
+            <span class="rs-tag">Feel matches intent</span>
           </div>
-          <div class="rs-sample"><span class="k">decisionQuality</span>: 8/10
-<span class="k">alternativeAction</span>: "Take Baron"
-<span class="k">reason</span>: "Enemy had no smite"
-<span class="k">mistakeSeverity</span>: MEDIUM</div>
-          <p class="rs-meta"><strong>Judged by:</strong> Challenger-tier players, coaches, esports analysts</p>
+          <div class="rs-sample"><span class="k">prompt</span>: "A macro layer where weather changes unit costs"
+<span class="k">mechanicPresent</span>: true
+<span class="k">fidelity</span>: 5/7
+<span class="k">deviation</span>: "Weather affects build time, not cost"
+<span class="k">severity</span>: MEDIUM</div>
+          <p class="rs-meta"><strong>Judged by:</strong> Systems designers, gameplay engineers · <strong>Also labeled on:</strong> fun factor · learning curve · depth · replayability · frustration</p>
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">02</span><span class="rs-acc-name">Gameplay Understanding</span><span class="rs-acc-q">Does the AI understand what's happening?</span></summary>
+        <summary><span class="rs-num">02</span><span class="rs-acc-name">Spec Adherence</span><span class="rs-acc-q">Does the whole artifact match the prompt?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Does the AI actually understand what's happening?</strong> Game sense, not just action quality.</p>
+          <p class="rs-q"><strong>Does the whole artifact match the prompt?</strong> Genre, required mechanics, constraints, tone, and content, checked line by line against the generating prompt with the prompt in the rater's hand.</p>
           <div class="rs-tags">
-            <span class="rs-tag">Identify player intentions</span>
-            <span class="rs-tag">Explain success / failure</span>
-            <span class="rs-tag">Predict next action</span>
-            <span class="rs-tag">Threat identification</span>
-            <span class="rs-tag">Game-state reads</span>
-            <span class="rs-tag">Strategy comprehension</span>
+            <span class="rs-tag">Genre match</span>
+            <span class="rs-tag">Required mechanics present</span>
+            <span class="rs-tag">Constraints respected</span>
+            <span class="rs-tag">Content requirements</span>
+            <span class="rs-tag">Tone / art direction</span>
+            <span class="rs-tag">Scope creep</span>
           </div>
-          <p class="rs-meta"><strong>Judged by:</strong> High-ranked players, game analysts</p>
+          <p class="rs-meta"><strong>Judged by:</strong> Game designers · scored 1–7 against fixed anchors, per prompt clause</p>
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">03</span><span class="rs-acc-name">Agent Trajectories</span><span class="rs-acc-q">Is this agent intelligent over time?</span></summary>
+        <summary><span class="rs-num">03</span><span class="rs-acc-name">Iteration Accuracy</span><span class="rs-acc-q">When you prompt a change, does exactly that change?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Is this agent behaving intelligently over time?</strong> Whole runs, not single moves.</p>
+          <p class="rs-q"><strong>When you prompt a change, does exactly that change?</strong> Tools live and die on the second prompt. Experts compare builds before and after a change request and catalog everything else that moved.</p>
           <div class="rs-tags">
-            <span class="rs-tag">Full playthroughs</span>
-            <span class="rs-tag">Multi-step objectives</span>
-            <span class="rs-tag">Long-horizon planning</span>
-            <span class="rs-tag">Adaptation after mistakes</span>
-            <span class="rs-tag">Learning from opponents</span>
+            <span class="rs-tag">Targeted change landed</span>
+            <span class="rs-tag">No collateral damage</span>
+            <span class="rs-tag">Balance preserved</span>
+            <span class="rs-tag">Regression catalog</span>
+            <span class="rs-tag">Compounding edits</span>
           </div>
-          <p class="rs-meta"><strong>Matters for:</strong> game-playing agents, autonomous agents, world models</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">16</span><span class="rs-acc-name">Esports Performance</span><span class="rs-acc-q">How close is the AI to professional play?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>How close is the AI to professional play?</strong> The hardest human baseline there is.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Mechanical execution</span>
-            <span class="rs-tag">Decision making</span>
-            <span class="rs-tag">Team play</span>
-            <span class="rs-tag">Draft strategy</span>
-            <span class="rs-tag">Adaptation</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Pros, coaches</p>
+          <p class="rs-meta"><strong>Matters for:</strong> prompt-to-game tools, coding agents, live iteration loops</p>
         </div>
       </details>
     </div>
@@ -312,23 +296,7 @@
     <div class="rs-group fade-in">Design quality</div>
     <div class="rs-acc fade-in">
       <details>
-        <summary><span class="rs-num">04</span><span class="rs-acc-name">Balance</span><span class="rs-acc-q">Is the game or system balanced?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Characters</span>
-            <span class="rs-tag">Weapons</span>
-            <span class="rs-tag">Items</span>
-            <span class="rs-tag">Economy</span>
-            <span class="rs-tag">Cooldowns</span>
-            <span class="rs-tag">Progression speed</span>
-            <span class="rs-tag">Matchmaking fairness</span>
-            <span class="rs-tag">Difficulty spikes</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Competitive players, game designers</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">05</span><span class="rs-acc-name">Level Design</span><span class="rs-acc-q">Is this environment well designed?</span></summary>
+        <summary><span class="rs-num">04</span><span class="rs-acc-name">Level Design</span><span class="rs-acc-q">Is the generated environment well designed?</span></summary>
         <div class="rs-body">
           <div class="rs-tags">
             <span class="rs-tag">Map flow</span>
@@ -344,21 +312,22 @@
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">06</span><span class="rs-acc-name">Game Mechanics</span><span class="rs-acc-q">Is this mechanic fun and understandable?</span></summary>
+        <summary><span class="rs-num">05</span><span class="rs-acc-name">Balance</span><span class="rs-acc-q">Are the generated systems balanced?</span></summary>
         <div class="rs-body">
           <div class="rs-tags">
-            <span class="rs-tag">Combat systems</span>
-            <span class="rs-tag">Movement</span>
-            <span class="rs-tag">Abilities</span>
-            <span class="rs-tag">Crafting</span>
-            <span class="rs-tag">Progression</span>
-            <span class="rs-tag">New features</span>
+            <span class="rs-tag">Characters</span>
+            <span class="rs-tag">Weapons</span>
+            <span class="rs-tag">Items</span>
+            <span class="rs-tag">Cooldowns</span>
+            <span class="rs-tag">Progression speed</span>
+            <span class="rs-tag">Difficulty spikes</span>
+            <span class="rs-tag">Dominant strategies</span>
           </div>
-          <p class="rs-meta"><strong>Labeled on:</strong> fun factor · learning curve · depth · replayability · frustration</p>
+          <p class="rs-meta"><strong>Judged by:</strong> Competitive players, game designers</p>
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">09</span><span class="rs-acc-name">Narrative</span><span class="rs-acc-q">Does the story work?</span></summary>
+        <summary><span class="rs-num">06</span><span class="rs-acc-name">Narrative</span><span class="rs-acc-q">Does the generated story work?</span></summary>
         <div class="rs-body">
           <div class="rs-tags">
             <span class="rs-tag">Dialogue quality</span>
@@ -392,7 +361,7 @@
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">08</span><span class="rs-acc-name">UX / UI</span><span class="rs-acc-q">Can players understand and use the game?</span></summary>
+        <summary><span class="rs-num">08</span><span class="rs-acc-name">UX / Onboarding</span><span class="rs-acc-q">Can players understand and use the game?</span></summary>
         <div class="rs-body">
           <div class="rs-tags">
             <span class="rs-tag">Menus</span>
@@ -407,7 +376,7 @@
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">10</span><span class="rs-acc-name">AI NPC / Agent Interaction</span><span class="rs-acc-q">Does this AI feel intelligent to play with?</span></summary>
+        <summary><span class="rs-num">09</span><span class="rs-acc-name">AI NPC / Agent Interaction</span><span class="rs-acc-q">Does this AI feel intelligent to play with?</span></summary>
         <div class="rs-body">
           <div class="rs-note">Huge future category</div>
           <div class="rs-tags">
@@ -427,7 +396,7 @@
     <div class="rs-group fade-in">Generated artifacts</div>
     <div class="rs-acc fade-in">
       <details>
-        <summary><span class="rs-num">11</span><span class="rs-acc-name">Generated Content</span><span class="rs-acc-q">Is AI-generated content good?</span></summary>
+        <summary><span class="rs-num">10</span><span class="rs-acc-name">Generated Content</span><span class="rs-acc-q">Is AI-generated content good?</span></summary>
         <div class="rs-body">
           <p class="rs-q"><strong>Is AI-generated content good?</strong> Humans rank quality, creativity, usefulness, and consistency.</p>
           <div class="rs-tags">
@@ -443,7 +412,7 @@
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">12</span><span class="rs-acc-name">Code / Technical</span><span class="rs-acc-q">Is AI-generated game code good?</span></summary>
+        <summary><span class="rs-num">11</span><span class="rs-acc-name">Code / Technical</span><span class="rs-acc-q">Is AI-generated game code good?</span></summary>
         <div class="rs-body">
           <div class="rs-tags">
             <span class="rs-tag">Unity scripts</span>
@@ -457,10 +426,11 @@
         </div>
       </details>
       <details>
-        <summary><span class="rs-num">13</span><span class="rs-acc-name">QA / Bugs</span><span class="rs-acc-q">Did the AI correctly identify issues?</span></summary>
+        <summary><span class="rs-num">12</span><span class="rs-acc-name">QA / Stability</span><span class="rs-acc-q">Does the generated build hold up?</span></summary>
         <div class="rs-body">
+          <p class="rs-q"><strong>Does the generated build hold up?</strong> Broken is a finding, not a missing data point: every crash, softlock, and exploit gets documented with reproduction steps.</p>
           <div class="rs-tags">
-            <span class="rs-tag">Bug detection</span>
+            <span class="rs-tag">Crash / softlock detection</span>
             <span class="rs-tag">Severity ranking</span>
             <span class="rs-tag">Reproduction steps</span>
             <span class="rs-tag">Regression testing</span>
@@ -471,35 +441,20 @@
       </details>
     </div>
 
-    <div class="rs-group fade-in">Economy &amp; live operations</div>
+    <div class="rs-group fade-in">Systems &amp; economy</div>
     <div class="rs-acc fade-in">
       <details>
-        <summary><span class="rs-num">14</span><span class="rs-acc-name">Game Economy</span><span class="rs-acc-q">Is the economy healthy?</span></summary>
+        <summary><span class="rs-num">13</span><span class="rs-acc-name">Game Economy</span><span class="rs-acc-q">Is the generated economy healthy?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Is the economy healthy?</strong> Especially valuable for live-service games.</p>
+          <p class="rs-q"><strong>Is the generated economy healthy?</strong> When a model is prompted to build progression or an economy, experts stress the loop for inflation, dead ends, and degenerate strategies.</p>
           <div class="rs-tags">
             <span class="rs-tag">Currency inflation</span>
             <span class="rs-tag">Progression pacing</span>
-            <span class="rs-tag">Monetization balance</span>
             <span class="rs-tag">Reward systems</span>
-            <span class="rs-tag">Battle pass design</span>
             <span class="rs-tag">Retention loops</span>
+            <span class="rs-tag">Sink / source balance</span>
           </div>
           <p class="rs-meta"><strong>Judged by:</strong> Economy designers, live-ops specialists</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">15</span><span class="rs-acc-name">Monetization</span><span class="rs-acc-q">Will this convert without hurting players?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Store layouts</span>
-            <span class="rs-tag">Pricing</span>
-            <span class="rs-tag">Bundles</span>
-            <span class="rs-tag">Battle passes</span>
-            <span class="rs-tag">Ads</span>
-            <span class="rs-tag">Offers</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Mobile game experts, growth teams</p>
         </div>
       </details>
     </div>
@@ -507,7 +462,7 @@
     <div class="rs-group fade-in">Preference data</div>
     <div class="rs-acc fade-in">
       <details>
-        <summary><span class="rs-num">17</span><span class="rs-acc-name">Human Preferences</span><span class="rs-acc-q">A or B: which is better, why, and by how much?</span></summary>
+        <summary><span class="rs-num">14</span><span class="rs-acc-name">Human Preferences</span><span class="rs-acc-q">A or B: which is better, why, and by how much?</span></summary>
         <div class="rs-body">
           <div class="rs-note">The universal one</div>
           <p class="rs-q"><strong>A or B: which is better, why, and by how much?</strong> The AI produces two outputs (two levels, two quests, two whole games); an expert picks the winner, states a confidence, and writes the reason. Every other category in this taxonomy can be run in this format.</p>
@@ -534,7 +489,7 @@
     <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
            autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
     <div class="mk-cta-content">
-      <h2>Seventeen questions. One harness.</h2>
+      <h2>Fourteen questions. One harness.</h2>
       <div class="mk-cta-actions">
         <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="mk-btn-light">Talk to Us</a>
         <a href="./community.html" class="mk-btn-glass">Join the Community</a>
