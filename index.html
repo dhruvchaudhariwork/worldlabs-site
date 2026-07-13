@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Labs | Expert Evals for AI-Generated Games</title>
-<meta name="description" content="Shipped game developers blind-evaluate the output of prompt-to-game AI tools. A public benchmark, structured verdicts, and eval data labs can train on.">
+<meta name="description" content="Expert evals for AI-generated games. Shipped game developers play and judge AI-made games — structured verdicts and eval data labs can train on.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -250,15 +250,14 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="#" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">01</span>Home</a>
-    <a href="#leaderboard" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Benchmark</a>
-    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>Methodology</a>
-    <a href="#rubric" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">04</span>The Rubric</a>
-    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Research</a>
-    <a href="#labs" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">06</span>For Labs</a>
-    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">07</span>Community</a>
+    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Methodology</a>
+    <a href="#rubric" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>The Rubric</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Research</a>
+    <a href="#labs" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>For Labs</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">06</span>Community</a>
   </div>
   <div class="mk-overlay-meta">
-    World Labs: shipped game developers blind-evaluate AI-generated games. Round One in progress · results soon.
+    World Labs: expert evals for AI-made games, by game developers who ship.
   </div>
 </div>
 
@@ -275,7 +274,7 @@
     <div>
       <div class="mk-subtitle">
         <span class="mk-subtitle-dot"></span>
-        Round One in progress · 25 experts · 8 tools
+        Early access · building the eval layer for AI games
       </div>
 
       <h1 class="mk-heading">Real game devs.<br>Judging AI games.</h1>
@@ -283,7 +282,7 @@
       <div class="mk-hero-btns">
         <div class="mk-hero-form" id="waitlist-form">
           <input type="email" class="mk-hero-input" placeholder="you@studio.com" id="waitlist-email" required>
-          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Get the Results</button>
+          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Join the Waitlist</button>
         </div>
         <a href="#how" class="mk-btn mk-btn-secondary">How It Works</a>
       </div>
@@ -294,29 +293,12 @@
       <span class="mk-hero-tag">Blind sessions</span>
       <span class="mk-hero-tag">1–7 rubric</span>
       <span class="mk-hero-tag">Pairwise A/B</span>
-      <span class="mk-hero-tag">Public leaderboard</span>
+      <span class="mk-hero-tag">Vetted experts</span>
     </div>
   </div>
 </section>
 
 
-<!-- Tools under evaluation -->
-<section class="section" style="padding-top:0;">
-  <div class="section-inner section-center fade-in mk-logos">
-    <div class="section-label">Under blind evaluation</div>
-    <div class="tools-masked">
-      <span class="tool-masked">████████</span>
-      <span class="tool-masked">██████</span>
-      <span class="tool-masked">█████████</span>
-      <span class="tool-masked">███████</span>
-      <span class="tool-masked">██████████</span>
-      <span class="tool-masked">█████</span>
-      <span class="tool-masked">████████</span>
-      <span class="tool-masked">███████</span>
-    </div>
-    <p style="font-size:var(--text-xs);color:var(--color-text-tertiary);margin-top:var(--space-4);">The top 8 prompt-to-game AI tools. Identities revealed when Round One closes.</p>
-  </div>
-</section>
 
 
 <!-- How It Works -->
@@ -381,7 +363,7 @@
       <div class="feature-card fade-in">
         <div class="feature-label">Broken builds</div>
         <h3>"Could not play" is data too</h3>
-        <p>When a generated game doesn't run, it's excluded from score averages — but each tool's broken rate is published right on the leaderboard. Fragility is part of the result.</p>
+        <p>When a generated game doesn't run, it's excluded from score averages — but the broken rate is reported alongside every result. Fragility is part of the finding.</p>
       </div>
 
       <div class="feature-card fade-in">
@@ -393,77 +375,13 @@
       <div class="feature-card fade-in">
         <div class="feature-label">Data</div>
         <h3>Export-clean by design</h3>
-        <p>Every judgment lands in a stable JSON schema with full context: rubric scores, critiques, fix lists, pairwise choices, time played. The benchmark is also a dataset.</p>
+        <p>Every judgment lands in a stable JSON schema with full context: rubric scores, critiques, fix lists, pairwise choices, time played. Every eval is also a dataset.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- Leaderboard preview -->
-<section class="section" id="leaderboard" style="background:var(--color-bg-alt);">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">The benchmark</div>
-    <h2 class="section-title fade-in">One leaderboard. Zero sponsors.</h2>
-    <p class="section-desc fade-in">Self-funded and independent — no tool maker pays to be ranked, and nobody sees their scores early.</p>
-
-    <div class="lb-card fade-in">
-      <div class="lb-card-header">
-        <div>
-          <div class="lb-card-title">Round One — Live standings</div>
-        </div>
-        <div class="lb-card-sub">tryworldlabs.com/leaderboard/round-1</div>
-      </div>
-      <table class="dash-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tool</th>
-            <th>Overall (1–7)</th>
-            <th>Win rate</th>
-            <th>Broken rate</th>
-            <th>Judgments</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="lb-rank">01</td>
-            <td><span class="lb-tool">████████</span></td>
-            <td><span class="lb-bar-track"><span class="lb-bar" style="width:74%;"></span></span><span class="lb-score">5.2</span></td>
-            <td>71%</td>
-            <td>4%</td>
-            <td>48</td>
-          </tr>
-          <tr>
-            <td class="lb-rank">02</td>
-            <td><span class="lb-tool">██████</span></td>
-            <td><span class="lb-bar-track"><span class="lb-bar" style="width:66%;"></span></span><span class="lb-score">4.6</span></td>
-            <td>58%</td>
-            <td>8%</td>
-            <td>52</td>
-          </tr>
-          <tr>
-            <td class="lb-rank">03</td>
-            <td><span class="lb-tool">█████████</span></td>
-            <td><span class="lb-bar-track"><span class="lb-bar" style="width:57%;"></span></span><span class="lb-score">4.0</span></td>
-            <td>44%</td>
-            <td>13%</td>
-            <td>46</td>
-          </tr>
-          <tr>
-            <td class="lb-rank">04</td>
-            <td><span class="lb-tool">███████</span></td>
-            <td><span class="lb-bar-track"><span class="lb-bar" style="width:44%;"></span></span><span class="lb-score">3.1</span></td>
-            <td>27%</td>
-            <td>21%</td>
-            <td>50</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="lb-note">Illustrative preview — scores are placeholders. Tool identities and full results publish when Round One closes.</p>
-    </div>
-  </div>
-</section>
 
 
 <!-- The Rubric -->
@@ -613,7 +531,7 @@
     <div class="mk-cta-content">
       <h2>The playtest is the eval.</h2>
       <div class="mk-cta-actions">
-        <a href="#waitlist-email" class="mk-btn-light">Get the Results</a>
+        <a href="#waitlist-email" class="mk-btn-light">Join the Waitlist</a>
         <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="mk-btn-glass">Apply to the Panel</a>
       </div>
     </div>
@@ -642,17 +560,17 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>Shipped game developers blind-evaluate the output of prompt-to-game AI tools: structured verdicts, a public leaderboard, and eval data labs can train on.</p>
-      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment. Tool identities hidden until each round closes.</p>
+      <p>Shipped game developers play and judge AI-made games: structured verdicts and eval data labs can train on.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
     </div>
 
     <div class="mk-footer-cols">
       <div>
-        <div class="mk-footer-head">Benchmark</div>
+        <div class="mk-footer-head">Method</div>
         <ul role="list">
-          <li><a href="#leaderboard">Leaderboard</a></li>
           <li><a href="#how">Methodology</a></li>
           <li><a href="#rubric">The Rubric</a></li>
+          <li><a href="#panel">Join the Panel</a></li>
         </ul>
       </div>
       <div>
@@ -724,7 +642,7 @@ document.getElementById('waitlist-btn').addEventListener('click', function(e) {
   const email = document.getElementById('waitlist-email').value.trim();
   const msg = document.getElementById('waitlist-msg');
   if (!email || !email.includes('@')) { msg.textContent = 'Enter a valid email.'; msg.className = 'waitlist-msg'; return; }
-  msg.textContent = 'You’re on the list. We’ll send the leaderboard the day it publishes.';
+  msg.textContent = 'You’re on the list. We’ll be in touch.';
   msg.className = 'waitlist-msg success';
   document.getElementById('waitlist-email').value = '';
   document.getElementById('waitlist-btn').textContent = 'Joined';
