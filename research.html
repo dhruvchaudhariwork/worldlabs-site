@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — World Labs</title>
+<meta name="description" content="The eval taxonomy: seventeen categories of expert human evaluation for game-playing AI, generative game tools, and AI-built game content.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  .rs-hero {
+    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-12);
+    text-align: center;
+  }
+  .rs-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-5);
+  }
+  .rs-title {
+    font-size: var(--text-hero);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.02;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+  .rs-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── Eval category cards ── */
+  .rs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    text-align: left;
+  }
+  .rs-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: var(--space-6);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .rs-card-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+  .rs-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .rs-card h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--color-text);
+    letter-spacing: var(--tracking-tight);
+  }
+  .rs-q {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+  .rs-q strong { color: var(--color-text); font-weight: 500; }
+  .rs-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .rs-tag {
+    font-size: 0.6875rem;
+    padding: 3px 9px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    background: var(--color-bg);
+    white-space: nowrap;
+  }
+  .rs-meta {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    line-height: 1.6;
+    margin-top: auto;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border-subtle);
+  }
+  .rs-meta strong { color: var(--color-text-secondary); font-weight: 600; }
+  .rs-note {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text);
+    background: var(--color-brand-muted);
+    border-radius: var(--radius-full);
+    padding: 3px 10px;
+    align-self: flex-start;
+  }
+  .rs-sample {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .rs-sample .k { color: var(--color-text); font-weight: 600; }
+
+  .rs-group {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    padding: var(--space-8) var(--space-2) var(--space-1);
+  }
+  .rs-group:first-child { padding-top: 0; }
+
+  @media (max-width: 820px) { .rs-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div id="page-content">
+
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="./index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>Research</span>
+      <span>The Eval Space</span>
+    </div>
+  </div>
+
+  <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="mk-cta-btn" aria-label="Talk to us">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Talk to Us</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="./index.html#leaderboard" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Benchmark</a>
+    <a href="./index.html#how" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Methodology</a>
+    <a href="./index.html#rubric" class="mk-overlay-link"><span class="mk-overlay-num">04</span>The Rubric</a>
+    <a href="./research.html" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>Research</a>
+    <a href="./index.html#labs" class="mk-overlay-link"><span class="mk-overlay-num">06</span>For Labs</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">07</span>Community</a>
+  </div>
+  <div class="mk-overlay-meta">
+    World Labs: shipped game developers blind-evaluate AI-generated games. Round One in progress · results soon.
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="rs-hero">
+  <div class="section-inner">
+    <div class="rs-kicker fade-in visible">Research</div>
+    <h1 class="rs-title fade-in visible">The eval space</h1>
+    <p class="rs-intro fade-in visible">Games are the richest testbed AI has: strategy, perception, planning, taste, and economics in one loop. Round One benchmarks generated games — but that's one cell of a much larger grid. This is the full taxonomy of expert human evals we're building toward, each one a distinct question, a distinct rater pool, and a distinct dataset.</p>
+  </div>
+</section>
+
+<!-- Taxonomy -->
+<section class="section" style="padding-top:var(--space-8);">
+  <div class="section-inner">
+    <div class="rs-grid">
+
+      <div class="rs-group">Playing intelligence</div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">01</span><h3>Gameplay Decision Evals</h3></div>
+        <p class="rs-q"><strong>Did the AI make the right decision?</strong> Strategic intelligence, judged move by move.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Macro (LoL, Dota, StarCraft)</span>
+          <span class="rs-tag">Micro &amp; mechanics</span>
+          <span class="rs-tag">Resource allocation</span>
+          <span class="rs-tag">Objective priority</span>
+          <span class="rs-tag">Risk / reward</span>
+          <span class="rs-tag">Timing</span>
+          <span class="rs-tag">Positioning</span>
+          <span class="rs-tag">Team coordination</span>
+          <span class="rs-tag">Win-condition ID</span>
+        </div>
+        <div class="rs-sample"><span class="k">decisionQuality</span>: 8/10
+<span class="k">alternativeAction</span>: "Take Baron"
+<span class="k">reason</span>: "Enemy had no smite"
+<span class="k">mistakeSeverity</span>: MEDIUM</div>
+        <p class="rs-meta"><strong>Judged by:</strong> Challenger-tier players, coaches, esports analysts</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">02</span><h3>Gameplay Understanding Evals</h3></div>
+        <p class="rs-q"><strong>Does the AI actually understand what's happening?</strong> Game sense, not just action quality.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Identify player intentions</span>
+          <span class="rs-tag">Explain success / failure</span>
+          <span class="rs-tag">Predict next action</span>
+          <span class="rs-tag">Threat identification</span>
+          <span class="rs-tag">Game-state reads</span>
+          <span class="rs-tag">Strategy comprehension</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> High-ranked players, game analysts</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">03</span><h3>Agent Trajectory Evals</h3></div>
+        <p class="rs-q"><strong>Is this agent behaving intelligently over time?</strong> Whole runs, not single moves.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Full playthroughs</span>
+          <span class="rs-tag">Multi-step objectives</span>
+          <span class="rs-tag">Long-horizon planning</span>
+          <span class="rs-tag">Adaptation after mistakes</span>
+          <span class="rs-tag">Learning from opponents</span>
+        </div>
+        <p class="rs-meta"><strong>Matters for:</strong> game-playing agents, autonomous agents, world models</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">16</span><h3>Esports Performance Evals</h3></div>
+        <p class="rs-q"><strong>How close is the AI to professional play?</strong> The hardest human baseline there is.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Mechanical execution</span>
+          <span class="rs-tag">Decision making</span>
+          <span class="rs-tag">Team play</span>
+          <span class="rs-tag">Draft strategy</span>
+          <span class="rs-tag">Adaptation</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Pros, coaches</p>
+      </div>
+
+      <div class="rs-group">Design quality</div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">04</span><h3>Balance Evals</h3></div>
+        <p class="rs-q"><strong>Is the game or system balanced?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Characters</span>
+          <span class="rs-tag">Weapons</span>
+          <span class="rs-tag">Items</span>
+          <span class="rs-tag">Economy</span>
+          <span class="rs-tag">Cooldowns</span>
+          <span class="rs-tag">Progression speed</span>
+          <span class="rs-tag">Matchmaking fairness</span>
+          <span class="rs-tag">Difficulty spikes</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Competitive players, game designers</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">05</span><h3>Level Design Evals</h3></div>
+        <p class="rs-q"><strong>Is this environment well designed?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Map flow</span>
+          <span class="rs-tag">Navigation</span>
+          <span class="rs-tag">Exploration</span>
+          <span class="rs-tag">Difficulty curve</span>
+          <span class="rs-tag">Player guidance</span>
+          <span class="rs-tag">Reward placement</span>
+          <span class="rs-tag">Enemy encounters</span>
+          <span class="rs-tag">Puzzle quality</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Level designers, experienced players</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">06</span><h3>Game Mechanic Evals</h3></div>
+        <p class="rs-q"><strong>Is this mechanic fun and understandable?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Combat systems</span>
+          <span class="rs-tag">Movement</span>
+          <span class="rs-tag">Abilities</span>
+          <span class="rs-tag">Crafting</span>
+          <span class="rs-tag">Progression</span>
+          <span class="rs-tag">New features</span>
+        </div>
+        <p class="rs-meta"><strong>Labeled on:</strong> fun factor · learning curve · depth · replayability · frustration</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">09</span><h3>Narrative Evals</h3></div>
+        <p class="rs-q"><strong>Does the story work?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Dialogue quality</span>
+          <span class="rs-tag">Character consistency</span>
+          <span class="rs-tag">Quest structure</span>
+          <span class="rs-tag">Pacing</span>
+          <span class="rs-tag">Emotional impact</span>
+          <span class="rs-tag">Lore consistency</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Narrative designers, writers</p>
+      </div>
+
+      <div class="rs-group">Player experience</div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">07</span><h3>Player Experience Evals</h3></div>
+        <p class="rs-q"><strong>Will players enjoy this?</strong> The closest category to pure taste.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Fun rating</span>
+          <span class="rs-tag">Engagement</span>
+          <span class="rs-tag">Frustration</span>
+          <span class="rs-tag">Confusion</span>
+          <span class="rs-tag">Emotional impact</span>
+          <span class="rs-tag">Would you keep playing?</span>
+          <span class="rs-tag">Would you recommend?</span>
+        </div>
+        <p class="rs-meta"><strong>Note:</strong> Round One's rubric lives here and in Design Quality</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">08</span><h3>UX / UI Evals</h3></div>
+        <p class="rs-q"><strong>Can players understand and use the game?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Menus</span>
+          <span class="rs-tag">HUD</span>
+          <span class="rs-tag">Inventory</span>
+          <span class="rs-tag">Controls</span>
+          <span class="rs-tag">Tutorials</span>
+          <span class="rs-tag">Accessibility</span>
+          <span class="rs-tag">Information clarity</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> UX designers, onboarding specialists</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">10</span><h3>AI NPC / Agent Interaction Evals</h3></div>
+        <div class="rs-note">Huge future category</div>
+        <p class="rs-q"><strong>Does this AI feel intelligent to play with?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">NPC conversations</span>
+          <span class="rs-tag">Memory consistency</span>
+          <span class="rs-tag">Personality</span>
+          <span class="rs-tag">Improvisation</span>
+          <span class="rs-tag">Realism</span>
+          <span class="rs-tag">Safety</span>
+          <span class="rs-tag">Player immersion</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Players in extended sessions, narrative + systems designers</p>
+      </div>
+
+      <div class="rs-group">Generated artifacts</div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">11</span><h3>Generated Content Evals</h3></div>
+        <p class="rs-q"><strong>Is AI-generated content good?</strong> Humans rank quality, creativity, usefulness, and consistency.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Quests</span>
+          <span class="rs-tag">Characters</span>
+          <span class="rs-tag">Weapons</span>
+          <span class="rs-tag">Levels</span>
+          <span class="rs-tag">Dialogue</span>
+          <span class="rs-tag">Textures</span>
+          <span class="rs-tag">Animations</span>
+        </div>
+        <p class="rs-meta"><strong>Note:</strong> Round One benchmarks whole generated games — the top of this stack</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">12</span><h3>Code / Technical Evals</h3></div>
+        <p class="rs-q"><strong>Is AI-generated game code good?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Unity scripts</span>
+          <span class="rs-tag">Unreal Blueprints</span>
+          <span class="rs-tag">Shaders</span>
+          <span class="rs-tag">Gameplay systems</span>
+          <span class="rs-tag">Networking</span>
+          <span class="rs-tag">Optimization</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Unity/Unreal developers · <strong>Labels:</strong> does it work? performant? maintainable? would you ship it?</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">13</span><h3>QA / Bug Evals</h3></div>
+        <p class="rs-q"><strong>Did the AI correctly identify issues?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Bug detection</span>
+          <span class="rs-tag">Severity ranking</span>
+          <span class="rs-tag">Reproduction steps</span>
+          <span class="rs-tag">Regression testing</span>
+          <span class="rs-tag">Edge cases</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> QA engineers</p>
+      </div>
+
+      <div class="rs-group">Economy &amp; live operations</div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">14</span><h3>Game Economy Evals</h3></div>
+        <p class="rs-q"><strong>Is the economy healthy?</strong> Especially valuable for live-service games.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Currency inflation</span>
+          <span class="rs-tag">Progression pacing</span>
+          <span class="rs-tag">Monetization balance</span>
+          <span class="rs-tag">Reward systems</span>
+          <span class="rs-tag">Battle pass design</span>
+          <span class="rs-tag">Retention loops</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Economy designers, live-ops specialists</p>
+      </div>
+
+      <div class="rs-card fade-in">
+        <div class="rs-card-head"><span class="rs-num">15</span><h3>Monetization Evals</h3></div>
+        <p class="rs-q"><strong>Will this convert without hurting players?</strong></p>
+        <div class="rs-tags">
+          <span class="rs-tag">Store layouts</span>
+          <span class="rs-tag">Pricing</span>
+          <span class="rs-tag">Bundles</span>
+          <span class="rs-tag">Battle passes</span>
+          <span class="rs-tag">Ads</span>
+          <span class="rs-tag">Offers</span>
+        </div>
+        <p class="rs-meta"><strong>Judged by:</strong> Mobile game experts, growth teams</p>
+      </div>
+
+      <div class="rs-group">Preference data</div>
+
+      <div class="rs-card fade-in" style="grid-column:1 / -1;">
+        <div class="rs-card-head"><span class="rs-num">17</span><h3>Human Preference Evals</h3></div>
+        <div class="rs-note">The universal one</div>
+        <p class="rs-q"><strong>A or B — which is better, why, and by how much?</strong> The AI produces two outputs (two levels, two quests, two whole games); an expert picks the winner, states a confidence, and writes the reason. Every other category in this taxonomy can be run in this format.</p>
+        <div class="rs-tags">
+          <span class="rs-tag">Pairwise choice</span>
+          <span class="rs-tag">Written rationale</span>
+          <span class="rs-tag">Confidence: slight / clear / strong</span>
+        </div>
+        <p class="rs-meta"><strong>Used for:</strong> RLHF · reward models · benchmarking</p>
+      </div>
+
+    </div>
+
+    <div class="fade-in" style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-12);">
+      <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="btn btn-primary">Run one of these with us</a>
+      <a href="./community.html" class="btn btn-secondary">Join the rater pool →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="mk-cta">
+  <section class="mk-cta-inner">
+    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
+           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+    <div class="mk-cta-content">
+      <h2>Seventeen questions. One harness.</h2>
+      <div class="mk-cta-actions">
+        <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="mk-btn-light">Talk to Us</a>
+        <a href="./index.html#leaderboard" class="mk-btn-glass">See the Benchmark</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+</div><!-- end page-content -->
+
+<!-- Footer -->
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>Shipped game developers blind-evaluate the output of prompt-to-game AI tools: structured verdicts, a public leaderboard, and eval data labs can train on.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment. Tool identities hidden until each round closes.</p>
+    </div>
+
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Benchmark</div>
+        <ul role="list">
+          <li><a href="./index.html#leaderboard">Leaderboard</a></li>
+          <li><a href="./index.html#how">Methodology</a></li>
+          <li><a href="./index.html#rubric">The Rubric</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Company</div>
+        <ul role="list">
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./index.html#labs">For Labs</a></li>
+          <li><a href="./community.html">Community</a></li>
+          <li><a href="mailto:hello@tryworldlabs.com">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// Menu overlay
+(function(){
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+
+  let open = false;
+  function set(next) {
+    open = next;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
+  }
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
+})();
+
+// Background video autoplay
+(function(){
+  document.querySelectorAll('video').forEach(v => {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.play().catch(() => {});
+  });
+  const retry = () => {
+    if (document.querySelector('.mk-overlay.open')) return;
+    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
+  };
+  window.addEventListener('touchstart', retry, { once: true, passive: true });
+  window.addEventListener('click', retry, { once: true });
+})();
+
+// Fade in
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+
+</body>
+</html>
