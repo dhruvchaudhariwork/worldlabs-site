@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Panel — World Labs Community</title>
+<meta name="description" content="A curated community of shipped game developers who evaluate AI-generated games. Paid sessions, no exclusivity, no middleman markup.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  /* ── Community hero ── */
+  .cm-hero {
+    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-16);
+    text-align: center;
+  }
+  .cm-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-5);
+  }
+  .cm-title {
+    font-size: var(--text-hero);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.02;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+  .cm-tagline {
+    font-size: var(--text-lg);
+    color: var(--color-text-secondary);
+    font-weight: 400;
+    margin: 0 auto var(--space-8);
+    max-width: 44ch;
+  }
+  .cm-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    max-width: 56ch;
+    margin: 0 auto var(--space-8);
+    line-height: 1.7;
+  }
+
+  /* ── Specialty cards ── */
+  .cm-specialties {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-4);
+  }
+  .cm-specialty {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: var(--space-6) var(--space-4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+  }
+  .cm-specialty svg {
+    width: 26px;
+    height: 26px;
+    color: var(--color-text);
+    opacity: 0.75;
+  }
+  .cm-specialty span {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.3;
+  }
+  @media (max-width: 900px) { .cm-specialties { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .cm-specialties { grid-template-columns: repeat(2, 1fr); } }
+
+  /* ── Value banner ── */
+  .cm-value {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: var(--text-xl);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-tight);
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+  .cm-value em { font-style: normal; color: var(--color-text-tertiary); }
+
+  /* ── FAQ ── */
+  .cm-faq {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: left;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .cm-faq details { border-bottom: 1px solid var(--color-border); }
+  .cm-faq details:last-child { border-bottom: none; }
+  .cm-faq summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .cm-faq summary::-webkit-details-marker { display: none; }
+  .cm-faq summary::after {
+    content: '+';
+    font-size: var(--text-lg);
+    font-weight: 300;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+    transition: transform var(--transition-interactive);
+  }
+  .cm-faq details[open] summary::after { transform: rotate(45deg); }
+  .cm-faq .cm-faq-body {
+    padding: 0 var(--space-6) var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 64ch;
+  }
+</style>
+</head>
+<body>
+
+<div id="page-content">
+
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="./index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>Community</span>
+      <span>The Panel</span>
+    </div>
+  </div>
+
+  <a href="#apply" class="mk-cta-btn" aria-label="Join the community">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Join the Community</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="./index.html#leaderboard" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Benchmark</a>
+    <a href="./index.html#how" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Methodology</a>
+    <a href="./index.html#rubric" class="mk-overlay-link"><span class="mk-overlay-num">04</span>The Rubric</a>
+    <a href="./index.html#labs" class="mk-overlay-link"><span class="mk-overlay-num">05</span>For Labs</a>
+    <a href="./community.html" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">06</span>Community</a>
+  </div>
+  <div class="mk-overlay-meta">
+    World Labs: shipped game developers blind-evaluate AI-generated games. Round One in progress · results soon.
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="cm-hero">
+  <div class="section-inner">
+    <div class="cm-kicker fade-in visible">World Labs Community</div>
+    <h1 class="cm-title fade-in visible">The Panel</h1>
+    <p class="cm-tagline fade-in visible">Less vibes. More verdicts.</p>
+    <p class="cm-intro fade-in visible">Join The Panel and help shape the future of AI-made games — playing and judging real output from the top AI labs and game-tool companies, and getting paid for the judgment you spent a career earning.</p>
+    <div class="fade-in visible" style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap;">
+      <a href="#apply" class="btn btn-primary">Join the Community</a>
+      <a href="#faq" class="btn btn-secondary">Read the FAQ</a>
+    </div>
+  </div>
+</section>
+
+<!-- Who we're looking for -->
+<section class="section" style="padding-top:var(--space-12);">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">Who we're looking for</div>
+    <h2 class="section-title fade-in">Five specialties. One bar: shipped.</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Every panelist has real titles behind them. If you've spent years making games good, this is the room for you.</p>
+
+    <div class="cm-specialties">
+      <div class="cm-specialty fade-in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+        <span>Level Design</span>
+      </div>
+      <div class="cm-specialty fade-in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19"/></svg>
+        <span>Systems Design</span>
+      </div>
+      <div class="cm-specialty fade-in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
+        <span>UX &amp; Onboarding</span>
+      </div>
+      <div class="cm-specialty fade-in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+        <span>QA &amp; Playtest Leads</span>
+      </div>
+      <div class="cm-specialty fade-in">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4m-2-2v4M15 11h.01M18 13h.01M17.32 5H6.68a4 4 0 0 0-3.98 3.6c-.01.14-.03.28-.05.43L2 15.5A2.5 2.5 0 0 0 6.4 17l1.6-2h8l1.6 2a2.5 2.5 0 0 0 4.4-1.5l-.65-6.47c-.02-.15-.04-.29-.05-.43A4 4 0 0 0 17.32 5Z"/></svg>
+        <span>Game Feel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Value prop -->
+<section class="section" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
+  <div class="section-inner section-center">
+    <p class="cm-value fade-in">No exclusivity requirement, no middleman markup — <em>just a curated panel of shipped game developers who share a high bar for what counts as a good game.</em></p>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" id="apply">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">How it works</div>
+    <h2 class="section-title fade-in">Three steps in. Then you're in.</h2>
+
+    <div class="steps-grid" style="margin-bottom:var(--space-10);">
+      <div class="step-card fade-in">
+        <div class="step-number">1</div>
+        <h3>Apply</h3>
+        <p>Send your shipped credits, your specialty, and a few sentences on the best and worst game you played last year — and why. Fifteen minutes, no portfolio required.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">2</div>
+        <h3>Calibrate</h3>
+        <p>A short conversation with a current panelist, plus one sample eval on a real AI-generated game. We're checking judgment and writing, not trivia.</p>
+      </div>
+      <div class="step-card fade-in">
+        <div class="step-number">3</div>
+        <h3>You're in</h3>
+        <p>If you're in, you're in. Assignments start with the next round — no probation tiers, no ranking games, no fighting for gigs in a feed.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="display:flex;justify-content:center;">
+      <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="btn btn-primary">Join the Community</a>
+    </div>
+  </div>
+</section>
+
+<!-- What you'll be part of -->
+<section class="section" style="background:var(--color-bg-alt);">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">What you'll be part of</div>
+    <h2 class="section-title fade-in">More than a gig queue</h2>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-label">Paid work</div>
+        <h3>Eval sessions matched to your expertise</h3>
+        <p>Assignments route by specialty — game-feel people judge game feel. Each session is a game, a timer, and a structured writeup. Paid per completed eval, invoiced monthly.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-label">Community</div>
+        <h3>A private room of people who ship</h3>
+        <p>A members-only space to compare notes across rounds, argue about scores after they lock, and see where AI game tools are actually heading — months before the public does.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-label">Early access</div>
+        <h3>The tools, before the hype</h3>
+        <p>Panelists play output from the newest prompt-to-game tools under blind conditions first. When identities unmask at the end of a round, you'll know which tools are real.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-label">On your terms</div>
+        <h3>Flexible, remote, no exclusivity</h3>
+        <p>Take the rounds you want, skip the ones you don't. Everything runs in the browser, on your schedule. Keep your studio work, your freelance clients, your side project.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">FAQ</div>
+    <h2 class="section-title fade-in" style="margin-bottom:var(--space-10);">Fair questions, straight answers</h2>
+
+    <div class="cm-faq fade-in">
+      <details>
+        <summary>What does the work actually look like?</summary>
+        <div class="cm-faq-body">You're assigned a game generated by an AI tool (identity hidden), you play it in the browser for a minimum session — usually around 15 minutes — then score it on a seven-dimension rubric, write a critique, and rank the top three fixes. Some assignments are head-to-head A/B comparisons instead.</div>
+      </details>
+      <details>
+        <summary>How does payment work?</summary>
+        <div class="cm-faq-body">Flat rate per completed eval, set per round before you accept any assignments — a rubric session pays more than an A/B comparison. No bidding, no rate negotiation per gig, no platform cut ambiguity. Invoices settle monthly.</div>
+      </details>
+      <details>
+        <summary>What's the time commitment?</summary>
+        <div class="cm-faq-body">Whatever you take on. A typical round assignment is a handful of sessions over two to three weeks, each about 30–40 minutes including the writeup. You can decline any round with zero penalty — the only expectation is that accepted assignments get finished.</div>
+      </details>
+      <details>
+        <summary>Do I need AI experience?</summary>
+        <div class="cm-faq-body">No. We're paying for the opposite: judgment about games, built by shipping them. If you can tell a coherent mechanic from a broken one and explain why in writing, you're qualified. The harness handles everything else.</div>
+      </details>
+      <details>
+        <summary>Is my name attached to my scores?</summary>
+        <div class="cm-faq-body">Never. Published results and licensed data are attributed only to specialty and years of experience — "Level designer, 12 years," not your name. Your credits get you in the door; your identity stays out of the data.</div>
+      </details>
+      <details>
+        <summary>How is this different from a playtesting marketplace or staffing agency?</summary>
+        <div class="cm-faq-body">Marketplaces sell volume; we sell calibrated expert judgment. Every panelist is vetted on shipped titles, every eval follows the same anchored rubric, and every game gets multiple independent raters with disagreements flagged and re-judged. Agencies place you with clients — we run the whole harness and you just judge.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="mk-cta">
+  <section class="mk-cta-inner">
+    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
+           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+    <div class="mk-cta-content">
+      <h2>Your judgment is the product.</h2>
+      <div class="mk-cta-actions">
+        <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="mk-btn-light">Join the Community</a>
+        <a href="./index.html#leaderboard" class="mk-btn-glass">See the Benchmark</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+</div><!-- end page-content -->
+
+<!-- Footer -->
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>Shipped game developers blind-evaluate the output of prompt-to-game AI tools: structured verdicts, a public leaderboard, and eval data labs can train on.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment. Tool identities hidden until each round closes.</p>
+    </div>
+
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Benchmark</div>
+        <ul role="list">
+          <li><a href="./index.html#leaderboard">Leaderboard</a></li>
+          <li><a href="./index.html#how">Methodology</a></li>
+          <li><a href="./index.html#rubric">The Rubric</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Company</div>
+        <ul role="list">
+          <li><a href="./index.html#labs">For Labs</a></li>
+          <li><a href="./community.html">Community</a></li>
+          <li><a href="mailto:hello@tryworldlabs.com">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// Menu overlay
+(function(){
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+
+  let open = false;
+  function set(next) {
+    open = next;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
+  }
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
+})();
+
+// Background video autoplay
+(function(){
+  document.querySelectorAll('video').forEach(v => {
+    v.muted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.play().catch(() => {});
+  });
+  const retry = () => {
+    if (document.querySelector('.mk-overlay.open')) return;
+    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
+  };
+  window.addEventListener('touchstart', retry, { once: true, passive: true });
+  window.addEventListener('click', retry, { once: true });
+})();
+
+// Fade in
+const fadeObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+
+</body>
+</html>
