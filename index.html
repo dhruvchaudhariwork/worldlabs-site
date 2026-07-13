@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Labs | Expert Evals for AI-Generated Games</title>
-<meta name="description" content="Expert evals for AI-generated games. Shipped game developers play and judge AI-made games — structured verdicts and eval data labs can train on.">
+<meta name="description" content="Expert evals for AI-made games. Shipped game developers play and judge what AI builds — structured verdicts and eval data labs can train on.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,155 +52,69 @@
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
 
-  /* ── Masked tools row ── */
-  .tools-masked {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-3) var(--space-6);
-  }
-  .tool-masked {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
-    color: var(--color-text-tertiary);
-    letter-spacing: 0.14em;
-    user-select: none;
-  }
-
-  /* ── Leaderboard mock ── */
-  .lb-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    text-align: left;
+  /* ── Statement ── */
+  .st-statement {
     max-width: 880px;
     margin: 0 auto;
-  }
-  .lb-card-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-4);
-    margin-bottom: 14px;
-  }
-  .lb-card-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-text-tertiary);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-  .lb-card-sub {
-    font-size: 11px;
-    color: var(--color-text-tertiary);
-    font-weight: 500;
-  }
-  .lb-bar-track {
-    width: clamp(70px, 12vw, 140px);
-    height: 6px;
-    border-radius: var(--radius-full);
-    background: var(--color-border-subtle);
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: var(--space-2);
-  }
-  .lb-bar {
-    height: 100%;
-    border-radius: var(--radius-full);
-    background: var(--color-text);
-  }
-  .lb-score {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 600;
+    font-size: var(--text-2xl);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.25;
     color: var(--color-text);
-    vertical-align: middle;
   }
-  .lb-tool {
-    font-family: var(--font-mono);
-    font-weight: 600;
-    color: var(--color-text-tertiary);
-    letter-spacing: 0.15em;
-  }
-  .lb-rank {
-    font-family: var(--font-mono);
-    color: var(--color-text-tertiary);
-    font-size: var(--text-xs);
-  }
-  .lb-note {
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    margin-top: var(--space-4);
-    text-align: center;
-  }
+  .st-statement em { font-style: normal; color: var(--color-text-tertiary); }
 
-  /* ── Rubric rows ── */
-  .rubric-list {
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--color-surface);
-    text-align: left;
-    max-width: 880px;
+  /* ── Mission ── */
+  .mission-copy {
+    max-width: 620px;
     margin: 0 auto;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    text-align: left;
   }
-  .rubric-row {
-    display: grid;
-    grid-template-columns: 44px 200px 1fr;
-    gap: var(--space-5);
-    padding: var(--space-5) var(--space-6);
-    border-bottom: 1px solid var(--color-border);
-    align-items: baseline;
-  }
-  .rubric-row:last-child { border-bottom: none; }
-  .rubric-num {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    font-weight: 500;
-  }
-  .rubric-name {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
-  }
-  .rubric-detail { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
-  .rubric-anchors {
-    display: block;
-    margin-top: var(--space-1);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    color: var(--color-text-tertiary);
-    line-height: 1.6;
-  }
-  @media (max-width: 768px) {
-    .rubric-row { grid-template-columns: 1fr; gap: var(--space-1); }
-    .rubric-num { display: none; }
-  }
-
-  /* ── Data schema block ── */
-  .schema-block {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: var(--space-6);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    line-height: 1.8;
+  .mission-copy p {
+    font-size: var(--text-lg);
+    font-weight: 400;
     color: var(--color-text-secondary);
-    overflow-x: auto;
-    white-space: pre;
-    text-align: left;
+    line-height: 1.65;
+    margin-bottom: var(--space-5);
+  }
+  .mission-copy p strong {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+
+  /* ── Offer cards ── */
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
     max-width: 880px;
     margin: 0 auto;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    text-align: left;
   }
-  .schema-block .k { color: var(--color-text); font-weight: 600; }
-  .schema-block .c { color: var(--color-text-tertiary); }
+  .offer-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: var(--space-8);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .offer-card h3 {
+    font-size: var(--text-xl);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+  }
+  .offer-card p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .offer-card .btn { align-self: flex-start; }
+  @media (max-width: 768px) { .offer-grid { grid-template-columns: 1fr; } }
 
   .specialty-row {
     display: flex;
@@ -250,11 +164,8 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="#" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">01</span>Home</a>
-    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Methodology</a>
-    <a href="#rubric" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>The Rubric</a>
-    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Research</a>
-    <a href="#labs" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>For Labs</a>
-    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">06</span>Community</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Community</a>
   </div>
   <div class="mk-overlay-meta">
     World Labs: expert evals for AI-made games, by game developers who ship.
@@ -284,7 +195,7 @@
           <input type="email" class="mk-hero-input" placeholder="you@studio.com" id="waitlist-email" required>
           <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Join the Waitlist</button>
         </div>
-        <a href="#how" class="mk-btn mk-btn-secondary">How It Works</a>
+        <a href="./community.html" class="mk-btn mk-btn-secondary">Join the Panel</a>
       </div>
       <div class="waitlist-msg" id="waitlist-msg"></div>
     </div>
@@ -299,198 +210,56 @@
 </section>
 
 
+<!-- Statement -->
+<section class="section section-center">
+  <div class="section-inner">
+    <p class="st-statement fade-in">AI has made it easy to generate a game. <em>It still can't tell you whether the game is any good — or how to make it great.</em></p>
+  </div>
+</section>
 
 
-<!-- How It Works -->
-<section class="section" id="how">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">Methodology</div>
-    <h2 class="section-title fade-in">One prompt in. A verdict out.</h2>
-    <p class="section-desc fade-in">Built like an eval, not a review roundup. Three steps, no vibes.</p>
-
-    <div class="steps-grid">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <h3>Generate</h3>
-        <p>Every tool gets the identical prompt spec — genre, mechanics, and a deliberate twist ("a 2D puzzle-platformer where gravity flips on jump"). No cherry-picking, no re-rolls.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <h3>Play blind</h3>
-        <p>Vetted game developers play each game in the browser with tool names stripped from every surface. A session timer enforces a minimum play time before the scoring form unlocks.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <h3>Judge</h3>
-        <p>Seven rubric dimensions scored 1–7 against fixed anchors, a required written critique, a prioritized fix list, and head-to-head A/B comparisons. Submissions lock on submit.</p>
-      </div>
+<!-- Mission -->
+<section class="section section-center" style="background:var(--color-bg-alt);">
+  <div class="section-inner">
+    <div class="section-label fade-in">Mission</div>
+    <div class="mission-copy fade-in">
+      <p>Fun doesn't show up in a unit test. Game feel, pacing, coherence — the things that decide whether anyone keeps playing — only register in the judgment of people who have shipped games and watched players bounce off them.</p>
+      <p>We put AI-made games in front of exactly those people, under blind, structured conditions, and capture their verdicts as clean data.</p>
+      <p><strong>So that models and agents can build games that aren't just playable — but worth playing.</strong></p>
     </div>
   </div>
 </section>
 
 
-<!-- Features / methodology detail -->
-<section class="section" id="features">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">Why trust it</div>
-    <h2 class="section-title fade-in">Rigor a marketing page can't fake</h2>
+<!-- What we do -->
+<section class="section section-center" id="labs">
+  <div class="section-inner">
+    <div class="section-label fade-in">Evals across the stack</div>
 
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-label">Blind mode</div>
-        <h3>No logos, no tells</h3>
-        <p>Tool identities are hidden from every expert-facing surface for the entire round — pages, URLs, and API responses included. Experts judge the game in front of them, not the brand behind it.</p>
+    <div class="offer-grid">
+      <div class="offer-card fade-in">
+        <h3>Evals for training models</h3>
+        <p>We work with labs building world models, game-playing agents, and generative game systems — turning expert judgment into rubric scores, critiques, and preference pairs for RLHF, reward models, and benchmarking.</p>
+        <a href="mailto:hello@tryworldlabs.com?subject=Evals%20for%20training" class="btn btn-primary">Get in touch</a>
       </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Timed sessions</div>
-        <h3>Minimum play time, enforced</h3>
-        <p>The scoring form stays locked until the expert has actually played — at least 60% of the target session length, tracked server-side so a refresh can't reset the clock.</p>
+      <div class="offer-card fade-in">
+        <h3>Evals for game tools &amp; agents</h3>
+        <p>We work with prompt-to-game tools, NPC and agent builders, and studios shipping AI features — blind expert evals of your output, tracked release over release, so you know what got better before your players do.</p>
+        <a href="mailto:hello@tryworldlabs.com?subject=Evals%20for%20tools" class="btn btn-primary">Get in touch</a>
       </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Vetted panel</div>
-        <h3>Shipped-title experts only</h3>
-        <p>Level designers, systems designers, UX specialists, QA and playtest leads — every panelist is vetted on shipped credits and years in the industry. Judgment you can't crowdsource.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Reliability</div>
-        <h3>Two raters, disagreement flagged</h3>
-        <p>Every game is scored independently by at least two experts. If their overall means diverge by 2.0 or more, the game is flagged and a third rater is assigned. Consensus is earned, not assumed.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Broken builds</div>
-        <h3>"Could not play" is data too</h3>
-        <p>When a generated game doesn't run, it's excluded from score averages — but the broken rate is reported alongside every result. Fragility is part of the finding.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Pairwise</div>
-        <h3>Head-to-head, same prompt</h3>
-        <p>For every prompt, cross-tool pairs are judged A/B in randomized order: which is the better game, at what confidence, and why — in writing. Win rates come from real comparisons.</p>
-      </div>
-
-      <div class="feature-card fade-in">
-        <div class="feature-label">Data</div>
-        <h3>Export-clean by design</h3>
-        <p>Every judgment lands in a stable JSON schema with full context: rubric scores, critiques, fix lists, pairwise choices, time played. Every eval is also a dataset.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-<!-- The Rubric -->
-<section class="section" id="rubric">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">The rubric</div>
-    <h2 class="section-title fade-in">Seven dimensions a playtest lead would actually use</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Each dimension is scored 1–7 against fixed anchors, so a 4 from one expert means the same thing as a 4 from another.</p>
-
-    <div class="rubric-list fade-in">
-      <div class="rubric-row">
-        <span class="rubric-num">01</span>
-        <span class="rubric-name">Prompt adherence</span>
-        <span class="rubric-detail">Does the game match what the prompt asked for?
-          <span class="rubric-anchors">1 = unrelated&ensp;·&ensp;4 = loosely related&ensp;·&ensp;7 = faithful, including the twist</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">02</span>
-        <span class="rubric-name">Mechanics coherence</span>
-        <span class="rubric-detail">Do the rules make sense and interact sensibly?
-          <span class="rubric-anchors">1 = contradictory, broken rules&ensp;·&ensp;7 = a coherent system with meaningful interactions</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">03</span>
-        <span class="rubric-name">Fun</span>
-        <span class="rubric-detail">Did you want to keep playing?
-          <span class="rubric-anchors">1 = a chore&ensp;·&ensp;4 = mildly diverting&ensp;·&ensp;7 = genuinely engaging</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">04</span>
-        <span class="rubric-name">Pacing &amp; difficulty</span>
-        <span class="rubric-detail">Does challenge ramp sensibly? Any dead spots or spikes?
-          <span class="rubric-anchors">1 = flat or chaotic&ensp;·&ensp;7 = a deliberate curve</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">05</span>
-        <span class="rubric-name">Game feel</span>
-        <span class="rubric-detail">Responsiveness, feedback, "juice" — inputs, animation, sound cues.
-          <span class="rubric-anchors">1 = dead, laggy&ensp;·&ensp;7 = crisp and satisfying</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">06</span>
-        <span class="rubric-name">Onboarding</span>
-        <span class="rubric-detail">Could a new player figure out what to do without instructions?
-          <span class="rubric-anchors">1 = lost immediately&ensp;·&ensp;7 = teaches through play</span>
-        </span>
-      </div>
-      <div class="rubric-row">
-        <span class="rubric-num">07</span>
-        <span class="rubric-name">Completeness</span>
-        <span class="rubric-detail">Does it feel like a whole playable thing, or a fragment?
-          <span class="rubric-anchors">1 = broken fragment&ensp;·&ensp;7 = complete loop with win/lose state</span>
-        </span>
-      </div>
-    </div>
-    <p class="lb-note fade-in">Every score ships with a required written critique and a top-3 fix list, ordered by impact.</p>
-  </div>
-</section>
-
-
-<!-- For labs & tool makers -->
-<section class="section" id="labs" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">For labs &amp; tool makers</div>
-    <h2 class="section-title fade-in">The eval layer for generative games</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Automated metrics can't tell you whether a game is fun. Our panel can — and every judgment they make is captured as clean, structured data.</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);max-width:760px;margin:0 auto var(--space-8);text-align:left;">
-      <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
-        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Private evals</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Run your builds through the same blind harness: fixed prompts, vetted experts, rubric plus pairwise, results in days. Track score movement release over release.</p>
-      </div>
-      <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
-        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Training data</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Expert preference and critique data from professionals with shipped titles — licensed as stable JSON, attributed only to specialty and years of experience. Never names.</p>
-      </div>
-    </div>
-
-    <div class="schema-block fade-in" style="margin-bottom:var(--space-8);"><span class="c">// every judgment, full context, stable schema</span>
-{
-  <span class="k">"expert"</span>:   { "specialty": "GAME_FEEL", "yearsExperience": 11 },
-  <span class="k">"prompt"</span>:   { "title": "Gravity-flip puzzle-platformer", "genre": "puzzle" },
-  <span class="k">"scores"</span>:   { "promptAdherence": 6, "mechanicsCoherence": 5, "fun": 4, ... },
-  <span class="k">"critique"</span>: "The flip mechanic is faithful, but level 3 softlocks when...",
-  <span class="k">"fixList"</span>:  "1. Fix the softlock. 2. Add coyote time. 3. Telegraph the flip.",
-  <span class="k">"pairwise"</span>: { "winner": "artifact_b", "confidence": "CLEAR" }
-}</div>
-
-    <div class="fade-in" style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
-      <a href="mailto:hello@tryworldlabs.com?subject=Private%20evals" class="btn btn-primary">Talk to us about evals</a>
-      <a href="mailto:hello@tryworldlabs.com?subject=Data%20licensing" class="btn btn-secondary">License the data →</a>
     </div>
   </div>
 </section>
 
 
 <!-- Join the panel -->
-<section class="section" id="panel" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
-  <div class="section-inner section-center">
-    <div class="section-label fade-in">For game developers</div>
-    <h2 class="section-title fade-in">Your shipped-title experience is the product</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);">The industry laid off a generation of people who know what makes a game good. That judgment is exactly what AI game tools can't generate — and what labs will pay for. Paid per completed eval, on your schedule, fully remote.</p>
+<section class="section section-center" id="panel" style="background:var(--color-bg-alt);">
+  <div class="section-inner">
+    <div class="section-label fade-in">The Panel</div>
+    <h2 class="section-title fade-in">Join our mission to keep games good</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);">Bring your shipped-title judgment — level design, systems, UX, QA, game feel — and get paid to decide what AI gets right and wrong about games.</p>
 
-    <div class="specialty-row fade-in" style="margin-bottom:var(--space-10);">
+    <div class="specialty-row fade-in" style="margin-bottom:var(--space-8);">
       <span class="tag">Level design</span>
       <span class="tag">Systems design</span>
       <span class="tag">UX &amp; onboarding</span>
@@ -498,26 +267,21 @@
       <span class="tag">Game feel</span>
     </div>
 
-    <div class="steps-grid" style="margin-bottom:var(--space-10);">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <h3>Apply with your credits</h3>
-        <p>Tell us what you've shipped and where you're strongest. We vet every panelist — the panel's credibility is the whole point.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <h3>Get assigned sessions</h3>
-        <p>Each assignment is one game and a target session length — about 15 minutes of play plus a structured writeup. Everything runs in the browser.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <h3>Judge like it's your job</h3>
-        <p>Because it is. Score the rubric, write the critique, rank the fixes. Your name never appears in the data — your expertise does.</p>
-      </div>
-    </div>
-
     <div class="fade-in" style="display:flex;justify-content:center;">
-      <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="btn btn-primary">Apply to join the panel</a>
+      <a href="./community.html" class="btn btn-primary">Join the Community</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Research teaser -->
+<section class="section section-center">
+  <div class="section-inner">
+    <div class="section-label fade-in">Research</div>
+    <h2 class="section-title fade-in">Seventeen questions. One harness.</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">From gameplay decisions to game economies — the full taxonomy of expert evals we're building toward.</p>
+    <div class="fade-in" style="display:flex;justify-content:center;">
+      <a href="./research.html" class="btn btn-secondary">Explore the eval space →</a>
     </div>
   </div>
 </section>
@@ -532,22 +296,7 @@
       <h2>The playtest is the eval.</h2>
       <div class="mk-cta-actions">
         <a href="#waitlist-email" class="mk-btn-light">Join the Waitlist</a>
-        <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="mk-btn-glass">Apply to the Panel</a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- Closing CTA -->
-<div class="mk-cta">
-  <section class="mk-cta-inner">
-    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
-           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
-    <div class="mk-cta-content">
-      <h2>Ready to stop running ops by hand?</h2>
-      <div class="mk-cta-actions">
-        <a href="#waitlist-email" class="mk-btn-light">Join the Waitlist</a>
-        <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="mk-btn-glass">Book a Demo</a>
+        <a href="./community.html" class="mk-btn-glass">Join the Panel</a>
       </div>
     </div>
   </section>
@@ -566,20 +315,17 @@
 
     <div class="mk-footer-cols">
       <div>
-        <div class="mk-footer-head">Method</div>
+        <div class="mk-footer-head">Explore</div>
         <ul role="list">
-          <li><a href="#how">Methodology</a></li>
-          <li><a href="#rubric">The Rubric</a></li>
-          <li><a href="#panel">Join the Panel</a></li>
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./community.html">Community</a></li>
         </ul>
       </div>
       <div>
-        <div class="mk-footer-head">Company</div>
+        <div class="mk-footer-head">Get in touch</div>
         <ul role="list">
-          <li><a href="./research.html">Research</a></li>
-          <li><a href="#labs">For Labs</a></li>
-          <li><a href="./community.html">Community</a></li>
-          <li><a href="mailto:hello@tryworldlabs.com">Contact</a></li>
+          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="mailto:panel@tryworldlabs.com">Apply to the Panel</a></li>
         </ul>
       </div>
       <div>
