@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <!--
-   ______                            __
-  / ____/___  ____ ___  ____  __  __/ /____  _____
- / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
-/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
-\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
-                    /_/
+    ____  __            __            __     ____                  __
+   / __ \/ /___ ___  __/ /____  _____/ /_   / __ \____ _____  ___  / /
+  / /_/ / / __ `/ / / / __/ _ \/ ___/ __/  / /_/ / __ `/ __ \/ _ \/ /
+ / ____/ / /_/ / /_/ / /_/  __(__  ) /_   / ____/ /_/ / / / /  __/ /
+/_/   /_/\__,_/\__, /\__/\___/____/\__/  /_/    \__,_/_/ /_/\___/_/
+              /____/
 -->
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Optonomous | Autonomous Ops for E-Commerce</title>
-<meta name="description" content="AI agents that build your Shopify store and run your ops. Support, subscriptions, inventory, chargebacks. All autonomous.">
+<title>Playtest Panel | Expert Evals for AI-Generated Games</title>
+<meta name="description" content="Shipped game developers blind-evaluate the output of prompt-to-game AI tools. A public benchmark, structured verdicts, and eval data labs can train on.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 16h6l3-6 3 12 3-6h6' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>" type="image/svg+xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
 
 <style>
   .waitlist-form {
@@ -52,18 +52,163 @@
     margin-top: var(--space-3);
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
-  .hero-consent {
-    text-align: center;
+
+  /* ── Masked tools row ── */
+  .tools-masked {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+  }
+  .tool-masked {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.14em;
+    user-select: none;
+  }
+
+  /* ── Leaderboard mock ── */
+  .lb-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    text-align: left;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .lb-card-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: 14px;
+  }
+  .lb-card-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .lb-card-sub {
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+  }
+  .lb-bar-track {
+    width: clamp(70px, 12vw, 140px);
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--color-border-subtle);
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: var(--space-2);
+  }
+  .lb-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--color-text);
+  }
+  .lb-score {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-text);
+    vertical-align: middle;
+  }
+  .lb-tool {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.15em;
+  }
+  .lb-rank {
+    font-family: var(--font-mono);
+    color: var(--color-text-tertiary);
+    font-size: var(--text-xs);
+  }
+  .lb-note {
     font-size: var(--text-xs);
     color: var(--color-text-tertiary);
     margin-top: var(--space-4);
-    max-width: 46ch;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: center;
+  }
+
+  /* ── Rubric rows ── */
+  .rubric-list {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-surface);
+    text-align: left;
+    max-width: 880px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .rubric-row {
+    display: grid;
+    grid-template-columns: 44px 200px 1fr;
+    gap: var(--space-5);
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+  .rubric-row:last-child { border-bottom: none; }
+  .rubric-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+  }
+  .rubric-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .rubric-detail { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.6; }
+  .rubric-anchors {
+    display: block;
+    margin-top: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-tertiary);
     line-height: 1.6;
   }
-  .hero-consent a { color: var(--color-text-secondary); text-decoration: underline; }
-  .hero-consent a:hover { color: var(--color-text); }
+  @media (max-width: 768px) {
+    .rubric-row { grid-template-columns: 1fr; gap: var(--space-1); }
+    .rubric-num { display: none; }
+  }
+
+  /* ── Data schema block ── */
+  .schema-block {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    overflow-x: auto;
+    white-space: pre;
+    text-align: left;
+    max-width: 880px;
+    margin: 0 auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .schema-block .k { color: var(--color-text); font-weight: 600; }
+  .schema-block .c { color: var(--color-text-tertiary); }
+
+  .specialty-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
 </style>
 </head>
 <body>
@@ -76,9 +221,9 @@
     <a href="#" class="mk-logo">
       <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
-        <path d="M8 16h6l3-6 3 12 3-6h6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
       </svg>
-      <span class="mk-logo-text">Optonomous</span>
+      <span class="mk-logo-text">Playtest Panel</span>
     </a>
 
     <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
@@ -89,16 +234,16 @@
     </button>
 
     <div class="mk-tags-pill">
-      <span>Storefront AI</span>
-      <span>Autonomous Ops</span>
+      <span>Expert Evals</span>
+      <span>AI-Made Games</span>
     </div>
   </div>
 
-  <a href="https://calendly.com" target="_blank" rel="noopener noreferrer" class="mk-cta-btn" aria-label="Book a demo">
+  <a href="#panel" class="mk-cta-btn" aria-label="Join the panel">
     <span class="mk-cta-circle">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </span>
-    <span class="mk-cta-label">Book a Demo</span>
+    <span class="mk-cta-label">Join the Panel</span>
   </a>
 </nav>
 
@@ -106,16 +251,14 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="#" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">01</span>Home</a>
-    <a href="#features" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Platform</a>
-    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>How It Works</a>
-    <a href="#calculator" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">04</span>Pricing</a>
-    <a href="#data-program" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>Earn</a>
-    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">06</span>Research</a>
-    <a href="./trust.html" class="mk-overlay-link"><span class="mk-overlay-num">07</span>Data &amp; Trust</a>
-    <a href="./app.html" class="mk-overlay-link"><span class="mk-overlay-num">08</span>Log In</a>
+    <a href="#leaderboard" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">02</span>Benchmark</a>
+    <a href="#how" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>Methodology</a>
+    <a href="#rubric" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">04</span>The Rubric</a>
+    <a href="#labs" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">05</span>For Labs</a>
+    <a href="#panel" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">06</span>Join the Panel</a>
   </div>
   <div class="mk-overlay-meta">
-    Optonomous: AI agents that build your store and run your ops. Early access · agents ship weekly.
+    Playtest Panel: shipped game developers blind-evaluate AI-generated games. Round One in progress · results soon.
   </div>
 </div>
 
@@ -132,15 +275,15 @@
     <div>
       <div class="mk-subtitle">
         <span class="mk-subtitle-dot"></span>
-        Early access · agents ship weekly
+        Round One in progress · 25 experts · 8 tools
       </div>
 
-      <h1 class="mk-heading">Autonomous ops<br>for e-commerce</h1>
+      <h1 class="mk-heading">Real game devs.<br>Judging AI games.</h1>
 
       <div class="mk-hero-btns">
         <div class="mk-hero-form" id="waitlist-form">
-          <input type="email" class="mk-hero-input" placeholder="you@yourbrand.com" id="waitlist-email" required>
-          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Join Waitlist</button>
+          <input type="email" class="mk-hero-input" placeholder="you@studio.com" id="waitlist-email" required>
+          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Get the Results</button>
         </div>
         <a href="#how" class="mk-btn mk-btn-secondary">How It Works</a>
       </div>
@@ -148,24 +291,30 @@
     </div>
 
     <div class="mk-hero-tags">
-      <span class="mk-hero-tag">Support</span>
-      <span class="mk-hero-tag">Subscriptions</span>
-      <span class="mk-hero-tag">Inventory</span>
-      <span class="mk-hero-tag">Chargebacks</span>
+      <span class="mk-hero-tag">Blind sessions</span>
+      <span class="mk-hero-tag">1–7 rubric</span>
+      <span class="mk-hero-tag">Pairwise A/B</span>
+      <span class="mk-hero-tag">Public leaderboard</span>
     </div>
   </div>
 </section>
 
 
-<!-- Platform Logos -->
+<!-- Tools under evaluation -->
 <section class="section" style="padding-top:0;">
   <div class="section-inner section-center fade-in mk-logos">
-    <div class="section-label">Launching on</div>
-    <div class="logo-row" style="gap:var(--space-8);">
-      <div class="logo-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.337 23.979l7.216-1.561s-2.604-17.613-2.625-17.73c-.018-.116-.114-.192-.211-.192s-1.929-.136-1.929-.136-1.275-1.274-1.439-1.411c-.045-.037-.075-.057-.121-.074l-.914 21.104h.023zM11.71 11.305s-.81-.424-1.774-.424c-1.447 0-1.504.906-1.504 1.141 0 1.232 3.24 1.715 3.24 4.629 0 2.295-1.44 3.76-3.406 3.76-2.354 0-3.54-1.465-3.54-1.465l.646-2.086s1.245 1.066 2.28 1.066c.675 0 .975-.545.975-.932 0-1.619-2.654-1.694-2.654-4.359-.034-2.237 1.571-4.416 4.827-4.416 1.257 0 1.875.361 1.875.361l-.945 2.715-.02.01zM11.17.83c.136 0 .271.038.405.135-.984.465-2.064 1.639-2.508 3.992-.656.213-1.293.405-1.889.578C7.697 3.75 8.951.84 11.17.84V.83zm1.235 2.949v.135c-.754.232-1.583.484-2.394.736.466-1.777 1.333-2.645 2.085-2.971.193.501.309 1.176.309 2.1zm.539-2.234c.694.074 1.141.867 1.429 1.755-.349.114-.735.231-1.158.366v-.252c0-.752-.096-1.371-.271-1.871v.002zm2.992 1.289c-.02 0-.06.021-.078.021s-.289.075-.714.21c-.423-1.233-1.176-2.37-2.508-2.37h-.115C12.135.209 11.669 0 11.265 0 8.159 0 6.675 3.877 6.21 5.846c-1.194.365-2.063.636-2.16.674-.675.213-.694.232-.772.87-.075.462-1.83 14.063-1.83 14.063L15.009 24l.927-21.166z"/></svg>Shopify</div>
-      <div class="logo-item" style="opacity:0.4;">WooCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
-      <div class="logo-item" style="opacity:0.4;">BigCommerce <span style="font-size:var(--text-xs);opacity:0.7;">soon</span></div>
+    <div class="section-label">Under blind evaluation</div>
+    <div class="tools-masked">
+      <span class="tool-masked">████████</span>
+      <span class="tool-masked">██████</span>
+      <span class="tool-masked">█████████</span>
+      <span class="tool-masked">███████</span>
+      <span class="tool-masked">██████████</span>
+      <span class="tool-masked">█████</span>
+      <span class="tool-masked">████████</span>
+      <span class="tool-masked">███████</span>
     </div>
+    <p style="font-size:var(--text-xs);color:var(--color-text-tertiary);margin-top:var(--space-4);">The top 8 prompt-to-game AI tools. Identities revealed when Round One closes.</p>
   </div>
 </section>
 
@@ -173,1344 +322,303 @@
 <!-- How It Works -->
 <section class="section" id="how">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">How it works</div>
-    <h2 class="section-title fade-in">Tell us what you sell. We handle the rest.</h2>
-    <p class="section-desc fade-in">From building your storefront to running day-to-day operations. Three steps.</p>
+    <div class="section-label fade-in">Methodology</div>
+    <h2 class="section-title fade-in">One prompt in. A verdict out.</h2>
+    <p class="section-desc fade-in">Built like an eval, not a review roundup. Three steps, no vibes.</p>
 
     <div class="steps-grid">
       <div class="step-card fade-in">
         <div class="step-number">1</div>
-        <h3>Build</h3>
-        <p>Describe your product. Forge analyzes top stores in your niche and generates a conversion-optimized storefront: product pages, bundles, upsells, checkout.</p>
+        <h3>Generate</h3>
+        <p>Every tool gets the identical prompt spec — genre, mechanics, and a deliberate twist ("a 2D puzzle-platformer where gravity flips on jump"). No cherry-picking, no re-rolls.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-number">2</div>
-        <h3>Connect</h3>
-        <p>Link your payment processor, support inbox, and supplier contacts. Agents pull in your order history, inventory levels, and customer data.</p>
+        <h3>Play blind</h3>
+        <p>Vetted game developers play each game in the browser with tool names stripped from every surface. A session timer enforces a minimum play time before the scoring form unlocks.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-number">3</div>
-        <h3>Autopilot</h3>
-        <p>Agents go live: auto-reply support tickets, recover failed payments, alert on inventory, deflect chargebacks. You approve or override from one dashboard.</p>
+        <h3>Judge</h3>
+        <p>Seven rubric dimensions scored 1–7 against fixed anchors, a required written critique, a prioritized fix list, and head-to-head A/B comparisons. Submissions lock on submit.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- Features -->
+<!-- Features / methodology detail -->
 <section class="section" id="features">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">Platform</div>
-    <h2 class="section-title fade-in">Your ops team, fully automated</h2>
+    <div class="section-label fade-in">Why trust it</div>
+    <h2 class="section-title fade-in">Rigor a marketing page can't fake</h2>
 
     <div class="features-grid">
       <div class="feature-card fade-in">
-        <div class="feature-label">Storefront</div>
-        <h3>Forge</h3>
-        <p>Describe your product and the AI builds a conversion-optimized storefront: product pages, bundles, upsells, checkout flows. Iterate with prompts. Hosted and managed.</p>
+        <div class="feature-label">Blind mode</div>
+        <h3>No logos, no tells</h3>
+        <p>Tool identities are hidden from every expert-facing surface for the entire round — pages, URLs, and API responses included. Experts judge the game in front of them, not the brand behind it.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Support</div>
-        <h3>Resolve</h3>
-        <p>Monitors your inbox, classifies intent, drafts replies in your brand voice, and auto-sends high-confidence responses. Escalates edge cases with full context.</p>
+        <div class="feature-label">Timed sessions</div>
+        <h3>Minimum play time, enforced</h3>
+        <p>The scoring form stays locked until the expert has actually played — at least 60% of the target session length, tracked server-side so a refresh can't reset the clock.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Subscriptions</div>
-        <h3>Pulse</h3>
-        <p>Full subscription management: billing, payment processing, failed rebill recovery with smart retry cascading, and churn prevention via save flows. PCI DSS Level 1.</p>
+        <div class="feature-label">Vetted panel</div>
+        <h3>Shipped-title experts only</h3>
+        <p>Level designers, systems designers, UX specialists, QA and playtest leads — every panelist is vetted on shipped credits and years in the industry. Judgment you can't crowdsource.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Inventory</div>
-        <h3>Supply</h3>
-        <p>Computes days-of-cover for every SKU. Flags stock-out risks with auto-drafted PO emails. Generates promo copy when inventory is heavy.</p>
+        <div class="feature-label">Reliability</div>
+        <h3>Two raters, disagreement flagged</h3>
+        <p>Every game is scored independently by at least two experts. If their overall means diverge by 2.0 or more, the game is flagged and a third rater is assigned. Consensus is earned, not assumed.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Disputes, powered by Disputely</div>
-        <h3>Chargeback Protection</h3>
-        <p>Integrated prevention and recovery via Disputely. Real-time alerts from Visa RDR, Ethoca, and CDRN networks. Auto-deflection before chargebacks hit your ratio.</p>
+        <div class="feature-label">Broken builds</div>
+        <h3>"Could not play" is data too</h3>
+        <p>When a generated game doesn't run, it's excluded from score averages — but each tool's broken rate is published right on the leaderboard. Fragility is part of the result.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Profitability</div>
-        <h3>Ledger</h3>
-        <p>Connect Meta, TikTok, and Google ad accounts. Set COGS per SKU. See real profit per order, per product, per channel, not just revenue.</p>
+        <div class="feature-label">Pairwise</div>
+        <h3>Head-to-head, same prompt</h3>
+        <p>For every prompt, cross-tool pairs are judged A/B in randomized order: which is the better game, at what confidence, and why — in writing. Win rates come from real comparisons.</p>
       </div>
 
       <div class="feature-card fade-in">
-        <div class="feature-label">Ad campaigns</div>
-        <h3>Signal</h3>
-        <p>Monitors ad performance across Meta, TikTok, and Google. Auto-adjusts budgets, scales winners, pauses underperformers. Optimizes for true profit via Ledger, not just ROAS.</p>
+        <div class="feature-label">Data</div>
+        <h3>Export-clean by design</h3>
+        <p>Every judgment lands in a stable JSON schema with full context: rubric scores, critiques, fix lists, pairwise choices, time played. The benchmark is also a dataset.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- Dashboard Mock -->
-<section class="section" id="dashboard">
+<!-- Leaderboard preview -->
+<section class="section" id="leaderboard" style="background:var(--color-bg-alt);">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">Command center</div>
-    <h2 class="section-title fade-in">You're the CEO, not the operator</h2>
-    <p class="section-desc fade-in">The dashboard isn't where you do the work; it's where you see what your agents already did.</p>
+    <div class="section-label fade-in">The benchmark</div>
+    <h2 class="section-title fade-in">One leaderboard. Zero sponsors.</h2>
+    <p class="section-desc fade-in">Self-funded and independent — no tool maker pays to be ranked, and nobody sees their scores early.</p>
 
-    <style>
-      /* ── Card system (Figma-inspired) ─────────────────────────────── */
-      .dash-card {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      }
-      .dash-card-header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-bottom: 14px;
-      }
-      .dash-card-title {
-        font-size: 12px;
-        font-weight: 600;
-        color: var(--color-text-tertiary);
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-      }
-      .dash-card-big-number {
-        font-size: 28px;
-        font-weight: 600;
-        color: var(--color-text);
-        font-variant-numeric: tabular-nums lining-nums;
-        line-height: 1.1;
-      }
-      .dash-card-trend {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-top: 5px;
-      }
-      .dash-card-trend.up   { color: var(--color-positive); }
-      .dash-card-trend.down { color: var(--color-negative); }
-      .dash-card-trend.neu  { color: var(--color-neutral); }
-      .dash-view-report {
-        font-size: 11px;
-        font-weight: 600;
-        color: var(--color-brand);
-        text-decoration: none;
-        white-space: nowrap;
-        cursor: default;
-        opacity: 0.9;
-        flex-shrink: 0;
-      }
-      .dash-view-report:hover { opacity: 1; }
-
-      /* ── Grid layouts ─────────────────────────────────────────────── */
-      .dash-row { display: grid; gap: 12px; margin-bottom: 12px; }
-      .dash-row-1 { grid-template-columns: 1fr; }
-      .dash-row-ring { grid-template-columns: 1fr 2fr; }  /* ring card + list */
-      .dash-row-2-wide { grid-template-columns: 3fr 2fr; }
-      .dash-row-3 { grid-template-columns: 1fr 1fr 1fr; }
-      .dash-row-2 { grid-template-columns: 1fr 1fr; }
-      .dash-row-5 { grid-template-columns: repeat(5, 1fr); }
-
-      /* ── Legacy panel (other tabs keep existing look, just re-skinned) */
-      .dash-panel {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 16px;
-        padding: 18px 20px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      }
-      .dash-panel-header {
-        display: flex; align-items: center; justify-content: space-between;
-        margin-bottom: 12px;
-      }
-      .dash-panel-title {
-        font-size: 13px; font-weight: 500; color: var(--color-text);
-        display: flex; align-items: center; gap: 8px;
-      }
-      .dash-panel-subtitle {
-        font-size: 11px; color: var(--color-text-tertiary); font-weight: 500;
-      }
-      .dash-panel-icon {
-        width: 28px; height: 28px; border-radius: 6px;
-        background: var(--color-bg); border: 1px solid var(--color-border);
-        display: flex; align-items: center; justify-content: center;
-      }
-
-      /* ── Bar chart (vertical, Figma-style) ───────────────────────── */
-      .dash-bar-chart {
-        display: flex;
-        align-items: flex-end;
-        gap: 6px;
-        height: 80px;
-        margin-top: 8px;
-      }
-      .dash-bar-col {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        height: 100%;
-        justify-content: flex-end;
-      }
-      .dash-bar-stick {
-        width: 100%;
-        border-radius: 4px 4px 0 0;
-        background: var(--color-brand);
-        min-height: 4px;
-        opacity: 0.85;
-      }
-      .dash-bar-col.current .dash-bar-stick { opacity: 1; }
-      .dash-bar-x-label {
-        font-size: 9px;
-        color: var(--color-text-tertiary);
-        font-variant-numeric: tabular-nums;
-        margin-top: 3px;
-      }
-
-      /* ── Donut / ring chart ───────────────────────────────────────── */
-      .dash-donut-wrap {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-top: 8px;
-      }
-      .dash-donut-legend {
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-        flex: 1;
-      }
-      .dash-donut-legend-item {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-        font-size: 11px;
-        color: var(--color-text-secondary);
-      }
-      .dash-donut-legend-dot {
-        width: 8px; height: 8px;
-        border-radius: 50%;
-        flex-shrink: 0;
-      }
-      .dash-donut-legend-pct {
-        margin-left: auto;
-        font-weight: 500;
-        color: var(--color-text);
-        font-variant-numeric: tabular-nums;
-      }
-
-      /* ── Circular progress rings ──────────────────────────────────── */
-      .dash-rings-wrap {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        margin: 12px 0 8px;
-      }
-
-      /* ── Dispute list ─────────────────────────────────────────────── */
-      .dash-dispute-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 9px 0;
-        border-bottom: 1px solid var(--color-border);
-        font-size: 12.5px;
-      }
-      .dash-dispute-row:last-child { border-bottom: none; }
-      .dash-dispute-icon {
-        width: 28px; height: 28px; border-radius: 8px;
-        background: var(--color-bg);
-        border: 1px solid var(--color-border);
-        display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0;
-        font-size: 10px;
-        font-weight: 600;
-        color: var(--color-text-secondary);
-      }
-      .dash-dispute-name {
-        flex: 1;
-        font-weight: 600;
-        color: var(--color-text);
-        font-size: 12px;
-      }
-      .dash-dispute-amount {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--color-text);
-        font-variant-numeric: tabular-nums;
-        margin-right: 6px;
-      }
-      .dash-pill {
-        font-size: 10px;
-        padding: 2px 8px;
-        border-radius: 10px;
-        font-weight: 500;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-      }
-      .dash-pill-deflected { background: var(--color-positive-bg); color: var(--color-positive); }
-      .dash-pill-active    { background: var(--color-caution-bg);  color: var(--color-caution); }
-      .dash-pill-won       { background: var(--color-brand-muted);  color: var(--color-brand); }
-
-      /* ── Sparkline / line chart ───────────────────────────────────── */
-      .dash-sparkline-wrap {
-        margin-top: 10px;
-      }
-
-      /* ── Legacy mini-KPI (profitability tab) ──────────────────────── */
-      .dash-mini-kpi {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 12px;
-        padding: 14px 16px;
-      }
-      .dash-mini-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
-      .dash-mini-kpi-value { font-size: 22px; font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums; }
-      .dash-mini-kpi-delta { font-size: 11px; font-weight: 600; margin-top: 3px; }
-      .dash-mini-kpi-delta.pos { color: var(--color-positive); }
-      .dash-mini-kpi-delta.neg { color: var(--color-negative); }
-      .dash-mini-kpi-delta.neu { color: var(--color-neutral); }
-
-      /* ── Legacy bar row (support/subs/signal tabs) ────────────────── */
-      .dash-bar-row {
-        display: flex; align-items: center; gap: 10px;
-        padding: 8px 0;
-        border-bottom: 1px solid var(--color-border);
-        font-size: 12px;
-      }
-      .dash-bar-row:last-child { border-bottom: none; }
-      .dash-bar-label { min-width: 110px; color: var(--color-text-secondary); font-weight: 500; }
-      .dash-bar-track { flex: 1; height: 6px; background: var(--color-border); border-radius: 3px; overflow: hidden; }
-      .dash-bar-fill { height: 100%; border-radius: 3px; }
-      .dash-bar-val { min-width: 40px; text-align: right; color: var(--color-text-tertiary); font-weight: 600; font-variant-numeric: tabular-nums; }
-
-      .dash-badge-row {
-        display: flex; align-items: center; gap: 10px;
-        padding: 9px 0;
-        border-bottom: 1px solid var(--color-border);
-        font-size: 12.5px;
-      }
-      .dash-badge-row:last-child { border-bottom: none; }
-      .dash-badge-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-      .dash-badge-name { flex: 1; color: var(--color-text-secondary); font-weight: 500; }
-      .dash-badge-val { font-weight: 500; color: var(--color-text); font-variant-numeric: tabular-nums; min-width: 30px; text-align: right; }
-      .dash-badge-pct { font-size: 11px; color: var(--color-text-tertiary); min-width: 42px; text-align: right; }
-
-      .dash-toggle-group {
-        display: flex; gap: 0; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;
-      }
-      .dash-toggle-btn {
-        font-size: 11px; padding: 4px 10px; font-weight: 600;
-        color: var(--color-text-tertiary); background: transparent; border: none; cursor: default;
-      }
-      .dash-toggle-btn.active { background: var(--color-text); color: var(--color-bg); }
-
-      .dash-date-badge {
-        font-size: 11px; padding: 4px 10px; border: 1px solid var(--color-border);
-        border-radius: 6px; color: var(--color-text-tertiary); font-weight: 500;
-        display: flex; align-items: center; gap: 5px;
-      }
-
-      .dash-legend { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 8px; }
-      .dash-legend-item { font-size: 11px; color: var(--color-text-tertiary); display: flex; align-items: center; gap: 5px; }
-      .dash-legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-      .dash-ticket-row {
-        display: grid; grid-template-columns: 1fr auto auto; gap: 12px;
-        padding: 10px 0; border-bottom: 1px solid var(--color-border);
-        font-size: 12.5px; align-items: center;
-      }
-      .dash-ticket-row:last-child { border-bottom: none; }
-      .dash-ticket-subject { font-weight: 600; color: var(--color-text); }
-      .dash-ticket-meta { color: var(--color-text-tertiary); font-size: 11px; }
-      .dash-tag {
-        font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 500;
-        letter-spacing: 0.03em;
-      }
-      .dash-tag-auto { background: var(--color-positive-bg); color: var(--color-positive); }
-      .dash-tag-queue { background: var(--color-caution-bg); color: var(--color-caution); }
-      .dash-tag-escalate { background: var(--color-negative-bg); color: var(--color-negative); }
-
-      .dash-sku-row {
-        display: grid; grid-template-columns: 1fr auto auto auto; gap: 12px;
-        padding: 9px 0; border-bottom: 1px solid var(--color-border);
-        font-size: 12.5px; align-items: center;
-      }
-      .dash-sku-row:last-child { border-bottom: none; }
-      .dash-sku-name { font-weight: 600; color: var(--color-text); }
-      .dash-sku-stock { font-variant-numeric: tabular-nums; color: var(--color-text-secondary); text-align: right; }
-      .dash-sku-cover { font-variant-numeric: tabular-nums; text-align: right; }
-      .dash-sku-status { text-align: right; }
-
-      .dash-status-pill {
-        font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500;
-      }
-      .pill-critical { background: var(--color-negative-bg); color: var(--color-negative); }
-      .pill-low { background: var(--color-caution-bg); color: var(--color-caution); }
-      .pill-ok { background: var(--color-positive-bg); color: var(--color-positive); }
-      .pill-over { background: var(--color-brand-muted); color: var(--color-brand); }
-
-      /* ── Legacy KPI strip (all tabs) ──────────────────────────────── */
-      .dash-kpis {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        margin-bottom: 12px;
-      }
-      .dash-kpi {
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 12px;
-        padding: 14px 16px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-      }
-      .dash-kpi-label { font-size: 11px; color: var(--color-text-tertiary); font-weight: 500; margin-bottom: 4px; }
-      .dash-kpi-value { font-size: 20px; font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums lining-nums; }
-      .dash-kpi-delta { font-size: 11px; font-weight: 500; margin-top: 3px; }
-      .dash-kpi-delta.positive { color: var(--color-positive); }
-      .dash-kpi-delta.negative { color: var(--color-negative); }
-      .dash-kpi-delta.neutral  { color: var(--color-neutral); }
-
-      /* ── Retry timeline (subscriptions) ──────────────────────────── */
-      .retry-timeline {
-        display: flex; border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden;
-      }
-      .retry-step {
-        flex: 1; padding: 10px 12px; text-align: center;
-        border-right: 1px solid var(--color-border); font-size: 11px;
-      }
-      .retry-step:last-child { border-right: none; }
-
-      /* ── Responsive ───────────────────────────────────────────────── */
-      @media (max-width: 900px) {
-        .dash-row-2-wide { grid-template-columns: 1fr; }
-      }
-      @media (max-width: 768px) {
-        .dash-row-2, .dash-row-3, .dash-row-2-wide, .dash-row-ring { grid-template-columns: 1fr; }
-        .dash-row-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-        .dash-kpis { grid-template-columns: repeat(2, 1fr); }
-        .dash-panel { padding: 12px; }
-        .dash-card  { padding: 14px; }
-        .dash-panel-header { flex-direction: column; align-items: flex-start; gap: 8px; }
-        .dash-bar-label { min-width: 80px; font-size: 11px; }
-        .dash-ticket-row { grid-template-columns: 1fr auto; gap: 8px; }
-        .dash-ticket-row > div:last-child { display: none; }
-        .dash-sku-row { grid-template-columns: 1fr auto auto; gap: 8px; font-size: 11px; }
-        .dash-sku-stock { display: none; }
-        .dash-mini-kpi { padding: 10px 12px; }
-        .dash-mini-kpi-value { font-size: 18px; }
-        .retry-timeline { flex-direction: column; }
-        .retry-step { border-right: none; border-bottom: 1px solid var(--color-border); }
-        .retry-step:last-child { border-bottom: none; }
-      }
-      @media (max-width: 480px) {
-        .dash-kpis { grid-template-columns: 1fr; }
-        .dash-row-5 { grid-template-columns: 1fr 1fr; }
-      }
-    </style>
-
-    <div class="dashboard-mock fade-in">
-      <!-- Browser chrome -->
-      <div class="dash-toolbar">
-        <div class="dash-dot red"></div>
-        <div class="dash-dot yellow"></div>
-        <div class="dash-dot green"></div>
-        <div class="dash-url">optonomous.ai/dashboard</div>
-      </div>
-
-      <div class="dash-content">
-        <!-- Tab navigation -->
-        <div class="dash-tabs">
-          <div class="dash-tab active" data-tab="disputes">Disputes</div>
-          <div class="dash-tab" data-tab="support">Support</div>
-          <div class="dash-tab" data-tab="subscriptions">Subscriptions</div>
-          <div class="dash-tab" data-tab="profit">Profitability</div>
-          <div class="dash-tab" data-tab="inventory">Inventory</div>
-          <div class="dash-tab" data-tab="signal">Ad Campaigns</div>
+    <div class="lb-card fade-in">
+      <div class="lb-card-header">
+        <div>
+          <div class="lb-card-title">Round One — Live standings</div>
         </div>
-
-        <!-- ========== DISPUTES TAB - Figma-inspired card layout ===== -->
-        <div class="tab-panel active" id="tab-disputes">
-
-          <!-- Row 1: Saved This Quarter -->
-          <div class="dash-row dash-row-1">
-
-            <!-- LEFT: Saved This Quarter - bar chart card -->
-            <div class="dash-card">
-              <div class="dash-card-header">
-                <div>
-                  <div class="dash-card-title">Saved this quarter</div>
-                  <div class="dash-card-big-number">$18.2k</div>
-                  <div class="dash-card-trend up">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 9.5V2.5M2.5 6L6 2.5L9.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    34% vs last quarter
-                  </div>
-                </div>
-                <a class="dash-view-report" href="#">View Report</a>
-              </div>
-              <!-- Vertical bar chart: Oct–Mar -->
-              <div style="margin-top:4px;">
-                <div class="dash-bar-chart">
-                  <!-- Oct -->
-                  <div class="dash-bar-col">
-                    <div class="dash-bar-stick" style="height:35%;opacity:0.5;"></div>
-                  </div>
-                  <!-- Nov -->
-                  <div class="dash-bar-col">
-                    <div class="dash-bar-stick" style="height:48%;opacity:0.55;"></div>
-                  </div>
-                  <!-- Dec -->
-                  <div class="dash-bar-col">
-                    <div class="dash-bar-stick" style="height:58%;opacity:0.65;"></div>
-                  </div>
-                  <!-- Jan -->
-                  <div class="dash-bar-col">
-                    <div class="dash-bar-stick" style="height:70%;opacity:0.75;"></div>
-                  </div>
-                  <!-- Feb -->
-                  <div class="dash-bar-col">
-                    <div class="dash-bar-stick" style="height:82%;opacity:0.88;"></div>
-                  </div>
-                  <!-- Mar (current) -->
-                  <div class="dash-bar-col current">
-                    <div class="dash-bar-stick" style="height:100%;"></div>
-                  </div>
-                </div>
-                <div style="display:flex;gap:6px;margin-top:0;">
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Oct</div>
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Nov</div>
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Dec</div>
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Jan</div>
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Feb</div>
-                  <div style="flex:1;text-align:center;font-size:9px;color:var(--color-text-tertiary);">Mar</div>
-                </div>
-              </div>
-            </div>
-
-          </div><!-- /row 1 -->
-
-          <!-- Row 2: Win Rate + Recent Disputes -->
-          <div class="dash-row dash-row-ring">
-
-            <!-- Card 1: Win Rate - circular progress ring -->
-            <div class="dash-card" style="text-align:center;">
-              <div class="dash-card-title" style="text-align:left;">Win rate</div>
-              <div class="dash-rings-wrap">
-                <!-- Outer decorative ring -->
-                <svg width="120" height="120" viewBox="0 0 120 120">
-                  <!-- Track -->
-                  <circle cx="60" cy="60" r="48" fill="none" stroke="var(--color-border)" stroke-width="10"/>
-                  <!-- Progress ring 87% - r=48, circ=301.59, 87%=262.39 -->
-                  <circle cx="60" cy="60" r="48" fill="none"
-                    stroke="var(--color-brand)"
-                    stroke-width="10"
-                    stroke-dasharray="262.39 301.59"
-                    stroke-dashoffset="0"
-                    stroke-linecap="round"
-                    transform="rotate(-90 60 60)"/>
-                  <!-- Second inner ring (decorative, Figma-style overlap) -->
-                  <circle cx="60" cy="60" r="34" fill="none" stroke="var(--color-border)" stroke-width="8"/>
-                  <!-- Inner ring 92% (win+deflect combined) - r=34, circ=213.63, 92%=196.54 -->
-                  <circle cx="60" cy="60" r="34" fill="none"
-                    stroke="var(--color-positive)"
-                    stroke-width="8"
-                    stroke-dasharray="196.54 213.63"
-                    stroke-dashoffset="0"
-                    stroke-linecap="round"
-                    transform="rotate(-90 60 60)"/>
-                  <!-- Center label -->
-                  <text x="60" y="56" text-anchor="middle" fill="var(--color-text)" font-size="18" font-weight="800" font-family="var(--font-body)">87%</text>
-                  <text x="60" y="69" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-body)">Win rate</text>
-                </svg>
-              </div>
-              <div class="dash-card-trend up" style="justify-content:center;">
-                <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M6 9.5V2.5M2.5 6L6 2.5L9.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                12% MoM
-              </div>
-            </div>
-
-            <!-- Card 2: Recent Disputes - list with thumbnails + status pills -->
-            <div class="dash-card">
-              <div class="dash-card-header">
-                <div class="dash-card-title">Recent disputes</div>
-                <a class="dash-view-report" href="#">View Report</a>
-              </div>
-              <!-- Row 1 -->
-              <div class="dash-dispute-row">
-                <div class="dash-dispute-icon">VS</div>
-                <div class="dash-dispute-name">Pro Vitamin C Serum</div>
-                <div class="dash-dispute-amount">$89</div>
-                <div class="dash-pill dash-pill-deflected">Deflected</div>
-              </div>
-              <!-- Row 2 -->
-              <div class="dash-dispute-row">
-                <div class="dash-dispute-icon">MC</div>
-                <div class="dash-dispute-name">Glow Bundle 3pk</div>
-                <div class="dash-dispute-amount">$147</div>
-                <div class="dash-pill dash-pill-active">Active</div>
-              </div>
-              <!-- Row 3 -->
-              <div class="dash-dispute-row">
-                <div class="dash-dispute-icon">VS</div>
-                <div class="dash-dispute-name">Hydra Serum 30ml</div>
-                <div class="dash-dispute-amount">$62</div>
-                <div class="dash-pill dash-pill-won">Won</div>
-              </div>
-              <!-- Row 4 -->
-              <div class="dash-dispute-row">
-                <div class="dash-dispute-icon">AM</div>
-                <div class="dash-dispute-name">Repair Mask 200ml</div>
-                <div class="dash-dispute-amount">$54</div>
-                <div class="dash-pill dash-pill-deflected">Deflected</div>
-              </div>
-            </div>
-
-
-          </div><!-- /row 2 -->
-
-        </div><!-- /tab-disputes -->
-
-        <!-- ========== SUPPORT TAB ========== -->
-        <div class="tab-panel" id="tab-support">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Open Tickets</div><div class="dash-kpi-value">23</div><div class="dash-kpi-delta negative">+8 today</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Auto-resolved</div><div class="dash-kpi-value">74%</div><div class="dash-kpi-delta positive">+5% this week</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Avg Response</div><div class="dash-kpi-value">1.4m</div><div class="dash-kpi-delta positive">-30s from last week</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">CSAT</div><div class="dash-kpi-value">4.8</div><div class="dash-kpi-delta positive">Stable</div></div>
-          </div>
-
-          <div class="dash-row dash-row-2">
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">Intent Breakdown</div>
-                  <div class="dash-panel-subtitle">Last 7 days</div>
-                </div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">WISMO</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:42%;background:var(--color-positive);"></div></div>
-                <div class="dash-bar-val">38</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Refund</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:22%;background:var(--color-brand);"></div></div>
-                <div class="dash-bar-val">20</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Product Q</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:18%;background:var(--color-caution);"></div></div>
-                <div class="dash-bar-val">16</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Cancel</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:11%;background:var(--color-negative);"></div></div>
-                <div class="dash-bar-val">10</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Other</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:7%;background:var(--color-neutral);"></div></div>
-                <div class="dash-bar-val">6</div>
-              </div>
-            </div>
-
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">Recent Tickets</div>
-                  <div class="dash-panel-subtitle">Last 24 hours</div>
-                </div>
-              </div>
-              <div class="dash-ticket-row">
-                <div><div class="dash-ticket-subject">Where is my order #4821?</div><div class="dash-ticket-meta">sarah.k@gmail.com · 14m ago</div></div>
-                <div class="dash-tag dash-tag-auto">Auto-sent</div>
-                <div style="font-size:11px;color:var(--color-text-tertiary);">94%</div>
-              </div>
-              <div class="dash-ticket-row">
-                <div><div class="dash-ticket-subject">Want to cancel subscription</div><div class="dash-ticket-meta">mike.r@yahoo.com · 1h ago</div></div>
-                <div class="dash-tag dash-tag-queue">Queued</div>
-                <div style="font-size:11px;color:var(--color-text-tertiary);">78%</div>
-              </div>
-              <div class="dash-ticket-row">
-                <div><div class="dash-ticket-subject">Item arrived damaged, need refund</div><div class="dash-ticket-meta">jen.w@outlook.com · 2h ago</div></div>
-                <div class="dash-tag dash-tag-auto">Auto-sent</div>
-                <div style="font-size:11px;color:var(--color-text-tertiary);">91%</div>
-              </div>
-              <div class="dash-ticket-row">
-                <div><div class="dash-ticket-subject">Can't login to account</div><div class="dash-ticket-meta">alex.t@gmail.com · 3h ago</div></div>
-                <div class="dash-tag dash-tag-escalate">Escalated</div>
-                <div style="font-size:11px;color:var(--color-text-tertiary);">42%</div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /tab-support -->
-
-        <!-- ========== SUBSCRIPTIONS TAB ========== -->
-        <div class="tab-panel" id="tab-subscriptions">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Active Subscribers</div><div class="dash-kpi-value">842</div><div class="dash-kpi-delta positive">+31 this month</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">MRR</div><div class="dash-kpi-value">$38.4k</div><div class="dash-kpi-delta positive">+8% MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Churn Rate</div><div class="dash-kpi-value">4.2%</div><div class="dash-kpi-delta positive">&darr; 0.8% from last month</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">LTV</div><div class="dash-kpi-value">$247</div><div class="dash-kpi-delta positive">+$18 MoM</div></div>
-          </div>
-
-          <div class="dash-row dash-row-2">
-            <!-- MRR chart -->
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">MRR Growth</div>
-                  <div class="dash-panel-subtitle">Last 6 months</div>
-                </div>
-              </div>
-              <svg viewBox="0 0 300 120" style="width:100%;height:auto;">
-                <line x1="30" y1="100" x2="280" y2="100" stroke="var(--color-border)" stroke-width="0.5"/>
-                <line x1="30" y1="70" x2="280" y2="70" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-                <line x1="30" y1="40" x2="280" y2="40" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-                <line x1="30" y1="10" x2="280" y2="10" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-                <text x="24" y="104" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$0</text>
-                <text x="24" y="44" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$25k</text>
-                <text x="24" y="14" text-anchor="end" fill="var(--color-text-tertiary)" font-size="8">$40k</text>
-                <path d="M55,88 L97,80 L139,72 L181,60 L223,48 L265,38 L265,100 L55,100 Z" fill="var(--color-positive-bg)" stroke="none"/>
-                <polyline points="55,88 97,80 139,72 181,60 223,48 265,38" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
-                <circle cx="55" cy="88" r="2.5" fill="var(--color-positive)"/>
-                <circle cx="97" cy="80" r="2.5" fill="var(--color-positive)"/>
-                <circle cx="139" cy="72" r="2.5" fill="var(--color-positive)"/>
-                <circle cx="181" cy="60" r="2.5" fill="var(--color-positive)"/>
-                <circle cx="223" cy="48" r="2.5" fill="var(--color-positive)"/>
-                <circle cx="265" cy="38" r="3" fill="var(--color-positive)"/>
-                <text x="55" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Oct</text>
-                <text x="97" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Nov</text>
-                <text x="139" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Dec</text>
-                <text x="181" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Jan</text>
-                <text x="223" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Feb</text>
-                <text x="265" y="112" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="8">Mar</text>
-              </svg>
-            </div>
-
-            <!-- Payment Recovery & Churn Signals -->
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">Payment Recovery</div>
-                  <div class="dash-panel-subtitle">This month</div>
-                </div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
-                <div class="dash-mini-kpi">
-                  <div class="dash-mini-kpi-label">Failed Rebills</div>
-                  <div class="dash-mini-kpi-value" style="font-size:18px;">47</div>
-                </div>
-                <div class="dash-mini-kpi">
-                  <div class="dash-mini-kpi-label">Recovered</div>
-                  <div class="dash-mini-kpi-value" style="font-size:18px;color:var(--color-positive);">34</div>
-                </div>
-              </div>
-              <!-- Retry timeline -->
-              <div style="font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin-bottom:8px;">Retry Schedule</div>
-              <div class="retry-timeline">
-                <div class="retry-step">
-                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 1</div>
-                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">18</div>
-                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
-                </div>
-                <div class="retry-step">
-                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 3</div>
-                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">9</div>
-                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
-                </div>
-                <div class="retry-step">
-                  <div style="font-size:10px;color:var(--color-text-tertiary);">Day 7</div>
-                  <div style="font-size:13px;font-weight:600;color:var(--color-positive);">7</div>
-                  <div style="font-size:9px;color:var(--color-text-tertiary);">recovered</div>
-                </div>
-                <div class="retry-step">
-                  <div style="font-size:10px;color:var(--color-text-tertiary);">Failed</div>
-                  <div style="font-size:13px;font-weight:600;color:var(--color-negative);">13</div>
-                  <div style="font-size:9px;color:var(--color-text-tertiary);">churned</div>
-                </div>
-              </div>
-              <!-- Churn Signals -->
-              <div style="font-size:11px;font-weight:600;color:var(--color-text-tertiary);margin:12px 0 8px;">Churn Signals</div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
-                <div class="dash-badge-name">Cancel intent in support</div>
-                <div class="dash-badge-val">8</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
-                <div class="dash-badge-name">3+ skips in a row</div>
-                <div class="dash-badge-val">5</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-neutral);"></div>
-                <div class="dash-badge-name">Payment failure after retries</div>
-                <div class="dash-badge-val">10</div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /tab-subscriptions -->
-
-        <!-- ========== PROFITABILITY TAB ========== -->
-        <div class="tab-panel" id="tab-profit">
-          <!-- KPI row 1 -->
-          <div class="dash-row dash-row-5">
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Order Count</div>
-              <div class="dash-mini-kpi-value">1,847</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 18.2%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Revenue</div>
-              <div class="dash-mini-kpi-value">$127k</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 22.1%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Net Profit</div>
-              <div class="dash-mini-kpi-value">$34.8k</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 31.4%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Total Cost</div>
-              <div class="dash-mini-kpi-value">$92.2k</div>
-              <div class="dash-mini-kpi-delta neu">&uarr; 16.8%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Net Margin</div>
-              <div class="dash-mini-kpi-value">27.4%</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 3.1%</div>
-            </div>
-          </div>
-          <!-- KPI row 2 -->
-          <div class="dash-row dash-row-5">
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Units Sold</div>
-              <div class="dash-mini-kpi-value">2,914</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 12.5%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">Ad Spend</div>
-              <div class="dash-mini-kpi-value">$41.2k</div>
-              <div class="dash-mini-kpi-delta neg">&uarr; 8.3%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">AOV</div>
-              <div class="dash-mini-kpi-value">$68.70</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 3.2%</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">ROAS</div>
-              <div class="dash-mini-kpi-value">3.08x</div>
-              <div class="dash-mini-kpi-delta pos">&uarr; 0.4x</div>
-            </div>
-            <div class="dash-mini-kpi">
-              <div class="dash-mini-kpi-label">COGS</div>
-              <div class="dash-mini-kpi-value">$38.1k</div>
-              <div class="dash-mini-kpi-delta neu">30% of rev</div>
-            </div>
-          </div>
-
-          <!-- Performance chart -->
-          <div class="dash-panel">
-            <div class="dash-panel-header">
-              <div>
-                <div class="dash-panel-title">Performance</div>
-                <div class="dash-panel-subtitle">Revenue, Ad Spend, and Net Profit (last 6 months)</div>
-              </div>
-              <div class="dash-toggle-group">
-                <div class="dash-toggle-btn active">Monthly</div>
-                <div class="dash-toggle-btn">Weekly</div>
-              </div>
-            </div>
-            <svg viewBox="0 0 600 180" style="width:100%;height:auto;">
-              <!-- Grid -->
-              <line x1="50" y1="20" x2="570" y2="20" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="50" y1="55" x2="570" y2="55" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="50" y1="90" x2="570" y2="90" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="50" y1="125" x2="570" y2="125" stroke="var(--color-border)" stroke-width="0.5" stroke-dasharray="4"/>
-              <line x1="50" y1="155" x2="570" y2="155" stroke="var(--color-border)" stroke-width="0.5"/>
-              <!-- Y axis -->
-              <text x="44" y="24" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$140k</text>
-              <text x="44" y="59" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$100k</text>
-              <text x="44" y="94" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$60k</text>
-              <text x="44" y="129" text-anchor="end" fill="var(--color-text-tertiary)" font-size="9" font-family="var(--font-mono)">$20k</text>
-              <!-- X axis -->
-              <text x="137" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Oct</text>
-              <text x="224" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Nov</text>
-              <text x="311" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Dec</text>
-              <text x="398" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Jan</text>
-              <text x="485" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Feb</text>
-              <text x="550" y="170" text-anchor="middle" fill="var(--color-text-tertiary)" font-size="9">Mar</text>
-              <!-- Revenue (solid, dark) -->
-              <path d="M137,98 L224,82 L311,75 L398,58 L485,42 L550,28 L550,155 L137,155 Z" fill="var(--color-text)" opacity="0.04" stroke="none"/>
-              <polyline points="137,98 224,82 311,75 398,58 485,42 550,28" fill="none" stroke="var(--color-text)" stroke-width="2.5" opacity="0.8"/>
-              <!-- Ad Spend (dashed, brand) -->
-              <polyline points="137,130 224,126 311,120 398,118 485,115 550,112" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-dasharray="5,3"/>
-              <!-- Net Profit (green) -->
-              <polyline points="137,138 224,132 311,128 398,120 485,112 550,105" fill="none" stroke="var(--color-positive)" stroke-width="2"/>
-              <!-- Latest dots -->
-              <circle cx="550" cy="28" r="3" fill="var(--color-text)" opacity="0.8"/>
-              <circle cx="550" cy="112" r="2.5" fill="var(--color-brand)"/>
-              <circle cx="550" cy="105" r="2.5" fill="var(--color-positive)"/>
-            </svg>
-            <div class="dash-legend">
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-text);opacity:0.7;"></div>Revenue</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-brand);"></div>Ad Spend</div>
-              <div class="dash-legend-item"><div class="dash-legend-dot" style="background:var(--color-positive);"></div>Net Profit</div>
-            </div>
-          </div>
-        </div><!-- /tab-profit -->
-
-        <!-- ========== INVENTORY TAB ========== -->
-        <div class="tab-panel" id="tab-inventory">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Total SKUs</div><div class="dash-kpi-value">148</div><div class="dash-kpi-delta neutral">Across 3 categories</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Low Stock</div><div class="dash-kpi-value">6</div><div class="dash-kpi-delta negative">3 critical</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Overstock</div><div class="dash-kpi-value">12</div><div class="dash-kpi-delta neutral">&gt;45 days cover</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">POs Drafted</div><div class="dash-kpi-value">4</div><div class="dash-kpi-delta positive">Auto-sent this week</div></div>
-          </div>
-
-          <div class="dash-panel">
-            <div class="dash-panel-header">
-              <div>
-                <div class="dash-panel-title">SKU Health</div>
-                <div class="dash-panel-subtitle">Sorted by days of cover</div>
-              </div>
-            </div>
-            <div class="dash-sku-row" style="font-size:11px;color:var(--color-text-tertiary);font-weight:600;border-bottom:1px solid var(--color-border);padding-bottom:6px;">
-              <div>SKU</div>
-              <div style="text-align:right;">On Hand</div>
-              <div style="text-align:right;">Days Cover</div>
-              <div style="text-align:right;">Status</div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Hydra Serum 30ml</div>
-              <div class="dash-sku-stock">24</div>
-              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:500;">3d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Glow Drops 15ml</div>
-              <div class="dash-sku-stock">51</div>
-              <div class="dash-sku-cover" style="color:var(--color-negative);font-weight:500;">5d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-critical">CRITICAL</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Volume Shampoo 250ml</div>
-              <div class="dash-sku-stock">89</div>
-              <div class="dash-sku-cover" style="color:var(--color-caution);font-weight:600;">11d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-low">LOW</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Repair Mask 200ml</div>
-              <div class="dash-sku-stock">145</div>
-              <div class="dash-sku-cover" style="color:var(--color-positive);">22d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Curl Cream 150ml</div>
-              <div class="dash-sku-stock">312</div>
-              <div class="dash-sku-cover" style="color:var(--color-positive);">34d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-ok">HEALTHY</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Dry Shampoo 200ml</div>
-              <div class="dash-sku-stock">890</div>
-              <div class="dash-sku-cover" style="color:var(--color-brand);">67d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
-            </div>
-            <div class="dash-sku-row">
-              <div class="dash-sku-name">Heat Protector 120ml</div>
-              <div class="dash-sku-stock">724</div>
-              <div class="dash-sku-cover" style="color:var(--color-brand);">52d</div>
-              <div class="dash-sku-status"><span class="dash-status-pill pill-over">OVERSTOCK</span></div>
-            </div>
-          </div>
-        </div><!-- /tab-inventory -->
-
-        <!-- ========== AD CAMPAIGNS (SIGNAL) TAB ========== -->
-        <div class="tab-panel" id="tab-signal">
-          <div class="dash-kpis">
-            <div class="dash-kpi"><div class="dash-kpi-label">Total Spend (30d)</div><div class="dash-kpi-value">$41.2k</div><div class="dash-kpi-delta neutral">Across 3 channels</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Blended ROAS</div><div class="dash-kpi-value">3.08x</div><div class="dash-kpi-delta positive">&uarr; 0.4x MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">CPA</div><div class="dash-kpi-value">$22.30</div><div class="dash-kpi-delta positive">&darr; $3.10 MoM</div></div>
-            <div class="dash-kpi"><div class="dash-kpi-label">Profit-Adj ROAS</div><div class="dash-kpi-value">2.41x</div><div class="dash-kpi-delta positive">Via Ledger</div></div>
-          </div>
-
-          <div class="dash-row dash-row-2">
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">Channel Performance</div>
-                  <div class="dash-panel-subtitle">Last 30 days by platform</div>
-                </div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Meta Ads</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:55%;background:var(--color-brand);"></div></div>
-                <div class="dash-bar-val">$22.7k</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">TikTok Ads</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:28%;background:var(--color-info, var(--color-neutral));"></div></div>
-                <div class="dash-bar-val">$11.5k</div>
-              </div>
-              <div class="dash-bar-row">
-                <div class="dash-bar-label">Google Ads</div>
-                <div class="dash-bar-track"><div class="dash-bar-fill" style="width:17%;background:var(--color-neutral);"></div></div>
-                <div class="dash-bar-val">$7.0k</div>
-              </div>
-            </div>
-
-            <div class="dash-panel">
-              <div class="dash-panel-header">
-                <div>
-                  <div class="dash-panel-title">Recent Actions</div>
-                  <div class="dash-panel-subtitle">Auto-adjustments by Signal</div>
-                </div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
-                <div class="dash-badge-name">Scaled "Spring Serum" ad set +30%</div>
-                <div style="font-size:11px;color:var(--color-neutral);">2h ago</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-negative);"></div>
-                <div class="dash-badge-name">Paused "Broad Lookalike" (CPA &gt;$40)</div>
-                <div style="font-size:11px;color:var(--color-neutral);">5h ago</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-positive);"></div>
-                <div class="dash-badge-name">Shifted $2k from Google → Meta</div>
-                <div style="font-size:11px;color:var(--color-neutral);">8h ago</div>
-              </div>
-              <div class="dash-badge-row">
-                <div class="dash-badge-dot" style="background:var(--color-caution);"></div>
-                <div class="dash-badge-name">Alert: TikTok CPM up 22% this week</div>
-                <div style="font-size:11px;color:var(--color-neutral);">1d ago</div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /tab-signal -->
-
-      </div><!-- /.dash-content -->
-    </div><!-- /.dashboard-mock -->
-  </div><!-- /.section-inner -->
+        <div class="lb-card-sub">playtestpanel.com/leaderboard/round-1</div>
+      </div>
+      <table class="dash-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tool</th>
+            <th>Overall (1–7)</th>
+            <th>Win rate</th>
+            <th>Broken rate</th>
+            <th>Judgments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lb-rank">01</td>
+            <td><span class="lb-tool">████████</span></td>
+            <td><span class="lb-bar-track"><span class="lb-bar" style="width:74%;"></span></span><span class="lb-score">5.2</span></td>
+            <td>71%</td>
+            <td>4%</td>
+            <td>48</td>
+          </tr>
+          <tr>
+            <td class="lb-rank">02</td>
+            <td><span class="lb-tool">██████</span></td>
+            <td><span class="lb-bar-track"><span class="lb-bar" style="width:66%;"></span></span><span class="lb-score">4.6</span></td>
+            <td>58%</td>
+            <td>8%</td>
+            <td>52</td>
+          </tr>
+          <tr>
+            <td class="lb-rank">03</td>
+            <td><span class="lb-tool">█████████</span></td>
+            <td><span class="lb-bar-track"><span class="lb-bar" style="width:57%;"></span></span><span class="lb-score">4.0</span></td>
+            <td>44%</td>
+            <td>13%</td>
+            <td>46</td>
+          </tr>
+          <tr>
+            <td class="lb-rank">04</td>
+            <td><span class="lb-tool">███████</span></td>
+            <td><span class="lb-bar-track"><span class="lb-bar" style="width:44%;"></span></span><span class="lb-score">3.1</span></td>
+            <td>27%</td>
+            <td>21%</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="lb-note">Illustrative preview — scores are placeholders. Tool identities and full results publish when Round One closes.</p>
+    </div>
+  </div>
 </section>
 
-<!-- Data Revenue Share -->
-<section class="section" id="data-program" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
+
+<!-- The Rubric -->
+<section class="section" id="rubric">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">Earn from your ops · optional</div>
-    <h2 class="section-title fade-in">Your store's work is worth something. Get paid for it.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Optonomous agents already run your operations. Opt in to our data program and we turn that work into <strong>de-identified</strong> research datasets for AI labs, and share the revenue back with you, offsetting (or exceeding) your subscription. It's optional, reversible, and your customers' personal and payment data never leave your store.</p>
+    <div class="section-label fade-in">The rubric</div>
+    <h2 class="section-title fade-in">Seven dimensions a playtest lead would actually use</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Each dimension is scored 1–7 against fixed anchors, so a 4 from one expert means the same thing as a 4 from another.</p>
+
+    <div class="rubric-list fade-in">
+      <div class="rubric-row">
+        <span class="rubric-num">01</span>
+        <span class="rubric-name">Prompt adherence</span>
+        <span class="rubric-detail">Does the game match what the prompt asked for?
+          <span class="rubric-anchors">1 = unrelated&ensp;·&ensp;4 = loosely related&ensp;·&ensp;7 = faithful, including the twist</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">02</span>
+        <span class="rubric-name">Mechanics coherence</span>
+        <span class="rubric-detail">Do the rules make sense and interact sensibly?
+          <span class="rubric-anchors">1 = contradictory, broken rules&ensp;·&ensp;7 = a coherent system with meaningful interactions</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">03</span>
+        <span class="rubric-name">Fun</span>
+        <span class="rubric-detail">Did you want to keep playing?
+          <span class="rubric-anchors">1 = a chore&ensp;·&ensp;4 = mildly diverting&ensp;·&ensp;7 = genuinely engaging</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">04</span>
+        <span class="rubric-name">Pacing &amp; difficulty</span>
+        <span class="rubric-detail">Does challenge ramp sensibly? Any dead spots or spikes?
+          <span class="rubric-anchors">1 = flat or chaotic&ensp;·&ensp;7 = a deliberate curve</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">05</span>
+        <span class="rubric-name">Game feel</span>
+        <span class="rubric-detail">Responsiveness, feedback, "juice" — inputs, animation, sound cues.
+          <span class="rubric-anchors">1 = dead, laggy&ensp;·&ensp;7 = crisp and satisfying</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">06</span>
+        <span class="rubric-name">Onboarding</span>
+        <span class="rubric-detail">Could a new player figure out what to do without instructions?
+          <span class="rubric-anchors">1 = lost immediately&ensp;·&ensp;7 = teaches through play</span>
+        </span>
+      </div>
+      <div class="rubric-row">
+        <span class="rubric-num">07</span>
+        <span class="rubric-name">Completeness</span>
+        <span class="rubric-detail">Does it feel like a whole playable thing, or a fragment?
+          <span class="rubric-anchors">1 = broken fragment&ensp;·&ensp;7 = complete loop with win/lose state</span>
+        </span>
+      </div>
+    </div>
+    <p class="lb-note fade-in">Every score ships with a required written critique and a top-3 fix list, ordered by impact.</p>
+  </div>
+</section>
+
+
+<!-- For labs & tool makers -->
+<section class="section" id="labs" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
+  <div class="section-inner section-center">
+    <div class="section-label fade-in">For labs &amp; tool makers</div>
+    <h2 class="section-title fade-in">The eval layer for generative games</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">Automated metrics can't tell you whether a game is fun. Our panel can — and every judgment they make is captured as clean, structured data.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);max-width:760px;margin:0 auto var(--space-8);text-align:left;">
       <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
-        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we share</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">De-identified agent actions and outcomes, PII-scrubbed support conversations, and de-identified or aggregated purchase signal, all derived from your operations.</p>
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Private evals</h3>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Run your builds through the same blind harness: fixed prompts, vetted experts, rubric plus pairwise, results in days. Track score movement release over release.</p>
       </div>
       <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);background:var(--color-bg);">
-        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">What we never share</h3>
-        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Your customers' names, emails, and addresses (PII), and any card or payment data (PCI). Both are excluded at source, and nothing is shared without your opt-in.</p>
+        <h3 style="font-size:var(--text-lg);margin-bottom:var(--space-3);">Training data</h3>
+        <p style="color:var(--color-text-secondary);font-size:var(--text-sm);line-height:1.6;">Expert preference and critique data from professionals with shipped titles — licensed as stable JSON, attributed only to specialty and years of experience. Never names.</p>
       </div>
     </div>
+
+    <div class="schema-block fade-in" style="margin-bottom:var(--space-8);"><span class="c">// every judgment, full context, stable schema</span>
+{
+  <span class="k">"expert"</span>:   { "specialty": "GAME_FEEL", "yearsExperience": 11 },
+  <span class="k">"prompt"</span>:   { "title": "Gravity-flip puzzle-platformer", "genre": "puzzle" },
+  <span class="k">"scores"</span>:   { "promptAdherence": 6, "mechanicsCoherence": 5, "fun": 4, ... },
+  <span class="k">"critique"</span>: "The flip mechanic is faithful, but level 3 softlocks when...",
+  <span class="k">"fixList"</span>:  "1. Fix the softlock. 2. Add coyote time. 3. Telegraph the flip.",
+  <span class="k">"pairwise"</span>: { "winner": "artifact_b", "confidence": "CLEAR" }
+}</div>
 
     <div class="fade-in" style="display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;">
-      <a href="./trust.html" class="btn btn-primary">How your data is protected</a>
-      <a href="./research.html" class="btn btn-secondary">See what we build with it →</a>
+      <a href="mailto:hello@playtestpanel.com?subject=Private%20evals" class="btn btn-primary">Talk to us about evals</a>
+      <a href="mailto:hello@playtestpanel.com?subject=Data%20licensing" class="btn btn-secondary">License the data →</a>
     </div>
   </div>
 </section>
 
-<!-- Savings Calculator -->
-<section class="section" id="calculator" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
+
+<!-- Join the panel -->
+<section class="section" id="panel" style="padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
-    <div class="section-label fade-in">Savings calculator</div>
-    <h2 class="section-title fade-in">See what you're really spending on ops</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-10);">Configure your current setup and see how much Optonomous saves you.</p>
+    <div class="section-label fade-in">For game developers</div>
+    <h2 class="section-title fade-in">Your shipped-title experience is the product</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);">The industry laid off a generation of people who know what makes a game good. That judgment is exactly what AI game tools can't generate — and what labs will pay for. Paid per completed eval, on your schedule, fully remote.</p>
 
-    <div class="calc-container fade-in">
-      <!-- LEFT: Inputs -->
-      <div class="calc-form">
+    <div class="specialty-row fade-in" style="margin-bottom:var(--space-10);">
+      <span class="tag">Level design</span>
+      <span class="tag">Systems design</span>
+      <span class="tag">UX &amp; onboarding</span>
+      <span class="tag">QA &amp; playtest leads</span>
+      <span class="tag">Game feel</span>
+    </div>
 
-        <!-- Monthly orders -->
-        <div class="calc-section">
-          <h3 class="calc-h3">Monthly orders</h3>
-          <input type="range" id="calc-orders" min="500" max="50000" step="500" value="5000" class="calc-slider">
-          <div class="calc-range-labels"><span>500</span><span id="calc-orders-val" style="color:var(--color-brand);font-weight:500;">5,000</span><span>50,000</span></div>
-        </div>
-
-        <!-- Support tickets -->
-        <div class="calc-section">
-          <h3 class="calc-h3">Support tickets / month</h3>
-          <input type="range" id="calc-tickets" min="100" max="10000" step="100" value="2000" class="calc-slider">
-          <div class="calc-range-labels"><span>100</span><span id="calc-tickets-val" style="color:var(--color-brand);font-weight:500;">2,000</span><span>10,000</span></div>
-        </div>
-
-        <!-- Current tools -->
-        <div class="calc-section">
-          <h3 class="calc-h3">Which tools are you paying for?</h3>
-          <div class="calc-checks">
-            <label class="calc-check"><input type="checkbox" id="calc-helpdesk" checked><span class="calc-check-box"></span><span>Helpdesk (Gorgias, Zendesk)</span><span class="calc-check-price">~$360/mo</span></label>
-            <label class="calc-check"><input type="checkbox" id="calc-subscriptions" checked><span class="calc-check-box"></span><span>Subscriptions (ReCharge, Loop)</span><span class="calc-check-price">~$300/mo</span></label>
-            <label class="calc-check"><input type="checkbox" id="calc-analytics"><span class="calc-check-box"></span><span>Analytics (Triple Whale, TrueProfit)</span><span class="calc-check-price">~$200/mo</span></label>
-            <label class="calc-check"><input type="checkbox" id="calc-chargebacks"><span class="calc-check-box"></span><span>Chargebacks (Chargebacks911)</span><span class="calc-check-price">~$150/mo</span></label>
-            <label class="calc-check"><input type="checkbox" id="calc-adtool"><span class="calc-check-box"></span><span>Ad management tool</span><span class="calc-check-price">~$200/mo</span></label>
-            <label class="calc-check"><input type="checkbox" id="calc-va" checked><span class="calc-check-box"></span><span>VA / ops assistant</span><span class="calc-check-price">~$1,500/mo</span></label>
-          </div>
-        </div>
-
-        <!-- Stores -->
-        <div class="calc-section" style="border-bottom:none;">
-          <h3 class="calc-h3">Number of Shopify stores</h3>
-          <div class="calc-radio-row">
-            <label class="calc-radio"><input type="radio" name="calc-stores" value="1" checked><span class="calc-radio-dot"></span>1 store</label>
-            <label class="calc-radio"><input type="radio" name="calc-stores" value="2"><span class="calc-radio-dot"></span>2 stores</label>
-            <label class="calc-radio"><input type="radio" name="calc-stores" value="3"><span class="calc-radio-dot"></span>3+ stores</label>
-          </div>
-        </div>
-
+    <div class="steps-grid" style="margin-bottom:var(--space-10);">
+      <div class="step-card fade-in">
+        <div class="step-number">1</div>
+        <h3>Apply with your credits</h3>
+        <p>Tell us what you've shipped and where you're strongest. We vet every panelist — the panel's credibility is the whole point.</p>
       </div>
-
-      <!-- RIGHT: Results -->
-      <div class="calc-results">
-        <h3 class="calc-h3" style="margin-bottom:var(--space-2);">Estimated monthly cost</h3>
-        <p style="font-size:13px;color:var(--color-text-tertiary);margin-bottom:var(--space-6);">Based on your current stack and volume</p>
-
-        <div class="calc-card">
-          <div class="calc-card-label">Your current tool stack costs</div>
-          <div class="calc-card-price" id="calc-current">$2,160</div>
-          <div class="calc-card-sub">+ time spent managing each tool</div>
-        </div>
-
-        <div class="calc-card">
-          <div class="calc-card-label">Typical agency / ops hire</div>
-          <div class="calc-card-price" id="calc-hire">$6,500</div>
-          <div class="calc-card-sub">+ 4-6 week ramp time</div>
-        </div>
-
-        <div class="calc-card calc-card-brand">
-          <div class="calc-card-label" style="color:rgba(255,255,255,0.8);">With Optonomous</div>
-          <div class="calc-card-price" id="calc-opto" style="color:#fff;">$499</div>
-          <div class="calc-card-sub" style="color:rgba(255,255,255,0.7);">All 7 agents. One platform. No headcount.</div>
-        </div>
-
-        <div class="calc-savings-row">
-          <span>You save</span>
-          <span class="calc-savings-val" id="calc-savings">$1,661/mo</span>
-        </div>
-        <div class="calc-savings-row" style="margin-top:var(--space-1);">
-          <span>Annual savings</span>
-          <span class="calc-savings-val" id="calc-annual">$19,932/yr</span>
-        </div>
+      <div class="step-card fade-in">
+        <div class="step-number">2</div>
+        <h3>Get assigned sessions</h3>
+        <p>Each assignment is one game and a target session length — about 15 minutes of play plus a structured writeup. Everything runs in the browser.</p>
       </div>
+      <div class="step-card fade-in">
+        <div class="step-number">3</div>
+        <h3>Judge like it's your job</h3>
+        <p>Because it is. Score the rubric, write the critique, rank the fixes. Your name never appears in the data — your expertise does.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="display:flex;justify-content:center;">
+      <a href="mailto:panel@playtestpanel.com?subject=Panel%20application" class="btn btn-primary">Apply to join the panel</a>
     </div>
   </div>
 </section>
 
-<style>
-  .calc-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--color-border);
-  }
-  .calc-form {
-    padding: var(--space-8) var(--space-8);
-    background: var(--color-surface);
-  }
-  .calc-results {
-    padding: var(--space-8) var(--space-8);
-    border-left: 1px solid var(--color-border);
-  }
-  .calc-section {
-    padding: var(--space-5) 0;
-    border-bottom: 1px solid var(--color-border);
-  }
-  .calc-section:first-child { padding-top: 0; }
-  .calc-h3 {
-    font-family: var(--font-body);
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: var(--space-3);
-    color: var(--color-text);
-  }
-  .calc-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--color-border);
-    outline: none;
-    cursor: pointer;
-  }
-  .calc-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--color-brand);
-    cursor: pointer;
-    border: 2px solid var(--color-bg);
-    box-shadow: 0 0 0 2px var(--color-brand);
-  }
-  .calc-slider::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--color-brand);
-    cursor: pointer;
-    border: 2px solid var(--color-bg);
-    box-shadow: 0 0 0 2px var(--color-brand);
-  }
-  .calc-range-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--color-text-tertiary);
-    margin-top: var(--space-2);
-  }
-  .calc-checks {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-  }
-  .calc-check {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    font-size: 13.5px;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-  }
-  .calc-check input { display: none; }
-  .calc-check-box {
-    width: 18px;
-    height: 18px;
-    border: 2px solid var(--color-border);
-    border-radius: 4px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s;
-  }
-  .calc-check input:checked + .calc-check-box {
-    background: var(--color-brand);
-    border-color: var(--color-brand);
-  }
-  .calc-check input:checked + .calc-check-box::after {
-    content: '';
-    width: 10px;
-    height: 6px;
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    transform: rotate(-45deg) translateY(-1px);
-  }
-  .calc-check-price {
-    margin-left: auto;
-    font-size: 12px;
-    color: var(--color-text-tertiary);
-    font-variant-numeric: tabular-nums;
-  }
-  .calc-radio-row {
-    display: flex;
-    gap: var(--space-5);
-  }
-  .calc-radio {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    font-size: 13.5px;
-    color: var(--color-text-secondary);
-    cursor: pointer;
-  }
-  .calc-radio input { display: none; }
-  .calc-radio-dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border: 2px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.15s;
-  }
-  .calc-radio input:checked + .calc-radio-dot {
-    border-color: var(--color-brand);
-  }
-  .calc-radio input:checked + .calc-radio-dot::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--color-brand);
-  }
-  .calc-card {
-    padding: var(--space-5);
-    border-radius: 12px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    margin-bottom: var(--space-3);
-  }
-  .calc-card-brand {
-    background: var(--color-brand);
-    border-color: var(--color-brand);
-  }
-  .calc-card-label {
-    font-size: 12px;
-    color: var(--color-text-tertiary);
-    margin-bottom: var(--space-1);
-  }
-  .calc-card-price {
-    font-family: var(--font-body);
-    font-size: 32px;
-    font-weight: 600;
-    color: var(--color-text);
-    font-variant-numeric: tabular-nums;
-  }
-  .calc-card-sub {
-    font-size: 12px;
-    color: var(--color-text-tertiary);
-    margin-top: 2px;
-  }
-  .calc-savings-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    margin-top: var(--space-4);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--color-border);
-  }
-  .calc-savings-val {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--color-positive);
-  }
-  @media (max-width: 768px) {
-    .calc-container { grid-template-columns: 1fr; }
-    .calc-results { border-left: none; border-top: 1px solid var(--color-border); }
-    .calc-radio-row { flex-direction: column; gap: var(--space-2); }
-  }
-</style>
+
+<!-- CTA -->
+<div class="mk-cta">
+  <section class="mk-cta-inner">
+    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
+           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+    <div class="mk-cta-content">
+      <h2>The playtest is the eval.</h2>
+      <div class="mk-cta-actions">
+        <a href="#waitlist-email" class="mk-btn-light">Get the Results</a>
+        <a href="mailto:panel@playtestpanel.com?subject=Panel%20application" class="mk-btn-glass">Apply to the Panel</a>
+      </div>
+    </div>
+  </section>
+</div>
 
 <!-- Closing CTA -->
 <div class="mk-cta">
@@ -1533,28 +641,26 @@
 <footer class="mk-footer">
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
-      <div class="mk-footer-name">Optonomous</div>
-      <p>AI agents that build your Shopify store and run your ops: support, subscriptions, inventory and chargebacks, handled.</p>
-      <p class="mk-footer-legal">&copy; 2026 Optonomous, Inc. Agents operate under your approval. Results vary by store.</p>
+      <div class="mk-footer-name">Playtest Panel</div>
+      <p>Shipped game developers blind-evaluate the output of prompt-to-game AI tools: structured verdicts, a public leaderboard, and eval data labs can train on.</p>
+      <p class="mk-footer-legal">&copy; 2026 Playtest Panel. Scores reflect independent expert judgment. Tool identities hidden until each round closes.</p>
     </div>
 
     <div class="mk-footer-cols">
       <div>
-        <div class="mk-footer-head">Product</div>
+        <div class="mk-footer-head">Benchmark</div>
         <ul role="list">
-          <li><a href="#features">Platform</a></li>
-          <li><a href="#how">How It Works</a></li>
-          <li><a href="#calculator">Pricing</a></li>
-          <li><a href="./app.html">Log In</a></li>
+          <li><a href="#leaderboard">Leaderboard</a></li>
+          <li><a href="#how">Methodology</a></li>
+          <li><a href="#rubric">The Rubric</a></li>
         </ul>
       </div>
       <div>
         <div class="mk-footer-head">Company</div>
         <ul role="list">
-          <li><a href="#data-program">Earn</a></li>
-          <li><a href="./research.html">Research</a></li>
-          <li><a href="./trust.html">Data &amp; Trust</a></li>
-          <li><a href="https://calendly.com" target="_blank" rel="noopener noreferrer">Book a Demo</a></li>
+          <li><a href="#labs">For Labs</a></li>
+          <li><a href="#panel">Join the Panel</a></li>
+          <li><a href="mailto:hello@playtestpanel.com">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -1562,7 +668,6 @@
         <ul role="list">
           <li><a href="./privacy.html">Privacy</a></li>
           <li><a href="./terms.html">Terms</a></li>
-          <li><a href="./dpa.html">DPA</a></li>
         </ul>
       </div>
     </div>
@@ -1618,22 +723,11 @@ document.getElementById('waitlist-btn').addEventListener('click', function(e) {
   const email = document.getElementById('waitlist-email').value.trim();
   const msg = document.getElementById('waitlist-msg');
   if (!email || !email.includes('@')) { msg.textContent = 'Enter a valid email.'; msg.className = 'waitlist-msg'; return; }
-  msg.textContent = 'You\u2019re on the list. We\u2019ll be in touch.';
+  msg.textContent = 'You’re on the list. We’ll send the leaderboard the day it publishes.';
   msg.className = 'waitlist-msg success';
   document.getElementById('waitlist-email').value = '';
   document.getElementById('waitlist-btn').textContent = 'Joined';
   document.getElementById('waitlist-btn').disabled = true;
-});
-
-// Dashboard tabs
-document.querySelectorAll('.dash-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    tab.classList.add('active');
-    const panel = document.getElementById('tab-' + tab.dataset.tab);
-    if (panel) panel.classList.add('active');
-  });
 });
 
 // Fade in
@@ -1649,87 +743,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
-
-// ── Savings Calculator ──
-(function(){
-  const orders = document.getElementById('calc-orders');
-  const tickets = document.getElementById('calc-tickets');
-  const ordersVal = document.getElementById('calc-orders-val');
-  const ticketsVal = document.getElementById('calc-tickets-val');
-  if (!orders) return;
-
-  const tools = {
-    helpdesk: { el: document.getElementById('calc-helpdesk'), base: 360 },
-    subscriptions: { el: document.getElementById('calc-subscriptions'), base: 300 },
-    analytics: { el: document.getElementById('calc-analytics'), base: 200 },
-    chargebacks: { el: document.getElementById('calc-chargebacks'), base: 150 },
-    adtool: { el: document.getElementById('calc-adtool'), base: 200 },
-    va: { el: document.getElementById('calc-va'), base: 1500 },
-  };
-
-  function getStores() {
-    const checked = document.querySelector('input[name="calc-stores"]:checked');
-    return checked ? parseInt(checked.value) : 1;
-  }
-
-  function fmt(n) { return '$' + Math.round(n).toLocaleString(); }
-
-  function calc() {
-    const o = parseInt(orders.value);
-    const t = parseInt(tickets.value);
-    const s = getStores();
-    ordersVal.textContent = o.toLocaleString();
-    ticketsVal.textContent = t.toLocaleString();
-
-    // Current tool stack cost
-    let currentCost = 0;
-    for (const key in tools) {
-      if (tools[key].el && tools[key].el.checked) {
-        let cost = tools[key].base;
-        // Scale helpdesk with tickets (Gorgias charges per ticket over 2000)
-        if (key === 'helpdesk' && t > 2000) cost += (t - 2000) * 0.36;
-        // Scale VA with order volume
-        if (key === 'va' && o > 5000) cost += Math.floor((o - 5000) / 5000) * 500;
-        currentCost += cost;
-      }
-    }
-    currentCost *= s > 2 ? 2.5 : s;
-
-    // Ops hire cost
-    const hireCost = 4500 + (s * 2000);
-
-    // Optonomous cost (tiered by orders)
-    let optoCost;
-    if (o <= 5000) optoCost = 299;
-    else if (o <= 15000) optoCost = 499;
-    else if (o <= 30000) optoCost = 999;
-    else optoCost = 1499;
-    if (s > 1) optoCost *= (s > 2 ? 2.2 : 1.7);
-    optoCost = Math.round(optoCost);
-
-    const savings = Math.max(0, currentCost - optoCost);
-
-    document.getElementById('calc-current').textContent = fmt(currentCost);
-    document.getElementById('calc-hire').textContent = fmt(hireCost);
-    document.getElementById('calc-opto').textContent = fmt(optoCost);
-    document.getElementById('calc-savings').textContent = fmt(savings) + '/mo';
-    document.getElementById('calc-annual').textContent = fmt(savings * 12) + '/yr';
-  }
-
-  // Bind events
-  orders.addEventListener('input', calc);
-  tickets.addEventListener('input', calc);
-  for (const key in tools) {
-    if (tools[key].el) tools[key].el.addEventListener('change', calc);
-  }
-  document.querySelectorAll('input[name="calc-stores"]').forEach(r => r.addEventListener('change', calc));
-
-  calc(); // Initial calculation
-})();
-
-
-
-
 </script>
 
 </body>
