@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | World Labs</title>
+<meta name="description" content="Notes from World Labs on RL environments, expert evals, and what it takes to make game quality legible to models.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  .bl-hero {
+    max-width: var(--mk-maxw);
+    margin: 0 auto;
+    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-12);
+    text-align: left;
+  }
+  @media (max-width: 600px) {
+    .bl-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-8); }
+  }
+  .bl-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-5);
+  }
+  .bl-title {
+    font-size: var(--text-hero);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.02;
+    color: var(--color-text);
+    margin-bottom: var(--space-5);
+  }
+  .bl-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    max-width: 56ch;
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  /* Post list */
+  .bl-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: left;
+  }
+  .bl-post {
+    display: block;
+    background: var(--mk-surface);
+    border-radius: var(--mk-radius);
+    padding: var(--space-10) var(--space-8);
+    text-decoration: none;
+    transition: box-shadow 0.3s ease;
+  }
+  .bl-post:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .bl-post-date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .bl-post h2 {
+    font-size: var(--text-xl);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text);
+    margin-bottom: var(--space-3);
+  }
+  .bl-post p {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 72ch;
+    margin-bottom: var(--space-4);
+  }
+  .bl-post-read {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  @media (max-width: 600px) {
+    .bl-post { padding: var(--space-8) var(--space-6); }
+  }
+</style>
+</head>
+<body>
+
+<div id="page-content">
+
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="./index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>Blog</span>
+      <span>Notes &amp; Updates</span>
+    </div>
+  </div>
+
+  <a href="mailto:hello@tryworldlabs.com" class="mk-cta-btn" aria-label="Talk to us">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Talk to Us</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
+    <a href="./blog.html" class="mk-overlay-link" data-menu-link><span class="mk-overlay-num">03</span>Blog</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+  </div>
+  <div class="mk-overlay-meta">
+    World Labs: RL environments and expert evals for AI in games, built by game developers who ship.
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="bl-hero">
+  <div class="bl-kicker fade-in visible">Blog</div>
+  <h1 class="bl-title fade-in visible">Notes from the lab</h1>
+  <p class="bl-intro fade-in visible">On RL environments, expert evals, and what it takes to make game quality legible to models.</p>
+</section>
+
+<!-- Posts -->
+<section class="section" style="padding-top:var(--space-4);">
+  <div class="section-inner">
+    <div class="bl-list">
+      <a href="./blog/introducing-world-labs.html" class="bl-post fade-in visible">
+        <div class="bl-post-date">July 13, 2026</div>
+        <h2>Introducing World Labs</h2>
+        <p>Models can generate playable games now. What none of them can do is tell you whether the thing they made is any good. A technical tour of what we're building: instrumented RL environments where models take generation tasks, and an eval harness that turns the judgment of shipped game developers into signal models can train on.</p>
+        <span class="bl-post-read">Read the post →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-content -->
+
+<!-- Footer -->
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>RL environments and expert evals for AI in games: models generate inside instrumented game worlds, and shipped game developers judge what they build.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
+    </div>
+
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Explore</div>
+        <ul role="list">
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Get in touch</div>
+        <ul role="list">
+          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="mailto:panel@tryworldlabs.com">Apply to the Panel</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// Menu overlay
+(function(){
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+
+  let open = false;
+  function set(next) {
+    open = next;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
+  }
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
+})();
+</script>
+
+</body>
+</html>
