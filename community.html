@@ -18,8 +18,13 @@
 <style>
   /* ── Community hero ── */
   .cm-hero {
+    max-width: var(--mk-maxw);
+    margin: 0 auto;
     padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-16);
-    text-align: center;
+    text-align: left;
+  }
+  @media (max-width: 600px) {
+    .cm-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-10); }
   }
   .cm-kicker {
     font-family: var(--font-mono);
@@ -42,14 +47,14 @@
     font-size: var(--text-lg);
     color: var(--color-text-secondary);
     font-weight: 400;
-    margin: 0 auto var(--space-8);
+    margin: 0 0 var(--space-8);
     max-width: 44ch;
   }
   .cm-intro {
     font-size: var(--text-base);
     color: var(--color-text-secondary);
     max-width: 56ch;
-    margin: 0 auto var(--space-8);
+    margin: 0 0 var(--space-8);
     line-height: 1.7;
   }
 
@@ -89,7 +94,7 @@
   /* ── Value banner (scroll-fill) ── */
   .cm-value {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0;
     font-size: var(--text-xl);
     font-weight: var(--display-weight);
     letter-spacing: var(--tracking-tight);
@@ -106,8 +111,8 @@
 
   /* ── FAQ ── */
   .cm-faq {
-    max-width: 760px;
-    margin: 0 auto;
+    max-width: 820px;
+    margin: 0;
     text-align: left;
     border: 1px solid var(--color-border);
     border-radius: 16px;
@@ -203,7 +208,7 @@
     <h1 class="cm-title fade-in visible">The Panel</h1>
     <p class="cm-tagline fade-in visible">Less vibes. More verdicts.</p>
     <p class="cm-intro fade-in visible">Join The Panel and help shape the future of AI-made games. Play and judge real output from the top AI labs and game-tool companies, and get paid for the judgment you spent a career earning.</p>
-    <div class="fade-in visible" style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap;">
+    <div class="fade-in visible" style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
       <a href="#apply" class="btn btn-primary">Join the Community</a>
       <a href="#faq" class="btn btn-secondary">Read the FAQ</a>
     </div>
@@ -273,7 +278,7 @@
       </div>
     </div>
 
-    <div class="fade-in" style="display:flex;justify-content:center;">
+    <div class="fade-in">
       <a href="mailto:panel@tryworldlabs.com?subject=Panel%20application" class="btn btn-primary">Join the Community</a>
     </div>
   </div>

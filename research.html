@@ -17,8 +17,13 @@
 
 <style>
   .rs-hero {
+    max-width: var(--mk-maxw);
+    margin: 0 auto;
     padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-12);
-    text-align: center;
+    text-align: left;
+  }
+  @media (max-width: 600px) {
+    .rs-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-8); }
   }
   .rs-kicker {
     font-family: var(--font-mono);
@@ -41,7 +46,7 @@
     font-size: var(--text-base);
     color: var(--color-text-secondary);
     max-width: 60ch;
-    margin: 0 auto;
+    margin: 0;
     line-height: 1.7;
   }
 
@@ -473,7 +478,7 @@
 
     </div>
 
-    <div class="fade-in" style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-12);">
+    <div class="fade-in" style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-12);">
       <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="btn btn-primary">Run one of these with us</a>
       <a href="./community.html" class="btn btn-secondary">Join the rater pool →</a>
     </div>
