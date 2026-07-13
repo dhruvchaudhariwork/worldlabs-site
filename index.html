@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Labs | Expert Evals for AI-Generated Games</title>
-<meta name="description" content="Expert evals for AI-made games. Shipped game developers play and judge what AI builds — structured verdicts and eval data labs can train on.">
+<meta name="description" content="Expert evals for AI-made games. Shipped game developers play and judge what AI builds. Structured verdicts and eval data labs can train on.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,9 +52,9 @@
   }
   .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
 
-  /* ── Statement ── */
+  /* ── Statement (scroll-fill) ── */
   .st-statement {
-    max-width: 880px;
+    max-width: 1040px;
     margin: 0 auto;
     font-size: var(--text-2xl);
     font-weight: var(--display-weight);
@@ -62,11 +62,17 @@
     line-height: 1.25;
     color: var(--color-text);
   }
-  .st-statement em { font-style: normal; color: var(--color-text-tertiary); }
+  [data-scroll-fill] .w {
+    color: var(--color-text-tertiary);
+    transition: color 0.25s linear;
+  }
+  [data-scroll-fill] .w.on {
+    color: var(--color-text);
+  }
 
   /* ── Mission ── */
   .mission-copy {
-    max-width: 620px;
+    max-width: 820px;
     margin: 0 auto;
     text-align: left;
   }
@@ -76,6 +82,7 @@
     color: var(--color-text-secondary);
     line-height: 1.65;
     margin-bottom: var(--space-5);
+    max-width: none;
   }
   .mission-copy p strong {
     color: var(--color-text);
@@ -87,8 +94,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-4);
-    max-width: 880px;
-    margin: 0 auto;
     text-align: left;
   }
   .offer-card {
@@ -108,10 +113,11 @@
     color: var(--color-text);
   }
   .offer-card p {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-secondary);
     line-height: 1.7;
     flex: 1;
+    max-width: none;
   }
   .offer-card .btn { align-self: flex-start; }
   @media (max-width: 768px) { .offer-grid { grid-template-columns: 1fr; } }
@@ -213,7 +219,7 @@
 <!-- Statement -->
 <section class="section section-center">
   <div class="section-inner">
-    <p class="st-statement fade-in">AI has made it easy to generate a game. <em>It still can't tell you whether the game is any good — or how to make it great.</em></p>
+    <p class="st-statement" data-scroll-fill>AI has made it easy to generate a game. It still can't tell you whether the game is any good, or how to make it great.</p>
   </div>
 </section>
 
@@ -223,9 +229,9 @@
   <div class="section-inner">
     <div class="section-label fade-in">Mission</div>
     <div class="mission-copy fade-in">
-      <p>Fun doesn't show up in a unit test. Game feel, pacing, coherence — the things that decide whether anyone keeps playing — only register in the judgment of people who have shipped games and watched players bounce off them.</p>
+      <p>Fun doesn't show up in a unit test. Game feel, pacing, and coherence decide whether anyone keeps playing, and they only register in the judgment of people who have shipped games and watched players bounce off them.</p>
       <p>We put AI-made games in front of exactly those people, under blind, structured conditions, and capture their verdicts as clean data.</p>
-      <p><strong>So that models and agents can build games that aren't just playable — but worth playing.</strong></p>
+      <p><strong>So that models and agents can build games that aren't just playable, but worth playing.</strong></p>
     </div>
   </div>
 </section>
@@ -239,12 +245,12 @@
     <div class="offer-grid">
       <div class="offer-card fade-in">
         <h3>Evals for training models</h3>
-        <p>We work with labs building world models, game-playing agents, and generative game systems — turning expert judgment into rubric scores, critiques, and preference pairs for RLHF, reward models, and benchmarking.</p>
+        <p>We work with labs building world models, game-playing agents, and generative game systems. Expert judgment becomes rubric scores, written critiques, and preference pairs, ready for RLHF, reward models, and benchmarking, with every verdict traceable to a rater's specialty and years of experience.</p>
         <a href="mailto:hello@tryworldlabs.com?subject=Evals%20for%20training" class="btn btn-primary">Get in touch</a>
       </div>
       <div class="offer-card fade-in">
         <h3>Evals for game tools &amp; agents</h3>
-        <p>We work with prompt-to-game tools, NPC and agent builders, and studios shipping AI features — blind expert evals of your output, tracked release over release, so you know what got better before your players do.</p>
+        <p>We work with prompt-to-game tools, NPC and agent builders, and studios shipping AI features. Blind expert evals of your output, scored on anchored rubrics and tracked release over release, so you know exactly what got better and what broke before your players find out.</p>
         <a href="mailto:hello@tryworldlabs.com?subject=Evals%20for%20tools" class="btn btn-primary">Get in touch</a>
       </div>
     </div>
@@ -257,7 +263,7 @@
   <div class="section-inner">
     <div class="section-label fade-in">The Panel</div>
     <h2 class="section-title fade-in">Join our mission to keep games good</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);">Bring your shipped-title judgment — level design, systems, UX, QA, game feel — and get paid to decide what AI gets right and wrong about games.</p>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);max-width:720px;">Bring your shipped-title judgment in level design, systems, UX, QA, or game feel, and get paid to decide what AI gets right and wrong about games.</p>
 
     <div class="specialty-row fade-in" style="margin-bottom:var(--space-8);">
       <span class="tag">Level design</span>
@@ -279,7 +285,7 @@
   <div class="section-inner">
     <div class="section-label fade-in">Research</div>
     <h2 class="section-title fade-in">Seventeen questions. One harness.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);">From gameplay decisions to game economies — the full taxonomy of expert evals we're building toward.</p>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">From gameplay decisions to game economies: the full taxonomy of expert evals we're building toward.</p>
     <div class="fade-in" style="display:flex;justify-content:center;">
       <a href="./research.html" class="btn btn-secondary">Explore the eval space →</a>
     </div>
@@ -394,6 +400,30 @@ document.getElementById('waitlist-btn').addEventListener('click', function(e) {
   document.getElementById('waitlist-btn').textContent = 'Joined';
   document.getElementById('waitlist-btn').disabled = true;
 });
+
+// Scroll-fill statement: words darken as the section scrolls through the viewport
+(function(){
+  const els = document.querySelectorAll('[data-scroll-fill]');
+  if (!els.length) return;
+  els.forEach(el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => '<span class="w">' + w + '</span>').join(' ');
+  });
+  function update(){
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const start = innerHeight * 0.85;
+      const end = innerHeight * 0.35;
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
+      const spans = el.querySelectorAll('.w');
+      const n = Math.round(p * spans.length);
+      spans.forEach((s, i) => s.classList.toggle('on', i < n));
+    });
+  }
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();
 
 // Fade in
 const fadeObs = new IntersectionObserver((entries) => {

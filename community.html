@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Panel — World Labs Community</title>
+<title>The Panel | World Labs Community</title>
 <meta name="description" content="A curated community of shipped game developers who evaluate AI-generated games. Paid sessions, no exclusivity, no middleman markup.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -86,9 +86,9 @@
   @media (max-width: 900px) { .cm-specialties { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .cm-specialties { grid-template-columns: repeat(2, 1fr); } }
 
-  /* ── Value banner ── */
+  /* ── Value banner (scroll-fill) ── */
   .cm-value {
-    max-width: 760px;
+    max-width: 1000px;
     margin: 0 auto;
     font-size: var(--text-xl);
     font-weight: var(--display-weight);
@@ -96,7 +96,13 @@
     line-height: 1.4;
     color: var(--color-text);
   }
-  .cm-value em { font-style: normal; color: var(--color-text-tertiary); }
+  [data-scroll-fill] .w {
+    color: var(--color-text-tertiary);
+    transition: color 0.25s linear;
+  }
+  [data-scroll-fill] .w.on {
+    color: var(--color-text);
+  }
 
   /* ── FAQ ── */
   .cm-faq {
@@ -196,7 +202,7 @@
     <div class="cm-kicker fade-in visible">World Labs Community</div>
     <h1 class="cm-title fade-in visible">The Panel</h1>
     <p class="cm-tagline fade-in visible">Less vibes. More verdicts.</p>
-    <p class="cm-intro fade-in visible">Join The Panel and help shape the future of AI-made games — playing and judging real output from the top AI labs and game-tool companies, and getting paid for the judgment you spent a career earning.</p>
+    <p class="cm-intro fade-in visible">Join The Panel and help shape the future of AI-made games. Play and judge real output from the top AI labs and game-tool companies, and get paid for the judgment you spent a career earning.</p>
     <div class="fade-in visible" style="display:flex;justify-content:center;gap:var(--space-3);flex-wrap:wrap;">
       <a href="#apply" class="btn btn-primary">Join the Community</a>
       <a href="#faq" class="btn btn-secondary">Read the FAQ</a>
@@ -239,7 +245,7 @@
 <!-- Value prop -->
 <section class="section" style="background:var(--color-bg-alt);padding-top:var(--space-16);padding-bottom:var(--space-16);">
   <div class="section-inner section-center">
-    <p class="cm-value fade-in">No exclusivity requirement, no middleman markup — <em>just a curated panel of shipped game developers who share a high bar for what counts as a good game.</em></p>
+    <p class="cm-value" data-scroll-fill>No exclusivity requirement, no middleman markup. Just a curated panel of shipped game developers who share a high bar for what counts as a good game.</p>
   </div>
 </section>
 
@@ -253,7 +259,7 @@
       <div class="step-card fade-in">
         <div class="step-number">1</div>
         <h3>Apply</h3>
-        <p>Send your shipped credits, your specialty, and a few sentences on the best and worst game you played last year — and why. Fifteen minutes, no portfolio required.</p>
+        <p>Send your shipped credits, your specialty, and a few sentences on the best and worst game you played last year, and why. Fifteen minutes, no portfolio required.</p>
       </div>
       <div class="step-card fade-in">
         <div class="step-number">2</div>
@@ -263,7 +269,7 @@
       <div class="step-card fade-in">
         <div class="step-number">3</div>
         <h3>You're in</h3>
-        <p>If you're in, you're in. Assignments start with the next round — no probation tiers, no ranking games, no fighting for gigs in a feed.</p>
+        <p>If you're in, you're in. Assignments start with the next round. No probation tiers, no ranking games, no fighting for gigs in a feed.</p>
       </div>
     </div>
 
@@ -283,12 +289,12 @@
       <div class="feature-card fade-in">
         <div class="feature-label">Paid work</div>
         <h3>Eval sessions matched to your expertise</h3>
-        <p>Assignments route by specialty — game-feel people judge game feel. Each session is a game, a timer, and a structured writeup. Paid per completed eval, invoiced monthly.</p>
+        <p>Assignments route by specialty: game-feel people judge game feel. Each session is a game, a timer, and a structured writeup. Paid per completed eval, invoiced monthly.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-label">Community</div>
         <h3>A private room of people who ship</h3>
-        <p>A members-only space to compare notes across rounds, argue about scores after they lock, and see where AI game tools are actually heading — months before the public does.</p>
+        <p>A members-only space to compare notes across rounds, argue about scores after they lock, and see where AI game tools are actually heading, months before the public does.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-label">Early access</div>
@@ -313,15 +319,15 @@
     <div class="cm-faq fade-in">
       <details>
         <summary>What does the work actually look like?</summary>
-        <div class="cm-faq-body">You're assigned a game generated by an AI tool (identity hidden), you play it in the browser for a minimum session — usually around 15 minutes — then score it on a seven-dimension rubric, write a critique, and rank the top three fixes. Some assignments are head-to-head A/B comparisons instead.</div>
+        <div class="cm-faq-body">You're assigned a game generated by an AI tool (identity hidden), you play it in the browser for a minimum session, usually around 15 minutes, then score it on a seven-dimension rubric, write a critique, and rank the top three fixes. Some assignments are head-to-head A/B comparisons instead.</div>
       </details>
       <details>
         <summary>How does payment work?</summary>
-        <div class="cm-faq-body">Flat rate per completed eval, set per round before you accept any assignments — a rubric session pays more than an A/B comparison. No bidding, no rate negotiation per gig, no platform cut ambiguity. Invoices settle monthly.</div>
+        <div class="cm-faq-body">Flat rate per completed eval, set per round before you accept any assignments. A rubric session pays more than an A/B comparison. No bidding, no rate negotiation per gig, no platform cut ambiguity. Invoices settle monthly.</div>
       </details>
       <details>
         <summary>What's the time commitment?</summary>
-        <div class="cm-faq-body">Whatever you take on. A typical round assignment is a handful of sessions over two to three weeks, each about 30–40 minutes including the writeup. You can decline any round with zero penalty — the only expectation is that accepted assignments get finished.</div>
+        <div class="cm-faq-body">Whatever you take on. A typical round assignment is a handful of sessions over two to three weeks, each about 30 to 40 minutes including the writeup. You can decline any round with zero penalty. The only expectation is that accepted assignments get finished.</div>
       </details>
       <details>
         <summary>Do I need AI experience?</summary>
@@ -329,11 +335,11 @@
       </details>
       <details>
         <summary>Is my name attached to my scores?</summary>
-        <div class="cm-faq-body">Never. Published results and licensed data are attributed only to specialty and years of experience — "Level designer, 12 years," not your name. Your credits get you in the door; your identity stays out of the data.</div>
+        <div class="cm-faq-body">Never. Published results and licensed data are attributed only to specialty and years of experience: "Level designer, 12 years," not your name. Your credits get you in the door; your identity stays out of the data.</div>
       </details>
       <details>
         <summary>How is this different from a playtesting marketplace or staffing agency?</summary>
-        <div class="cm-faq-body">Marketplaces sell volume; we sell calibrated expert judgment. Every panelist is vetted on shipped titles, every eval follows the same anchored rubric, and every game gets multiple independent raters with disagreements flagged and re-judged. Agencies place you with clients — we run the whole harness and you just judge.</div>
+        <div class="cm-faq-body">Marketplaces sell volume; we sell calibrated expert judgment. Every panelist is vetted on shipped titles, every eval follows the same anchored rubric, and every game gets multiple independent raters with disagreements flagged and re-judged. Agencies place you with clients. We run the whole harness and you just judge.</div>
       </details>
     </div>
   </div>
@@ -428,6 +434,30 @@
   };
   window.addEventListener('touchstart', retry, { once: true, passive: true });
   window.addEventListener('click', retry, { once: true });
+})();
+
+// Scroll-fill: words darken as the element scrolls through the viewport
+(function(){
+  const els = document.querySelectorAll('[data-scroll-fill]');
+  if (!els.length) return;
+  els.forEach(el => {
+    const words = el.textContent.trim().split(/\s+/);
+    el.innerHTML = words.map(w => '<span class="w">' + w + '</span>').join(' ');
+  });
+  function update(){
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      const start = innerHeight * 0.85;
+      const end = innerHeight * 0.35;
+      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
+      const spans = el.querySelectorAll('.w');
+      const n = Math.round(p * spans.length);
+      spans.forEach((s, i) => s.classList.toggle('on', i < n));
+    });
+  }
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
 })();
 
 // Fade in
