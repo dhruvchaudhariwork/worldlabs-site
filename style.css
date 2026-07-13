@@ -1440,7 +1440,9 @@
   background: #000; border: none; border-radius: 9999px;
   padding: 3px 14px 3px 3px;
   cursor: pointer; font-family: inherit;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.mk-menu-btn:active { transform: scale(0.92); }
 .mk-menu-circle {
   display: flex; align-items: center; justify-content: center;
   width: 28px; height: 28px;
@@ -1480,11 +1482,48 @@
   position: fixed; inset: 0; z-index: 40;
   /* solid, not backdrop-blur - live blur over a playing video repaints every frame */
   background: rgba(255, 255, 255, 0.98);
-  display: none;
+  display: flex;
   flex-direction: column; justify-content: center;
   padding: 96px 24px 48px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0s linear 0.35s;
 }
-.mk-overlay.open { display: flex; }
+.mk-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mkLinkIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+.mk-overlay .mk-overlay-link,
+.mk-overlay .mk-overlay-meta { opacity: 0; }
+.mk-overlay.open .mk-overlay-link,
+.mk-overlay.open .mk-overlay-meta { opacity: 1; }
+.mk-overlay.open .mk-overlay-link {
+  animation: mkLinkIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+.mk-overlay.open .mk-overlay-link:nth-child(1) { animation-delay: 0.06s; }
+.mk-overlay.open .mk-overlay-link:nth-child(2) { animation-delay: 0.12s; }
+.mk-overlay.open .mk-overlay-link:nth-child(3) { animation-delay: 0.18s; }
+.mk-overlay.open .mk-overlay-link:nth-child(4) { animation-delay: 0.24s; }
+.mk-overlay.open .mk-overlay-link:nth-child(5) { animation-delay: 0.30s; }
+.mk-overlay.open .mk-overlay-link:nth-child(6) { animation-delay: 0.36s; }
+.mk-overlay.open .mk-overlay-link:nth-child(7) { animation-delay: 0.42s; }
+.mk-overlay.open .mk-overlay-meta {
+  animation: mkLinkIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: 0.4s;
+}
 .mk-overlay-links {
   display: flex; flex-direction: column; gap: 4px;
   max-width: 1024px; width: 100%; margin: 0 auto;
