@@ -151,8 +151,9 @@
   <div class="mk-overlay-links">
     <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
     <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
-    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Blog</a>
-    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Benchmark</a>
+    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Blog</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Community</a>
   </div>
   <div class="mk-overlay-meta">
     World Labs: RL environments and expert evals for AI in games, built by game developers who ship.
@@ -190,9 +191,17 @@
       <textarea class="jn-textarea" id="join-credits" placeholder="Titles you've shipped and your role on them"></textarea>
     </div>
 
+    <!-- Honeypot: positioned off-screen, so only bots ever fill it. -->
+    <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <label for="join-hp">Company website</label>
+      <input id="join-hp" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
     <button type="submit" class="btn btn-primary jn-submit" id="join-btn">Join the waitlist</button>
     <div class="jn-msg" id="join-msg"></div>
   </form>
+
+  <p class="jn-note">Ready to be considered now? <a href="./apply.html">Apply to the panel</a> instead — it takes about ten minutes and goes straight to review.</p>
 
   <p class="jn-note">By joining you agree to our <a href="./terms.html">Terms</a> and <a href="./privacy.html">Privacy Policy</a>. Curious how the panel works first? Read about <a href="./community.html">the community</a>.</p>
 </main>
@@ -213,6 +222,7 @@
         <div class="mk-footer-head">Explore</div>
         <ul role="list">
           <li><a href="./research.html">Research</a></li>
+          <li><a href="./benchmark.html">Benchmark</a></li>
           <li><a href="./blog.html">Blog</a></li>
           <li><a href="./community.html">Community</a></li>
         </ul>
@@ -221,6 +231,7 @@
         <div class="mk-footer-head">Get in touch</div>
         <ul role="list">
           <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="./apply.html">Apply to the Panel</a></li>
           <li><a href="./join.html">Join the Waitlist</a></li>
         </ul>
       </div>
@@ -257,17 +268,57 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
 })();
 
-// Join form
-document.getElementById('join-form').addEventListener('submit', function(e) {
+// Join form — posts to /api/waitlist and only reports success once the server
+// confirms the row was stored.
+document.getElementById('join-form').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const email = document.getElementById('join-email').value.trim();
+
+  const btn = document.getElementById('join-btn');
   const msg = document.getElementById('join-msg');
-  if (!email || !email.includes('@')) { msg.textContent = 'Enter a valid email.'; msg.className = 'jn-msg'; return; }
-  msg.textContent = 'You’re on the list. We’ll reach out as spots open.';
-  msg.className = 'jn-msg success';
-  document.getElementById('join-btn').textContent = 'Joined';
-  document.getElementById('join-btn').disabled = true;
-  ['join-email','join-specialty','join-credits'].forEach(id => document.getElementById(id).disabled = true);
+  const email = document.getElementById('join-email').value.trim();
+
+  if (!email || !email.includes('@')) {
+    msg.textContent = 'Enter a valid email.';
+    msg.className = 'jn-msg';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Joining…';
+  msg.textContent = '';
+  msg.className = 'jn-msg';
+
+  try {
+    const res = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        specialty: document.getElementById('join-specialty').value,
+        credits: document.getElementById('join-credits').value.trim(),
+        company_website: document.getElementById('join-hp').value, // honeypot
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      msg.textContent = data.error || 'Something went wrong. Try again.';
+      msg.className = 'jn-msg';
+      btn.disabled = false;
+      btn.textContent = 'Join the waitlist';
+      return;
+    }
+
+    msg.textContent = 'You’re on the list. We’ll reach out as spots open.';
+    msg.className = 'jn-msg success';
+    btn.textContent = 'Joined';
+    ['join-email','join-specialty','join-credits'].forEach(id => document.getElementById(id).disabled = true);
+  } catch {
+    msg.textContent = 'Network error. Check your connection and try again.';
+    msg.className = 'jn-msg';
+    btn.disabled = false;
+    btn.textContent = 'Join the waitlist';
+  }
 });
 </script>
 

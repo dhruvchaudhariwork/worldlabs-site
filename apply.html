@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apply to the Panel | World Labs</title>
+<meta name="description" content="Apply to join the World Labs panel: paid eval sessions for game developers with shipped titles.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  .ap-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: calc(var(--space-24) + 56px) var(--space-6) var(--space-20);
+  }
+  @media (max-width: 600px) {
+    .ap-wrap { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-12); }
+  }
+
+  .ap-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-5);
+  }
+  .ap-title {
+    font-size: clamp(2rem, 1rem + 3.5vw, 3.25rem);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.08;
+    margin-bottom: var(--space-4);
+  }
+  .ap-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-6);
+    max-width: none;
+  }
+
+  /* What applicants actually want to know before typing for 10 minutes. */
+  .ap-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-12);
+  }
+  .ap-fact {
+    font-size: var(--text-xs);
+    padding: 5px 11px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+
+  /* ── Sections ── */
+  .ap-section { margin-bottom: var(--space-12); }
+  .ap-section-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .ap-section-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+  }
+  .ap-section-title {
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+  .ap-section-hint {
+    margin-left: auto;
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  .ap-fields { display: flex; flex-direction: column; gap: var(--space-5); }
+  .ap-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+  @media (max-width: 560px) { .ap-row { grid-template-columns: 1fr; } }
+
+  .ap-field { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+  .ap-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  .ap-label span {
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+  }
+  .ap-help {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    line-height: 1.5;
+  }
+
+  .ap-input, .ap-select, .ap-textarea {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    outline: none;
+  }
+  .ap-input::placeholder, .ap-textarea::placeholder { color: var(--color-text-tertiary); }
+  .ap-input:focus, .ap-select:focus, .ap-textarea:focus { border-color: var(--color-text); }
+  .ap-textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+  .ap-select { appearance: none; cursor: pointer; padding-right: var(--space-10); }
+
+  .ap-select-wrap { position: relative; }
+  .ap-select-wrap::after {
+    content: '';
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    width: 7px; height: 7px;
+    border-right: 1.5px solid var(--color-text-tertiary);
+    border-bottom: 1.5px solid var(--color-text-tertiary);
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  /* Invalid state, driven by the server's field errors. */
+  .ap-field.invalid .ap-input,
+  .ap-field.invalid .ap-select,
+  .ap-field.invalid .ap-textarea { border-color: var(--color-error); }
+  .ap-error {
+    font-size: var(--text-xs);
+    color: var(--color-error);
+    min-height: 0;
+  }
+
+  /* ── Ranked specialties ── */
+  .ap-ranks { display: flex; flex-direction: column; gap: var(--space-3); }
+  .ap-rank { display: flex; align-items: center; gap: var(--space-3); }
+  .ap-rank-badge {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    display: grid; place-items: center;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-tertiary);
+    background: var(--color-surface);
+  }
+  .ap-rank:first-child .ap-rank-badge {
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    border-color: var(--color-text);
+  }
+  .ap-rank .ap-select-wrap { flex: 1; min-width: 0; }
+
+  /* ── Honeypot: hidden from humans, irresistible to naive bots. ── */
+  .ap-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  /* ── Submit ── */
+  .ap-submit-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    padding-top: var(--space-4);
+  }
+  .ap-submit { min-width: 190px; justify-content: center; }
+  .ap-submit[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+  .ap-msg { font-size: var(--text-sm); color: var(--color-error); }
+  .ap-note {
+    margin-top: var(--space-8);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    line-height: 1.7;
+  }
+  .ap-note a { color: var(--color-text-secondary); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ── Success ── */
+  .ap-done { display: none; padding: var(--space-8) 0; }
+  .ap-done.show { display: block; }
+  .ap-done-mark {
+    width: 44px; height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    display: grid; place-items: center;
+    margin-bottom: var(--space-6);
+  }
+  .ap-done-title {
+    font-size: var(--text-xl);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    margin-bottom: var(--space-3);
+  }
+  .ap-done-body { color: var(--color-text-secondary); line-height: 1.7; margin-bottom: var(--space-6); }
+  .ap-done-steps {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .ap-done-step {
+    display: flex;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+  .ap-done-step b {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .form-hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="page-content">
+
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="./index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>The Panel</span>
+      <span>Application</span>
+    </div>
+  </div>
+
+  <a href="./community.html" class="mk-cta-btn" aria-label="About the community">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">About the Community</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
+    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Benchmark</a>
+    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Blog</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Community</a>
+  </div>
+  <div class="mk-overlay-meta">
+    World Labs: RL environments and expert evals for AI in games, built by game developers who ship.
+  </div>
+</div>
+
+<main class="ap-wrap">
+  <div class="ap-kicker">The Panel</div>
+  <h1 class="ap-title">Apply to the panel</h1>
+  <p class="ap-intro">
+    We pay shipped game developers to judge what AI models build inside instrumented game worlds.
+    Applications are read by a person, not a filter. The section that matters most is what you've shipped.
+  </p>
+
+  <div class="ap-facts">
+    <span class="ap-fact">Paid per session</span>
+    <span class="ap-fact">Remote, async</span>
+    <span class="ap-fact">Shipped credits required</span>
+    <span class="ap-fact">~10 min to apply</span>
+  </div>
+
+  <form class="ap-form" id="ap-form" novalidate>
+
+    <!-- 01 ─────────────────────────────────────────── -->
+    <section class="ap-section">
+      <div class="ap-section-head">
+        <span class="ap-section-num">01</span>
+        <h2 class="ap-section-title">You</h2>
+      </div>
+      <div class="ap-fields">
+        <div class="ap-row">
+          <div class="ap-field" data-field="full_name">
+            <label class="ap-label" for="full_name">Full name</label>
+            <input class="ap-input" id="full_name" name="full_name" type="text" autocomplete="name" placeholder="Jordan Reyes">
+            <div class="ap-error" data-error-for="full_name"></div>
+          </div>
+          <div class="ap-field" data-field="email">
+            <label class="ap-label" for="email">Email</label>
+            <input class="ap-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@studio.com">
+            <div class="ap-error" data-error-for="email"></div>
+          </div>
+        </div>
+        <div class="ap-row">
+          <div class="ap-field" data-field="country">
+            <label class="ap-label" for="country">Country <span>(optional)</span></label>
+            <input class="ap-input" id="country" name="country" type="text" autocomplete="country-name" placeholder="Japan">
+            <div class="ap-error" data-error-for="country"></div>
+          </div>
+          <div class="ap-field" data-field="linkedin_url">
+            <label class="ap-label" for="linkedin_url">LinkedIn <span>(optional)</span></label>
+            <input class="ap-input" id="linkedin_url" name="linkedin_url" type="text" placeholder="linkedin.com/in/you">
+            <div class="ap-error" data-error-for="linkedin_url"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 ─────────────────────────────────────────── -->
+    <section class="ap-section">
+      <div class="ap-section-head">
+        <span class="ap-section-num">02</span>
+        <h2 class="ap-section-title">What you've shipped</h2>
+        <span class="ap-section-hint">The part we actually read</span>
+      </div>
+      <div class="ap-fields">
+        <div class="ap-field" data-field="shipped_credits">
+          <label class="ap-label" for="shipped_credits">Shipped credits</label>
+          <div class="ap-help">
+            Titles you shipped, your role, and roughly when. Ship-and-live counts; prototypes and
+            game jams don't. If you led a system (combat, economy, onboarding), say which.
+          </div>
+          <textarea class="ap-textarea" id="shipped_credits" name="shipped_credits" placeholder="Hollow Tide (2023) — lead systems designer, owned combat + progression.&#10;Ninefold (2021) — level designer, shipped 14 of 30 levels."></textarea>
+          <div class="ap-error" data-error-for="shipped_credits"></div>
+        </div>
+        <div class="ap-row">
+          <div class="ap-field" data-field="years_experience">
+            <label class="ap-label" for="years_experience">Years in games <span>(optional)</span></label>
+            <input class="ap-input" id="years_experience" name="years_experience" type="number" min="0" max="60" placeholder="8">
+            <div class="ap-error" data-error-for="years_experience"></div>
+          </div>
+          <div class="ap-field" data-field="portfolio_url">
+            <label class="ap-label" for="portfolio_url">Portfolio <span>(optional)</span></label>
+            <input class="ap-input" id="portfolio_url" name="portfolio_url" type="text" placeholder="yoursite.com">
+            <div class="ap-error" data-error-for="portfolio_url"></div>
+          </div>
+        </div>
+        <div class="ap-row">
+          <div class="ap-field" data-field="github_url">
+            <label class="ap-label" for="github_url">GitHub <span>(optional)</span></label>
+            <input class="ap-input" id="github_url" name="github_url" type="text" placeholder="github.com/you">
+            <div class="ap-error" data-error-for="github_url"></div>
+          </div>
+          <div class="ap-field" data-field="video_url">
+            <label class="ap-label" for="video_url">Video intro <span>(optional)</span></label>
+            <input class="ap-input" id="video_url" name="video_url" type="text" placeholder="Loom / YouTube link">
+            <div class="ap-error" data-error-for="video_url"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 ─────────────────────────────────────────── -->
+    <section class="ap-section">
+      <div class="ap-section-head">
+        <span class="ap-section-num">03</span>
+        <h2 class="ap-section-title">Your craft</h2>
+        <span class="ap-section-hint">Ranked, best first</span>
+      </div>
+      <div class="ap-fields">
+        <div class="ap-field" data-field="specialties">
+          <label class="ap-label" for="spec_1">Specialties</label>
+          <div class="ap-help">
+            Pick up to three, strongest first. We route eval sessions by specialty, so rank honestly —
+            you'll be judging work in these areas.
+          </div>
+          <div class="ap-ranks">
+            <div class="ap-rank">
+              <span class="ap-rank-badge">1</span>
+              <div class="ap-select-wrap">
+                <select class="ap-select" id="spec_1" name="spec_1" data-spec></select>
+              </div>
+            </div>
+            <div class="ap-rank">
+              <span class="ap-rank-badge">2</span>
+              <div class="ap-select-wrap">
+                <select class="ap-select" id="spec_2" name="spec_2" data-spec></select>
+              </div>
+            </div>
+            <div class="ap-rank">
+              <span class="ap-rank-badge">3</span>
+              <div class="ap-select-wrap">
+                <select class="ap-select" id="spec_3" name="spec_3" data-spec></select>
+              </div>
+            </div>
+          </div>
+          <div class="ap-error" data-error-for="specialties"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 ─────────────────────────────────────────── -->
+    <section class="ap-section">
+      <div class="ap-section-head">
+        <span class="ap-section-num">04</span>
+        <h2 class="ap-section-title">Availability</h2>
+      </div>
+      <div class="ap-fields">
+        <div class="ap-row">
+          <div class="ap-field" data-field="hours_per_week">
+            <label class="ap-label" for="hours_per_week">Hours per week <span>(optional)</span></label>
+            <div class="ap-help">Realistically, not aspirationally.</div>
+            <input class="ap-input" id="hours_per_week" name="hours_per_week" type="number" min="1" max="60" placeholder="5">
+            <div class="ap-error" data-error-for="hours_per_week"></div>
+          </div>
+          <div class="ap-field" data-field="hourly_rate_usd">
+            <label class="ap-label" for="hourly_rate_usd">Hourly rate, USD <span>(optional)</span></label>
+            <div class="ap-help">What you'd normally charge for consulting.</div>
+            <input class="ap-input" id="hourly_rate_usd" name="hourly_rate_usd" type="number" min="0" max="2000" placeholder="120">
+            <div class="ap-error" data-error-for="hourly_rate_usd"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 ─────────────────────────────────────────── -->
+    <section class="ap-section">
+      <div class="ap-section-head">
+        <span class="ap-section-num">05</span>
+        <h2 class="ap-section-title">Anything else</h2>
+      </div>
+      <div class="ap-fields">
+        <div class="ap-field" data-field="heard_from">
+          <label class="ap-label" for="heard_from">How did you hear about us? <span>(optional)</span></label>
+          <div class="ap-select-wrap">
+            <select class="ap-select" id="heard_from" name="heard_from"></select>
+          </div>
+          <div class="ap-error" data-error-for="heard_from"></div>
+        </div>
+        <div class="ap-field" data-field="notes">
+          <label class="ap-label" for="notes">Anything we should know <span>(optional)</span></label>
+          <textarea class="ap-textarea" id="notes" name="notes" placeholder="Strong opinions about what current models get wrong in games are very welcome here."></textarea>
+          <div class="ap-error" data-error-for="notes"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honeypot. Hidden from humans; bots fill it and get silently dropped. -->
+    <div class="ap-hp" aria-hidden="true">
+      <label for="company_website">Company website</label>
+      <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="ap-submit-row">
+      <button type="submit" class="btn btn-primary ap-submit" id="ap-submit">Submit application</button>
+      <div class="ap-msg" id="ap-msg" role="status" aria-live="polite"></div>
+    </div>
+
+    <p class="ap-note">
+      By applying you agree to our <a href="./terms.html">Terms</a> and
+      <a href="./privacy.html">Privacy Policy</a>. We use your details to assess your application and,
+      if you join, to route eval sessions to you. Not sure yet?
+      Read how <a href="./community.html">the panel works</a>.
+    </p>
+  </form>
+
+  <!-- Success state, swapped in on a real 200 from the server. -->
+  <div class="ap-done" id="ap-done">
+    <div class="ap-done-mark">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h2 class="ap-done-title">Application received</h2>
+    <p class="ap-done-body">
+      It's in the queue and a person will read it. We reply either way, including when the answer is no.
+    </p>
+    <div class="ap-done-steps">
+      <div class="ap-done-step"><b>01</b><span>We read your shipped credits first. Expect a reply within about a week.</span></div>
+      <div class="ap-done-step"><b>02</b><span>If it's a fit, we send one short paid trial eval so you can see the work before committing.</span></div>
+      <div class="ap-done-step"><b>03</b><span>After the trial, you're on the panel and we route sessions matching your specialties.</span></div>
+    </div>
+  </div>
+</main>
+
+</div><!-- end page-content -->
+
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>RL environments and expert evals for AI in games: models generate inside instrumented game worlds, and shipped game developers judge what they build.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
+    </div>
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Explore</div>
+        <ul role="list">
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./benchmark.html">Benchmark</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Get in touch</div>
+        <ul role="list">
+          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="./apply.html">Apply to the Panel</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+// Menu overlay
+(function () {
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+  let open = false;
+  const set = (next) => {
+    open = next;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+  };
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) set(false); });
+})();
+
+// ── Options. Kept identical to api/_lib/validate.js — the server rejects
+// anything not on its own list, so these must not drift.
+const SPECIALTIES = [
+  'Level design', 'Systems design', 'Combat / game feel', 'Narrative & quest design',
+  'UX & onboarding', 'Game economy', 'QA & playtest lead', 'Technical / engine',
+  'AI & NPC behaviour', 'Art direction', 'Other',
+];
+const HEARD_FROM = [
+  'Referral from a panelist', 'X / Twitter', 'LinkedIn', 'Reddit', 'Discord',
+  'GameDev conference', 'Search', 'Direct outreach', 'Other',
+];
+
+const specSelects = [...document.querySelectorAll('[data-spec]')];
+
+function fillSelect(sel, options, placeholder) {
+  sel.innerHTML = '';
+  const blank = document.createElement('option');
+  blank.value = '';
+  blank.textContent = placeholder;
+  sel.appendChild(blank);
+  for (const o of options) {
+    const opt = document.createElement('option');
+    opt.value = o;
+    opt.textContent = o;
+    sel.appendChild(opt);
+  }
+}
+
+specSelects.forEach((sel, i) => fillSelect(sel, SPECIALTIES, i === 0 ? 'Choose your primary' : 'Choose (optional)'));
+fillSelect(document.getElementById('heard_from'), HEARD_FROM, 'Choose one');
+
+// Picking a specialty in one rank removes it from the others, so you can't
+// rank the same thing twice.
+function syncSpecialties() {
+  const chosen = specSelects.map((s) => s.value);
+  specSelects.forEach((sel, i) => {
+    const mine = sel.value;
+    [...sel.options].forEach((opt) => {
+      if (!opt.value) return;
+      opt.disabled = opt.value !== mine && chosen.includes(opt.value);
+    });
+    // Ranks must fill in order: you can't pick #3 without a #2.
+    sel.disabled = i > 0 && !chosen[i - 1];
+    if (sel.disabled) sel.value = '';
+  });
+}
+specSelects.forEach((s) => s.addEventListener('change', syncSpecialties));
+syncSpecialties();
+
+// ── Errors ──
+function clearErrors() {
+  document.querySelectorAll('.ap-field').forEach((f) => f.classList.remove('invalid'));
+  document.querySelectorAll('.ap-error').forEach((e) => (e.textContent = ''));
+  document.getElementById('ap-msg').textContent = '';
+}
+
+function showErrors(fields) {
+  let first = null;
+  for (const [name, message] of Object.entries(fields || {})) {
+    const slot = document.querySelector(`[data-error-for="${name}"]`);
+    const field = document.querySelector(`.ap-field[data-field="${name}"]`);
+    if (slot) slot.textContent = message;
+    if (field) {
+      field.classList.add('invalid');
+      first ??= field;
+    }
+  }
+  first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ── Submit ──
+const form = document.getElementById('ap-form');
+const btn = document.getElementById('ap-submit');
+const msg = document.getElementById('ap-msg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  clearErrors();
+
+  const val = (id) => document.getElementById(id).value.trim();
+
+  const payload = {
+    full_name: val('full_name'),
+    email: val('email'),
+    country: val('country'),
+    linkedin_url: val('linkedin_url'),
+    portfolio_url: val('portfolio_url'),
+    github_url: val('github_url'),
+    video_url: val('video_url'),
+    shipped_credits: val('shipped_credits'),
+    years_experience: val('years_experience'),
+    hours_per_week: val('hours_per_week'),
+    hourly_rate_usd: val('hourly_rate_usd'),
+    heard_from: val('heard_from'),
+    notes: val('notes'),
+    specialties: specSelects.map((s) => s.value).filter(Boolean),
+    company_website: val('company_website'), // honeypot
+  };
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    const res = await fetch('/api/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      if (data.fields) showErrors(data.fields);
+      msg.textContent = data.error || 'Something went wrong. Try again.';
+      btn.disabled = false;
+      btn.textContent = 'Submit application';
+      return;
+    }
+
+    // Only now — after the server confirmed it stored the row — do we tell
+    // anyone they've applied.
+    form.classList.add('form-hidden');
+    document.getElementById('ap-done').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch {
+    msg.textContent = 'Network error. Check your connection and try again.';
+    btn.disabled = false;
+    btn.textContent = 'Submit application';
+  }
+});
+</script>
+
+</body>
+</html>

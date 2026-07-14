@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Review Queue | World Labs</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  body { background: var(--color-bg-alt); }
+
+  /* ── Login gate ── */
+  .ad-gate {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: var(--space-6);
+  }
+  .ad-gate-card {
+    width: 100%;
+    max-width: 360px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+  }
+  .ad-gate-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .ad-gate-title {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-6);
+  }
+  .ad-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+    font-size: var(--text-sm);
+    outline: none;
+  }
+  .ad-input:focus { border-color: var(--color-text); }
+  .ad-gate .btn { width: 100%; justify-content: center; margin-top: var(--space-4); }
+  .ad-gate-err {
+    font-size: var(--text-xs);
+    color: var(--color-error);
+    margin-top: var(--space-3);
+    min-height: 1em;
+  }
+
+  /* ── Shell ── */
+  .ad-app { display: none; }
+  .ad-app.show { display: block; }
+
+  .ad-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+  }
+  .ad-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-tight);
+  }
+  .ad-brand span {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: 2px 7px;
+    font-weight: 500;
+  }
+  .ad-search {
+    margin-left: auto;
+    width: 240px;
+    padding: 7px var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    background: var(--color-surface);
+    outline: none;
+  }
+  .ad-search:focus { border-color: var(--color-text); background: var(--color-bg); }
+  .ad-logout {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .ad-logout:hover { color: var(--color-text); }
+
+  /* ── Tabs ── */
+  .ad-tabs {
+    display: flex;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-6) 0;
+    max-width: 1280px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .ad-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 7px var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border: 1px solid transparent;
+  }
+  .ad-tab:hover { background: var(--color-surface); }
+  .ad-tab.active {
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+  }
+  .ad-tab-count {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    opacity: 0.7;
+  }
+
+  /* ── Layout ── */
+  .ad-main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-6) var(--space-16);
+    display: grid;
+    grid-template-columns: minmax(300px, 380px) 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  @media (max-width: 900px) { .ad-main { grid-template-columns: 1fr; } }
+
+  /* ── List ── */
+  .ad-list {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-height: calc(100dvh - 160px);
+    overflow-y: auto;
+  }
+  .ad-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-subtle);
+    cursor: pointer;
+  }
+  .ad-item:last-child { border-bottom: none; }
+  .ad-item:hover { background: var(--color-surface); }
+  .ad-item.active { background: var(--color-surface); box-shadow: inset 3px 0 0 var(--color-text); }
+  .ad-item-top {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: 3px;
+  }
+  .ad-item-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ad-item-date {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-tertiary);
+    flex-shrink: 0;
+  }
+  .ad-item-sub {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: var(--space-2);
+  }
+  .ad-item-specs { display: flex; gap: 4px; flex-wrap: wrap; }
+
+  .pill {
+    font-size: 0.625rem;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    background: var(--color-bg);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .pill.status-pending  { background: var(--color-neutral-bg);  color: var(--color-neutral);  border-color: transparent; }
+  .pill.status-reviewing{ background: var(--color-caution-bg);  color: var(--color-caution);  border-color: transparent; }
+  .pill.status-approved { background: var(--color-positive-bg); color: var(--color-positive); border-color: transparent; }
+  .pill.status-rejected { background: var(--color-negative-bg); color: var(--color-negative); border-color: transparent; }
+
+  /* ── Detail ── */
+  .ad-detail {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8);
+    min-height: 400px;
+  }
+  .ad-empty {
+    display: grid;
+    place-items: center;
+    min-height: 340px;
+    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    text-align: center;
+  }
+
+  .ad-d-head {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .ad-d-name {
+    font-size: var(--text-xl);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    margin-bottom: 2px;
+  }
+  .ad-d-mail { font-size: var(--text-sm); color: var(--color-text-secondary); }
+  .ad-d-mail a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+  .ad-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-5);
+    margin-bottom: var(--space-6);
+  }
+  .ad-cell-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    margin-bottom: 5px;
+  }
+  .ad-cell-value { font-size: var(--text-sm); color: var(--color-text); }
+  .ad-cell-value a { color: var(--color-text); text-decoration: underline; text-underline-offset: 2px; }
+  .ad-cell-value.muted { color: var(--color-text-tertiary); }
+
+  .ad-block { margin-bottom: var(--space-6); }
+  .ad-block-title {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .ad-prose {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: var(--color-text);
+    white-space: pre-wrap;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    max-width: none;
+  }
+
+  .ad-notes {
+    width: 100%;
+    min-height: 84px;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-body);
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+  }
+  .ad-notes:focus { border-color: var(--color-text); }
+
+  .ad-actions {
+    display: flex;
+    gap: var(--space-2);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .ad-btn {
+    padding: 9px var(--space-5);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+  .ad-btn:hover { border-color: var(--color-text); }
+  .ad-btn.approve { background: var(--color-text); color: var(--color-text-inverse); border-color: var(--color-text); }
+  .ad-btn.approve:hover { background: var(--color-accent-hover); }
+  .ad-btn.reject:hover { border-color: var(--color-error); color: var(--color-error); }
+  .ad-btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .ad-save-msg {
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-left: auto;
+  }
+  .ad-kbd {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    border: 1px solid var(--color-border);
+    border-bottom-width: 2px;
+    border-radius: var(--radius-sm);
+    padding: 1px 5px;
+    color: var(--color-text-tertiary);
+    margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div class="ad-gate" id="gate">
+  <form class="ad-gate-card" id="gate-form">
+    <div class="ad-gate-kicker">World Labs</div>
+    <h1 class="ad-gate-title">Review queue</h1>
+    <input class="ad-input" id="pw" type="password" placeholder="Admin password" autocomplete="current-password" autofocus>
+    <button type="submit" class="btn btn-primary" id="gate-btn">Sign in</button>
+    <div class="ad-gate-err" id="gate-err"></div>
+  </form>
+</div>
+
+<!-- App -->
+<div class="ad-app" id="app">
+  <div class="ad-bar">
+    <div class="ad-brand">World Labs <span>Review</span></div>
+    <input class="ad-search" id="search" type="search" placeholder="Search name, email, credits…">
+    <a href="#" class="ad-logout" id="logout">Sign out</a>
+  </div>
+
+  <div class="ad-tabs" id="tabs"></div>
+
+  <div class="ad-main">
+    <div class="ad-list" id="list"></div>
+    <div class="ad-detail" id="detail">
+      <div class="ad-empty">Select an application to review.</div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+const $ = (id) => document.getElementById(id);
+
+const state = {
+  status: 'pending',
+  q: '',
+  apps: [],
+  counts: {},
+  selectedId: null,
+};
+
+// ── Auth ──────────────────────────────────────────────────────────────
+// The gate below is a convenience. Every /api/admin/* endpoint verifies the
+// signed httpOnly cookie server-side, so hiding this div is not what protects
+// the data — the server is.
+
+async function checkSession() {
+  const res = await fetch('/api/admin/session');
+  const { authed } = await res.json();
+  if (authed) enterApp();
+}
+
+$('gate-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = $('gate-btn');
+  const err = $('gate-err');
+  err.textContent = '';
+  btn.disabled = true;
+  btn.textContent = 'Signing in…';
+
+  try {
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: $('pw').value }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      err.textContent = data.error || 'Sign in failed.';
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+      return;
+    }
+    enterApp();
+  } catch {
+    err.textContent = 'Network error.';
+    btn.disabled = false;
+    btn.textContent = 'Sign in';
+  }
+});
+
+$('logout').addEventListener('click', async (e) => {
+  e.preventDefault();
+  await fetch('/api/admin/logout', { method: 'POST' });
+  location.reload();
+});
+
+function enterApp() {
+  $('gate').style.display = 'none';
+  $('app').classList.add('show');
+  load();
+}
+
+// ── Data ──────────────────────────────────────────────────────────────
+async function load() {
+  const params = new URLSearchParams({ status: state.status });
+  if (state.q) params.set('q', state.q);
+
+  const res = await fetch(`/api/admin/applications?${params}`);
+  if (res.status === 401) return location.reload();
+
+  const data = await res.json();
+  if (!res.ok) {
+    $('list').innerHTML = `<div class="ad-empty">${esc(data.error || 'Failed to load.')}</div>`;
+    return;
+  }
+
+  state.apps = data.applications || [];
+  state.counts = data.counts || {};
+  renderTabs();
+  renderList();
+
+  // Keep the open application selected across a reload if it's still in view.
+  if (state.selectedId && state.apps.some((a) => a.id === state.selectedId)) {
+    renderDetail(state.apps.find((a) => a.id === state.selectedId));
+  } else {
+    state.selectedId = null;
+    $('detail').innerHTML = '<div class="ad-empty">Select an application to review.</div>';
+  }
+}
+
+// ── Render ────────────────────────────────────────────────────────────
+const esc = (s) =>
+  String(s ?? '').replace(/[&<>"']/g, (c) =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+  );
+
+const TABS = [
+  ['pending', 'Pending'],
+  ['reviewing', 'Reviewing'],
+  ['approved', 'Approved'],
+  ['rejected', 'Rejected'],
+  ['all', 'All'],
+];
+
+function renderTabs() {
+  const total = Object.values(state.counts).reduce((a, b) => a + b, 0);
+  $('tabs').innerHTML = TABS.map(([key, label]) => {
+    const n = key === 'all' ? total : state.counts[key] ?? 0;
+    return `<button class="ad-tab ${state.status === key ? 'active' : ''}" data-status="${key}">
+      ${label} <span class="ad-tab-count">${n}</span>
+    </button>`;
+  }).join('');
+
+  $('tabs').querySelectorAll('.ad-tab').forEach((b) =>
+    b.addEventListener('click', () => {
+      state.status = b.dataset.status;
+      load();
+    })
+  );
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  const days = Math.floor((Date.now() - d) / 86400000);
+  if (days === 0) return 'today';
+  if (days === 1) return '1d';
+  if (days < 30) return `${days}d`;
+  return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+
+function renderList() {
+  if (!state.apps.length) {
+    const what = state.q ? 'match that search' : `are ${state.status}`;
+    $('list').innerHTML = `<div class="ad-empty">No applications ${esc(what)}.</div>`;
+    return;
+  }
+
+  $('list').innerHTML = state.apps
+    .map(
+      (a) => `
+      <button class="ad-item ${a.id === state.selectedId ? 'active' : ''}" data-id="${a.id}">
+        <div class="ad-item-top">
+          <span class="ad-item-name">${esc(a.full_name)}</span>
+          <span class="ad-item-date">${fmtDate(a.created_at)}</span>
+        </div>
+        <div class="ad-item-sub">${esc(a.email)}</div>
+        <div class="ad-item-specs">
+          <span class="pill status-${esc(a.status)}">${esc(a.status)}</span>
+          ${(a.specialties || []).slice(0, 2).map((s) => `<span class="pill">${esc(s)}</span>`).join('')}
+        </div>
+      </button>`
+    )
+    .join('');
+
+  $('list').querySelectorAll('.ad-item').forEach((el) =>
+    el.addEventListener('click', () => select(el.dataset.id))
+  );
+}
+
+function select(id) {
+  state.selectedId = id;
+  renderList();
+  renderDetail(state.apps.find((a) => a.id === id));
+}
+
+const link = (url) =>
+  url ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>` : '<span class="muted">—</span>';
+
+const cell = (label, value) => `
+  <div>
+    <div class="ad-cell-label">${label}</div>
+    <div class="ad-cell-value">${value}</div>
+  </div>`;
+
+function renderDetail(a) {
+  if (!a) return;
+
+  $('detail').innerHTML = `
+    <div class="ad-d-head">
+      <div>
+        <div class="ad-d-name">${esc(a.full_name)}</div>
+        <div class="ad-d-mail"><a href="mailto:${esc(a.email)}">${esc(a.email)}</a></div>
+      </div>
+      <span class="pill status-${esc(a.status)}" style="margin-left:auto">${esc(a.status)}</span>
+    </div>
+
+    <div class="ad-grid">
+      ${cell('Applied', new Date(a.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }))}
+      ${cell('Country', a.country ? esc(a.country) : '<span class="muted">—</span>')}
+      ${cell('Experience', a.years_experience != null ? `${a.years_experience} yrs` : '<span class="muted">—</span>')}
+      ${cell('Availability', a.hours_per_week != null ? `${a.hours_per_week} h/wk` : '<span class="muted">—</span>')}
+      ${cell('Rate', a.hourly_rate_usd != null ? `$${Number(a.hourly_rate_usd).toFixed(0)}/hr` : '<span class="muted">—</span>')}
+      ${cell('Heard via', a.heard_from ? esc(a.heard_from) : '<span class="muted">—</span>')}
+    </div>
+
+    <div class="ad-grid">
+      ${cell('Portfolio', link(a.portfolio_url))}
+      ${cell('GitHub', link(a.github_url))}
+      ${cell('LinkedIn', link(a.linkedin_url))}
+      ${cell('Video', link(a.video_url))}
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-block-title">Specialties, ranked</div>
+      <div class="ad-item-specs">
+        ${(a.specialties || []).length
+          ? a.specialties.map((s, i) => `<span class="pill">${i + 1}. ${esc(s)}</span>`).join('')
+          : '<span class="ad-cell-value muted">—</span>'}
+      </div>
+    </div>
+
+    <div class="ad-block">
+      <div class="ad-block-title">Shipped credits</div>
+      <div class="ad-prose">${esc(a.shipped_credits)}</div>
+    </div>
+
+    ${a.notes ? `
+    <div class="ad-block">
+      <div class="ad-block-title">Notes from applicant</div>
+      <div class="ad-prose">${esc(a.notes)}</div>
+    </div>` : ''}
+
+    <div class="ad-block">
+      <div class="ad-block-title">Your notes (private)</div>
+      <textarea class="ad-notes" id="admin-notes" placeholder="Why yes, why no.">${esc(a.admin_notes || '')}</textarea>
+    </div>
+
+    <div class="ad-actions">
+      <button class="ad-btn approve" data-act="approved">Approve<span class="ad-kbd">A</span></button>
+      <button class="ad-btn" data-act="reviewing">Mark reviewing</button>
+      <button class="ad-btn reject" data-act="rejected">Reject<span class="ad-kbd">R</span></button>
+      <button class="ad-btn" data-act="notes">Save notes</button>
+      <span class="ad-save-msg" id="save-msg"></span>
+    </div>
+  `;
+
+  $('detail').querySelectorAll('[data-act]').forEach((b) =>
+    b.addEventListener('click', () => decide(a.id, b.dataset.act))
+  );
+}
+
+// ── Decide ────────────────────────────────────────────────────────────
+async function decide(id, act) {
+  const notes = $('admin-notes')?.value ?? '';
+  const body = { id, admin_notes: notes };
+  if (act !== 'notes') body.status = act;
+
+  const buttons = $('detail').querySelectorAll('.ad-btn');
+  buttons.forEach((b) => (b.disabled = true));
+  $('save-msg').textContent = 'Saving…';
+
+  try {
+    const res = await fetch('/api/admin/decide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json().catch(() => ({}));
+
+    if (!res.ok) {
+      $('save-msg').textContent = data.error || 'Failed.';
+      buttons.forEach((b) => (b.disabled = false));
+      return;
+    }
+
+    $('save-msg').textContent = act === 'notes' ? 'Notes saved' : `Marked ${act}`;
+    await load();
+  } catch {
+    $('save-msg').textContent = 'Network error.';
+    buttons.forEach((b) => (b.disabled = false));
+  }
+}
+
+// ── Search ────────────────────────────────────────────────────────────
+let searchTimer;
+$('search').addEventListener('input', (e) => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    state.q = e.target.value.trim();
+    load();
+  }, 250);
+});
+
+// ── Keyboard: j/k to move, a/r to decide ──────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (!$('app').classList.contains('show')) return;
+  if (['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+  const i = state.apps.findIndex((a) => a.id === state.selectedId);
+
+  if (e.key === 'j' && i < state.apps.length - 1) select(state.apps[i + 1].id);
+  else if (e.key === 'k' && i > 0) select(state.apps[i - 1].id);
+  else if (e.key === 'a' && state.selectedId) decide(state.selectedId, 'approved');
+  else if (e.key === 'r' && state.selectedId) decide(state.selectedId, 'rejected');
+  else if (e.key === '/') { e.preventDefault(); $('search').focus(); }
+});
+
+checkSession();
+</script>
+
+</body>
+</html>

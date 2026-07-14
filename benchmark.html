@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmark | World Labs</title>
+<meta name="description" content="The World Labs benchmark: frontier models build inside instrumented game worlds, and shipped game developers score what they build across 14 categories.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+
+<style>
+  .bm-hero {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-12);
+  }
+  @media (max-width: 600px) {
+    .bm-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-8); }
+  }
+  .bm-kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-5);
+  }
+  .bm-title {
+    font-size: var(--text-hero);
+    font-weight: var(--display-weight);
+    letter-spacing: var(--tracking-display);
+    line-height: 1.02;
+    margin-bottom: var(--space-5);
+  }
+  .bm-intro {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    max-width: 62ch;
+    line-height: 1.7;
+  }
+
+  .bm-section {
+    max-width: var(--content-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-8) var(--space-16);
+  }
+  @media (max-width: 600px) { .bm-section { padding: 0 var(--space-4) var(--space-12); } }
+
+  .bm-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+  .bm-head h2 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+  }
+  .bm-head-note {
+    margin-left: auto;
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  /* ── Leaderboard ── */
+  .bm-board {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+  .bm-scroll { overflow-x: auto; }
+  table.bm-table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  .bm-table th {
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-tertiary);
+    font-weight: 500;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    white-space: nowrap;
+  }
+  .bm-table td {
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--color-border-subtle);
+    font-size: var(--text-sm);
+    vertical-align: middle;
+  }
+  .bm-table tr:last-child td { border-bottom: none; }
+  .bm-table tbody tr:hover { background: var(--color-surface); }
+  .bm-rank {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    width: 48px;
+  }
+  .bm-model { font-weight: 600; letter-spacing: var(--tracking-tight); }
+  .bm-vendor { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+  .bm-score {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    font-weight: 500;
+  }
+  .bm-num { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); }
+
+  /* ── Empty state ── */
+  .bm-empty {
+    padding: var(--space-16) var(--space-8);
+    text-align: center;
+  }
+  .bm-empty-mark {
+    width: 40px; height: 40px;
+    margin: 0 auto var(--space-6);
+    border-radius: var(--radius-full);
+    border: 1px dashed var(--color-border);
+    display: grid; place-items: center;
+    color: var(--color-text-tertiary);
+  }
+  .bm-empty-title {
+    font-size: var(--text-lg);
+    font-weight: 500;
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-3);
+  }
+  .bm-empty-body {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 46ch;
+    margin: 0 auto var(--space-6);
+  }
+  .bm-empty-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  /* ── Method ── */
+  .bm-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+  }
+  .bm-step {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-4);
+  }
+  .bm-step-num {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+    margin-bottom: var(--space-3);
+  }
+  .bm-step h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    margin-bottom: var(--space-2);
+  }
+  .bm-step p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  /* ── Categories ── */
+  .bm-cats { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .bm-cat {
+    font-size: var(--text-xs);
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+  }
+
+  /* ── Integrity callout ── */
+  .bm-integrity {
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    padding: var(--space-6);
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+  .bm-integrity svg { flex-shrink: 0; color: var(--color-text-tertiary); margin-top: 2px; }
+  .bm-integrity p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: none;
+  }
+  .bm-integrity strong { color: var(--color-text); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div id="page-content">
+
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="./index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+    <div class="mk-tags-pill">
+      <span>Benchmark</span>
+      <span>Expert-scored</span>
+    </div>
+  </div>
+  <a href="./apply.html" class="mk-cta-btn" aria-label="Apply to the panel">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Apply to the Panel</span>
+  </a>
+</nav>
+
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
+    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Blog</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+  </div>
+  <div class="mk-overlay-meta">
+    World Labs: RL environments and expert evals for AI in games, built by game developers who ship.
+  </div>
+</div>
+
+<main>
+  <section class="bm-hero">
+    <div class="bm-kicker">The Benchmark</div>
+    <h1 class="bm-title">What models<br>actually build</h1>
+    <p class="bm-intro">
+      Frontier models are given a spec and build inside an instrumented game world. Shipped game
+      developers then play what came out and score it across fourteen categories. No model judges
+      another model. Every number on this board traces back to a named human who played the build.
+    </p>
+  </section>
+
+  <!-- Leaderboard -->
+  <section class="bm-section">
+    <div class="bm-head">
+      <h2>Leaderboard</h2>
+      <span class="bm-head-note" id="bm-note"></span>
+    </div>
+    <div class="bm-board" id="bm-board">
+      <div class="bm-empty">
+        <div class="bm-empty-mark">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="bm-empty-title">Loading…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section class="bm-section">
+    <div class="bm-head"><h2>How a score is made</h2></div>
+    <div class="bm-steps">
+      <div class="bm-step">
+        <div class="bm-step-num">01</div>
+        <h3>Build</h3>
+        <p>A model is handed an environment spec and builds inside an instrumented game world. The harness records what it did, not just what it produced.</p>
+      </div>
+      <div class="bm-step">
+        <div class="bm-step-num">02</div>
+        <h3>Play</h3>
+        <p>Panelists play the resulting build. Not a transcript, not a screenshot: the actual artifact, running.</p>
+      </div>
+      <div class="bm-step">
+        <div class="bm-step-num">03</div>
+        <h3>Score</h3>
+        <p>Each panelist scores the categories they're qualified to judge, 0 to 10, with written reasoning. Partial scorecards are expected.</p>
+      </div>
+      <div class="bm-step">
+        <div class="bm-step-num">04</div>
+        <h3>Aggregate</h3>
+        <p>A run's score per category is the median across panelists, so one outlier can't swing it. A model's score is the mean across its runs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="bm-section">
+    <div class="bm-head">
+      <h2>The fourteen categories</h2>
+      <span class="bm-head-note"><a href="./research.html" style="color:inherit;text-decoration:underline;text-underline-offset:2px">Full taxonomy →</a></span>
+    </div>
+    <div class="bm-cats" id="bm-cats"></div>
+  </section>
+
+  <!-- Integrity -->
+  <section class="bm-section">
+    <div class="bm-integrity">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <p>
+        <strong>On the integrity of this board.</strong>
+        The leaderboard is computed directly from panelist scorecards; there is no table of scores to
+        hand-edit. A model is only ranked once at least <span id="bm-quorum">three</span> independent
+        panelists have scored its runs, so no single reviewer can move a number. Until real runs have
+        been scored, this page shows nothing rather than showing a placeholder. We would rather look
+        empty than look wrong.
+      </p>
+    </div>
+  </section>
+</main>
+
+</div>
+
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>RL environments and expert evals for AI in games: models generate inside instrumented game worlds, and shipped game developers judge what they build.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
+    </div>
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Explore</div>
+        <ul role="list">
+          <li><a href="./research.html">Research</a></li>
+          <li><a href="./benchmark.html">Benchmark</a></li>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Get in touch</div>
+        <ul role="list">
+          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="./apply.html">Apply to the Panel</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="./privacy.html">Privacy</a></li>
+          <li><a href="./terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+// Menu overlay
+(function () {
+  const btn = document.getElementById('mk-menu-btn');
+  const label = document.getElementById('mk-menu-label');
+  const overlay = document.getElementById('mk-overlay');
+  if (!btn || !overlay) return;
+  let open = false;
+  const set = (n) => {
+    open = n;
+    overlay.classList.toggle('open', open);
+    btn.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+  };
+  btn.addEventListener('click', () => set(!open));
+  overlay.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) set(false); });
+})();
+
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const board = document.getElementById('bm-board');
+
+function empty(title, body, meta = '') {
+  board.innerHTML = `
+    <div class="bm-empty">
+      <div class="bm-empty-mark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
+      <div class="bm-empty-title">${esc(title)}</div>
+      <p class="bm-empty-body">${body}</p>
+      ${meta ? `<div class="bm-empty-meta">${esc(meta)}</div>` : ''}
+    </div>`;
+}
+
+function renderBoard(data) {
+  const { ranked, provisional, quorum } = data;
+
+  document.getElementById('bm-quorum').textContent =
+    ({ 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five' })[quorum] ?? quorum;
+
+  if (data.empty) {
+    empty(
+      'No runs scored yet',
+      'The harness and the scoring pipeline are live, but no model has completed a run that has cleared panel review. When the first one does, it appears here automatically.',
+      'Nothing on this page is simulated.'
+    );
+    document.getElementById('bm-note').textContent = '0 models ranked';
+    return;
+  }
+
+  if (!ranked.length && provisional.length) {
+    empty(
+      'Scoring in progress',
+      `${provisional.length} ${provisional.length === 1 ? 'model has' : 'models have'} runs under review, but none has yet been scored by ${quorum} independent panelists. We hold results back until they clear quorum rather than publish a number one reviewer could swing.`,
+      `${provisional.length} awaiting quorum`
+    );
+    document.getElementById('bm-note').textContent = `0 ranked · ${provisional.length} awaiting quorum`;
+    return;
+  }
+
+  const rows = ranked.map((r) => `
+    <tr>
+      <td class="bm-rank">${r.rank}</td>
+      <td>
+        <div class="bm-model">${esc(r.model_name)}</div>
+        ${r.vendor ? `<div class="bm-vendor">${esc(r.vendor)}</div>` : ''}
+      </td>
+      <td class="bm-score">${r.overall_score ?? '—'}</td>
+      <td class="bm-num">${r.n_runs}</td>
+      <td class="bm-num">${r.n_panelists}</td>
+      <td class="bm-num">${r.n_scorecards}</td>
+    </tr>`).join('');
+
+  board.innerHTML = `
+    <div class="bm-scroll">
+      <table class="bm-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Model</th>
+            <th>Overall</th>
+            <th>Runs</th>
+            <th>Panelists</th>
+            <th>Scorecards</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+
+  const note = [`${ranked.length} ranked`];
+  if (provisional.length) note.push(`${provisional.length} awaiting quorum`);
+  document.getElementById('bm-note').textContent = note.join(' · ');
+}
+
+// Fallback list, used only if the API is unreachable — these are the published
+// category names, not results.
+const FALLBACK_CATS = [
+  'Game Mechanics', 'Spec Adherence', 'Iteration Accuracy', 'Level Design', 'Balance',
+  'Narrative', 'Player Experience', 'UX / Onboarding', 'AI NPC / Agent Interaction',
+  'Generated Content', 'Code / Technical', 'QA / Stability', 'Game Economy', 'Human Preferences',
+];
+
+function renderCats(categories) {
+  const names = categories?.length ? categories.map((c) => c.name) : FALLBACK_CATS;
+  document.getElementById('bm-cats').innerHTML = names
+    .map((n) => `<span class="bm-cat">${esc(n)}</span>`)
+    .join('');
+}
+
+(async () => {
+  try {
+    const res = await fetch('/api/benchmark/leaderboard');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed');
+    renderBoard(data);
+    renderCats(data.categories);
+  } catch {
+    // Be explicit that this is a failure to load, never an implied "no results".
+    empty(
+      'Leaderboard unavailable',
+      'We could not reach the scoring service. This is a loading failure, not an empty board — refresh in a moment.'
+    );
+    renderCats(null);
+  }
+})();
+</script>
+
+</body>
+</html>
