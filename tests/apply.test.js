@@ -252,6 +252,60 @@ describe('POST /api/waitlist', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────
+describe('GET /api/waitlist — the public milestone', () => {
+  async function milestone() {
+    const res = mockRes();
+    await waitlistHandler(mockReq({ method: 'GET', url: '/api/waitlist' }), res);
+    assert.equal(res.statusCode, 200);
+    return res.json.milestone;
+  }
+
+  function seed(waitlistN, applicationsN = 0) {
+    for (let i = 0; i < waitlistN; i++) {
+      fake.tables.waitlist.push({ id: `w${i}`, email: `w${i}@x.com` });
+    }
+    for (let i = 0; i < applicationsN; i++) {
+      fake.tables.applications.push({ id: `a${i}`, email: `a${i}@x.com`, status: 'pending' });
+    }
+  }
+
+  test('an empty waitlist reports no milestone, not a small number', async () => {
+    assert.equal(await milestone(), null);
+  });
+
+  test('stays null until the first milestone is actually cleared', async () => {
+    seed(24);
+    assert.equal(await milestone(), null);
+  });
+
+  test('reports the milestone as a floor of the real count', async () => {
+    seed(60);
+    assert.equal(await milestone(), 50);
+  });
+
+  test('counts applications and waitlist together', async () => {
+    seed(150, 80); // 230 people total
+    assert.equal(await milestone(), 200);
+  });
+
+  test('never reports more than the real count', async () => {
+    for (const n of [0, 24, 25, 49, 199, 200, 1999, 5321]) {
+      fake.reset();
+      seed(n);
+      const m = await milestone();
+      assert.ok(m === null || m <= n, `milestone ${m} exceeds real count ${n}`);
+    }
+  });
+
+  test('an unsupported method is refused', async () => {
+    const res = mockRes();
+    await waitlistHandler(mockReq({ method: 'PUT', url: '/api/waitlist' }), res);
+    assert.equal(res.statusCode, 405);
+    assert.equal(res.getHeader('Allow'), 'GET, POST');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────
 describe('admin auth', () => {
   test('the wrong password is refused', async () => {
     const res = mockRes();

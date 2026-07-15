@@ -151,6 +151,29 @@
     line-height: 1.7;
     max-width: 64ch;
   }
+  .cm-proof {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+  }
+  .cm-proof-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-success);
+    animation: cm-proof-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes cm-proof-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
 </style>
 </head>
 <body>
@@ -209,6 +232,10 @@
     <h1 class="cm-title fade-in visible">The Panel</h1>
     <p class="cm-tagline fade-in visible">Less vibes. More verdicts.</p>
     <p class="cm-intro fade-in visible">Join The Panel and help shape the future of AI-made games. Play and judge real output from the top AI labs and game-tool companies, and get paid for the judgment you spent a career earning.</p>
+    <div class="cm-proof" id="cm-proof" hidden>
+      <span class="cm-proof-dot" aria-hidden="true"></span>
+      <span id="cm-proof-text"></span>
+    </div>
     <div class="fade-in visible" style="display:flex;gap:var(--space-3);flex-wrap:wrap;">
       <a href="./apply.html" class="btn btn-primary">Apply to the Panel</a>
       <a href="#faq" class="btn btn-secondary">Read the FAQ</a>
@@ -374,7 +401,7 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>RL environments and expert evals for AI in games: models generate inside instrumented game worlds, and shipped game developers judge what they build.</p>
+      <p>Models build games inside our instrumented environments; shipped game developers play and judge the results. The verdicts come back as private evals, licensed preference datasets, and a public benchmark.</p>
       <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
     </div>
 
@@ -409,6 +436,22 @@
 
 
 <script>
+// Waitlist social proof: rendered only from the live count, and only once it
+// has cleared a real milestone. Below that (or on any error) nothing shows.
+(function(){
+  const el = document.getElementById('cm-proof');
+  if (!el) return;
+  fetch('/api/waitlist')
+    .then(r => r.ok ? r.json() : null)
+    .then(d => {
+      if (!d || !d.milestone) return;
+      document.getElementById('cm-proof-text').textContent =
+        d.milestone + '+ devs, playtesters & designers on the waitlist';
+      el.hidden = false;
+    })
+    .catch(() => {});
+})();
+
 // Menu overlay
 (function(){
   const btn = document.getElementById('mk-menu-btn');
