@@ -202,10 +202,10 @@
   <p>The scoring form stays locked until a minimum session has elapsed, tracked server-side so a refresh can't reset the clock. Nobody scores a game they bounced off in ninety seconds, and time-played ships with every record as a confidence covariate.</p>
 
   <h3>Anchored rubrics</h3>
-  <p>Dimensions are scored 1 to 7 against written anchors ("1 = contradictory, broken rules; 7 = a coherent system with meaningful interactions"), so a 4 means the same thing across raters. Every rubric score requires a written critique and a ranked fix list, which forces the rater to commit to a causal account, not just a number.</p>
+  <p>Dimensions are scored 0 to 10 against written anchors ("0 = contradictory, broken rules; 10 = a coherent system with meaningful interactions"), so a 5 means the same thing across raters. Every rubric score requires a written critique and a ranked fix list, which forces the rater to commit to a causal account, not just a number. Scorecards are partial by design: a panelist scores only the categories they're qualified to judge.</p>
 
-  <h3>Redundancy and disagreement</h3>
-  <p>Every artifact is scored by at least two independent raters. When their overall means diverge past a threshold, the artifact is flagged and routed to a third. We report inter-rater agreement per dataset slice rather than pretending judgment is noise-free; the disagreement cases are themselves valuable, because they mark the genuinely contested regions of the quality landscape where a reward model will be least trustworthy.</p>
+  <h3>Median aggregation and quorum</h3>
+  <p>A run's score per category is the <strong>median</strong> across its panelists, so one outlier — generous or hostile — can't swing it. A model isn't ranked at all until at least three independent panelists have scored its runs; below quorum it's held as provisional rather than published with a number one reviewer could move. We report panelist counts alongside every score, and the disagreement cases are themselves valuable, because they mark the genuinely contested regions of the quality landscape where a reward model will be least trustworthy. <a href="./how-a-score-is-made.html">The full aggregation pipeline is documented here.</a></p>
 
   <h3>Pairwise preferences</h3>
   <p>Alongside absolute scores, same-prompt artifacts are judged head-to-head in randomized but per-assignment-stable order: a winner, a confidence grade, and a required written reason. Pairwise data sidesteps calibration drift in absolute scales and drops directly into Bradley-Terry-style reward modeling.</p>
@@ -228,7 +228,7 @@
   <span class="k">"critique"</span>: "The flip is faithful, but coyote time is missing and...",
   <span class="k">"fixList"</span>:  ["Fix the level-3 softlock", "Add coyote time",
                "Telegraph the flip on jump arc"],
-  <span class="k">"agreement"</span>: { "raters": 2, "flagged": false }
+  <span class="k">"quorum"</span>:   { "panelists": 3, "ranked": true }
 }</div>
 
   <p>The same records serve three consumers. For <strong>benchmarking</strong>, per-dimension means, win rates, and broken rates, sliced by task family. For <strong>reward modeling</strong>, pairwise preferences with rationales, plus multi-dimensional rubric scores that support shaped rather than scalar reward. For <strong>critique training</strong>, the written critiques and fix lists pair naturally with artifacts as inputs for models that learn to judge, in the RLAIF pattern, with expert data as the ground truth the judge distills from.</p>
