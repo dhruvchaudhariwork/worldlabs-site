@@ -225,7 +225,7 @@
     <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
   </div>
   <div class="mk-overlay-meta">
-    World Labs: RL environments and expert evals for AI in games, built by game developers who ship.
+    Expert verdicts on AI-made games.
   </div>
 </div>
 
@@ -234,7 +234,7 @@
   <div class="section-inner">
     <div class="rs-kicker fade-in visible">Research</div>
     <h1 class="rs-title fade-in visible">The eval space</h1>
-    <p class="rs-intro fade-in visible">We build RL environments: instrumented game worlds where models are asked to generate mechanics, levels, systems, and whole games from prompts. Inside them, two questions matter: did the model build what was asked, and is what it built any good? This is the taxonomy of expert evals we run to answer both, each category a distinct question, a distinct rater pool, and a distinct dataset.</p>
+    <p class="rs-intro fade-in visible">Models generate games inside our instrumented worlds. Fourteen expert evals answer two questions: did the model build what was asked, and is it any good?</p>
   </div>
 </section>
 
@@ -246,7 +246,7 @@
       <details>
         <summary><span class="rs-num">01</span><span class="rs-acc-name">Game Mechanics</span><span class="rs-acc-q">Did the model build the mechanic the prompt asked for?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Did the model build the mechanic the prompt asked for?</strong> The core generative question: prompt in, mechanic out, judged against the spec. An expert plays specifically to probe the mechanic, documents exactly where the implementation drifts from the intent, then rates whether the result was worth building at all.</p>
+          <p class="rs-q"><strong>Did the model build the mechanic the prompt asked for?</strong> Prompt in, mechanic out, judged against the spec by an expert who plays to probe it.</p>
           <div class="rs-tags">
             <span class="rs-tag">Rule fidelity</span>
             <span class="rs-tag">Twist / constraint preserved</span>
@@ -272,7 +272,7 @@
       <details>
         <summary><span class="rs-num">02</span><span class="rs-acc-name">Spec Adherence</span><span class="rs-acc-q">Does the whole artifact match the prompt?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Does the whole artifact match the prompt?</strong> Genre, required mechanics, constraints, tone, and content, checked line by line against the generating prompt with the prompt in the rater's hand.</p>
+          <p class="rs-q"><strong>Does the whole artifact match the prompt?</strong> Checked line by line with the prompt in the rater's hand.</p>
           <div class="rs-tags">
             <span class="rs-tag">Genre match</span>
             <span class="rs-tag">Required mechanics present</span>
@@ -287,7 +287,7 @@
       <details>
         <summary><span class="rs-num">03</span><span class="rs-acc-name">Iteration Accuracy</span><span class="rs-acc-q">When you prompt a change, does exactly that change?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>When you prompt a change, does exactly that change?</strong> Tools live and die on the second prompt. Experts compare builds before and after a change request and catalog everything else that moved.</p>
+          <p class="rs-q"><strong>When you prompt a change, does exactly that change?</strong> Experts compare builds before and after and catalog everything else that moved.</p>
           <div class="rs-tags">
             <span class="rs-tag">Targeted change landed</span>
             <span class="rs-tag">No collateral damage</span>
@@ -435,7 +435,7 @@
       <details>
         <summary><span class="rs-num">12</span><span class="rs-acc-name">QA / Stability</span><span class="rs-acc-q">Does the generated build hold up?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Does the generated build hold up?</strong> Broken is a finding, not a missing data point: every crash, softlock, and exploit gets documented with reproduction steps.</p>
+          <p class="rs-q"><strong>Does the generated build hold up?</strong> Every crash, softlock, and exploit documented with reproduction steps.</p>
           <div class="rs-tags">
             <span class="rs-tag">Crash / softlock detection</span>
             <span class="rs-tag">Severity ranking</span>
@@ -453,7 +453,7 @@
       <details>
         <summary><span class="rs-num">13</span><span class="rs-acc-name">Game Economy</span><span class="rs-acc-q">Is the generated economy healthy?</span></summary>
         <div class="rs-body">
-          <p class="rs-q"><strong>Is the generated economy healthy?</strong> When a model is prompted to build progression or an economy, experts stress the loop for inflation, dead ends, and degenerate strategies.</p>
+          <p class="rs-q"><strong>Is the generated economy healthy?</strong> Experts stress the loop for inflation, dead ends, and degenerate strategies.</p>
           <div class="rs-tags">
             <span class="rs-tag">Currency inflation</span>
             <span class="rs-tag">Progression pacing</span>
@@ -472,7 +472,7 @@
         <summary><span class="rs-num">14</span><span class="rs-acc-name">Human Preferences</span><span class="rs-acc-q">A or B: which is better, why, and by how much?</span></summary>
         <div class="rs-body">
           <div class="rs-note">The universal one</div>
-          <p class="rs-q"><strong>A or B: which is better, why, and by how much?</strong> The AI produces two outputs (two levels, two quests, two whole games); an expert picks the winner, states a confidence, and writes the reason. Every other category in this taxonomy can be run in this format.</p>
+          <p class="rs-q"><strong>A or B: which is better, why, and by how much?</strong> An expert picks the winner, states a confidence, and writes the reason.</p>
           <div class="rs-tags">
             <span class="rs-tag">Pairwise choice</span>
             <span class="rs-tag">Written rationale</span>
@@ -512,8 +512,8 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>Models build games inside our instrumented environments; shipped game developers play and judge the results. The verdicts come back as private evals, licensed preference datasets, and a public benchmark.</p>
-      <p class="mk-footer-legal">&copy; 2026 World Labs. Scores reflect independent expert judgment.</p>
+      <p>Expert verdicts on AI-made games.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs.</p>
     </div>
 
     <div class="mk-footer-cols">
