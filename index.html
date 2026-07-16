@@ -89,46 +89,6 @@
     font-weight: 500;
   }
 
-  /* ── Offer cards ── */
-  .offer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-4);
-    text-align: left;
-  }
-  @media (max-width: 1024px) { .offer-grid { grid-template-columns: 1fr; max-width: 640px; margin-inline: auto; } }
-  .offer-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: var(--space-8);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-  }
-  .offer-card h3 {
-    font-size: var(--text-xl);
-    font-weight: 500;
-    letter-spacing: var(--tracking-tight);
-    color: var(--color-text);
-  }
-  .offer-card p {
-    font-size: var(--text-base);
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    flex: 1;
-    max-width: none;
-  }
-  .offer-card .btn { align-self: flex-start; }
-  @media (max-width: 768px) { .offer-grid { grid-template-columns: 1fr; } }
-
-  .specialty-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
   /* ── Mobile ── */
   @media (max-width: 600px) {
     .mk-hero-form { width: 100%; }
@@ -139,7 +99,6 @@
     }
     .st-statement { font-size: clamp(1.5rem, 6.5vw, 2rem); }
     .mission-copy p { font-size: var(--text-base); }
-    .offer-card { padding: var(--space-6); }
   }
 </style>
 </head>
@@ -239,91 +198,28 @@
 </section>
 
 
-<!-- How it works -->
-<section class="section section-center" id="how">
-  <div class="section-inner">
-    <div class="section-label fade-in">How it works</div>
-    <h2 class="section-title fade-in">One pipeline, start to verdict.</h2>
-
-    <div class="steps-grid" style="margin-top:var(--space-10);text-align:left;">
-      <div class="step-card fade-in">
-        <div class="step-number">1</div>
-        <h3>We build the environment</h3>
-        <p>An instrumented game world with a spec designed by shipped developers. The same test for every model.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">2</div>
-        <h3>Your model builds inside it</h3>
-        <p>The model gets the spec and generates the game. Every attempt is a recorded, replayable run.</p>
-      </div>
-      <div class="step-card fade-in">
-        <div class="step-number">3</div>
-        <h3>Experts play the result</h3>
-        <p>Vetted game developers play what came out and score it blind. No model judges another model.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- What you get -->
-<section class="section section-center" id="labs" style="background:var(--color-bg-alt);">
+<section class="section section-center" id="labs">
   <div class="section-inner">
     <div class="section-label fade-in">What you get</div>
-    <h2 class="section-title fade-in">Those verdicts come back three ways.</h2>
-
-    <div class="offer-grid" style="margin-top:var(--space-10);">
-      <div class="offer-card fade-in">
-        <h3>Private evals</h3>
-        <p>Your model's report card: category scores, failure modes, and expert critiques.</p>
-        <a href="mailto:hello@tryworldlabs.com?subject=Private%20evals" class="btn btn-primary">Get in touch</a>
-      </div>
-      <div class="offer-card fade-in">
-        <h3>Preference datasets</h3>
-        <p>Rubric scores, pairwise choices, and written critiques — licensed for RLHF and reward models.</p>
-        <a href="mailto:hello@tryworldlabs.com?subject=Preference%20datasets" class="btn btn-primary">Get in touch</a>
-      </div>
-      <div class="offer-card fade-in">
-        <h3>The benchmark</h3>
-        <p>The public leaderboard, free to read. Every score traces back to a human who played the build.</p>
-        <a href="./benchmark.html" class="btn btn-primary">See the board</a>
-      </div>
+    <h2 class="section-title fade-in">Private evals. Preference datasets.<br>A public benchmark.</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">Every score traces back to a human who played the build.</p>
+    <div class="fade-in" style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;">
+      <a href="mailto:hello@tryworldlabs.com" class="btn btn-primary">Get in touch</a>
+      <a href="./benchmark.html" class="btn btn-secondary">See the benchmark →</a>
     </div>
   </div>
 </section>
 
 
 <!-- Join the panel -->
-<section class="section section-center" id="panel">
+<section class="section section-center" id="panel" style="background:var(--color-bg-alt);">
   <div class="section-inner">
     <div class="section-label fade-in">The Panel</div>
-    <h2 class="section-title fade-in">Join our mission to keep games good</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-6);max-width:720px;">Bring your shipped-title judgment. Get paid to decide what AI gets right and wrong about games.</p>
-
-    <div class="specialty-row fade-in" style="margin-bottom:var(--space-8);">
-      <span class="tag">Level design</span>
-      <span class="tag">Systems design</span>
-      <span class="tag">UX &amp; onboarding</span>
-      <span class="tag">QA &amp; playtest leads</span>
-      <span class="tag">Game feel</span>
-    </div>
-
-    <div class="fade-in" style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;">
-      <a href="./apply.html" class="btn btn-primary">Apply to the Panel</a>
-      <a href="./join.html" class="btn btn-secondary">Join the waitlist</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- Research teaser -->
-<section class="section section-center">
-  <div class="section-inner">
-    <div class="section-label fade-in">Research</div>
-    <h2 class="section-title fade-in">Fourteen questions. One harness.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">The taxonomy of expert evals we're building toward.</p>
+    <h2 class="section-title fade-in">Shipped a game? Judge the next ones.</h2>
+    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">Get paid to decide what AI gets right and wrong about games.</p>
     <div class="fade-in">
-      <a href="./research.html" class="btn btn-secondary">Explore the eval space →</a>
+      <a href="./apply.html" class="btn btn-primary">Apply to the Panel</a>
     </div>
   </div>
 </section>
