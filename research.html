@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research | World Labs</title>
-<meta name="description" content="The eval taxonomy World Labs runs inside its RL environments: expert human evaluation of what AI builds from a prompt, from mechanic fidelity to player experience and preference data.">
+<meta name="description" content="How we shape expert gaming datasets around a game's genre, audience, and goals, from prompts and examples to critiques and comparisons.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
 
 <style>
+  .section-label { color:#686b64; font-size:12px; }
   .rs-hero {
     max-width: var(--mk-maxw);
     margin: 0 auto;
@@ -31,7 +32,7 @@
     font-weight: 500;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-text-tertiary);
+    color: #686b64;
     margin-bottom: var(--space-5);
   }
   .rs-title {
@@ -50,137 +51,94 @@
     line-height: 1.7;
   }
 
-  /* ── Eval category accordions ── */
-  .rs-acc {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    overflow: hidden;
-    text-align: left;
-    margin-bottom: var(--space-8);
+  .rs-status {
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: 14px;
+    line-height: 1.7;
   }
-  .rs-acc details { border-bottom: 1px solid var(--color-border); }
-  .rs-acc details:last-child { border-bottom: none; }
-  .rs-acc summary {
-    cursor: pointer;
-    list-style: none;
+  .rs-contact {
+    max-width: calc(var(--mk-maxw) - 1.5rem);
+    margin: var(--space-10) auto var(--space-16);
+    padding: var(--space-8);
     display: flex;
-    align-items: baseline;
-    gap: var(--space-4);
-    padding: var(--space-5) var(--space-6);
-    transition: background 0.2s ease;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-8);
+    background: #f5f6f2;
+    border: 1px solid #e2e5dc;
+    border-radius: 12px;
   }
-  .rs-acc summary:hover { background: var(--mk-surface-faint); }
-  .rs-acc summary::-webkit-details-marker { display: none; }
-  .rs-acc summary::after {
-    content: '+';
-    font-size: var(--text-lg);
-    font-weight: 300;
-    color: var(--color-text-tertiary);
-    flex-shrink: 0;
-    line-height: 1;
-    align-self: center;
-    transition: transform var(--transition-interactive);
+  .rs-contact h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -.035em;
+    margin: 0 0 var(--space-4);
   }
-  .rs-acc details[open] summary::after { transform: rotate(45deg); }
-  .rs-acc-name {
-    font-size: var(--text-base);
-    font-weight: 600;
-    color: var(--color-text);
-    letter-spacing: var(--tracking-tight);
+  .rs-contact p {
+    max-width: 48ch;
+    color: #586052;
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
   }
-  .rs-acc-q {
-    margin-left: auto;
-    font-size: var(--text-sm);
-    color: var(--color-text-tertiary);
-    text-align: right;
-  }
-  .rs-body {
-    padding: 0 var(--space-6) var(--space-6);
+  .rs-contact-actions {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-  }
-  @media (max-width: 700px) {
-    .rs-acc-q { display: none; }
-    .rs-acc summary { padding: var(--space-4) var(--space-5); }
-    .rs-body { padding: 0 var(--space-5) var(--space-5); }
-  }
-  .rs-num {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    font-weight: 500;
+    align-items: stretch;
+    gap: var(--space-3);
     flex-shrink: 0;
   }
-  .rs-q {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    line-height: 1.5;
+  .rs-contact .btn {
+    min-height: 44px;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 14px;
   }
-  .rs-q strong { color: var(--color-text); font-weight: 500; }
-  .rs-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+  .rs-contact .btn-primary {
+    background: #242620;
+    border-color: #242620;
+    color: #fff;
   }
-  .rs-tag {
-    font-size: 0.6875rem;
-    padding: 3px 9px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--color-border);
-    color: var(--color-text-secondary);
-    font-weight: 500;
-    background: var(--color-bg);
-    white-space: nowrap;
+  @media (max-width: 1200px) {
+    .rs-contact { margin-left: var(--space-6); margin-right: var(--space-6); }
   }
-  .rs-meta {
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    line-height: 1.6;
-    margin-top: auto;
-    padding-top: var(--space-2);
-    border-top: 1px solid var(--color-border-subtle);
+  @media (max-width: 700px) {
+    .rs-contact { flex-direction: column; align-items: stretch; padding: var(--space-6); }
+    .rs-contact-actions { align-items: flex-start; }
   }
-  .rs-meta strong { color: var(--color-text-secondary); font-weight: 600; }
-  .rs-note {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    color: var(--color-text);
-    background: var(--color-brand-muted);
-    border-radius: var(--radius-full);
-    padding: 3px 10px;
-    align-self: flex-start;
-  }
-  .rs-sample {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-4);
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
-    white-space: pre;
-    overflow-x: auto;
-  }
-  .rs-sample .k { color: var(--color-text); font-weight: 600; }
 
-  .rs-group {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-    padding: 0 var(--space-2);
-    margin-bottom: var(--space-3);
-    text-align: left;
+  /* Keep the research reading width and palette aligned with the main site. */
+  .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { max-width:1120px; margin-left:auto; margin-right:auto; }
+  .research-page .rs-hero { padding:140px 0 56px; }
+  .research-page .rs-title { max-width:900px; font-size:clamp(2.8rem,5vw,4.5rem); font-weight:400; letter-spacing:-.05em; line-height:1.08; }
+  .research-page .section { padding:40px 0 64px; }
+  .research-page .section-title { font-size:clamp(1.9rem,3vw,2.5rem); font-weight:400; letter-spacing:-.035em; line-height:1.15; }
+  .research-page .section-desc { font-size:16px; line-height:1.75; color:#686b64; max-width:64ch; }
+  .research-page .steps-grid { gap:20px; }
+  .research-page .step-card { padding:26px; background:#fafbf8; border:1px solid #e2e5dc; border-radius:12px; }
+  .research-page .step-card h3 { font-size:21px; font-weight:400; letter-spacing:-.025em; }
+  .research-page .step-card p { font-size:14px; line-height:1.75; color:#686b64; }
+  .research-page .step-number { background:none; color:#626d56; width:auto; height:auto; justify-content:flex-start; font-size:12px; font-weight:400; }
+  .research-page .rs-status { font-size:14px; }
+  .research-page .rs-contact { margin-top:0; padding:32px; }
+  .research-page .rs-contact .btn { min-height:44px; border-radius:7px; font-size:13px; }
+  .research-page .mk-footer-inner { padding:40px 0; }
+  @media(max-width:1180px) {
+    .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { margin-left:28px; margin-right:28px; }
+  }
+  @media(max-width:600px) {
+    .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { margin-left:20px; margin-right:20px; }
+    .research-page .rs-hero { padding:120px 0 36px; }
+    .research-page .section { padding-bottom:40px; }
+    .research-page .rs-contact { padding:24px; }
   }
 </style>
+<link rel="stylesheet" href="./shared-ui.css">
 </head>
-<body>
+<body class="research-page">
 
 <div id="page-content">
 
@@ -204,11 +162,11 @@
 
     <div class="mk-tags-pill">
       <span>Research</span>
-      <span>The Eval Space</span>
+      <span>Gaming Data</span>
     </div>
   </div>
 
-  <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="mk-cta-btn" aria-label="Talk to us">
+  <a href="mailto:hello@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="mk-cta-btn" aria-label="Talk to us">
     <span class="mk-cta-circle">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </span>
@@ -220,290 +178,53 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
-    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Benchmark</a>
-    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Blog</a>
+    <a href="./index.html#datasets" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="./research.html" class="mk-overlay-link" aria-current="page"><span class="mk-overlay-num">03</span>Research</a>
     <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
   </div>
   <div class="mk-overlay-meta">
-    Expert verdicts on what AI builds.
+    Gaming expertise. Data for better AI.
   </div>
 </div>
 
+<main id="main-content">
 <!-- Hero -->
 <section class="rs-hero">
   <div class="section-inner">
     <div class="rs-kicker fade-in visible">Research</div>
-    <h1 class="rs-title fade-in visible">The eval space</h1>
-    <p class="rs-intro fade-in visible">Models generate games inside our instrumented worlds. Fourteen expert evals answer two questions: did the model build what was asked, and is it any good?</p>
+    <h1 class="rs-title fade-in visible">Game craft, turned into data.</h1>
+    <p class="rs-intro fade-in visible">Expert gaming datasets start with a clear brief. We shape prompts, examples, critiques, and comparisons around what your team wants its model to learn.</p>
   </div>
 </section>
 
-<!-- Taxonomy -->
 <section class="section" style="padding-top:var(--space-8);">
   <div class="section-inner">
-    <div class="rs-group fade-in">Prompt fidelity</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">01</span><span class="rs-acc-name">Game Mechanics</span><span class="rs-acc-q">Did the model build the mechanic the prompt asked for?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Did the model build the mechanic the prompt asked for?</strong> Prompt in, mechanic out, judged against the spec by an expert who plays to probe it.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Rule fidelity</span>
-            <span class="rs-tag">Twist / constraint preserved</span>
-            <span class="rs-tag">Edge-case behavior</span>
-            <span class="rs-tag">Interaction with other systems</span>
-            <span class="rs-tag">Exploit &amp; softlock probing</span>
-            <span class="rs-tag">Feel matches intent</span>
-            <span class="rs-tag">Combat systems</span>
-            <span class="rs-tag">Movement</span>
-            <span class="rs-tag">Abilities</span>
-            <span class="rs-tag">Crafting</span>
-            <span class="rs-tag">Progression</span>
-            <span class="rs-tag">New features</span>
-          </div>
-          <div class="rs-sample"><span class="k">prompt</span>: "A macro layer where weather changes unit costs"
-<span class="k">mechanicPresent</span>: true
-<span class="k">fidelity</span>: 5/7
-<span class="k">deviation</span>: "Weather affects build time, not cost"
-<span class="k">severity</span>: MEDIUM</div>
-          <p class="rs-meta"><strong>Judged by:</strong> Systems designers, gameplay engineers · <strong>Also labeled on:</strong> fun factor · learning curve · depth · replayability · frustration</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">02</span><span class="rs-acc-name">Spec Adherence</span><span class="rs-acc-q">Does the whole artifact match the prompt?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Does the whole artifact match the prompt?</strong> Checked line by line with the prompt in the rater's hand.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Genre match</span>
-            <span class="rs-tag">Required mechanics present</span>
-            <span class="rs-tag">Constraints respected</span>
-            <span class="rs-tag">Content requirements</span>
-            <span class="rs-tag">Tone / art direction</span>
-            <span class="rs-tag">Scope creep</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Game designers · scored 1–7 against fixed anchors, per prompt clause</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">03</span><span class="rs-acc-name">Iteration Accuracy</span><span class="rs-acc-q">When you prompt a change, does exactly that change?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>When you prompt a change, does exactly that change?</strong> Experts compare builds before and after and catalog everything else that moved.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Targeted change landed</span>
-            <span class="rs-tag">No collateral damage</span>
-            <span class="rs-tag">Balance preserved</span>
-            <span class="rs-tag">Regression catalog</span>
-            <span class="rs-tag">Compounding edits</span>
-          </div>
-          <p class="rs-meta"><strong>Matters for:</strong> prompt-to-game tools, coding agents, live iteration loops</p>
-        </div>
-      </details>
+    <div class="section-label">Our approach</div>
+    <h2 class="section-title">The right expertise.<br>The right kind of data.</h2>
+    <div class="steps-grid" style="margin-top:var(--space-8);">
+      <div class="step-card"><div class="step-number">01</div><h3>Author</h3><p>Write a complete prompt or create an example that captures the intended game experience.</p></div>
+      <div class="step-card"><div class="step-number">02</div><h3>Evaluate</h3><p>Review an output against the brief. Explain what works, what falls short, and how to improve it.</p></div>
+      <div class="step-card"><div class="step-number">03</div><h3>Compare</h3><p>Choose between alternatives for the same brief and explain the tradeoffs behind the choice.</p></div>
     </div>
-
-    <div class="rs-group fade-in">Design quality</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">04</span><span class="rs-acc-name">Level Design</span><span class="rs-acc-q">Is the generated environment well designed?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Map flow</span>
-            <span class="rs-tag">Navigation</span>
-            <span class="rs-tag">Exploration</span>
-            <span class="rs-tag">Difficulty curve</span>
-            <span class="rs-tag">Player guidance</span>
-            <span class="rs-tag">Reward placement</span>
-            <span class="rs-tag">Enemy encounters</span>
-            <span class="rs-tag">Puzzle quality</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Level designers, experienced players</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">05</span><span class="rs-acc-name">Balance</span><span class="rs-acc-q">Are the generated systems balanced?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Characters</span>
-            <span class="rs-tag">Weapons</span>
-            <span class="rs-tag">Items</span>
-            <span class="rs-tag">Cooldowns</span>
-            <span class="rs-tag">Progression speed</span>
-            <span class="rs-tag">Difficulty spikes</span>
-            <span class="rs-tag">Dominant strategies</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Competitive players, game designers</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">06</span><span class="rs-acc-name">Narrative</span><span class="rs-acc-q">Does the generated story work?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Dialogue quality</span>
-            <span class="rs-tag">Character consistency</span>
-            <span class="rs-tag">Quest structure</span>
-            <span class="rs-tag">Pacing</span>
-            <span class="rs-tag">Emotional impact</span>
-            <span class="rs-tag">Lore consistency</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Narrative designers, writers</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="rs-group fade-in">Player experience</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">07</span><span class="rs-acc-name">Player Experience</span><span class="rs-acc-q">Will players enjoy this?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Will players enjoy this?</strong> The closest category to pure taste.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Fun rating</span>
-            <span class="rs-tag">Engagement</span>
-            <span class="rs-tag">Frustration</span>
-            <span class="rs-tag">Confusion</span>
-            <span class="rs-tag">Emotional impact</span>
-            <span class="rs-tag">Would you keep playing?</span>
-            <span class="rs-tag">Would you recommend?</span>
-          </div>
-          <p class="rs-meta"><strong>Note:</strong> Our playtest rubric lives here and in design quality</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">08</span><span class="rs-acc-name">UX / Onboarding</span><span class="rs-acc-q">Can players understand and use the game?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Menus</span>
-            <span class="rs-tag">HUD</span>
-            <span class="rs-tag">Inventory</span>
-            <span class="rs-tag">Controls</span>
-            <span class="rs-tag">Tutorials</span>
-            <span class="rs-tag">Accessibility</span>
-            <span class="rs-tag">Information clarity</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> UX designers, onboarding specialists</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">09</span><span class="rs-acc-name">AI NPC / Agent Interaction</span><span class="rs-acc-q">Does this AI feel intelligent to play with?</span></summary>
-        <div class="rs-body">
-          <div class="rs-note">Huge future category</div>
-          <div class="rs-tags">
-            <span class="rs-tag">NPC conversations</span>
-            <span class="rs-tag">Memory consistency</span>
-            <span class="rs-tag">Personality</span>
-            <span class="rs-tag">Improvisation</span>
-            <span class="rs-tag">Realism</span>
-            <span class="rs-tag">Safety</span>
-            <span class="rs-tag">Player immersion</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Players in extended sessions, narrative + systems designers</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="rs-group fade-in">Generated artifacts</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">10</span><span class="rs-acc-name">Generated Content</span><span class="rs-acc-q">Is AI-generated content good?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Is AI-generated content good?</strong> Humans rank quality, creativity, usefulness, and consistency.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Quests</span>
-            <span class="rs-tag">Characters</span>
-            <span class="rs-tag">Weapons</span>
-            <span class="rs-tag">Levels</span>
-            <span class="rs-tag">Dialogue</span>
-            <span class="rs-tag">Textures</span>
-            <span class="rs-tag">Animations</span>
-          </div>
-          <p class="rs-meta"><strong>Note:</strong> Whole generated games, the top of this stack, are where we start</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">11</span><span class="rs-acc-name">Code / Technical</span><span class="rs-acc-q">Is AI-generated game code good?</span></summary>
-        <div class="rs-body">
-          <div class="rs-tags">
-            <span class="rs-tag">Unity scripts</span>
-            <span class="rs-tag">Unreal Blueprints</span>
-            <span class="rs-tag">Shaders</span>
-            <span class="rs-tag">Gameplay systems</span>
-            <span class="rs-tag">Networking</span>
-            <span class="rs-tag">Optimization</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Unity/Unreal developers · <strong>Labels:</strong> does it work? performant? maintainable? would you ship it?</p>
-        </div>
-      </details>
-      <details>
-        <summary><span class="rs-num">12</span><span class="rs-acc-name">QA / Stability</span><span class="rs-acc-q">Does the generated build hold up?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Does the generated build hold up?</strong> Every crash, softlock, and exploit documented with reproduction steps.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Crash / softlock detection</span>
-            <span class="rs-tag">Severity ranking</span>
-            <span class="rs-tag">Reproduction steps</span>
-            <span class="rs-tag">Regression testing</span>
-            <span class="rs-tag">Edge cases</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> QA engineers</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="rs-group fade-in">Systems &amp; economy</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">13</span><span class="rs-acc-name">Game Economy</span><span class="rs-acc-q">Is the generated economy healthy?</span></summary>
-        <div class="rs-body">
-          <p class="rs-q"><strong>Is the generated economy healthy?</strong> Experts stress the loop for inflation, dead ends, and degenerate strategies.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Currency inflation</span>
-            <span class="rs-tag">Progression pacing</span>
-            <span class="rs-tag">Reward systems</span>
-            <span class="rs-tag">Retention loops</span>
-            <span class="rs-tag">Sink / source balance</span>
-          </div>
-          <p class="rs-meta"><strong>Judged by:</strong> Economy designers, live-ops specialists</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="rs-group fade-in">Preference data</div>
-    <div class="rs-acc fade-in">
-      <details>
-        <summary><span class="rs-num">14</span><span class="rs-acc-name">Human Preferences</span><span class="rs-acc-q">A or B: which is better, why, and by how much?</span></summary>
-        <div class="rs-body">
-          <div class="rs-note">The universal one</div>
-          <p class="rs-q"><strong>A or B: which is better, why, and by how much?</strong> An expert picks the winner, states a confidence, and writes the reason.</p>
-          <div class="rs-tags">
-            <span class="rs-tag">Pairwise choice</span>
-            <span class="rs-tag">Written rationale</span>
-            <span class="rs-tag">Confidence: slight / clear / strong</span>
-          </div>
-          <p class="rs-meta"><strong>Used for:</strong> RLHF · reward models · benchmarking</p>
-        </div>
-      </details>
-    </div>
-
-    <div class="fade-in" style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--space-12);">
-      <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="btn btn-primary">Run one of these with us</a>
-      <a href="./community.html" class="btn btn-secondary">Join the rater pool →</a>
-    </div>
+    <h2 class="section-title" style="margin-top:var(--space-12);">Quality depends on the game.</h2>
+    <p class="section-desc">A tactical RPG and an arcade fighter need different combat. A cozy sim and a survival game need different economies. The genre, audience, and design goals give each judgment its context.</p>
+    <p class="section-desc" style="margin-top:var(--space-5);">The evidence matters, too. Resource tables can reveal a broken crafting loop; judging control feel needs a playable build. Each project defines what experts review and the criteria they use.</p>
+    <p class="section-desc rs-status">Initial projects are in development. Dataset format, review criteria, and intended use are agreed for each project.</p>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="mk-cta">
-  <section class="mk-cta-inner">
-    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
-           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
-    <div class="mk-cta-content">
-      <h2>Fourteen questions. One harness.</h2>
-      <div class="mk-cta-actions">
-        <a href="mailto:hello@tryworldlabs.com?subject=Custom%20evals" class="mk-btn-light">Talk to Us</a>
-        <a href="./community.html" class="mk-btn-glass">Join the Community</a>
-      </div>
-    </div>
-  </section>
-</div>
+<section class="rs-contact" aria-labelledby="rs-contact-title">
+  <div>
+    <h2 id="rs-contact-title">What should your model learn?</h2>
+    <p>Our examples are a starting point. Projects can span other gaming subjects, genres, and styles.</p>
+  </div>
+  <div class="rs-contact-actions">
+    <a href="mailto:hello@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="btn btn-primary">Discuss a dataset</a>
+    <a href="./index.html#datasets" class="btn btn-secondary">See example datasets</a>
+  </div>
+</section>
+</main>
 
 </div><!-- end page-content -->
 
@@ -512,17 +233,17 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>Expert verdicts on what AI builds.</p>
+      <p>Gaming expertise. Data for better AI.</p>
       <p class="mk-footer-legal">&copy; 2026 World Labs.</p>
     </div>
 
     <div class="mk-footer-cols">
       <div>
         <div class="mk-footer-head">Explore</div>
+        <a href="./index.html#datasets">Datasets</a>
         <ul role="list">
           <li><a href="./research.html">Research</a></li>
           <li><a href="./benchmark.html">Benchmark</a></li>
-          <li><a href="./blog.html">Blog</a></li>
           <li><a href="./community.html">Community</a></li>
         </ul>
       </div>
@@ -547,26 +268,6 @@
 
 
 <script>
-// Menu overlay
-(function(){
-  const btn = document.getElementById('mk-menu-btn');
-  const label = document.getElementById('mk-menu-label');
-  const overlay = document.getElementById('mk-overlay');
-  if (!btn || !overlay) return;
-
-  let open = false;
-  function set(next) {
-    open = next;
-    overlay.classList.toggle('open', open);
-    btn.dataset.open = String(open);
-    btn.setAttribute('aria-expanded', String(open));
-    label.textContent = open ? 'Close' : 'Menu';
-    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
-  }
-  btn.addEventListener('click', () => set(!open));
-  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
-})();
 
 // Background video autoplay
 (function(){
@@ -590,14 +291,8 @@ const fadeObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
 </script>
 
+<script src="./scripts/site-ui.js" defer></script>
 </body>
 </html>

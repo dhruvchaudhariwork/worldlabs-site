@@ -2,9 +2,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -38,12 +38,12 @@ h3, h4, h5, h6 { font-weight: 500; }
 p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
 
 ::selection {
-  background: oklch(from var(--color-primary) l c h / 0.25);
+  background: oklch(from var(--color-primary, #62734f) l c h / 0.25);
   color: var(--color-text);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-primary, #62734f);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }

@@ -1987,3 +1987,12 @@
 @media (min-width: 768px) {
   .mk-logos { padding: 0 1rem; }
 }
+/* Keep contact links within narrow mobile footer columns. */
+.mk-footer a { overflow-wrap: anywhere; }
+/* Readable footer links; keep the contact address together on narrow screens. */
+.mk-footer-cols a { display:inline-flex; align-items:center; min-height:30px; color:#666; }
+.mk-footer-legal { color:#6b6b6b !important; }
+@media (max-width:600px) {
+  .mk-footer-cols > div:nth-child(2) { grid-column:1 / -1; grid-row:2; }
+  .mk-footer-cols a { font-size:13px; }
+}

@@ -11,8 +11,8 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Labs | Expert Verdicts on What AI Builds</title>
-<meta name="description" content="Expert verdicts on what AI builds. Models create inside instrumented worlds; experts judge the results.">
+<title>World Labs | Expert Gaming Data for AI</title>
+<meta name="description" content="Gaming expertise. Data for better AI. Expert-authored prompts, critiques, and preference datasets across game systems, genres, and styles. Projects in development.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,96 +20,21 @@
 
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./datasets.css">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
 
-<style>
-  .waitlist-form {
-    display: flex;
-    gap: var(--space-2);
-    max-width: 420px;
-    margin: 0 auto;
-  }
-  .waitlist-input {
-    flex: 1;
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-full);
-    background: var(--color-surface);
-    color: var(--color-text);
-    font-size: var(--text-sm);
-    font-family: var(--font-body);
-    outline: none;
-    transition: border-color var(--transition-interactive);
-  }
-  .waitlist-input::placeholder { color: var(--color-text-tertiary); }
-  .waitlist-input:focus { border-color: var(--color-text-tertiary); }
-  .waitlist-msg {
-    text-align: center;
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
-    margin-top: var(--space-3);
-  }
-  .waitlist-msg.success { color: var(--color-text); font-weight: 600; }
 
-  /* ── Statement (scroll-fill) ── */
-  .st-statement {
-    max-width: 1040px;
-    margin: 0;
-    font-size: var(--text-2xl);
-    font-weight: var(--display-weight);
-    letter-spacing: var(--tracking-display);
-    line-height: 1.25;
-    color: var(--color-text);
-  }
-  [data-scroll-fill] .w {
-    color: var(--color-text-tertiary);
-    transition: color 0.25s linear;
-  }
-  [data-scroll-fill] .w.on {
-    color: var(--color-text);
-  }
-
-  /* ── Mission ── */
-  .mission-copy {
-    max-width: 820px;
-    margin: 0;
-    text-align: left;
-  }
-  .mission-copy p {
-    font-size: var(--text-lg);
-    font-weight: 400;
-    color: var(--color-text-secondary);
-    line-height: 1.65;
-    margin-bottom: var(--space-5);
-    max-width: none;
-  }
-  .mission-copy p strong {
-    color: var(--color-text);
-    font-weight: 500;
-  }
-
-  /* ── Mobile ── */
-  @media (max-width: 600px) {
-    .mk-hero-form { width: 100%; }
-    .mk-hero-input { flex: 1 1 auto; min-width: 0; }
-    .mk-hero-btns > .mk-btn-secondary {
-      width: 100%;
-      justify-content: center;
-    }
-    .st-statement { font-size: clamp(1.5rem, 6.5vw, 2rem); }
-    .mission-copy p { font-size: var(--text-base); }
-  }
-</style>
+<link rel="stylesheet" href="./shared-ui.css">
 </head>
-<body>
+<body class="home-page">
 
 <div id="page-content">
 
 <!-- Floating nav -->
 <nav class="mk-nav">
   <div class="mk-nav-left">
-    <a href="#" class="mk-logo">
+    <a href="./index.html" class="mk-logo" aria-label="World Labs home">
       <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
         <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
@@ -117,7 +42,7 @@
       <span class="mk-logo-text">World Labs</span>
     </a>
 
-    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false" aria-label="Toggle navigation menu">
       <span class="mk-menu-circle">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
       </span>
@@ -137,109 +62,129 @@
 <!-- Menu overlay -->
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
-    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Research</a>
-    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Benchmark</a>
-    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Blog</a>
+    <a href="./index.html" class="mk-overlay-link" aria-current="page"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="#datasets" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Research</a>
     <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
   </div>
   <div class="mk-overlay-meta">
-    Expert verdicts on what AI builds.
+    Gaming expertise. Data for better AI.
   </div>
 </div>
 
+<main id="main-content">
 <!-- Hero -->
 <section class="mk-hero">
   <div class="mk-video-layer">
     <div class="mk-video-wrap">
       <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4"
-             autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
+             id="hero-video" muted loop playsinline preload="metadata" disablepictureinpicture aria-hidden="true" tabindex="-1"></video>
     </div>
   </div>
 
+  <button class="video-toggle" id="video-toggle" type="button" aria-controls="hero-video" hidden>Pause background</button>
   <div class="mk-hero-footer">
     <div>
       <div class="mk-subtitle">
         <span class="mk-subtitle-dot"></span>
-        Early access · judged by experts who ship
+        In development · seeking pilot partners
       </div>
 
-      <h1 class="mk-heading">Expert verdicts<br>on what AI builds.</h1>
+      <h1 class="mk-heading">Game expertise.<br>Better AI.</h1>
+      <p class="hero-description">Expert gaming data for AI training and evaluation. Built around the people who know what makes games work.</p>
 
       <div class="mk-hero-btns">
-        <div class="mk-hero-form" id="waitlist-form">
-          <input type="email" class="mk-hero-input" placeholder="you@studio.com" id="waitlist-email" required>
-          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit">Join the Waitlist</button>
-        </div>
+        <a href="#datasets" class="mk-btn mk-btn-primary">Explore Datasets <span aria-hidden="true">↗</span></a>
         <a href="./community.html" class="mk-btn mk-btn-secondary">Join the Panel</a>
       </div>
-      <div class="waitlist-msg" id="waitlist-msg"></div>
+
     </div>
-  </div>
-</section>
-
-
-<!-- Statement -->
-<section class="section section-center">
-  <div class="section-inner">
-    <p class="st-statement" data-scroll-fill>AI has made it easy to generate worlds, games, and systems. It still can't tell you whether what it built is any good.</p>
   </div>
 </section>
 
 
 <!-- Mission -->
-<section class="section section-center" style="background:var(--color-bg-alt);">
-  <div class="section-inner">
-    <div class="section-label fade-in">Mission</div>
-    <div class="mission-copy fade-in">
-      <p>Quality doesn't show up in a unit test. It only registers in expert judgment.</p>
-      <p><strong>We build instrumented worlds where models create and experts judge — so what AI builds isn't just functional, but good.</strong></p>
-    </div>
+<section class="section wl-section" id="mission">
+ <div class="section-inner">
+  <div class="wl-label"><span>01</span> Mission</div>
+  <h2 class="wl-statement">Game craft, translated into data.</h2>
+  <p class="wl-lead">From combat designers to economy specialists, we bring game developers into projects that produce expert prompts, critiques, and preferences across genres and styles.</p>
+ </div>
+</section>
+<!-- Dataset directions -->
+<section class="section wl-section wl-datasets" id="datasets" aria-labelledby="datasets-title">
+ <div class="section-inner">
+  <div class="wl-label"><span>02</span> Datasets <span class="wl-status">In development</span></div>
+  <div class="ds-heading"><h2 class="wl-statement" id="datasets-title">A few worlds<br>we’re starting with.</h2>
   </div>
+  <div class="ds-track" id="dataset-track">
+<article class="ds-card ds-combat">
+ <div class="ds-card-top"><span>Preferences &amp; critiques</span><span>01</span></div>
+ <h3>Combat</h3><p>Expert judgments on mechanics, counterplay, and game feel across different genres and play styles.</p>
+ <div class="ds-art"><svg viewBox="0 0 520 270" fill="none" aria-hidden="true"><circle cx="260" cy="135" r="99" stroke="currentColor" opacity=".14"/><circle cx="260" cy="135" r="66" stroke="currentColor" opacity=".2"/><path d="M68 135h384M260 22v226" stroke="currentColor" stroke-dasharray="3 8" opacity=".2"/><path d="m128 194 82-94 32 55 85-80 58 42" stroke="currentColor" stroke-width="2"/><path d="m326 75 2 25m-2-25-25 2" stroke="currentColor" stroke-width="2"/><rect x="192" y="81" width="34" height="34" rx="8" fill="currentColor"/><circle cx="329" cy="170" r="18" stroke="currentColor" stroke-width="2"/><path d="m321 170 8-8 8 8-8 8-8-8Z" fill="currentColor"/><circle cx="127" cy="194" r="5" fill="currentColor"/><path d="m284 136 34 23" stroke="currentColor" stroke-dasharray="4 5"/></svg></div>
+</article>
+<article class="ds-card ds-economy">
+ <div class="ds-card-top"><span>Evaluation &amp; comparisons</span><span>02</span></div>
+ <h3>Economies</h3><p>Feedback on resources, rewards, and progression—from cozy crafting loops to competitive strategy.</p>
+ <div class="ds-art"><svg viewBox="0 0 520 270" fill="none" aria-hidden="true"><path d="M110 83h136l73 101h96M110 184h136l73-101h96" stroke="currentColor" stroke-width="2" opacity=".5"/><path d="M260 53v164" stroke="currentColor" stroke-dasharray="3 7" opacity=".2"/><circle cx="107" cy="83" r="28" fill="currentColor" opacity=".12"/><circle cx="107" cy="83" r="18" stroke="currentColor"/><circle cx="107" cy="184" r="28" stroke="currentColor"/><path d="M107 173v22m-6-18 6-4 6 4m-12 14 6 4 6-4" stroke="currentColor"/><rect x="225" y="105" width="70" height="60" rx="12" fill="currentColor"/><path d="m247 135 13-13 13 13-13 13-13-13Z" stroke="var(--ds-art-bg)" stroke-width="2"/><rect x="390" y="63" width="40" height="40" rx="8" stroke="currentColor"/><rect x="390" y="164" width="40" height="40" rx="8" stroke="currentColor"/><path d="M404 83h12m-6-6v12M403 184h14" stroke="currentColor" stroke-width="2"/></svg></div>
+</article>
+<article class="ds-card ds-levels">
+ <div class="ds-card-top"><span>Demonstrations &amp; revisions</span><span>03</span></div>
+ <h3>Levels</h3><p>Expert examples and critiques of navigation, pacing, puzzles, and how a level teaches the player.</p>
+ <div class="ds-art"><svg viewBox="0 0 520 270" fill="none" aria-hidden="true"><path d="M110 42h300v186H110z" stroke="currentColor" opacity=".15"/><path d="M140 196v-55h90V75h63v52h86v69h-83v-39h-35v39H140Z" stroke="currentColor" stroke-width="2"/><path d="M160 176h50l40-40V95h24v50h84v31h-42" stroke="currentColor" stroke-dasharray="4 6" opacity=".5"/><circle cx="160" cy="176" r="7" fill="currentColor"/><path d="m314 170 6 6-6 6-6-6 6-6Z" fill="currentColor"/><path d="M171 58h28M185 44v28M341 74h20M351 64v20" stroke="currentColor" opacity=".4"/><rect x="184" y="90" width="23" height="23" rx="4" fill="currentColor" opacity=".12"/><rect x="322" y="204" width="23" height="23" rx="4" fill="currentColor" opacity=".12"/></svg></div>
+</article>
+<article class="ds-card ds-concepts">
+ <div class="ds-card-top"><span>Prompts &amp; design briefs</span><span>04</span></div>
+ <h3>Game Concepts</h3><p>Expert-authored prompts that capture a game’s genre, style, constraints, and intended experience.</p>
+ <div class="ds-art"><svg viewBox="0 0 520 270" fill="none" aria-hidden="true"><rect x="139" y="45" width="166" height="177" rx="10" transform="rotate(-9 139 45)" stroke="currentColor" opacity=".2"/><rect x="189" y="38" width="166" height="192" rx="10" fill="var(--ds-art-bg)" stroke="currentColor"/><path d="M215 148h91M215 161h110M215 174h73M215 199h35" stroke="currentColor" opacity=".4"/><path d="m234 99 20-31 21 31-21 12-20-12Z" stroke="currentColor" stroke-width="2"/><circle cx="302" cy="93" r="17" stroke="currentColor"/><path d="M355 66h29m-14-14v29M122 190h20m-10-10v20" stroke="currentColor" opacity=".5"/></svg></div>
+</article>
+  </div>
+  <div class="ds-custom">
+   <div><h3>A different dataset in mind?</h3><p>These are starting points, not the full scope. We can shape projects around other gaming domains, genres, and data needs.</p></div>
+   <a href="mailto:hello@tryworldlabs.com?subject=Gaming%20dataset%20project" class="btn btn-primary">Build a dataset with us <span aria-hidden="true">↗</span></a>
+  </div>
+ </div>
 </section>
 
-
-<!-- What you get -->
-<section class="section section-center" id="labs">
-  <div class="section-inner">
-    <div class="section-label fade-in">What you get</div>
-    <h2 class="section-title fade-in">Private evals. Preference datasets.<br>A public benchmark.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">Every score traces back to a human who played the build.</p>
-    <div class="fade-in" style="display:flex;gap:var(--space-3);flex-wrap:wrap;justify-content:center;">
-      <a href="mailto:hello@tryworldlabs.com" class="btn btn-primary">Get in touch</a>
-      <a href="./benchmark.html" class="btn btn-secondary">See the benchmark →</a>
-    </div>
+<!-- Process -->
+<section class="section wl-section wl-process" id="process">
+ <div class="section-inner">
+  <div class="wl-label"><span>03</span> Approach</div>
+  <h2 class="wl-statement">A focused project.<br>The right expertise.</h2>
+  <div class="wl-process-grid">
+   <div><span class="wl-step">i.</span><h3>Define the project</h3><p>Choose the subject, intended experience, and kind of data your model needs.</p></div>
+   <div><span class="wl-step">ii.</span><h3>Match the experts</h3><p>Match the work to specialists who can create, compare, and explain.</p></div>
+   <div><span class="wl-step">iii.</span><h3>Review and refine</h3><p>Check the work against the brief and shape the collection around what proves useful.</p></div>
   </div>
+ </div>
 </section>
-
-
 <!-- Join the panel -->
-<section class="section section-center" id="panel" style="background:var(--color-bg-alt);">
+<section class="section wl-section" id="panel">
   <div class="section-inner">
-    <div class="section-label fade-in">The Panel</div>
-    <h2 class="section-title fade-in">Ship things people love?<br>Judge what AI builds next.</h2>
-    <p class="section-desc fade-in" style="margin-bottom:var(--space-8);max-width:720px;">Get paid to decide what AI gets right and wrong.</p>
-    <div class="fade-in">
-      <a href="./apply.html" class="btn btn-primary">Apply to the Panel</a>
+    <div class="wl-label"><span>04</span> The Panel</div>
+    <div class="panel-layout">
+    <div class="panel-copy">
+      <h2 class="wl-statement">Know games?<br>Help shape what AI learns.</h2>
+      <p class="wl-lead">Write briefs, critique outputs, and compare designs. Join our contributor network for future paid projects matched to your craft.</p>
+      <a href="./apply.html" class="btn btn-primary">Apply to the Panel <span aria-hidden="true">&#8599;</span></a>
+    </div>
+    <div class="wl-waitlist"><h3>Stay in the loop.</h3><p>Hear when new projects open.</p>
+        <noscript><p class="wl-privacy-note">Enable JavaScript to join the waitlist, or <a href="mailto:hello@tryworldlabs.com">email us</a>.</p><style>#waitlist-form { display:none; }</style></noscript>
+        <form class="mk-hero-form" id="waitlist-form" method="post" action="/api/waitlist" novalidate>
+          <label class="sr-only" for="waitlist-email">Email address</label>
+          <input type="email" class="mk-hero-input" placeholder="you@studio.com" id="waitlist-email" name="email" autocomplete="email" inputmode="email" maxlength="200" aria-describedby="waitlist-msg" required>
+          <button class="mk-btn mk-btn-primary" id="waitlist-btn" type="submit" disabled>Join the Waitlist</button>
+        </form>
+      <div class="waitlist-msg" id="waitlist-msg" role="status" aria-live="polite"></div>
+      <p class="wl-privacy-note">We'll use your email for project updates. <a href="./privacy.html">Privacy policy</a></p>
+    </div>
     </div>
   </div>
 </section>
 
 
-<!-- CTA -->
-<div class="mk-cta">
-  <section class="mk-cta-inner">
-    <video src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260427_104731_bfd355f7-1f84-4f81-ad88-52c2bca70bad.mp4"
-           autoplay muted loop playsinline preload="auto" disablepictureinpicture></video>
-    <div class="mk-cta-content">
-      <h2>The playtest is the eval.</h2>
-      <div class="mk-cta-actions">
-        <a href="#waitlist-email" class="mk-btn-light">Join the Waitlist</a>
-        <a href="./community.html" class="mk-btn-glass">Join the Panel</a>
-      </div>
-    </div>
-  </section>
-</div>
-
+</main>
 </div><!-- end page-content -->
 
 <!-- Footer -->
@@ -247,7 +192,7 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>Expert verdicts on what AI builds.</p>
+      <p>Gaming expertise. Data for better AI.</p>
       <p class="mk-footer-legal">&copy; 2026 World Labs.</p>
     </div>
 
@@ -255,14 +200,14 @@
       <div>
         <div class="mk-footer-head">Explore</div>
         <ul role="list">
+          <li><a href="#datasets">Datasets</a></li>
           <li><a href="./research.html">Research</a></li>
           <li><a href="./benchmark.html">Benchmark</a></li>
-          <li><a href="./blog.html">Blog</a></li>
           <li><a href="./community.html">Community</a></li>
         </ul>
       </div>
       <div>
-        <div class="mk-footer-head">Get in touch</div>
+        <div class="mk-footer-head">Discuss a pilot</div>
         <ul role="list">
           <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
           <li><a href="./apply.html">Apply to the Panel</a></li>
@@ -282,98 +227,10 @@
 
 
 <script>
-// Menu overlay
-(function(){
-  const btn = document.getElementById('mk-menu-btn');
-  const label = document.getElementById('mk-menu-label');
-  const overlay = document.getElementById('mk-overlay');
-  if (!btn || !overlay) return;
 
-  let open = false;
-  function set(next) {
-    open = next;
-    overlay.classList.toggle('open', open);
-    btn.dataset.open = String(open);
-    btn.setAttribute('aria-expanded', String(open));
-    label.textContent = open ? 'Close' : 'Menu';
-    // Background video keeps decoding behind the overlay and steals frame budget.
-    document.querySelectorAll('video').forEach(v => open ? v.pause() : v.play().catch(() => {}));
-  }
-  btn.addEventListener('click', () => set(!open));
-  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => set(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
-})();
-
-// Background video autoplay.
-// Safari checks the `muted` *attribute* (not the property) when deciding whether
-// autoplay is allowed, and Low Power Mode blocks it outright - so set the
-// attribute up front and retry once on the first interaction.
-(function(){
-  document.querySelectorAll('video').forEach(v => {
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.setAttribute('playsinline', '');
-    v.play().catch(() => {});
-  });
-  const retry = () => {
-    if (document.querySelector('.mk-overlay.open')) return;
-    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
-  };
-  window.addEventListener('touchstart', retry, { once: true, passive: true });
-  window.addEventListener('click', retry, { once: true });
-})();
-
-// Waitlist
-document.getElementById('waitlist-btn').addEventListener('click', function(e) {
-  e.preventDefault();
-  const email = document.getElementById('waitlist-email').value.trim();
-  const msg = document.getElementById('waitlist-msg');
-  if (!email || !email.includes('@')) { msg.textContent = 'Enter a valid email.'; msg.className = 'waitlist-msg'; return; }
-  msg.textContent = 'You’re on the list. We’ll be in touch.';
-  msg.className = 'waitlist-msg success';
-  document.getElementById('waitlist-email').value = '';
-  document.getElementById('waitlist-btn').textContent = 'Joined';
-  document.getElementById('waitlist-btn').disabled = true;
-});
-
-// Scroll-fill statement: words darken as the section scrolls through the viewport
-(function(){
-  const els = document.querySelectorAll('[data-scroll-fill]');
-  if (!els.length) return;
-  els.forEach(el => {
-    const words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map(w => '<span class="w">' + w + '</span>').join(' ');
-  });
-  function update(){
-    els.forEach(el => {
-      const r = el.getBoundingClientRect();
-      const start = innerHeight * 0.85;
-      const end = innerHeight * 0.35;
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
-      const spans = el.querySelectorAll('.w');
-      const n = Math.round(p * spans.length);
-      spans.forEach((s, i) => s.classList.toggle('on', i < n));
-    });
-  }
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update);
-  update();
-})();
-
-// Fade in
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
-  });
-});
 </script>
 
+<script src="./scripts/home.js" defer></script>
+<script src="./scripts/site-ui.js" defer></script>
 </body>
 </html>

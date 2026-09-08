@@ -128,8 +128,14 @@ const server = createServer(async (req, res) => {
 
     if (!handled) {
       res.statusCode = 404;
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.end('404 Not Found');
+      if (pathname.startsWith('/api/')) {
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        res.end('404 Not Found');
+      } else {
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.setHeader('Cache-Control', 'no-store');
+        res.end(await readFile(join(ROOT, '404.html')));
+      }
     }
   } catch (err) {
     console.error(`  ✗ ${req.method} ${pathname}`, err);

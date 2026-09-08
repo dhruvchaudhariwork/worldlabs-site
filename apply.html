@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Apply to the Panel | World Labs</title>
-<meta name="description" content="Apply to join the World Labs panel: paid eval sessions for game developers with shipped titles.">
+<meta name="description" content="Register interest in future paid gaming-data projects: expert prompts, critiques, and preference comparisons.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,8 +246,16 @@
   }
   .form-hidden { display: none; }
 </style>
+<link rel="stylesheet" href="./experts.css">
+<style>
+  .ap-required-note { margin: -10px 0 24px; color: var(--ex-muted); font-size: 13px; }
+  .ap-done .ex-back { margin: 24px 0 0; }
+  .ap-rank-badge { min-width: 26px; }
+  .ap-form[aria-busy="true"] .ap-msg { color: var(--ex-muted); }
+</style>
+<link rel="stylesheet" href="./shared-ui.css">
 </head>
-<body>
+<body class="expert-page application-page">
 
 <div id="page-content">
 
@@ -287,35 +295,45 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
-    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Research</a>
-    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Benchmark</a>
-    <a href="./blog.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Blog</a>
-    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Community</a>
+    <a href="./index.html#datasets" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Research</a>
+    <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+    <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
   </div>
   <div class="mk-overlay-meta">
-    Expert verdicts on what AI builds.
+    Gaming expertise. Data for better AI.
   </div>
 </div>
 
 <main class="ap-wrap">
+ <aside class="ap-guide">
+  <a href="./community.html" class="ex-back">← About the community</a>
+  <div class="ex-eyebrow">Expert application</div>
+  <h2>Start with<br>your craft.</h2>
+  <p>About ten minutes. Share your shipped work and the areas you know best.</p>
+  <nav aria-label="Application sections"><a href="#about-you">01 <span>About you</span></a><a href="#shipped-work">02 <span>Shipped work</span></a><a href="#your-craft">03 <span>Your expertise</span></a><a href="#availability">04 <span>Availability</span></a><a href="#anything-else">05 <span>Anything else</span></a></nav>
+  <div class="ap-guide-note">Have your game titles, roles, and any portfolio links handy.</div>
+ </aside>
+ <div class="ap-content">
   <div class="ap-kicker">The Panel</div>
-  <h1 class="ap-title">Apply to the panel</h1>
+  <h1 class="ap-title">Join the expert network.</h1>
   <p class="ap-intro">
-    We pay shipped game developers to judge what AI models build inside instrumented game worlds.
-    Applications are read by a person, not a filter. The section that matters most is what you've shipped.
+    We are gathering game developers for future paid data projects: writing expert prompts, critiquing AI output, and comparing game designs.
+    Tell us what you have shipped and the systems you know best. Invitations will depend on pilot demand and specialty fit.
   </p>
 
   <div class="ap-facts">
-    <span class="ap-fact">Paid per session</span>
+    <span class="ap-fact">Paid projects planned</span>
     <span class="ap-fact">Remote, async</span>
     <span class="ap-fact">Shipped credits required</span>
     <span class="ap-fact">~10 min to apply</span>
   </div>
+  <p class="ap-required-note">Fields marked with * are required. Everything else is optional.</p>
 
   <form class="ap-form" id="ap-form" novalidate>
 
     <!-- 01 ─────────────────────────────────────────── -->
-    <section class="ap-section">
+    <section class="ap-section" id="about-you">
       <div class="ap-section-head">
         <span class="ap-section-num">01</span>
         <h2 class="ap-section-title">You</h2>
@@ -323,77 +341,76 @@
       <div class="ap-fields">
         <div class="ap-row">
           <div class="ap-field" data-field="full_name">
-            <label class="ap-label" for="full_name">Full name</label>
-            <input class="ap-input" id="full_name" name="full_name" type="text" autocomplete="name" placeholder="Jordan Reyes">
-            <div class="ap-error" data-error-for="full_name"></div>
+            <label class="ap-label" for="full_name">Full name <span aria-hidden="true">*</span></label>
+            <input class="ap-input" id="full_name" aria-describedby="error-full_name" required aria-required="true" name="full_name" type="text" autocomplete="name" maxlength="120" placeholder="Jordan Reyes">
+            <div class="ap-error" id="error-full_name" data-error-for="full_name"></div>
           </div>
           <div class="ap-field" data-field="email">
-            <label class="ap-label" for="email">Email</label>
-            <input class="ap-input" id="email" name="email" type="email" autocomplete="email" placeholder="you@studio.com">
-            <div class="ap-error" data-error-for="email"></div>
+            <label class="ap-label" for="email">Email <span aria-hidden="true">*</span></label>
+            <input class="ap-input" id="email" aria-describedby="error-email" required aria-required="true" name="email" type="email" autocomplete="email" maxlength="200" autocapitalize="none" spellcheck="false" placeholder="you@studio.com">
+            <div class="ap-error" id="error-email" data-error-for="email"></div>
           </div>
         </div>
         <div class="ap-row">
           <div class="ap-field" data-field="country">
             <label class="ap-label" for="country">Country <span>(optional)</span></label>
-            <input class="ap-input" id="country" name="country" type="text" autocomplete="country-name" placeholder="Japan">
-            <div class="ap-error" data-error-for="country"></div>
+            <input class="ap-input" id="country" aria-describedby="error-country" name="country" type="text" autocomplete="country-name" maxlength="80" placeholder="Japan">
+            <div class="ap-error" id="error-country" data-error-for="country"></div>
           </div>
           <div class="ap-field" data-field="linkedin_url">
             <label class="ap-label" for="linkedin_url">LinkedIn <span>(optional)</span></label>
-            <input class="ap-input" id="linkedin_url" name="linkedin_url" type="text" placeholder="linkedin.com/in/you">
-            <div class="ap-error" data-error-for="linkedin_url"></div>
+            <input class="ap-input" id="linkedin_url" aria-describedby="error-linkedin_url" name="linkedin_url" type="text" inputmode="url" autocapitalize="none" spellcheck="false" placeholder="linkedin.com/in/you">
+            <div class="ap-error" id="error-linkedin_url" data-error-for="linkedin_url"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 02 ─────────────────────────────────────────── -->
-    <section class="ap-section">
+    <section class="ap-section" id="shipped-work">
       <div class="ap-section-head">
         <span class="ap-section-num">02</span>
         <h2 class="ap-section-title">What you've shipped</h2>
-        <span class="ap-section-hint">The part we actually read</span>
+        <span class="ap-section-hint">Your experience in practice</span>
       </div>
       <div class="ap-fields">
         <div class="ap-field" data-field="shipped_credits">
-          <label class="ap-label" for="shipped_credits">Shipped credits</label>
-          <div class="ap-help">
-            Titles you shipped, your role, and roughly when. Ship-and-live counts; prototypes and
-            game jams don't. If you led a system (combat, economy, onboarding), say which.
+          <label class="ap-label" for="shipped_credits">Shipped credits <span aria-hidden="true">*</span></label>
+          <div class="ap-help" id="help-shipped_credits">
+            List released titles, your role, and the year. Include the systems you worked on, such as combat, economy, or onboarding.
           </div>
-          <textarea class="ap-textarea" id="shipped_credits" name="shipped_credits" placeholder="Hollow Tide (2023) — lead systems designer, owned combat + progression.&#10;Ninefold (2021) — level designer, shipped 14 of 30 levels."></textarea>
-          <div class="ap-error" data-error-for="shipped_credits"></div>
+          <textarea class="ap-textarea" id="shipped_credits" aria-describedby="help-shipped_credits error-shipped_credits" required aria-required="true" name="shipped_credits" maxlength="4000" placeholder="Hollow Tide (2023) — lead systems designer, owned combat + progression.&#10;Ninefold (2021) — level designer, shipped 14 of 30 levels."></textarea>
+          <div class="ap-error" id="error-shipped_credits" data-error-for="shipped_credits"></div>
         </div>
         <div class="ap-row">
           <div class="ap-field" data-field="years_experience">
             <label class="ap-label" for="years_experience">Years in games <span>(optional)</span></label>
-            <input class="ap-input" id="years_experience" name="years_experience" type="number" min="0" max="60" placeholder="8">
-            <div class="ap-error" data-error-for="years_experience"></div>
+            <input class="ap-input" id="years_experience" aria-describedby="error-years_experience" name="years_experience" type="number" min="0" max="60" placeholder="8">
+            <div class="ap-error" id="error-years_experience" data-error-for="years_experience"></div>
           </div>
           <div class="ap-field" data-field="portfolio_url">
             <label class="ap-label" for="portfolio_url">Portfolio <span>(optional)</span></label>
-            <input class="ap-input" id="portfolio_url" name="portfolio_url" type="text" placeholder="yoursite.com">
-            <div class="ap-error" data-error-for="portfolio_url"></div>
+            <input class="ap-input" id="portfolio_url" aria-describedby="error-portfolio_url" name="portfolio_url" type="text" inputmode="url" autocapitalize="none" spellcheck="false" placeholder="yoursite.com">
+            <div class="ap-error" id="error-portfolio_url" data-error-for="portfolio_url"></div>
           </div>
         </div>
         <div class="ap-row">
           <div class="ap-field" data-field="github_url">
             <label class="ap-label" for="github_url">GitHub <span>(optional)</span></label>
-            <input class="ap-input" id="github_url" name="github_url" type="text" placeholder="github.com/you">
-            <div class="ap-error" data-error-for="github_url"></div>
+            <input class="ap-input" id="github_url" aria-describedby="error-github_url" name="github_url" type="text" inputmode="url" autocapitalize="none" spellcheck="false" placeholder="github.com/you">
+            <div class="ap-error" id="error-github_url" data-error-for="github_url"></div>
           </div>
           <div class="ap-field" data-field="video_url">
             <label class="ap-label" for="video_url">Video intro <span>(optional)</span></label>
-            <input class="ap-input" id="video_url" name="video_url" type="text" placeholder="Loom / YouTube link">
-            <div class="ap-error" data-error-for="video_url"></div>
+            <input class="ap-input" id="video_url" aria-describedby="error-video_url" name="video_url" type="text" inputmode="url" autocapitalize="none" spellcheck="false" placeholder="Loom / YouTube link">
+            <div class="ap-error" id="error-video_url" data-error-for="video_url"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 03 ─────────────────────────────────────────── -->
-    <section class="ap-section">
+    <section class="ap-section" id="your-craft">
       <div class="ap-section-head">
         <span class="ap-section-num">03</span>
         <h2 class="ap-section-title">Your craft</h2>
@@ -401,38 +418,37 @@
       </div>
       <div class="ap-fields">
         <div class="ap-field" data-field="specialties">
-          <label class="ap-label" for="spec_1">Specialties</label>
-          <div class="ap-help">
-            Pick up to three, strongest first. We route eval sessions by specialty, so rank honestly —
-            you'll be judging work in these areas.
+          <label class="ap-label" for="spec_1">Primary specialty <span aria-hidden="true">*</span></label>
+          <div class="ap-help" id="help-specialties">
+            Choose your strongest area first, then up to two others. Each choice unlocks the next rank.
           </div>
           <div class="ap-ranks">
             <div class="ap-rank">
               <span class="ap-rank-badge">1</span>
               <div class="ap-select-wrap">
-                <select class="ap-select" id="spec_1" name="spec_1" data-spec></select>
+                <select class="ap-select" id="spec_1" aria-describedby="help-specialties error-specialties" required aria-required="true" aria-label="Primary specialty" name="spec_1" data-spec></select>
               </div>
             </div>
             <div class="ap-rank">
               <span class="ap-rank-badge">2</span>
               <div class="ap-select-wrap">
-                <select class="ap-select" id="spec_2" name="spec_2" data-spec></select>
+                <select class="ap-select" id="spec_2" aria-label="Second specialty (optional)" name="spec_2" data-spec></select>
               </div>
             </div>
             <div class="ap-rank">
               <span class="ap-rank-badge">3</span>
               <div class="ap-select-wrap">
-                <select class="ap-select" id="spec_3" name="spec_3" data-spec></select>
+                <select class="ap-select" id="spec_3" aria-label="Third specialty (optional)" name="spec_3" data-spec></select>
               </div>
             </div>
           </div>
-          <div class="ap-error" data-error-for="specialties"></div>
+          <div class="ap-error" id="error-specialties" data-error-for="specialties"></div>
         </div>
       </div>
     </section>
 
     <!-- 04 ─────────────────────────────────────────── -->
-    <section class="ap-section">
+    <section class="ap-section" id="availability">
       <div class="ap-section-head">
         <span class="ap-section-num">04</span>
         <h2 class="ap-section-title">Availability</h2>
@@ -441,22 +457,22 @@
         <div class="ap-row">
           <div class="ap-field" data-field="hours_per_week">
             <label class="ap-label" for="hours_per_week">Hours per week <span>(optional)</span></label>
-            <div class="ap-help">Realistically, not aspirationally.</div>
-            <input class="ap-input" id="hours_per_week" name="hours_per_week" type="number" min="1" max="60" placeholder="5">
-            <div class="ap-error" data-error-for="hours_per_week"></div>
+            <div class="ap-help">An estimate is fine.</div>
+            <input class="ap-input" id="hours_per_week" aria-describedby="error-hours_per_week" name="hours_per_week" type="number" min="1" max="60" placeholder="5">
+            <div class="ap-error" id="error-hours_per_week" data-error-for="hours_per_week"></div>
           </div>
           <div class="ap-field" data-field="hourly_rate_usd">
             <label class="ap-label" for="hourly_rate_usd">Hourly rate, USD <span>(optional)</span></label>
             <div class="ap-help">What you'd normally charge for consulting.</div>
-            <input class="ap-input" id="hourly_rate_usd" name="hourly_rate_usd" type="number" min="0" max="2000" placeholder="120">
-            <div class="ap-error" data-error-for="hourly_rate_usd"></div>
+            <input class="ap-input" id="hourly_rate_usd" aria-describedby="error-hourly_rate_usd" name="hourly_rate_usd" type="number" min="0" max="2000" step="1" placeholder="120">
+            <div class="ap-error" id="error-hourly_rate_usd" data-error-for="hourly_rate_usd"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 05 ─────────────────────────────────────────── -->
-    <section class="ap-section">
+    <section class="ap-section" id="anything-else">
       <div class="ap-section-head">
         <span class="ap-section-num">05</span>
         <h2 class="ap-section-title">Anything else</h2>
@@ -465,14 +481,14 @@
         <div class="ap-field" data-field="heard_from">
           <label class="ap-label" for="heard_from">How did you hear about us? <span>(optional)</span></label>
           <div class="ap-select-wrap">
-            <select class="ap-select" id="heard_from" name="heard_from"></select>
+            <select class="ap-select" id="heard_from" aria-describedby="error-heard_from" name="heard_from"></select>
           </div>
-          <div class="ap-error" data-error-for="heard_from"></div>
+          <div class="ap-error" id="error-heard_from" data-error-for="heard_from"></div>
         </div>
         <div class="ap-field" data-field="notes">
           <label class="ap-label" for="notes">Anything we should know <span>(optional)</span></label>
-          <textarea class="ap-textarea" id="notes" name="notes" placeholder="Strong opinions about what current models get wrong in games are very welcome here."></textarea>
-          <div class="ap-error" data-error-for="notes"></div>
+          <textarea class="ap-textarea" id="notes" aria-describedby="error-notes" name="notes" maxlength="4000" placeholder="Strong opinions about what current models get wrong in games are very welcome here."></textarea>
+          <div class="ap-error" id="error-notes" data-error-for="notes"></div>
         </div>
       </div>
     </section>
@@ -484,17 +500,18 @@
     </div>
 
     <div class="ap-submit-row">
-      <button type="submit" class="btn btn-primary ap-submit" id="ap-submit">Submit application</button>
+      <button type="submit" class="btn btn-primary ap-submit" id="ap-submit" disabled>Submit application</button>
       <div class="ap-msg" id="ap-msg" role="status" aria-live="polite"></div>
     </div>
 
     <p class="ap-note">
       By applying you agree to our <a href="./terms.html">Terms</a> and
       <a href="./privacy.html">Privacy Policy</a>. We use your details to assess your application and,
-      if you join, to route eval sessions to you. Not sure yet?
+      if you join, to match projects to your expertise. Not sure yet?
       Read how <a href="./community.html">the panel works</a>.
     </p>
   </form>
+  <noscript><style>#ap-form, .ap-required-note { display: none; }</style><p class="ap-note">Enable JavaScript to use the application form, or email <a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a> to apply.</p></noscript>
 
   <!-- Success state, swapped in on a real 200 from the server. -->
   <div class="ap-done" id="ap-done">
@@ -503,14 +520,16 @@
     </div>
     <h2 class="ap-done-title">Application received</h2>
     <p class="ap-done-body">
-      It's in the queue and a person will read it. We reply either way, including when the answer is no.
+      Your interest has been recorded. We will reach out if there is a fit with an upcoming pilot.
     </p>
     <div class="ap-done-steps">
-      <div class="ap-done-step"><b>01</b><span>We read your shipped credits first. Expect a reply within about a week.</span></div>
-      <div class="ap-done-step"><b>02</b><span>If it's a fit, we send one short paid trial eval so you can see the work before committing.</span></div>
-      <div class="ap-done-step"><b>03</b><span>After the trial, you're on the panel and we route sessions matching your specialties.</span></div>
+      <div class="ap-done-step"><b>01</b><span>We will review your shipped credits and specialties as pilots take shape.</span></div>
+      <div class="ap-done-step"><b>02</b><span>If there is a fit, we plan to discuss a paid sample review with you.</span></div>
+      <div class="ap-done-step"><b>03</b><span>Any assignment will have agreed scope, rates, and timing. Applying does not guarantee work.</span></div>
     </div>
+    <a class="ex-back" href="./community.html">Back to the community →</a>
   </div>
+ </div>
 </main>
 
 </div><!-- end page-content -->
@@ -519,16 +538,16 @@
   <div class="mk-footer-inner">
     <div class="mk-footer-brand">
       <div class="mk-footer-name">World Labs</div>
-      <p>Expert verdicts on what AI builds.</p>
+      <p>Gaming expertise. Data for better AI.</p>
       <p class="mk-footer-legal">&copy; 2026 World Labs.</p>
     </div>
     <div class="mk-footer-cols">
       <div>
         <div class="mk-footer-head">Explore</div>
+        <a href="./index.html#datasets">Datasets</a>
         <ul role="list">
           <li><a href="./research.html">Research</a></li>
           <li><a href="./benchmark.html">Benchmark</a></li>
-          <li><a href="./blog.html">Blog</a></li>
           <li><a href="./community.html">Community</a></li>
         </ul>
       </div>
@@ -551,24 +570,6 @@
 </footer>
 
 <script type="module">
-// Menu overlay
-(function () {
-  const btn = document.getElementById('mk-menu-btn');
-  const label = document.getElementById('mk-menu-label');
-  const overlay = document.getElementById('mk-overlay');
-  if (!btn || !overlay) return;
-  let open = false;
-  const set = (next) => {
-    open = next;
-    overlay.classList.toggle('open', open);
-    btn.dataset.open = String(open);
-    btn.setAttribute('aria-expanded', String(open));
-    label.textContent = open ? 'Close' : 'Menu';
-  };
-  btn.addEventListener('click', () => set(!open));
-  overlay.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) set(false); });
-})();
 
 // ── Options. Kept identical to api/_lib/validate.js — the server rejects
 // anything not on its own list, so these must not drift.
@@ -593,36 +594,43 @@ function fillSelect(sel, options, placeholder) {
   for (const o of options) {
     const opt = document.createElement('option');
     opt.value = o;
-    opt.textContent = o;
+    opt.textContent = o === 'Narrative & quest design' ? 'Narrative & quests' : o;
     sel.appendChild(opt);
   }
 }
 
-specSelects.forEach((sel, i) => fillSelect(sel, SPECIALTIES, i === 0 ? 'Choose your primary' : 'Choose (optional)'));
+specSelects.forEach((sel, i) => fillSelect(sel, SPECIALTIES, i === 0 ? 'Primary specialty' : 'Choose (optional)'));
 fillSelect(document.getElementById('heard_from'), HEARD_FROM, 'Choose one');
 
 // Picking a specialty in one rank removes it from the others, so you can't
 // rank the same thing twice.
 function syncSpecialties() {
-  const chosen = specSelects.map((s) => s.value);
+  if (document.getElementById('ap-form').getAttribute('aria-busy') === 'true') return;
+  // Clear dependent ranks before calculating the chosen values. Otherwise
+  // clearing the primary can leave a stale third choice in the submission.
   specSelects.forEach((sel, i) => {
+    sel.disabled = i > 0 && !specSelects[i - 1].value;
+    if (sel.disabled) sel.value = '';
+  });
+  const chosen = specSelects.map((s) => s.value);
+  specSelects.forEach((sel) => {
     const mine = sel.value;
     [...sel.options].forEach((opt) => {
       if (!opt.value) return;
       opt.disabled = opt.value !== mine && chosen.includes(opt.value);
     });
-    // Ranks must fill in order: you can't pick #3 without a #2.
-    sel.disabled = i > 0 && !chosen[i - 1];
-    if (sel.disabled) sel.value = '';
   });
 }
 specSelects.forEach((s) => s.addEventListener('change', syncSpecialties));
-syncSpecialties();
+// History navigation restores field values after initialization. Wait until
+// that restoration finishes before disabling any dependent specialty ranks.
+window.addEventListener('pageshow', () => setTimeout(syncSpecialties, 0));
 
 // ── Errors ──
 function clearErrors() {
   document.querySelectorAll('.ap-field').forEach((f) => f.classList.remove('invalid'));
   document.querySelectorAll('.ap-error').forEach((e) => (e.textContent = ''));
+  document.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
   document.getElementById('ap-msg').textContent = '';
 }
 
@@ -634,19 +642,54 @@ function showErrors(fields) {
     if (slot) slot.textContent = message;
     if (field) {
       field.classList.add('invalid');
+      field.querySelector('input, textarea, select')?.setAttribute('aria-invalid', 'true');
       first ??= field;
     }
   }
-  first?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  first?.scrollIntoView({ behavior: scrollBehavior(), block: 'center' });
+  first?.querySelector('input, textarea, select')?.focus({ preventScroll: true });
+}
+
+function scrollBehavior() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 }
 
 // ── Submit ──
 const form = document.getElementById('ap-form');
 const btn = document.getElementById('ap-submit');
 const msg = document.getElementById('ap-msg');
+let submitting = false;
+let submitted = false;
+
+// Correcting a field clears its stale error without disturbing other errors.
+form.addEventListener('input', (event) => {
+  const field = event.target.closest('.ap-field');
+  if (!field?.classList.contains('invalid')) return;
+  field.classList.remove('invalid');
+  field.querySelector('.ap-error').textContent = '';
+  field.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+});
+
+function validateBeforeSubmit(payload) {
+  const errors = {};
+  if (payload.full_name.length < 2) errors.full_name = 'Enter your full name.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(payload.email)) errors.email = 'Enter a valid email address.';
+  if (payload.shipped_credits.length < 15) errors.shipped_credits = 'Include at least one released title and your role.';
+  if (!payload.specialties.length) errors.specialties = 'Choose your primary specialty.';
+  for (const name of ['years_experience', 'hours_per_week', 'hourly_rate_usd']) {
+    const input = document.getElementById(name);
+    if (input.validity.badInput || (payload[name] && (!Number.isFinite(Number(payload[name])) || Number(payload[name]) < Number(input.min) || Number(payload[name]) > Number(input.max)))) {
+      errors[name] = `Enter a number between ${input.min} and ${input.max}.`;
+    } else if (input.validity.stepMismatch) {
+      errors[name] = 'Enter a whole number.';
+    }
+  }
+  return errors;
+}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  if (submitting || submitted) return;
   clearErrors();
 
   const val = (id) => document.getElementById(id).value.trim();
@@ -669,37 +712,77 @@ form.addEventListener('submit', async (e) => {
     company_website: val('company_website'), // honeypot
   };
 
+  const errors = validateBeforeSubmit(payload);
+  if (Object.keys(errors).length) {
+    msg.textContent = 'Please check the highlighted fields. Your other answers are still here.';
+    showErrors(errors);
+    return;
+  }
+
+  submitting = true;
   btn.disabled = true;
   btn.textContent = 'Submitting…';
+  form.setAttribute('aria-busy', 'true');
+  msg.textContent = 'Sending your application…';
+  const fieldStates = [...form.querySelectorAll('input, textarea, select')]
+    .map(control => ({ control, disabled: control.disabled }));
+  fieldStates.forEach(({ control }) => { control.disabled = true; });
+  const restoreFields = () => fieldStates.forEach(({ control, disabled }) => { control.disabled = disabled; });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
 
   try {
     const res = await fetch('/api/apply', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
+      signal: controller.signal,
     });
     const data = await res.json().catch(() => ({}));
 
     if (!res.ok) {
+      // Field errors must be focusable before we move the visitor to them.
+      restoreFields();
       if (data.fields) showErrors(data.fields);
       msg.textContent = data.error || 'Something went wrong. Try again.';
-      btn.disabled = false;
-      btn.textContent = 'Submit application';
+      return;
+    }
+    if (data.ok !== true) {
+      msg.textContent = 'We could not confirm your application. Your answers are still here; please try again.';
       return;
     }
 
     // Only now — after the server confirmed it stored the row — do we tell
     // anyone they've applied.
     form.classList.add('form-hidden');
-    document.getElementById('ap-done').classList.add('show');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    submitted = true;
+    document.querySelector('.ap-guide nav').hidden = true;
+    document.querySelector('.ap-guide-note').textContent = 'Thank you for sharing your experience. We will be in touch if a project matches your expertise.';
+    document.querySelector('.ap-required-note').hidden = true;
+    const done = document.getElementById('ap-done');
+    done.classList.add('show');
+    done.setAttribute('tabindex', '-1');
+    done.focus({ preventScroll: true });
+    done.scrollIntoView({ behavior: scrollBehavior(), block: 'center' });
   } catch {
-    msg.textContent = 'Network error. Check your connection and try again.';
-    btn.disabled = false;
-    btn.textContent = 'Submit application';
+    msg.textContent = controller.signal.aborted
+      ? 'This is taking longer than expected. Your answers are still here; please try again.'
+      : 'Could not connect. Check your connection and try again. Your answers are still here.';
+  } finally {
+    clearTimeout(timeout);
+    restoreFields();
+    submitting = false;
+    form.removeAttribute('aria-busy');
+    if (!submitted) {
+      btn.disabled = false;
+      btn.textContent = 'Submit application';
+    }
   }
 });
+// Keep native submission unavailable until our JSON handler is attached.
+btn.disabled = false;
 </script>
 
+<script src="./scripts/site-ui.js" defer></script>
 </body>
 </html>
