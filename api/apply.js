@@ -54,6 +54,7 @@ export default async function handler(req, res) {
     // payload, so a re-submission can never reset an already-reviewed
     // application back to pending.
     const [saved] = await db.upsert('applications', [row], 'email');
+    if (!saved?.id) throw new Error('Database did not confirm the saved application');
 
     return json(res, 200, {
       ok: true,

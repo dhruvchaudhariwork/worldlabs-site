@@ -9,7 +9,7 @@
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
-import { extname, join, resolve } from 'node:path';
+import { extname, join, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = resolve(import.meta.dirname, '..');
@@ -53,6 +53,8 @@ const MIME = {
 };
 
 async function serveStatic(req, res, pathname) {
+  // Local environment files and Git metadata must never be served as assets.
+  if (pathname.split('/').some(part => part.startsWith('.'))) return false;
   // vercel.json sets cleanUrls, so /apply resolves to apply.html.
   const candidates = [];
   const clean = pathname.replace(/\/$/, '');
@@ -69,7 +71,7 @@ async function serveStatic(req, res, pathname) {
   for (const rel of candidates) {
     // Never let a request escape the project root.
     const full = resolve(ROOT, rel);
-    if (!full.startsWith(ROOT)) continue;
+    if (!full.startsWith(ROOT + sep)) continue;
     try {
       const s = await stat(full);
       if (!s.isFile()) continue;

@@ -59,13 +59,17 @@ export default async function handler(req, res) {
 
   const row = {
     email,
-    specialty: String(body?.specialty || '').trim().slice(0, 80) || null,
-    credits: String(body?.credits || '').trim().slice(0, 2000) || null,
     ip_hash,
   };
+  // A later email-only signup must not erase previously supplied experience.
+  for (const [field, max] of [['specialty', 80], ['credits', 2000]]) {
+    const value = String(body?.[field] || '').trim().slice(0, max);
+    if (value) row[field] = value;
+  }
 
   try {
-    await db.upsert('waitlist', [row], 'email');
+    const [saved] = await db.upsert('waitlist', [row], 'email');
+    if (!saved?.id) throw new Error('Database did not confirm the saved signup');
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('[waitlist] insert failed:', err.message, err.supabase ?? '');

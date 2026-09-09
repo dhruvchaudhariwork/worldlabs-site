@@ -20,7 +20,7 @@ readability, form, navigation, and browser checks completed for the local previe
 
 ## Getting it running
 
-Install Node.js 20 or later. The site has no runtime packages to install.
+Install Node.js 22 or later. Run `npm install` to install the database migration tool. The deployed API uses built-in Node.js features.
 For a quick local preview without a database, run `npm run demo` and open
 `http://localhost:3000`. Demo applications and signups stay in memory and are
 lost when the server stops.
@@ -30,7 +30,7 @@ To connect the API to Supabase, put these four environment variables in
 
 ```
 SUPABASE_URL=https://xxxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJhb...        # Supabase → Settings → API → service_role
+SUPABASE_SECRET_KEY=sb_secret_...         # server-side secret key
 ADMIN_PASSWORD=<pick a long one>          # gates /admin
 SESSION_SECRET=<64 random hex chars>      # signs admin session cookies
 ```
@@ -44,7 +44,7 @@ node -e "console.log(crypto.randomBytes(32).toString('hex'))"
 Then:
 
 ```bash
-npm run setup     # checks env, connectivity, schema, and that RLS is locked down
+npm run setup     # checks environment, table access, and optional public-key access
 npm run dev       # http://localhost:3000
 npm test          # automated tests, no network needed
 ```
@@ -53,11 +53,13 @@ In Windows PowerShell, use `npm.cmd` if the execution policy blocks `npm.ps1`.
 
 ### Applying the schema
 
-Supabase's REST API can't run DDL, so this is a copy-paste, once:
+Add the provider's `POSTGRES_URL` connection string to `.env.local`, then run
+`npm run migrate:community`. This creates the private application and waitlist
+tables and verifies their permissions. Alternatively, run `sql/community.sql`
+in Supabase's SQL Editor. Neither method creates experimental benchmark tables.
 
-> Supabase → SQL Editor → New query → paste all of `sql/001_init.sql` → Run.
-
-`npm run setup` will tell you if you haven't.
+See [community backend setup](docs/community-backend.md) for the deployment and
+admin workflow. `SUPABASE_SERVICE_ROLE_KEY` remains supported for older projects.
 
 ### Trying it without Supabase
 
@@ -85,6 +87,7 @@ Start the local demo in another terminal, then point the checks at its URL:
 python tests/expert-form-browser.py http://localhost:3000
 python tests/navigation-browser.py --base-url http://localhost:3000
 python tests/home-browser.py http://localhost:3000
+python tests/admin-browser.py http://localhost:3000
 ```
 
 Replace the URL if the preview uses another port, such as `3087`. The expert
@@ -105,7 +108,7 @@ do not establish production persistence.
 | `/research` | A concise explanation of the proposed dataset formats and review approach. |
 | `/community` | Example contributor work, specialties, and application questions. |
 | `/apply` | Expert application. Posts to `/api/apply`; production storage uses Postgres. |
-| `/admin` | Password-gated review queue. View, search, approve, reject, annotate. |
+| `/admin` | Private application and waitlist inboxes with search, pagination, review statuses, and notes. |
 | `/benchmark` | "In progress" screen with an animated hourglass and a link home. |
 | `/join` | Waitlist signup. Posts to `/api/waitlist`; persistence depends on the server mode. |
 
@@ -119,26 +122,28 @@ Blog pages have been removed from the public site.
 | `POST /api/waitlist` | public | Join the waitlist |
 | `GET /api/benchmark/leaderboard` | public | Read experimental aggregates; not used by the public benchmark page |
 | `POST /api/admin/login` \| `logout` \| `GET session` | — | Admin session |
-| `GET /api/admin/applications` | admin | The review queue |
+| `GET /api/admin/applications` | admin | Paginated application review queue and status counts |
+| `GET /api/admin/waitlist` | admin | Paginated waitlist signups and submitted credits |
 | `POST /api/admin/decide` | admin | Approve / reject / annotate |
 | `POST /api/benchmark/ingest` | admin | Register models, environments, runs, scorecards |
 
 ## The security model, in one paragraph
 
-Every table has RLS enabled with **no** permissive policies, so the public
-`anon` key can read and write nothing even if it leaks. All database access goes
-through serverless functions holding the `service_role` key, which never leaves
+The community schema enables RLS and revokes public and member access to both
+submission tables. All database access goes
+through serverless functions holding the Supabase secret key (or legacy `service_role` key), which never leaves
 the server. Admin auth is a shared password exchanged for an HMAC-signed,
 `httpOnly` session cookie — page JavaScript cannot read it, and every admin
 endpoint re-checks it server-side, so hiding a `<div>` is never what protects
 the data. IP addresses are stored only as salted hashes.
 
-If you ever add an RLS policy, re-run `npm run setup` with `SUPABASE_ANON_KEY`
-also set: it will tell you if the public key can suddenly read applications.
+Run `npm run setup` with `SUPABASE_PUBLISHABLE_KEY` (or legacy `SUPABASE_ANON_KEY`)
+to check that public reads are denied or return no rows. Empty tables alone do
+not prove the permissions are correct; the migration also verifies table grants.
 
 ## Experimental scoring backend
 
-The schema accepts partial 0–10 scorecards associated with approved applicants.
+The optional legacy schema in `sql/001_init.sql` accepts partial 0–10 scorecards associated with approved applicants.
 An admin submits those records; that does not authenticate the reviewer or
 prove that a build was played. The API requires three distinct panelists across
 a model's runs, not per run or category. It does not establish independence.
@@ -184,7 +189,7 @@ curl -b /tmp/c -X POST localhost:3000/api/benchmark/ingest \
 
 ## Deploying
 
-Vercel picks up `api/*.js` automatically — no build step, no dependencies.
+Vercel picks up `api/*.js` automatically. The API needs no build step or runtime SDK.
 Set the four environment variables in **Vercel → Settings → Environment
 Variables** (they are not read from `.env.local` in production).
 

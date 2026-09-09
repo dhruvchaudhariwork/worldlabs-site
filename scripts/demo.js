@@ -14,8 +14,9 @@ const url = await fake.listen();
 
 process.env.SUPABASE_URL = url;
 process.env.SUPABASE_SERVICE_ROLE_KEY = 'demo-key';
-process.env.ADMIN_PASSWORD ||= 'demo';
-process.env.SESSION_SECRET ||= 'demo-session-secret-not-for-production';
+process.env.SUPABASE_SECRET_KEY = 'demo-key';
+process.env.ADMIN_PASSWORD = 'demo';
+process.env.SESSION_SECRET = 'demo-session-secret-not-for-production';
 process.env.WL_DEMO = '1';
 
 console.log('\n  ┌─────────────────────────────────────────────────────┐');
