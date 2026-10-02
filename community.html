@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Community | World Labs</title>
-<meta name="description" content="Help create expert gaming data through prompts, critiques, and comparisons. Register interest in future paid projects.">
+<meta name="description" content="Join game developers, designers, technical artists, and QA specialists creating expert demonstrations and evaluations for AI in interactive worlds. Register interest in future paid projects.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,172 +13,32 @@
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico?v=20261001-mark" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark" sizes="180x180">
 
-<style>
-  /* ── Community hero ── */
-  .cm-hero {
-    max-width: var(--mk-maxw);
-    margin: 0 auto;
-    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-16);
-    text-align: left;
-  }
-  @media (max-width: 600px) {
-    .cm-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-10); }
-  }
-  .cm-kicker {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-    margin-bottom: var(--space-5);
-  }
-  .cm-title {
-    font-size: var(--text-hero);
-    font-weight: var(--display-weight);
-    letter-spacing: var(--tracking-display);
-    line-height: 1.02;
-    color: var(--color-text);
-    margin-bottom: var(--space-5);
-  }
-  .cm-tagline {
-    font-size: var(--text-lg);
-    color: var(--color-text-secondary);
-    font-weight: 400;
-    margin: 0 0 var(--space-8);
-    max-width: 44ch;
-  }
-  .cm-intro {
-    font-size: var(--text-base);
-    color: var(--color-text-secondary);
-    max-width: 56ch;
-    margin: 0 0 var(--space-8);
-    line-height: 1.7;
-  }
 
-  /* ── Specialty cards ── */
-  .cm-specialties {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-4);
-  }
-  .cm-specialty {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    padding: var(--space-6) var(--space-4);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-3);
-    text-align: center;
-  }
-  .cm-specialty svg {
-    width: 26px;
-    height: 26px;
-    color: var(--color-text);
-    opacity: 0.75;
-  }
-  .cm-specialty span {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text);
-    line-height: 1.3;
-  }
-  @media (max-width: 900px) { .cm-specialties { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 560px) { .cm-specialties { grid-template-columns: repeat(2, 1fr); } }
-
-  /* ── Value banner (scroll-fill) ── */
-  .cm-value {
-    max-width: 1000px;
-    margin: 0;
-    font-size: var(--text-xl);
-    font-weight: var(--display-weight);
-    letter-spacing: var(--tracking-tight);
-    line-height: 1.4;
-    color: var(--color-text);
-  }
-  [data-scroll-fill] .w {
-    color: var(--color-text-tertiary);
-    transition: color 0.25s linear;
-  }
-  [data-scroll-fill] .w.on {
-    color: var(--color-text);
-  }
-
-  /* ── FAQ ── */
-  .cm-faq {
-    max-width: 820px;
-    margin: 0;
-    text-align: left;
-    border: 1px solid var(--color-border);
-    border-radius: 16px;
-    background: var(--color-surface);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    overflow: hidden;
-  }
-  .cm-faq details { border-bottom: 1px solid var(--color-border); }
-  .cm-faq details:last-child { border-bottom: none; }
-  .cm-faq summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-4);
-    padding: var(--space-5) var(--space-6);
-    font-size: var(--text-base);
-    font-weight: 500;
-    color: var(--color-text);
-  }
-  .cm-faq summary::-webkit-details-marker { display: none; }
-  .cm-faq summary::after {
-    content: '+';
-    font-size: var(--text-lg);
-    font-weight: 300;
-    color: var(--color-text-tertiary);
-    flex-shrink: 0;
-    transition: transform var(--transition-interactive);
-  }
-  .cm-faq details[open] summary::after { transform: rotate(45deg); }
-  .cm-faq .cm-faq-body {
-    padding: 0 var(--space-6) var(--space-5);
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    line-height: 1.7;
-    max-width: 64ch;
-  }
-  .cm-proof {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
-    padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-    background: var(--color-surface);
-  }
-  .cm-proof-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-success);
-    animation: cm-proof-pulse 2.4s ease-in-out infinite;
-  }
-  @keyframes cm-proof-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
-</style>
 <link rel="stylesheet" href="./experts.css">
 <link rel="stylesheet" href="./shared-ui.css">
+<link rel="stylesheet" href="./community.css">
+<link rel="canonical" href="https://tryworldlabs.com/community">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="World Labs">
+<meta property="og:title" content="Community | World Labs">
+<meta property="og:description" content="Join game developers, designers, technical artists, and QA specialists creating expert demonstrations and evaluations for AI in interactive worlds. Register interest in future paid projects.">
+<meta property="og:url" content="https://tryworldlabs.com/community">
+<meta property="og:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Community | World Labs">
+<meta name="twitter:description" content="Join game developers, designers, technical artists, and QA specialists creating expert demonstrations and evaluations for AI in interactive worlds. Register interest in future paid projects.">
+<meta name="twitter:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta name="twitter:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
 </head>
-<body class="expert-page">
+<body class="expert-page community-page">
 
 <div id="page-content">
 
@@ -202,15 +62,15 @@
 
     <div class="mk-tags-pill">
       <span>Community</span>
-      <span>The Panel</span>
+      <span>For experts</span>
     </div>
   </div>
 
-  <a href="./apply.html" class="mk-cta-btn" aria-label="Apply to the panel">
+  <a href="./apply.html" class="mk-cta-btn" aria-label="Join the community">
     <span class="mk-cta-circle">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </span>
-    <span class="mk-cta-label">Apply to the Panel</span>
+    <span class="mk-cta-label">Join the community</span>
   </a>
 </nav>
 
@@ -218,7 +78,7 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
-    <a href="./index.html#datasets" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="./index.html#products" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
     <a href="./research.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Research</a>
     <a href="./community.html" class="mk-overlay-link" aria-current="page"><span class="mk-overlay-num">04</span>Community</a>
     <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
@@ -228,41 +88,67 @@
   </div>
 </div>
 
-<main class="ex-community" id="main-content">
- <section class="ex-hero">
-  <div><div class="ex-eyebrow">The World Labs community</div><h1>Game craft.<br>Human judgment.</h1><p class="ex-lead">Help shape what AI learns about games. Bring your experience to projects that turn expert prompts, critiques, and preferences into useful data.</p><div class="ex-actions"><a href="./apply.html" class="btn btn-primary">Apply as an expert <span aria-hidden="true">↗</span></a><a href="#projects" class="ex-text-link">Explore the work ↓</a></div><p class="ex-caption">Future paid projects · Remote · Matched to your expertise</p></div>
-  <aside class="ex-feature"><div class="ex-eyebrow">The kind of judgment we mean</div><div class="ex-comparison" aria-hidden="true"><span>A</span><span>or</span><span>B</span></div><h2>Which combat system<br>fits the game?</h2><p>Compare two designs for the same brief. Explain the difference in timing, counterplay, and feel.</p><div class="ex-feature-foot">Example project <span>Combat / game feel</span></div></aside>
+<div class="cp-subnav cp-wrap">
+  <span>A community for game specialists</span>
+  <nav aria-label="Community navigation"><a href="./community.html#projects">Projects</a><a href="./community.html#how-it-works">How it works</a><a href="./handbook.html">Handbook</a></nav>
+</div>
+
+<main id="main-content">
+ <section class="cp-hero" aria-labelledby="community-title">
+  <div class="cp-orbits" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="cp-hero-content">
+   <span class="cp-kicker">The World Labs community</span>
+   <h1 id="community-title">You know games.<br>Help AI learn the craft.</h1>
+   <p>Build playable worlds, fix what breaks, and test what happens. Turn your game development expertise into demonstrations and evaluations that help AI learn.</p>
+   <div class="cp-actions"><a href="./apply.html" class="cp-button">Join the community <span aria-hidden="true">↗</span></a></div>
+   <p class="cp-caption">Applications open · First projects in development</p>
+  </div>
  </section>
- <section class="ex-section" id="projects"><div class="ex-section-head"><div class="ex-eyebrow">01 / The work</div><h2>More than a rating.</h2><p>Different projects call for different parts of your craft.</p></div><div class="ex-project-grid">
- <article><span class="ex-number">01</span><h3>Write the brief</h3><p>Turn a design idea into a complete prompt, with a clear genre, constraints, and intended experience.</p><span class="ex-tag">Expert prompts</span></article>
- <article><span class="ex-number">02</span><h3>Explain what works</h3><p>Review a generated economy, level, or mechanic. Point to the evidence and suggest what to improve.</p><span class="ex-tag">Evaluation &amp; critique</span></article>
- <article><span class="ex-number">03</span><h3>Make the call</h3><p>Compare alternatives against a shared brief. Capture the tradeoffs behind your preference.</p><span class="ex-tag">Preference data</span></article>
- </div><p class="ex-caption">These are examples. Projects may also involve creating demonstrations, revising designs, or exploring other gaming subjects and styles.</p></section>
- <section class="ex-section ex-two-col"><div class="ex-section-head"><div class="ex-eyebrow">02 / Your expertise</div><h2>Built by people<br>who know games.</h2><p>We are looking for developers with shipped credits and the ability to explain their design decisions. AI experience is optional.</p></div><div><div class="ex-specialties"><span>Combat &amp; game feel</span><span>Systems &amp; economies</span><span>Level design</span><span>Narrative &amp; quests</span><span>UX &amp; onboarding</span><span>Art direction</span><span>QA &amp; playtesting</span><span>Technical &amp; engine</span></div><p class="ex-caption">Other specialties are welcome. Tell us what you know best.</p></div></section>
- <section class="ex-section"><div class="ex-section-head"><div class="ex-eyebrow">03 / Getting started</div><h2>A clear path to your first project.</h2></div><div class="ex-steps"><div><span>01</span><h3>Share your experience</h3><p>Tell us what you have shipped and where your expertise runs deepest.</p></div><div><span>02</span><h3>Find the right fit</h3><p>When a pilot fits, we plan to discuss a paid sample assignment.</p></div><div><span>03</span><h3>Agree on the work</h3><p>Review the scope, rate, and timing before accepting a project.</p></div></div><p class="ex-caption">We are gathering contributors as the first projects take shape. Applying does not guarantee work.</p></section>
- <section class="ex-section ex-two-col" id="faq"><div class="ex-section-head"><div class="ex-eyebrow">04 / Questions</div><h2>Before you apply.</h2></div><div class="cm-faq">
-      <details>
-        <summary>What does the work actually look like?</summary>
-        <div class="cm-faq-body">You might write a game-design prompt, critique a generated economy, or compare two combat systems. Other projects could involve creating an example or revising a level. Each brief will explain the task and what to submit.</div>
-      </details>
-      <details>
-        <summary>Are projects paid?</summary>
-        <div class="cm-faq-body">We are planning paid projects and sample assignments. You will receive the rate, scope, and payment timing before accepting work. We are collecting interest now, so applying does not guarantee an assignment.</div>
-      </details>
-      <details>
-        <summary>What's the time commitment?</summary>
-        <div class="cm-faq-body">It will vary by project. Each invitation will include the expected time and deadline so you can decide whether it fits your schedule.</div>
-      </details>
-      <details>
-        <summary>Do I need AI experience?</summary>
-        <div class="cm-faq-body">No. We are looking for shipped game experience and the ability to explain your decisions. Your specialty matters more than familiarity with AI tools.</div>
-      </details>
-      <details>
-        <summary>How will my contributions be used?</summary>
-        <div class="cm-faq-body">Projects are intended to create data for AI training or evaluation. Before you accept a project, we will agree how your work may be used, whether you receive attribution, and any confidentiality terms.</div>
-      </details></div></section>
- <section class="ex-invitation"><div><h2>Bring your point of view.</h2><p>Your experience is the starting point.</p></div><div class="ex-actions"><a href="./apply.html" class="btn btn-primary">Apply as an expert ↗</a><a href="./join.html" class="ex-text-link">Join the waitlist</a></div></section>
+ <div class="cp-wrap">
+  <section class="cp-section cp-intro" aria-label="About the community">
+   <article><h2>A place for your expertise.</h2><p>We’re bringing together developers, designers, technical artists, and QA specialists. Our goal is AI that can act in and create interactive worlds, starting with games and game engines.</p><a class="cp-link" href="./blog/beyond-code-interactive-worlds.html">Why this work matters <span class="cp-arrow" aria-hidden="true">↗</span></a></article>
+   <article><h2>Show the work behind the result.</h2><p>Build from a brief, diagnose a failed implementation, or review a design. Connect your changes and judgments to what you observed and how you tested the result.</p><a class="cp-link" href="./handbook.html">Read the handbook <span class="cp-arrow" aria-hidden="true">↗</span></a></article>
+   <article><h2>Projects that fit your craft.</h2><p>Future paid assignments will be matched to your specialty. You’ll see the scope, rate, and timing before deciding to join.</p><a class="cp-link" href="#projects">Explore project directions <span class="cp-arrow" aria-hidden="true">↓</span></a></article>
+  </section>
+  <section class="cp-section cp-craft" aria-labelledby="craft-title">
+   <div><span class="cp-kicker">Many disciplines. Shared curiosity.</span><h2 id="craft-title">The details you notice.<br>The difference you make.</h2><p>We need people who can build, debug, test, and judge interactive experiences. Tell us your specialty and the engines or tools you know best, from Roblox Studio to Unity, Unreal, and beyond.</p><a class="cp-link" href="./apply.html">Bring your specialty <span class="cp-arrow" aria-hidden="true">↗</span></a></div>
+   <ul class="cp-specialties" role="list"><li>Gameplay &amp; engine code <span>01</span></li><li>QA &amp; playtesting <span>02</span></li><li>Combat &amp; game feel <span>03</span></li><li>Systems &amp; economies <span>04</span></li><li>Levels &amp; worlds <span>05</span></li><li>Technical art &amp; 3D <span>06</span></li><li>Narrative &amp; quests <span>07</span></li><li>UX &amp; player experience <span>08</span></li></ul>
+  </section>
+  <section class="cp-section cp-process" id="how-it-works" aria-labelledby="process-title">
+   <div class="cp-section-heading"><span class="cp-kicker">From application to assignment</span><h2 id="process-title">Find your place.<br>Then your project.</h2><p>Joining the community is the first step. Every project has its own requirements and selection process.</p><ul class="cp-benefits" role="list"><li><span aria-hidden="true">↗</span> Opportunities matched to your experience</li><li><span aria-hidden="true">↗</span> Clear expectations before you start</li><li><span aria-hidden="true">↗</span> Remote work with agreed deadlines</li><li><span aria-hidden="true">↗</span> Compensation defined for each project</li></ul><a class="cp-link" href="./handbook.html#joining">What happens after applying <span class="cp-arrow" aria-hidden="true">↗</span></a></div>
+   <ol class="cp-steps"><li><h3>Tell us what you know.</h3><p>Share your portfolio, specialties, engine experience, and availability through the expert application.</p></li><li><h3>We review for a match.</h3><p>We’ll review applications as projects take shape and contact you by email if there’s a fit. An application isn’t a project offer.</p></li><li><h3>Get familiar with the work.</h3><p>A project may include a paid sample or calibration task. You’ll receive the brief and terms before deciding to take part.</p></li><li><h3>Agree, then get started.</h3><p>Selected contributors agree on deliverables, rates, and timing, then receive the instructions for their assignment.</p></li></ol>
+  </section>
+  <section class="cp-section" id="projects" aria-labelledby="projects-title">
+   <div class="cp-project-heading"><div class="cp-section-heading"><span class="cp-kicker">Where we’re starting</span><h2 id="projects-title">A few ways to contribute.</h2></div><span class="cp-status">Projects in development</span></div>
+   <div class="cp-projects-layout">
+    <aside class="cp-project-note"><h3>Your next project starts with you.</h3><p>There are no open project assignments yet. Apply to share your experience so we can consider you when a relevant opportunity takes shape.</p><a class="cp-link" href="./apply.html">Join the community <span class="cp-arrow" aria-hidden="true">↗</span></a></aside>
+    <div><div class="cp-project-list">
+     <details><summary><div><h3>Game developer — create from a brief</h3><small>Playable prototypes / demonstrations · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Build a small playable experience from scratch within a defined scope. For example, create a short platformer with checkpoints, a moving platform, and a finish condition.</p><p><strong>Example deliverable:</strong> An editable project, a playable build, and evidence that the required behaviors work. Depending on the assignment, include intermediate versions, a walkthrough of key steps, and explanations of design decisions.</p></div></details>
+     <details><summary><div><h3>Gameplay programmer — diagnose &amp; repair</h3><small>Engine behavior / multiplayer · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Inspect an AI-generated implementation of a shared door that opens for one player but stays closed for another. Reproduce the failure, identify the cause, and correct the behavior.</p><p><strong>Example deliverable:</strong> Before-and-after project versions, the changes you made, a diagnosis tied to observed behavior, and retests covering both players and previously working interactions.</p></div></details>
+     <details><summary><div><h3>QA specialist — test &amp; evaluate</h3><small>Behavior checks / reproducible evidence · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Turn a task brief into repeatable checks, then evaluate an AI-created build. For a checkpoint task, verify where a player respawns before and after touching the checkpoint.</p><p><strong>Example deliverable:</strong> The test setup, steps, expected and observed outcomes, and supporting logs or clips. Report requirement checks separately from judgments about clarity or player experience.</p></div></details>
+     <details><summary><div><h3>Combat designer — compare &amp; critique</h3><small>Combat / game feel · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Compare two playable prototypes made for the same brief. Explain differences in telegraphing, recovery windows, feedback, and counterplay.</p><p><strong>Example deliverable:</strong> A preference, criterion-level tradeoffs, and evidence from play. Ties and insufficient evidence are valid outcomes.</p></div></details>
+     <details><summary><div><h3>Systems designer — evaluate &amp; revise</h3><small>Economies / progression · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Review a crafting or upgrade economy. Identify resource bottlenecks, dominant purchases, or unreachable recipes under the brief’s stated assumptions.</p><p><strong>Example deliverable:</strong> An evidence-backed critique, corrected tables, and the reasoning behind your changes.</p></div></details>
+     <details><summary><div><h3>Level designer — build &amp; explain</h3><small>Levels / onboarding · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Create or revise a puzzle level that introduces a mechanic through play. Explain how its layout teaches the player and preserves solvability.</p><p><strong>Example deliverable:</strong> Versioned level artifacts, design rationale, playtest observations, and a record of revisions and retests.</p></div></details>
+     <details><summary><div><h3>Game specialist — write the brief</h3><small>Across disciplines · Example assignment</small></div><span aria-hidden="true">+</span></summary><div class="cp-project-body"><p>Turn a design intention into a self-contained prompt. Specify the genre, audience, platform, constraints, and intended player experience.</p><p><strong>Example deliverable:</strong> An expert-authored brief, context tags, required behaviors, and an explanation of the important choices.</p></div></details>
+    </div><p class="cp-caption cp-project-disclaimer">These illustrate possible work, not available roles. Scope and requirements will be defined for each commissioned project.</p></div>
+   </div>
+  </section>
+  <section class="cp-section cp-faq-layout" id="faq" aria-labelledby="faq-title">
+   <div class="cp-section-heading"><span class="cp-kicker">A little more context</span><h2 id="faq-title">Before you join.</h2><p>More about the work, the process, and what to expect.</p><a class="cp-link" href="./handbook.html">The contributor handbook <span class="cp-arrow" aria-hidden="true">↗</span></a></div>
+   <div class="cp-faq">
+    <details><summary>What happens after I apply?</summary><div>Your application goes to our review team. We’ll reach out by email if your experience fits an upcoming project. For now, updates are handled by email; there is no contributor login or application-status dashboard.</div></details>
+    <details><summary>Are there paid projects available now?</summary><div>Our first projects are in development. We are gathering expert interest, and there are no open assignments yet. Future invitations will include the scope, compensation, and payment timing before you accept.</div></details>
+    <details><summary>What experience are you looking for?</summary><div>We’re looking for hands-on expertise in development, design, technical art, QA, or playtesting. Show us work you’ve built, designed, debugged, or tested, and explain your contribution and tools. Independent prototypes, studio projects, and specialist portfolios can all demonstrate relevant expertise. You do not need prior AI experience.</div></details>
+    <details><summary>What would I submit?</summary><div>It depends on the assignment: a playable project built from a brief, a corrected implementation, test results, a critique, or a comparison. Some projects will also ask for intermediate versions, recorded steps, and explanations of key decisions so the result can be understood in context. The brief will define the required files, evidence, and review criteria before you start.</div></details>
+    <details><summary>How much time will I need?</summary><div>Availability requirements will vary. Each project invitation will describe the expected time and deadlines so you can decide whether the work fits your schedule.</div></details>
+    <details><summary>Does joining guarantee project work?</summary><div>No. Project selection will depend on your specialty, availability, relevant work, and any project-specific qualification. There may be a wait before a suitable assignment becomes available.</div></details>
+    <details><summary>How will my work be used?</summary><div>Projects are intended to create data for AI training or evaluation. Each project will define permitted use, confidentiality, and attribution before work begins. Read more in the <a href="./handbook.html#work">handbook</a>.</div></details>
+   </div>
+  </section>
+  <section class="cp-closing" aria-labelledby="join-title"><div><span class="cp-kicker">Make room for your kind of expertise</span><h2 id="join-title">Your experience belongs<br>in the conversation.</h2><p>Share what you know. We’ll look for the right fit.</p></div><a class="cp-button" href="./apply.html">Join the community <span aria-hidden="true">↗</span></a></section>
+ </div>
 </main>
+
 
 </div><!-- end page-content -->
 
@@ -278,18 +164,19 @@
     <div class="mk-footer-cols">
       <div>
         <div class="mk-footer-head">Explore</div>
-        <a href="./index.html#datasets">Datasets</a>
+        <a href="./index.html#products">Datasets</a>
         <ul role="list">
           <li><a href="./research.html">Research</a></li>
           <li><a href="./benchmark.html">Benchmark</a></li>
           <li><a href="./community.html">Community</a></li>
+          <li><a href="./handbook.html">Contributor handbook</a></li>
         </ul>
       </div>
       <div>
         <div class="mk-footer-head">Get in touch</div>
         <ul role="list">
-          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
-          <li><a href="./apply.html">Apply to the Panel</a></li>
+          <li><a href="mailto:dhruv@tryworldlabs.com">dhruv@tryworldlabs.com</a></li>
+          <li><a href="./apply.html">Join the community</a></li>
           <li><a href="./join.html">Join the Waitlist</a></li>
         </ul>
       </div>
@@ -305,71 +192,7 @@
 </footer>
 
 
-<script>
-// Waitlist social proof: rendered only from the live count, and only once it
-// has cleared a real milestone. Below that (or on any error) nothing shows.
-(function(){
-  const el = document.getElementById('cm-proof');
-  if (!el) return;
-  fetch('/api/waitlist')
-    .then(r => r.ok ? r.json() : null)
-    .then(d => {
-      if (!d || !d.milestone) return;
-      document.getElementById('cm-proof-text').textContent =
-        d.milestone + '+ devs, playtesters & designers on the waitlist';
-      el.hidden = false;
-    })
-    .catch(() => {});
-})();
 
-
-// Background video autoplay
-(function(){
-  document.querySelectorAll('video').forEach(v => {
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.setAttribute('playsinline', '');
-    v.play().catch(() => {});
-  });
-  const retry = () => {
-    if (document.querySelector('.mk-overlay.open')) return;
-    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
-  };
-  window.addEventListener('touchstart', retry, { once: true, passive: true });
-  window.addEventListener('click', retry, { once: true });
-})();
-
-// Scroll-fill: words darken as the element scrolls through the viewport
-(function(){
-  const els = document.querySelectorAll('[data-scroll-fill]');
-  if (!els.length) return;
-  els.forEach(el => {
-    const words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map(w => '<span class="w">' + w + '</span>').join(' ');
-  });
-  function update(){
-    els.forEach(el => {
-      const r = el.getBoundingClientRect();
-      const start = innerHeight * 0.85;
-      const end = innerHeight * 0.35;
-      const p = Math.min(1, Math.max(0, (start - r.top) / (start - end)));
-      const spans = el.querySelectorAll('.w');
-      const n = Math.round(p * spans.length);
-      spans.forEach((s, i) => s.classList.toggle('on', i < n));
-    });
-  }
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update);
-  update();
-})();
-
-// Fade in
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-
-</script>
 
 <script src="./scripts/site-ui.js" defer></script>
 </body>

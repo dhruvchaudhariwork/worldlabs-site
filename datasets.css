@@ -2,6 +2,15 @@
 .home-page { --home-ink:#222421; --home-muted:#686b64; --home-line:#e3e5df; --home-surface:#f5f6f2; background:#fff; color:var(--home-ink); }
 
 .home-page .mk-video-wrap::after { display:none; }
+/* Transparent navigation stays legible over the video and lighter sections. */
+.home-page .mk-nav { background:transparent; color:#fff; mix-blend-mode:difference; }
+.home-page .mk-nav :is(.mk-logo,.mk-menu-btn,.mk-cta-btn,.mk-menu-circle,.mk-cta-circle) { background:transparent; color:inherit; }
+.home-page .mk-logo { padding:0; border-radius:0; }
+.home-page .mk-logo > svg rect { fill:none; }
+.home-page .mk-logo > svg path { stroke:currentColor; }
+.home-page .mk-nav :is(.mk-menu-label,.mk-cta-label) { color:inherit; }
+.home-page .mk-nav :is(a,button):focus-visible { outline-color:currentColor; box-shadow:none; }
+.home-page .mk-hero .mk-subtitle { display:inline-flex; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.94); }
 
 .home-page .mk-heading { font-size:clamp(3rem,5.6vw,4.75rem); line-height:1.04; letter-spacing:-.055em; font-weight:400; margin:24px 0; color:var(--home-ink); }
 .home-page .mk-subtitle { font-size:12px; color:var(--home-muted); gap:8px; }
@@ -115,9 +124,38 @@
 .home-page .wl-waitlist [aria-invalid="true"] { border-color:#a53f34; }
 .home-page .wl-waitlist [disabled] { opacity:.6; cursor:default; }
 .home-page .waitlist-msg { font-size:13px; }
-.home-page .video-toggle { position:absolute; z-index:2; top:104px; right:max(20px,calc((100% - 1120px)/2)); display:inline-flex; align-items:center; gap:8px; min-height:44px; border:1px solid #dce0d4; border-radius:7px; padding:8px 12px; background:rgba(255,255,255,.94); color:#53594b; font-size:12px; }
-.home-page .video-toggle[hidden] { display:none; }
-.home-page .video-toggle::before { content:'\2161'; font-size:15px; }
-.home-page .video-toggle[data-paused="true"]::before { content:'\25B7'; }
 .home-page .wl-privacy-note { font-size:12px; line-height:1.6; color:var(--home-muted); margin:14px 0 0; }
 .home-page .wl-privacy-note a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
+
+/* Two product directions, with the same quiet diagrams as the dataset cards. */
+.stack-heading { display:grid; grid-template-columns:1.1fr 1fr; align-items:end; gap:48px; margin-bottom:38px; }
+.stack-heading .wl-lead { max-width:38ch; font-size:15px; }
+.stack-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:48px; }
+.stack-product { min-width:0; display:flex; flex-direction:column; }
+.stack-data { --stack-paper:#f1f3eb; --stack-ink:#748264; }
+.stack-tools { --stack-paper:#eef0f4; --stack-ink:#778495; }
+.stack-art { display:flex; flex-direction:column; background:var(--stack-paper); color:var(--stack-ink); border-radius:12px; overflow:hidden; margin-bottom:28px; }
+.stack-art svg { width:100%; height:235px; }
+.stack-art-caption { display:block; text-align:center; padding:0 14px 22px; font-size:12px; color:#596451; }
+.stack-tools .stack-art-caption { color:#586576; }
+.stack-product-top { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding-top:22px; border-top:1px solid var(--home-line); font-size:12px; color:var(--home-muted); margin-bottom:18px; }
+.stack-status { border:1px solid #dce1d5; border-radius:999px; padding:3px 9px; font-size:11px; color:#5d6953; }
+.stack-tools .stack-status { border-color:#dce1e8; color:#586576; }
+.stack-product h3 { font-size:29px; font-weight:400; letter-spacing:-.035em; line-height:1.2; margin-bottom:16px; }
+.stack-product > p { color:var(--home-muted); font-size:15px; line-height:1.75; margin:0; max-width:49ch; }
+.stack-product > .stack-detail { font-size:12px; margin:20px 0 24px; }
+.stack-contact { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:auto; padding:15px 18px; min-height:50px; border:1px solid #d6dbd0; border-radius:7px; color:var(--home-ink); text-decoration:none; font-size:13px; }
+.stack-contact:hover { background:var(--stack-paper); border-color:var(--stack-ink); }
+.stack-contact span { font-size:17px; }
+@media(max-width:800px) {
+ .stack-grid,.stack-heading { gap:28px; }
+ .stack-art svg { height:205px; }
+ .stack-product h3 { font-size:25px; }
+}
+@media(max-width:600px) {
+ .stack-heading { grid-template-columns:1fr; gap:20px; margin-bottom:28px; }
+ .stack-grid { grid-template-columns:1fr; gap:38px; }
+ .stack-art { margin-bottom:22px; }
+ .stack-art svg { height:185px; }
+ .stack-product > p { font-size:14px; }
+}

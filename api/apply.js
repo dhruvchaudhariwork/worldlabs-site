@@ -64,7 +64,7 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('[apply] insert failed:', err.message, err.supabase ?? '');
     return json(res, 500, {
-      error: 'Something broke on our end. Email hello@tryworldlabs.com and we’ll sort it out.',
+      error: 'Something broke on our end. Email dhruv@tryworldlabs.com and we’ll sort it out.',
     });
   }
 }

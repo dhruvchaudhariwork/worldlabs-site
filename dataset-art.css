@@ -1,0 +1,60 @@
+﻿/* Large monochromatic vignettes, with one visual story for each world. */
+.ds-combat { --ds-art-bg:#edf1e5; --ds-art-ink:#566945; --ds-art-light:#dfe7d1; --ds-art-mid:#b2c399; }
+.ds-economy { --ds-art-bg:#f6efe1; --ds-art-ink:#94713e; --ds-art-light:#ede0c5; --ds-art-mid:#d4b785; }
+.ds-levels { --ds-art-bg:#eaf0f1; --ds-art-ink:#527c86; --ds-art-light:#d4e1e4; --ds-art-mid:#a0bdc4; }
+.ds-concepts { --ds-art-bg:#efecf5; --ds-art-ink:#7c6898; --ds-art-light:#e0d8ec; --ds-art-mid:#bbaacf; }
+.ds-card { background:var(--ds-art-bg); border-color:var(--ds-art-bg); }
+.ds-card:hover { border-color:var(--ds-art-mid); }
+.ds-card > p { max-width:420px; }
+.ds-art { height:auto; aspect-ratio:520/300; margin:0 -28px; border-radius:0; color:var(--ds-art-ink); background:var(--ds-art-bg); }
+.ds-art svg { overflow:hidden; }
+.ds-art .art-paper { fill:color-mix(in srgb,var(--ds-art-bg) 30%,white); }
+.ds-art .art-soft { fill:var(--ds-art-light); }
+.ds-art .art-muted { fill:var(--ds-art-mid); }
+.ds-art .art-solid { fill:currentColor; }
+.ds-art .art-shadow { fill:currentColor; opacity:.1; }
+.ds-art .art-outline { stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+.ds-art .art-inverse-line { stroke:var(--ds-art-bg); stroke-linecap:round; stroke-linejoin:round; }
+.ds-art .art-label { fill:currentColor; font-family:var(--font-mono),monospace; font-size:11px; font-weight:500; letter-spacing:1.2px; }
+.ds-art .art-chip { fill:currentColor; font-family:inherit; font-size:14px; }
+.ds-art .art-inverse { fill:var(--ds-art-bg); }
+
+/* A timed attack and counter, with a rhythm beneath the exchange. */
+.art-strike { animation:art-strike 6s ease-in-out infinite; }
+.art-counter { animation:art-counter 6s ease-in-out infinite; }
+.art-impact { animation:art-impact 6s ease-in-out infinite; }
+.art-beat { transform-box:fill-box; transform-origin:center; animation:art-beat 3s ease-in-out var(--beat) infinite; }
+@keyframes art-strike { 0%,15%,75%,100% { transform:translateX(-7px) rotate(0deg); } 35%,45% { transform:translateX(12px) rotate(2deg); } }
+@keyframes art-counter { 0%,18%,75%,100% { transform:translate(6px,3px); } 38%,48% { transform:translate(-8px,-5px); } }
+@keyframes art-impact { 0%,25%,65%,100% { opacity:0; } 38%,44% { opacity:1; } }
+@keyframes art-beat { 0%,100% { transform:scaleY(.65); opacity:.4; } 50% { transform:scaleY(1); opacity:.9; } }
+
+/* Resources grow through the economy's progression loop. */
+.ds-art .art-coin-side { fill:var(--ds-art-mid); stroke:var(--ds-art-ink); stroke-opacity:.22; }
+.ds-art .art-coin-top { fill:var(--ds-art-light); stroke:var(--ds-art-ink); stroke-opacity:.35; }
+.art-stack { animation:art-stack 6s ease-in-out var(--delay) infinite; }
+.art-resource { stroke:currentColor; stroke-width:7; stroke-linecap:round; stroke-dasharray:0 100; animation:art-resource 6s ease-in-out infinite; }
+@keyframes art-stack { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-9px); } }
+@keyframes art-resource { 0% { stroke-dashoffset:0; opacity:0; } 10%,85% { opacity:.8; } 100% { stroke-dashoffset:-100; opacity:0; } }
+
+/* The player and trail follow the same checkpoints. */
+.art-level-route { stroke:currentColor; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:100; animation:art-level-route 10s linear infinite; }
+.art-runner { transform:translate(258px,172px); animation:art-runner 10s linear infinite; }
+@keyframes art-level-route { 0%,8% { stroke-dashoffset:100; opacity:.8; } 92% { stroke-dashoffset:0; opacity:.8; } 100% { stroke-dashoffset:0; opacity:0; } }
+@keyframes art-runner { 0%,8% { transform:translate(75px,231px); } 17.4% { transform:translate(136px,231px); } 26.6% { transform:translate(136px,172px); } 45.4% { transform:translate(258px,172px); } 54.6% { transform:translate(258px,113px); } 73.4% { transform:translate(380px,113px); } 82.5% { transform:translate(380px,54px); } 92%,100% { transform:translate(441px,54px); } 0%,100% { opacity:0; } 8%,92% { opacity:1; } }
+
+/* A brief assembles into a world, surrounded by creative constraints. */
+.art-brief { animation:art-brief 8s ease-in-out infinite; }
+.art-tag { animation:art-tag 8s ease-in-out infinite; }
+.art-tag-late { animation-delay:-4s; }
+@keyframes art-brief { 0%,100% { transform:translateY(2px); } 50% { transform:translateY(-6px); } }
+@keyframes art-tag { 0%,100% { transform:translateY(-4px); } 50% { transform:translateY(5px); } }
+
+/* Keep offscreen artwork at rest; it also works as a static illustration. */
+.ds-card .ds-art .art-motion { animation-play-state:paused; }
+.ds-card.ds-is-playing .ds-art .art-motion { animation-play-state:running; }
+@media(max-width:800px) { .ds-art { margin-inline:-22px; } }
+@media(prefers-reduced-motion:reduce) {
+ .ds-art .art-motion { animation:none !important; }
+ .ds-art .art-resource,.ds-art .art-impact { display:none; }
+}

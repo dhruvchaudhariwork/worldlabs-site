@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Research | World Labs</title>
-<meta name="description" content="How we shape expert gaming datasets around a game's genre, audience, and goals, from prompts and examples to critiques and comparisons.">
+<meta name="description" content="Research on expert game-development data and reliable AI for interactive worlds.">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,130 +13,40 @@
 <link rel="stylesheet" href="./base.css">
 <link rel="stylesheet" href="./style.css">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><path d='M8 10h16M8 16h11M8 22h14' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico?v=20261001-mark" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark" sizes="180x180">
 
 <style>
-  .section-label { color:#686b64; font-size:12px; }
-  .rs-hero {
-    max-width: var(--mk-maxw);
-    margin: 0 auto;
-    padding: calc(var(--space-24) + 56px) var(--space-8) var(--space-12);
-    text-align: left;
-  }
-  @media (max-width: 600px) {
-    .rs-hero { padding: calc(var(--space-16) + 56px) var(--space-4) var(--space-8); }
-  }
-  .rs-kicker {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #686b64;
-    margin-bottom: var(--space-5);
-  }
-  .rs-title {
-    font-size: var(--text-hero);
-    font-weight: var(--display-weight);
-    letter-spacing: var(--tracking-display);
-    line-height: 1.02;
-    color: var(--color-text);
-    margin-bottom: var(--space-5);
-  }
-  .rs-intro {
-    font-size: var(--text-base);
-    color: var(--color-text-secondary);
-    max-width: 60ch;
-    margin: 0;
-    line-height: 1.7;
-  }
-
-  .rs-status {
-    margin-top: var(--space-8);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--color-border);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .rs-contact {
-    max-width: calc(var(--mk-maxw) - 1.5rem);
-    margin: var(--space-10) auto var(--space-16);
-    padding: var(--space-8);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-8);
-    background: #f5f6f2;
-    border: 1px solid #e2e5dc;
-    border-radius: 12px;
-  }
-  .rs-contact h2 {
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -.035em;
-    margin: 0 0 var(--space-4);
-  }
-  .rs-contact p {
-    max-width: 48ch;
-    color: #586052;
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0;
-  }
-  .rs-contact-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-3);
-    flex-shrink: 0;
-  }
-  .rs-contact .btn {
-    min-height: 44px;
-    justify-content: center;
-    border-radius: 7px;
-    font-size: 14px;
-  }
-  .rs-contact .btn-primary {
-    background: #242620;
-    border-color: #242620;
-    color: #fff;
-  }
-  @media (max-width: 1200px) {
-    .rs-contact { margin-left: var(--space-6); margin-right: var(--space-6); }
-  }
-  @media (max-width: 700px) {
-    .rs-contact { flex-direction: column; align-items: stretch; padding: var(--space-6); }
-    .rs-contact-actions { align-items: flex-start; }
-  }
-
-  /* Keep the research reading width and palette aligned with the main site. */
-  .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { max-width:1120px; margin-left:auto; margin-right:auto; }
-  .research-page .rs-hero { padding:140px 0 56px; }
-  .research-page .rs-title { max-width:900px; font-size:clamp(2.8rem,5vw,4.5rem); font-weight:400; letter-spacing:-.05em; line-height:1.08; }
-  .research-page .section { padding:40px 0 64px; }
-  .research-page .section-title { font-size:clamp(1.9rem,3vw,2.5rem); font-weight:400; letter-spacing:-.035em; line-height:1.15; }
-  .research-page .section-desc { font-size:16px; line-height:1.75; color:#686b64; max-width:64ch; }
-  .research-page .steps-grid { gap:20px; }
-  .research-page .step-card { padding:26px; background:#fafbf8; border:1px solid #e2e5dc; border-radius:12px; }
-  .research-page .step-card h3 { font-size:21px; font-weight:400; letter-spacing:-.025em; }
-  .research-page .step-card p { font-size:14px; line-height:1.75; color:#686b64; }
-  .research-page .step-number { background:none; color:#626d56; width:auto; height:auto; justify-content:flex-start; font-size:12px; font-weight:400; }
-  .research-page .rs-status { font-size:14px; }
-  .research-page .rs-contact { margin-top:0; padding:32px; }
-  .research-page .rs-contact .btn { min-height:44px; border-radius:7px; font-size:13px; }
-  .research-page .mk-footer-inner { padding:40px 0; }
+  .research-page #main-content { padding:140px 0 64px; }
+  .research-page #main-content .rs-featured { margin-bottom:0; }
+  .research-page .mk-footer-inner { max-width:1120px; margin:0 auto; padding:40px 0; }
   @media(max-width:1180px) {
-    .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { margin-left:28px; margin-right:28px; }
+    .research-page .mk-footer-inner { margin-left:28px; margin-right:28px; }
   }
   @media(max-width:600px) {
-    .research-page .rs-hero, .research-page .section, .research-page .rs-contact, .research-page .mk-footer-inner { margin-left:20px; margin-right:20px; }
-    .research-page .rs-hero { padding:120px 0 36px; }
-    .research-page .section { padding-bottom:40px; }
-    .research-page .rs-contact { padding:24px; }
+    .research-page #main-content { padding:112px 0 44px; }
+    .research-page .mk-footer-inner { margin-left:20px; margin-right:20px; }
   }
 </style>
 <link rel="stylesheet" href="./shared-ui.css">
+<link rel="stylesheet" href="./blog/research-article.css">
+<link rel="canonical" href="https://tryworldlabs.com/research">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="World Labs">
+<meta property="og:title" content="Research | World Labs">
+<meta property="og:description" content="Research on expert game-development data and reliable AI for interactive worlds.">
+<meta property="og:url" content="https://tryworldlabs.com/research">
+<meta property="og:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research | World Labs">
+<meta name="twitter:description" content="Research on expert game-development data and reliable AI for interactive worlds.">
+<meta name="twitter:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta name="twitter:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
 </head>
 <body class="research-page">
 
@@ -166,7 +76,7 @@
     </div>
   </div>
 
-  <a href="mailto:hello@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="mk-cta-btn" aria-label="Talk to us">
+  <a href="mailto:dhruv@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="mk-cta-btn" aria-label="Talk to us">
     <span class="mk-cta-circle">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
     </span>
@@ -178,7 +88,7 @@
 <div class="mk-overlay" id="mk-overlay">
   <div class="mk-overlay-links">
     <a href="./index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
-    <a href="./index.html#datasets" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="./index.html#products" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
     <a href="./research.html" class="mk-overlay-link" aria-current="page"><span class="mk-overlay-num">03</span>Research</a>
     <a href="./community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
     <a href="./benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
@@ -189,41 +99,12 @@
 </div>
 
 <main id="main-content">
-<!-- Hero -->
-<section class="rs-hero">
-  <div class="section-inner">
-    <div class="rs-kicker fade-in visible">Research</div>
-    <h1 class="rs-title fade-in visible">Game craft, turned into data.</h1>
-    <p class="rs-intro fade-in visible">Expert gaming datasets start with a clear brief. We shape prompts, examples, critiques, and comparisons around what your team wants its model to learn.</p>
-  </div>
-</section>
-
-<section class="section" style="padding-top:var(--space-8);">
-  <div class="section-inner">
-    <div class="section-label">Our approach</div>
-    <h2 class="section-title">The right expertise.<br>The right kind of data.</h2>
-    <div class="steps-grid" style="margin-top:var(--space-8);">
-      <div class="step-card"><div class="step-number">01</div><h3>Author</h3><p>Write a complete prompt or create an example that captures the intended game experience.</p></div>
-      <div class="step-card"><div class="step-number">02</div><h3>Evaluate</h3><p>Review an output against the brief. Explain what works, what falls short, and how to improve it.</p></div>
-      <div class="step-card"><div class="step-number">03</div><h3>Compare</h3><p>Choose between alternatives for the same brief and explain the tradeoffs behind the choice.</p></div>
-    </div>
-    <h2 class="section-title" style="margin-top:var(--space-12);">Quality depends on the game.</h2>
-    <p class="section-desc">A tactical RPG and an arcade fighter need different combat. A cozy sim and a survival game need different economies. The genre, audience, and design goals give each judgment its context.</p>
-    <p class="section-desc" style="margin-top:var(--space-5);">The evidence matters, too. Resource tables can reveal a broken crafting loop; judging control feel needs a playable build. Each project defines what experts review and the criteria they use.</p>
-    <p class="section-desc rs-status">Initial projects are in development. Dataset format, review criteria, and intended use are agreed for each project.</p>
-  </div>
-</section>
-
-<section class="rs-contact" aria-labelledby="rs-contact-title">
-  <div>
-    <h2 id="rs-contact-title">What should your model learn?</h2>
-    <p>Our examples are a starting point. Projects can span other gaming subjects, genres, and styles.</p>
-  </div>
-  <div class="rs-contact-actions">
-    <a href="mailto:hello@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="btn btn-primary">Discuss a dataset</a>
-    <a href="./index.html#datasets" class="btn btn-secondary">See example datasets</a>
-  </div>
-</section>
+<h1 class="sr-only">Research</h1>
+<section class="rs-featured" aria-labelledby="featured-research-title">
+<a class="rs-featured-link" href="./blog/beyond-code-interactive-worlds.html">
+<img src="./assets/research/interactive-world-loop.svg" width="1120" height="670" alt="An interactive world connects actions to runtime evidence and revision.">
+<div><p class="feature-kicker">Research perspective · September 23, 2026</p><h2 id="featured-research-title">The gap between code and a working world.</h2><p>What OpenGameEval and interactive-agent research tell us about the need for expert development data.</p><span class="feature-read">Read the article · 15 min <span aria-hidden="true">↗</span></span></div>
+</a></section>
 </main>
 
 </div><!-- end page-content -->
@@ -240,7 +121,7 @@
     <div class="mk-footer-cols">
       <div>
         <div class="mk-footer-head">Explore</div>
-        <a href="./index.html#datasets">Datasets</a>
+        <a href="./index.html#products">Datasets</a>
         <ul role="list">
           <li><a href="./research.html">Research</a></li>
           <li><a href="./benchmark.html">Benchmark</a></li>
@@ -250,7 +131,7 @@
       <div>
         <div class="mk-footer-head">Get in touch</div>
         <ul role="list">
-          <li><a href="mailto:hello@tryworldlabs.com">hello@tryworldlabs.com</a></li>
+          <li><a href="mailto:dhruv@tryworldlabs.com">dhruv@tryworldlabs.com</a></li>
           <li><a href="./apply.html">Apply to the Panel</a></li>
           <li><a href="./join.html">Join the Waitlist</a></li>
         </ul>
@@ -266,32 +147,6 @@
   </div>
 </footer>
 
-
-<script>
-
-// Background video autoplay
-(function(){
-  document.querySelectorAll('video').forEach(v => {
-    v.muted = true;
-    v.setAttribute('muted', '');
-    v.setAttribute('playsinline', '');
-    v.play().catch(() => {});
-  });
-  const retry = () => {
-    if (document.querySelector('.mk-overlay.open')) return;
-    document.querySelectorAll('video').forEach(v => v.paused && v.play().catch(() => {}));
-  };
-  window.addEventListener('touchstart', retry, { once: true, passive: true });
-  window.addEventListener('click', retry, { once: true });
-})();
-
-// Fade in
-const fadeObs = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
-
-</script>
 
 <script src="./scripts/site-ui.js" defer></script>
 </body>

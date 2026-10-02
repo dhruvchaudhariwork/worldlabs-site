@@ -199,7 +199,7 @@ with sync_playwright() as p:
         expect(nojs_page.locator(form_id)).not_to_be_visible()
         expect(nojs_page.locator("noscript p")).to_be_visible()
         expect(nojs_page.locator("noscript p")).to_contain_text("Enable JavaScript")
-        expect(nojs_page.locator("noscript a")).to_have_attribute("href", "mailto:hello@tryworldlabs.com")
+        expect(nojs_page.locator("noscript a")).to_have_attribute("href", "mailto:dhruv@tryworldlabs.com")
     nojs.close()
 
     # Controls remain legible and pages stay within the viewport at narrow widths.

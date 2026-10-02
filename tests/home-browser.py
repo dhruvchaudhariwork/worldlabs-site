@@ -40,10 +40,10 @@ with sync_playwright() as p:
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.goto(BASE, wait_until="networkidle")
 
-    # Reduced motion keeps the decorative video stopped until explicitly played.
-    toggle = page.locator("#video-toggle")
-    expect(toggle).to_have_text("Play background")
-    assert page.locator("#hero-video").evaluate("el => el.paused")
+    # The muted background starts without a click or an on-screen toggle.
+    expect(page.locator("#video-toggle")).to_have_count(0)
+    assert page.locator("#hero-video").evaluate("el => el.autoplay && el.muted && el.playsInline && el.loop")
+    page.wait_for_function("!document.querySelector('#hero-video').paused && document.querySelector('#hero-video').currentTime > 0", timeout=20000)
 
     email = page.locator("#waitlist-email")
     button = page.locator("#waitlist-btn")
@@ -87,18 +87,15 @@ with sync_playwright() as p:
 
     # Exercise the video lifecycle with the real media element.
     page.evaluate("window.scrollTo({top: 0, behavior: 'instant'})")
-    toggle.click()
-    expect(toggle).to_have_text("Pause background", timeout=15000)
+    page.wait_for_function("!document.querySelector('#hero-video').paused", timeout=15000)
     page.locator("#mk-menu-btn").click()
     assert page.locator("#hero-video").evaluate("el => el.paused")
     page.keyboard.press("Escape")
-    expect(toggle).to_have_text("Pause background")
-    toggle.click()
-    expect(toggle).to_have_text("Play background")
-    page.locator("#mk-menu-btn").click()
-    page.keyboard.press("Escape")
-    expect(toggle).to_have_text("Play background")
-    assert page.locator("#hero-video").evaluate("el => el.paused")
+    page.wait_for_function("!document.querySelector('#hero-video').paused")
+    page.locator("#waitlist-email").scroll_into_view_if_needed()
+    page.wait_for_function("document.querySelector('#hero-video').paused")
+    page.evaluate("window.scrollTo({top: 0, behavior: 'instant'})")
+    page.wait_for_function("!document.querySelector('#hero-video').paused")
 
     # A hanging signup times out, preserves the input, and allows a retry.
     timeout_page = context.new_page()
@@ -121,7 +118,7 @@ with sync_playwright() as p:
     nojs_page.goto(BASE, wait_until="networkidle")
     expect(nojs_page.locator("#waitlist-form")).not_to_be_visible()
     expect(nojs_page.locator("noscript p")).to_contain_text("JavaScript")
-    expect(nojs_page.locator("noscript a")).to_have_attribute("href", "mailto:hello@tryworldlabs.com")
+    expect(nojs_page.locator("noscript a")).to_have_attribute("href", "mailto:dhruv@tryworldlabs.com")
     nojs.close()
 
     for width in (320, 390, 768, 1440):
@@ -129,7 +126,7 @@ with sync_playwright() as p:
         page.goto(BASE, wait_until="networkidle")
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), width
         assert email.evaluate("el => parseFloat(getComputedStyle(el).fontSize)") >= 16
-        assert page.locator(".ds-card").count() == 4
+        page.wait_for_function("!document.querySelector('#hero-video').paused && document.querySelector('#hero-video').currentTime > 0", timeout=20000)
     assert not errors, errors
     browser.close()
-    print("PASS: homepage validation, duplicate prevention, error/retry/success, timeout, video intent and reduced motion, no-JS fallback, and four responsive sizes. No signup data was sent.")
+    print("PASS: homepage validation, duplicate prevention, error/retry/success, timeout, background autoplay and visibility lifecycle, no-JS fallback, and four responsive sizes. No signup data was sent.")

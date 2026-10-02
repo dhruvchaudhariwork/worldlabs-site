@@ -62,48 +62,39 @@
   }
 
   const video = document.getElementById('hero-video');
-  const toggle = document.getElementById('video-toggle');
-  if (!video || !toggle) return;
-  const motion = matchMedia('(prefers-reduced-motion: reduce)');
-  let requestedPlayback = !motion.matches;
+  if (!video) return;
   let menuOpen = false;
   let inView = true;
   video.muted = true;
-  toggle.hidden = false;
+  video.defaultMuted = true;
+  video.playsInline = true;
 
-  function reflectPlayback() {
-    toggle.dataset.paused = String(video.paused);
-    toggle.textContent = video.paused ? 'Play background' : 'Pause background';
-  }
   function syncPlayback() {
-    if (requestedPlayback && !menuOpen && !document.hidden && inView) {
-      video.play().catch(reflectPlayback);
+    if (!menuOpen && !document.hidden && inView) {
+      // Browsers can deny autoplay. Retry on a later user gesture or page return.
+      if (video.paused) video.play().catch(() => {});
     } else {
       video.pause();
     }
-    reflectPlayback();
   }
-  video.addEventListener('play', reflectPlayback);
-  video.addEventListener('pause', reflectPlayback);
-  toggle.addEventListener('click', () => {
-    requestedPlayback = video.paused;
-    syncPlayback();
+  video.addEventListener('play', () => {
+    if (menuOpen || document.hidden || !inView) video.pause();
   });
-  motion.addEventListener('change', () => {
-    requestedPlayback = !motion.matches;
-    syncPlayback();
-  });
+  video.addEventListener('loadeddata', syncPlayback);
   document.addEventListener('site:menu-change', (event) => {
     menuOpen = Boolean(event.detail?.open);
     syncPlayback();
   });
   document.addEventListener('visibilitychange', syncPlayback);
+  window.addEventListener('pageshow', syncPlayback);
+  document.addEventListener('pointerup', syncPlayback, { passive: true });
+  document.addEventListener('touchend', syncPlayback, { passive: true });
+  document.addEventListener('keydown', syncPlayback);
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => {
       inView = entry.isIntersecting;
       syncPlayback();
     }, { threshold: 0 }).observe(video);
   }
-  video.addEventListener('error', () => { toggle.hidden = true; });
   syncPlayback();
 })();

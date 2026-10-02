@@ -1,17 +1,14 @@
 # World Labs
 
-Expert gaming datasets for AI training and evaluation, with initial projects in development. Static site plus a small
-serverless backend configured for Vercel.
+Environments inside game engines for training and evaluating AI agents on long-horizon tasks, starting with Roblox Studio. The homepage emphasizes dependent work across code, 3D scenes, and live gameplay: planning, implementation, testing, and recovery. Static site plus a small serverless backend configured for Vercel.
 
 ## Current product status
 
-The public site describes proposed expert-data projects: prompts, critiques, comparisons, and revisions across gaming domains. The repository implements
-applications, a waitlist, admin review, and experimental scorecard storage;
-it does not implement an RL training environment or a validated eval harness.
-The benchmark page is a minimal white "In progress" screen with an animated
-hourglass and a link home. It does not fetch or display experimental ranks.
-The existing leaderboard API remains available and is not a publication gate.
-The new project examples are descriptive; there is no implemented prompt, pairwise-label, or dataset-delivery workflow yet.
+The homepage introduces the environment, task, and verification direction alongside human-data projects across game engines and browser games, including WebGL experiences: expert demonstrations, critiques, comparisons, and revisions for game development, design, and playtesting. It uses a minimal, text-first layout. The environment, evaluation framework, and human-data projects are in development; this repository does not implement an RL gym, trajectory capture, dataset delivery, or a validated evaluation harness, and no benchmark results are published.
+
+The application, waitlist, community, research, and admin pages remain available. Secondary pages retain the earlier expert-data positioning and have not yet been redesigned. The existing leaderboard API stores experimental aggregates and is not used by the homepage or public benchmark page.
+
+The homepage uses `horizon.css`, without JavaScript. EB Garamond (wordmark) and Geist (body) are served locally from `assets/fonts`, alongside their open font licenses, with system fallbacks. Previous homepage scripts and styles remain in the repository. The older `tests/home-browser.py` checks target the previous interactive homepage and do not apply to this version.
 
 See `docs/market-positioning-review-2026-09-08.md` for source-linked positioning,
 implementation gaps, and the checks needed before publishing comparisons.
@@ -93,7 +90,7 @@ python tests/admin-browser.py http://localhost:3000
 Replace the URL if the preview uses another port, such as `3087`. The expert
 form checks cover validation, specialty selection, errors, retries, and
 confirmation. Navigation checks cover keyboard use, focus, browser history,
-and narrow screens. Homepage checks cover signup and background-video controls.
+and narrow screens. Homepage checks cover signup and muted background-video autoplay.
 
 Submission responses are mocked in the browser; other write requests are
 blocked. Keep those request guards in place when extending the checks. These
@@ -104,15 +101,21 @@ do not establish production persistence.
 
 | Page | What it does |
 | --- | --- |
-| `/` | Dataset examples, project approach, and contributor signup. |
+| `/` | Long-horizon agent environments, the Roblox Studio starting point, human-data projects, and email contact. |
 | `/research` | A concise explanation of the proposed dataset formats and review approach. |
-| `/community` | Example contributor work, specialties, and application questions. |
+| `/community` | Public expert community with specialty areas, application steps, expandable project examples, and FAQs. |
+| `/handbook` | Contributor guide covering application review, project matching, assignments, and planned compensation practices. |
 | `/apply` | Expert application. Posts to `/api/apply`; production storage uses Postgres. |
 | `/admin` | Private application and waitlist inboxes with search, pagination, review statuses, and notes. |
 | `/benchmark` | "In progress" screen with an animated hourglass and a link home. |
 | `/join` | Waitlist signup. Posts to `/api/waitlist`; persistence depends on the server mode. |
 
 Blog pages have been removed from the public site.
+
+The community and handbook are public pages. Applying still submits to the private
+admin inbox; it does not create a contributor account. Application confirmation
+links to the handbook and community. Contributor login, a status dashboard, live
+project listings, and project assignment workflows are not implemented yet.
 
 ### API
 

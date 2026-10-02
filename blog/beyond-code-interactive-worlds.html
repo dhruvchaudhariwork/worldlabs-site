@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The gap between code and a working world | World Labs</title>
+<meta name="description" content="What OpenGameEval and interactive-agent research reveal about reliability, and why World Labs is developing expert game-development data tied to runtime evidence.">
+<meta property="article:published_time" content="2026-09-23">
+<meta name="author" content="World Labs">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../shared-ui.css">
+<link rel="stylesheet" href="./research-article.css">
+<link rel="icon" href="/favicon.ico?v=20261001-mark" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark" sizes="180x180">
+<link rel="canonical" href="https://tryworldlabs.com/blog/beyond-code-interactive-worlds">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="World Labs">
+<meta property="og:title" content="The gap between code and a working world">
+<meta property="og:description" content="What OpenGameEval and interactive-agent research reveal about reliability, and why World Labs is developing expert game-development data tied to runtime evidence.">
+<meta property="og:url" content="https://tryworldlabs.com/blog/beyond-code-interactive-worlds">
+<meta property="og:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The gap between code and a working world">
+<meta name="twitter:description" content="What OpenGameEval and interactive-agent research reveal about reliability, and why World Labs is developing expert game-development data tied to runtime evidence.">
+<meta name="twitter:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
+<meta name="twitter:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
+</head>
+<body class="essay-page">
+<div id="page-content">
+<!-- Floating nav -->
+<nav class="mk-nav">
+  <div class="mk-nav-left">
+    <a href="../index.html" class="mk-logo">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <path d="M8 10h16M8 16h11M8 22h14" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <span class="mk-logo-text">World Labs</span>
+    </a>
+
+    <button type="button" class="mk-menu-btn" id="mk-menu-btn" data-open="false" aria-expanded="false">
+      <span class="mk-menu-circle">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </span>
+      <span class="mk-menu-label" id="mk-menu-label">Menu</span>
+    </button>
+
+    <div class="mk-tags-pill">
+      <span>Research</span>
+      <span>Gaming Data</span>
+    </div>
+  </div>
+
+  <a href="mailto:dhruv@tryworldlabs.com?subject=Custom%20gaming%20dataset" class="mk-cta-btn" aria-label="Talk to us">
+    <span class="mk-cta-circle">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </span>
+    <span class="mk-cta-label">Talk to Us</span>
+  </a>
+</nav>
+
+<!-- Menu overlay -->
+<div class="mk-overlay" id="mk-overlay">
+  <div class="mk-overlay-links">
+    <a href="../index.html" class="mk-overlay-link"><span class="mk-overlay-num">01</span>Home</a>
+    <a href="../index.html#products" class="mk-overlay-link"><span class="mk-overlay-num">02</span>Datasets</a>
+    <a href="../research.html" class="mk-overlay-link"><span class="mk-overlay-num">03</span>Research</a>
+    <a href="../community.html" class="mk-overlay-link"><span class="mk-overlay-num">04</span>Community</a>
+    <a href="../benchmark.html" class="mk-overlay-link"><span class="mk-overlay-num">05</span>Benchmark</a>
+  </div>
+  <div class="mk-overlay-meta">
+    Gaming expertise. Data for better AI.
+  </div>
+</div>
+
+<main id="main-content" class="essay-shell">
+<article>
+<header class="essay-header">
+  <a class="essay-back" href="../research.html"><span aria-hidden="true">←</span> All research</a>
+  <p class="essay-kicker">Research perspective / Interactive intelligence</p>
+  <h1 class="essay-title">The gap between code<br>and a working world.</h1>
+  <p class="essay-deck">Why reliable AI for interactive 3D environments needs the evidence behind expert decisions—and why we’re building the data to capture it.</p>
+  <div class="essay-meta"><span>World Labs</span><time datetime="2026-09-23">September 23, 2026</time><span>15 min read</span></div>
+</header>
+<figure class="essay-hero">
+  <img src="../assets/research/interactive-world-loop.svg" width="1120" height="670" alt="An interactive scene connects context, action, runtime evidence, and revision in a feedback loop.">
+  <figcaption>Figure 1. A change is only part of the task. Its consequences must be observed in the world, interpreted, and tested again. Original conceptual illustration by World Labs.</figcaption>
+  <a class="essay-figure-link" href="../assets/research/interactive-world-loop.svg">Open the full-size diagram ↗</a>
+</figure>
+<div class="essay-layout">
+<nav class="essay-toc" aria-label="Article contents">
+  <p>In this article</p>
+  <ol>
+    <li><a href="#benchmark">01 / What the benchmark shows</a></li>
+    <li><a href="#world-state">02 / Why the world changes the task</a></li>
+    <li><a href="#related-work">03 / What existing research teaches us</a></li>
+    <li><a href="#recovery">04 / Learning from recovery</a></li>
+    <li><a href="#data-unit">05 / The data we want to capture</a></li>
+    <li><a href="#judgment">06 / Correctness and experience</a></li>
+    <li><a href="#validation">07 / How we would test the thesis</a></li>
+    <li><a href="#why-it-matters">08 / Why this matters</a></li>
+    <li><a href="#references">Sources &amp; notes</a></li>
+  </ol>
+</nav>
+<div class="essay-body">
+<p class="essay-lead">Ask an AI assistant to make a door open when a player approaches. A plausible script is easy to recognize. A working interaction takes more evidence.</p>
+<p>The assistant must find the right door, understand its existing components, choose where the behavior should run, and preserve the rest of the experience. The door might animate correctly on one screen while remaining closed for another player. A collision volume might block the opening. A second activation might interrupt the first. None of those failures is resolved by a confident explanation of the code.</p>
+<p>This is the problem that interests us at World Labs: how to help models build and improve games when success depends on what happens after an action. Our starting point is expert gaming data—task briefs, demonstrations, critiques, comparisons, and revisions connected to the artifacts and observations that make them meaningful.</p>
+<aside class="essay-abstract" aria-label="Our thesis">
+  <h2>Our thesis</h2>
+  <p>Reliable game-building agents need to learn how experts connect intent to implementation, inspect the consequences, and recover when reality disagrees. We believe those development records can become valuable training and evaluation data. The research below motivates that hypothesis; its value still needs to be measured.</p>
+</aside>
+
+<section id="benchmark" aria-labelledby="benchmark-title">
+  <span class="essay-number">01 / Evidence</span>
+  <h2 id="benchmark-title">What OpenGameEval actually shows</h2>
+  <p>Roblox’s December 2025 introduction of <a href="https://about.roblox.com/newsroom/2025/12/opengameeval-benchmark-agentic-ai-assistants-roblox-studio">OpenGameEval</a> describes a useful distinction: models often succeed at isolated object edits but struggle when a task requires locating relevant objects, coordinating scripts, and accounting for an existing experience. Its initial benchmark contained 47 human-reviewed tasks, evaluated inside Roblox Studio. <a href="#ref-1" aria-label="Reference 1">[1]</a></p>
+  <p>The task set has since expanded. The repository’s release log records 40 additions in April 2026, bringing the main suite to 87 evaluations. The chart below uses the expanded suite from a pinned June 10, 2026 repository snapshot; it does not mix those results with the original 47-task set. <a href="#ref-2" aria-label="Reference 2">[2]</a></p>
+  <figure class="essay-figure" aria-labelledby="chart-title">
+<div class="benchmark-chart">
+<h3 id="chart-title">Task completion remains uneven</h3>
+<p class="chart-sub">OpenGameEval · 87-task expanded set · June 10, 2026 snapshot</p>
+<div class="chart-legend" aria-hidden="true"><span><i></i>Pass@1</span><span><i class="five"></i>Pass@5</span></div>
+<div aria-hidden="true"><div class="chart-row"><div class="chart-model">Claude Fable 5</div><div class="chart-bars"><div class="chart-track" style="--value:50.34%"><span class="chart-bar"></span><span class="chart-value">50.34%</span></div><div class="chart-track" style="--value:62.07%"><span class="chart-bar five"></span><span class="chart-value">62.07%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">Claude Opus 4.6</div><div class="chart-bars"><div class="chart-track" style="--value:48.05%"><span class="chart-bar"></span><span class="chart-value">48.05%</span></div><div class="chart-track" style="--value:59.77%"><span class="chart-bar five"></span><span class="chart-value">59.77%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">Gemini 3.5 Flash</div><div class="chart-bars"><div class="chart-track" style="--value:48.05%"><span class="chart-bar"></span><span class="chart-value">48.05%</span></div><div class="chart-track" style="--value:63.22%"><span class="chart-bar five"></span><span class="chart-value">63.22%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">Gemini 3 Flash Preview</div><div class="chart-bars"><div class="chart-track" style="--value:47.82%"><span class="chart-bar"></span><span class="chart-value">47.82%</span></div><div class="chart-track" style="--value:60.92%"><span class="chart-bar five"></span><span class="chart-value">60.92%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">Claude Opus 4.7</div><div class="chart-bars"><div class="chart-track" style="--value:43.45%"><span class="chart-bar"></span><span class="chart-value">43.45%</span></div><div class="chart-track" style="--value:58.62%"><span class="chart-bar five"></span><span class="chart-value">58.62%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">GPT-5.5 (Reasoning: M)</div><div class="chart-bars"><div class="chart-track" style="--value:40.69%"><span class="chart-bar"></span><span class="chart-value">40.69%</span></div><div class="chart-track" style="--value:56.32%"><span class="chart-bar five"></span><span class="chart-value">56.32%</span></div></div></div>
+<div class="chart-row"><div class="chart-model">GPT-5.4 (Reasoning: M)</div><div class="chart-bars"><div class="chart-track" style="--value:40.23%"><span class="chart-bar"></span><span class="chart-value">40.23%</span></div><div class="chart-track" style="--value:55.17%"><span class="chart-bar five"></span><span class="chart-value">55.17%</span></div></div></div><div class="chart-axis"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div>
+</div>
+<figcaption>Figure 2. All seven models in the expanded-set leaderboard. Bar lengths share a 0–100% scale. These are Roblox’s reported scores, not World Labs measurements. <a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/LLM_LEADERBOARD.md">Source: pinned leaderboard</a>. Retrieved September 23, 2026.</figcaption>
+<details class="essay-details"><summary>View exact values and metric definitions</summary>
+<div class="essay-table-wrap" tabindex="0" role="region" aria-label="OpenGameEval benchmark data"><table class="essay-table benchmark-data"><caption>Published percentages; higher is better within this evaluation.</caption><thead><tr><th scope="col">Model</th><th scope="col">Pass@1</th><th scope="col">Pass@5</th></tr></thead><tbody><tr><th scope="row">Claude Fable 5</th><td>50.34%</td><td>62.07%</td></tr>
+<tr><th scope="row">Claude Opus 4.6</th><td>48.05%</td><td>59.77%</td></tr>
+<tr><th scope="row">Gemini 3.5 Flash</th><td>48.05%</td><td>63.22%</td></tr>
+<tr><th scope="row">Gemini 3 Flash Preview</th><td>47.82%</td><td>60.92%</td></tr>
+<tr><th scope="row">Claude Opus 4.7</th><td>43.45%</td><td>58.62%</td></tr>
+<tr><th scope="row">GPT-5.5 (Reasoning: M)</th><td>40.69%</td><td>56.32%</td></tr>
+<tr><th scope="row">GPT-5.4 (Reasoning: M)</th><td>40.23%</td><td>55.17%</td></tr></tbody></table></div>
+<p>Pass@1: estimated success on one attempt. Pass@5: estimated success at least once across five attempts. The original 47-task suite and the separate debugging suite are excluded. Model names follow the source.</p>
+</details></figure>
+  <p>The strongest listed Pass@1 is 50.34%; the strongest Pass@5 is 63.22%, achieved by a different model. Here, Pass@1 estimates success on one attempt, while Pass@5 estimates at least one success within five attempts. More chances can raise coverage without making any one attempt dependable. <a href="#ref-3" aria-label="Reference 3">[3]</a></p>
+  <p>A benchmark pass requires all of the task’s checks to pass. That is a valuable standard for a specified behavior, but it still measures the checks the authors wrote. A passing task is not evidence that every aspect of the resulting game is correct or enjoyable. The framework makes these checks inspectable in its <a href="https://github.com/Roblox/open-game-eval">open-source repository</a>. <a href="#ref-4" aria-label="Reference 4">[4]</a></p>
+  <h3 id="benchmark-tasks">What does a benchmark task look like?</h3>
+  <p>These are concrete requests to change a Roblox experience. Pass@1 and Pass@5 summarize success on the same tasks at different attempt counts; they are not different types of assignment. The examples below come from the same repository snapshot as the chart.</p>
+  <div class="essay-table-wrap" tabindex="0" role="region" aria-label="Examples of OpenGameEval tasks">
+    <table class="essay-table"><caption>Six actual task requests, paraphrased. Each task name links to its prompt and evaluation code.</caption>
+      <thead><tr><th scope="col">Example task</th><th scope="col">Requested behavior</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/035_laser_tag_regenerate_health.lua">Health regeneration</a></th><td>In an existing laser-tag game, begin restoring health two seconds after damage, at a rate of 10 health per second.</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/017_make_traffic_light.lua">Traffic lights</a></th><td>Script a four-way traffic light using the objects already in the scene.</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/010_left_shift_sprint_5s.lua">Timed sprint</a></th><td>Holding Left Shift adds 20 to the player’s movement speed; after five seconds, speed returns to normal.</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/041_platformer_make_checkpoints.lua">Platform checkpoint</a></th><td>Turn the selected platform into a checkpoint. Once a player touches it, they should respawn nearby after dying.</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/105_lasertag_friendly_fire.lua">Friendly fire</a></th><td>Change an existing laser-tag game so players can damage members of their own team.</td></tr>
+        <tr><th scope="row"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/Evals/110_racing_car_offtrack_reset.lua">Race-car recovery</a></th><td>Detect an upside-down car or a car that has been off-track for five seconds, then return the car and its player to the track’s starting position.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The checkpoint task shows what verification means in practice. Its test kills and respawns the character before and after touching the platform. It checks that the original spawn still works before activation and that the player appears near the checkpoint afterward. The friendly-fire test puts two players on the same team and checks that every tested blaster damages the teammate. These checks exercise the resulting game, rather than just inspecting whether the model wrote plausible code.</p>
+  <aside class="essay-example" aria-label="How the attempt metrics apply to a task">
+    <p class="example-label">Reading the metrics / Illustrative outcome</p>
+    <p>Imagine five separate attempts to implement the checkpoint. Four fail its checks and one succeeds. That is a success under the “at least one of five” criterion. It does not mean the model succeeds reliably on a single attempt, or that it repaired the first solution through five rounds of feedback. The leaderboard summarizes results across the suite; the examples here do not report individual task scores.</p>
+  </aside>
+  <p class="essay-note"><strong>Scope matters.</strong> These are Roblox Studio development-assistant results under a particular harness. They are not a measure of all 3D intelligence, a head-to-head comparison of embodied agents, or a World Labs experiment. Tool access, prompts, execution budgets, and test coverage can affect the outcome. We read the table as evidence of unfinished work, not a universal ranking of model ability.</p>
+</section>
+
+<section id="world-state" aria-labelledby="world-state-title">
+  <span class="essay-number">02 / The mechanism</span>
+  <h2 id="world-state-title">The world changes the task</h2>
+  <p>In an interactive environment, the same instruction can require different actions depending on what already exists. “Open the door” could mean moving a part, changing a constraint, dispatching an event, or calling an existing system. A correct solution depends on context that may be spread across a scene hierarchy, scripts, runtime state, and multiple clients.</p>
+  <p>We find it useful to separate three demands. <strong>Grounding</strong> connects a request to the right objects and state. <strong>Coordination</strong> makes the change work across the systems it touches. <strong>Verification</strong> checks whether the intended behavior actually occurred. Better code generation helps, but the whole task can fail at any of these steps.</p>
+  <div class="equation">
+    <p class="equation-label">A simple model of interaction · conceptual, not a measured result</p>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="The next state is sampled from a transition process conditioned on the current state and action."><msub><mi>s</mi><mrow><mi>t</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>∼</mo><mi>P</mi><mo>(</mo><mo>·</mo><mo>|</mo><msub><mi>s</mi><mi>t</mi></msub><mo>,</mo><msub><mi>a</mi><mi>t</mi></msub><mo>)</mo></math>
+    <p class="equation-explanation">Here, <i>s</i> is the environment state, <i>a</i> is an action, and <i>P</i> describes how the world changes. The agent receives observations of that state; it may need tools or interaction to discover what it cannot yet see.</p>
+  </div>
+  <p>This framing makes a practical point: an action is a hypothesis about what the world will do next. Moving a trigger, rewriting a handler, or changing a movement parameter should produce an observable consequence. A useful training record connects the hypothesis to that consequence.</p>
+  <p>It also clarifies the difference between two related problems. An agent <em>playing</em> a game chooses actions within its rules. An agent <em>building</em> a game changes some of those rules and then checks their effects. Both need feedback; their action spaces, observations, and success conditions differ. Evidence from one can motivate ideas for the other without establishing equivalent performance.</p>
+</section>
+
+<section id="related-work" aria-labelledby="related-work-title">
+  <span class="essay-number">03 / Related work</span>
+  <h2 id="related-work-title">Progress already points toward interaction</h2>
+  <p>Several research programs give us reasons to study richer records of action and feedback. They also make clear that this is an active field with substantial progress, rather than an untouched capability.</p>
+  <h3>Demonstrations can connect language to action</h3>
+  <p><strong>SIMA</strong> studies instruction-following across virtual 3D environments using image observations and keyboard-and-mouse actions. Its interface makes the connection between a linguistic goal, visual context, and an action sequence explicit. Human gameplay provides demonstrations of that connection. <a href="#ref-5" aria-label="Reference 5">[5]</a></p>
+  <p><strong>SIMA 2</strong> reports further advances in reasoning, generalization, and learning through experience. It combines human demonstrations with model-generated supervision and self-directed learning. Its authors also identify remaining limitations in very long tasks, goal verification, memory, precise control, and robust visual understanding. That combination—real progress alongside specific remaining failures—is a stronger motivation for targeted data than a blanket claim that models cannot interact in 3D. <a href="#ref-6" aria-label="Reference 6">[6]</a></p>
+  <h3>Execution feedback can become part of the solution</h3>
+  <p><strong>Voyager</strong> combines a Minecraft curriculum, reusable executable skills, and iterative prompting informed by environment feedback, execution errors, and self-verification. It improves its programs through interaction without fine-tuning the underlying model. The system demonstrates one way to make feedback operational; it does not establish that the same design will work unchanged in a game editor. <a href="#ref-7" aria-label="Reference 7">[7]</a></p>
+  <p><strong>MineDojo</strong> brings a large Minecraft task suite together with internet knowledge and a learned video-language reward model. It illustrates why an environment, task coverage, knowledge, and a learning signal belong in the same research picture. Its Minecraft setting is still a particular environment, not evidence of automatic transfer to every engine. <a href="#ref-8" aria-label="Reference 8">[8]</a></p>
+  <h3>Evaluate the outcome in the environment</h3>
+  <p><strong>OSWorld</strong>, a benchmark for computer-use agents, pairs real application tasks with initial states and execution-based evaluation. Although it is not a 3D benchmark, its methodology provides a useful parallel: inspect what changed in the application rather than treating an agent’s completion message as the outcome. <a href="#ref-9" aria-label="Reference 9">[9]</a></p>
+  <p>Our inference from this work is that a useful dataset should preserve the relationships among instructions, context, actions, and outcomes. The papers motivate that design principle. They do not prove that adding expert critiques to any dataset will improve any model.</p>
+</section>
+
+<section id="recovery" aria-labelledby="recovery-title">
+  <span class="essay-number">04 / Learning signal</span>
+  <h2 id="recovery-title">Recovery is part of the skill</h2>
+  <p>A clean demonstration usually shows an expert following a successful route. A deployed model also needs to handle states created by its own mistakes: a duplicated handler, an object moved into an unexpected parent, or a mechanic that partially works. Those situations can call for a different kind of supervision.</p>
+  <p>DAgger formalizes a related issue in imitation learning: a learner’s actions influence the states it encounters, so training on expert demonstrations alone can create a mismatch with deployment. Its procedure gathers states visited by the learner, requests expert actions, and iteratively aggregates data. <a href="#ref-10" aria-label="Reference 10">[10]</a></p>
+  <div class="equation">
+    <p class="equation-label">When the state distributions differ</p>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="The distribution of states visited by the agent need not equal the distribution of states visited by the expert."><msub><mi>d</mi><mi>π</mi></msub><mo>≠</mo><msub><mi>d</mi><msup><mi>π</mi><mo>⋆</mo></msup></msub></math>
+    <p class="equation-explanation"><i>d</i><sub>π</sub> describes states encountered by the agent; <i>d</i><sub>π⋆</sub> describes those encountered by the expert. They need not match. A learner must recover in situations a polished expert demonstration may never visit.</p>
+  </div>
+  <p>For our proposed collection process, the implication is to keep some failed attempts and the expert corrections that follow them. The valuable intervention may be “inspect the server state before changing the animation,” or “reproduce the failure with a second player.” These are observable decisions that can be recorded alongside their evidence.</p>
+  <p>This is an application of the idea, not a claim to inherit DAgger’s theoretical guarantees. Whether critique, demonstrations, or interventions help depends on the learner, coverage, and training procedure. We want to test which records make recovery more reliable.</p>
+</section>
+
+<section id="data-unit" aria-labelledby="data-unit-title">
+  <span class="essay-number">05 / Our approach</span>
+  <h2 id="data-unit-title">Make the development record the unit of data</h2>
+  <p>World Labs is developing a community of game specialists and a workflow for turning their work into data. The aim is to connect a brief to an implementation, its observed behavior, the expert judgment, and the revision that follows. A final artifact remains useful; the path to it can reveal decisions that the artifact alone leaves ambiguous.</p>
+  <figure class="essay-figure">
+    <img src="../assets/research/evidence-record.svg" loading="lazy" width="1120" height="690" alt="A final artifact is one snapshot. A preserved trajectory connects context, edit, observed failure, expert correction, and retest, with separate checks and judgment.">
+    <figcaption>Figure 3. Proposed record design. Keeping versions and observations attached makes a critique inspectable and a revision testable. This is a collection design, not an implemented capture system.</figcaption>
+    <a class="essay-figure-link" href="../assets/research/evidence-record.svg">Open the full-size diagram ↗</a>
+  </figure>
+  <div class="equation">
+    <p class="equation-label">Our proposed data unit</p>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block" aria-label="An episode consists of a goal, initial context, interaction trace, critique, revision, and verification evidence."><mi>e</mi><mo>=</mo><mo>(</mo><mi>g</mi><mo>,</mo><msub><mi>x</mi><mn>0</mn></msub><mo>,</mo><mi>τ</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>Δ</mi><mo>,</mo><mi>V</mi><mo>)</mo></math>
+    <p class="equation-explanation">A goal <i>g</i>; an initial context record <i>x</i><sub>0</sub>; an observation-and-action trace <i>τ</i>; expert critique <i>c</i>; a revision <i>Δ</i>; and verification evidence <i>V</i>. The context record includes available artifacts and observations, without assuming access to every hidden state.</p>
+  </div>
+  <p>In practice, this would include the engine version, relevant assets and code, task constraints, permitted tool actions, artifact versions, and links to the evidence reviewed. Explanations would be expert-authored accounts of specific decisions. We would preserve disagreements and uncertainty instead of forcing every example into a confident label.</p>
+  <div class="essay-example">
+    <p class="example-label">Illustrative collection example / Not a reported experiment</p>
+    <h3>A door that works for both players</h3>
+    <p><strong>Brief:</strong> Open a shared door on approach, preserve collision rules, and keep its state consistent for two players.</p>
+    <p><strong>Observed failure:</strong> The first implementation animates the door for the triggering client; the other player still encounters a closed door.</p>
+    <p><strong>Expert intervention:</strong> Compare the server and both client states, identify where the update originates, and revise ownership of the shared state.</p>
+    <p><strong>Retest:</strong> Repeat from both players’ positions, try overlapping activations, check collision during the transition, and rerun previously passing behavior checks.</p>
+  </div>
+  <p>That record offers several potential learning targets. A demonstration can supervise an action sequence. A critique can train diagnosis. A before-and-after pair can supervise revision. A comparison can express a preference under a shared brief. A test result can support evaluation or, if validated for that purpose, a reward signal. These formats serve different learning procedures; we would choose them with the team using the data.</p>
+  <p>The expert’s specialty matters too. A networked-systems developer, a level designer, and a combat designer may notice different failures in the same artifact. Matching the assignment to the discipline helps make the explanation useful rather than merely fluent.</p>
+</section>
+
+<section id="judgment" aria-labelledby="judgment-title">
+  <span class="essay-number">06 / Evaluation design</span>
+  <h2 id="judgment-title">A working mechanic is only one layer of a good game</h2>
+  <p>Some requirements have clear executable tests. Others depend on an intended audience, genre, or design goal. We want to keep these types of evidence distinguishable so a model can learn what a judgment actually supports.</p>
+  <div class="essay-table-wrap" tabindex="0" role="region" aria-label="Three kinds of evaluation evidence">
+    <table class="essay-table"><caption>Complementary signals in a proposed World Labs record</caption><thead><tr><th scope="col">Signal</th><th scope="col">Question it can address</th><th scope="col">Evidence to preserve</th></tr></thead><tbody>
+    <tr><td>Executable checks</td><td>Does the mechanic meet a specified requirement?</td><td>Inputs, assertions, engine version, logs, and reproducible runs.</td></tr>
+    <tr><td>Expert review</td><td>Does the design support the intended experience?</td><td>Brief, rubric, artifact version, rationale, disagreement, and confidence.</td></tr>
+    <tr><td>Observed play</td><td>What happened for these players under these conditions?</td><td>Task, sample, protocol, permitted telemetry, and outcome definitions.</td></tr>
+    </tbody></table>
+  </div>
+  <p>A combat sequence can satisfy every damage rule while communicating the threat poorly. A puzzle can be solvable while giving players no reasonable way to discover its logic. These are opportunities for expert diagnosis, but an expert preference is still a judgment under stated criteria. It does not by itself establish enjoyment or retention.</p>
+  <p>Similarly, a higher completion rate might indicate clearer onboarding, lower difficulty, or a different player sample. To interpret it, we need the task, population, and conditions attached. For some assignments, a short playtest can answer the question; for others, it cannot. “Insufficient evidence” should be an available result.</p>
+  <p>This is why we would resist collapsing all feedback into one score too early. Correctness, design intent, and observed behavior can disagree in informative ways. Preserving those differences may be more useful than producing an apparently precise number.</p>
+</section>
+
+<section id="validation" aria-labelledby="validation-title">
+  <span class="essay-number">07 / Research agenda</span>
+  <h2 id="validation-title">How we would test whether this data helps</h2>
+  <p>The important question is whether the records change model behavior on work they have not seen. Our initial experiments should be small enough to audit and controlled enough to distinguish a useful signal from additional training volume.</p>
+  <ol>
+    <li><strong>Choose a bounded capability.</strong> Start with a specific family of tasks, such as repairing a shared mechanic in an existing Roblox experience. Define the available tools, time budget, and success conditions before collecting examples.</li>
+    <li><strong>Compare what the data contains.</strong> For a compatible learning setup, compare demonstrations alone, demonstrations with critique, critique with revisions, and full records with playtest evidence. Run both matched-volume and matched-collection-cost comparisons where feasible; richer records can be more expensive.</li>
+    <li><strong>Hold out meaningful variation.</strong> Separate projects and related artifacts across training and evaluation. Test unfamiliar object hierarchies, starting states, and task families. Keep public benchmark examples out of the training collection used to claim gains on that benchmark.</li>
+    <li><strong>Measure completion and recovery.</strong> Report first-attempt success, success within a fixed budget, recovery from an introduced failure, regressions, expert intervention time, and cost per completed task. Use blinded expert judgments for design criteria and report those separately from executable checks.</li>
+    <li><strong>Make the comparison inspectable.</strong> Record model and harness versions, tool access, seeds, budgets, graders, and exclusions. Report uncertainty across tasks and repeated runs. Investigate improvements that disappear when the environment or reviewer changes.</li>
+  </ol>
+  <p>A useful negative result would also change our direction. If critiques improve explanations without improving task completion, they are not yet delivering the intended value. If revisions help only on near-duplicate scenes, we need broader coverage or a different learning procedure. If a tool or grader change explains the gain, we should attribute it accordingly.</p>
+  <p>Collection quality is part of that experiment. We would calibrate reviewers on shared examples, independently review a sample, and check that rationales point to actual evidence. Capture, reuse, and training rights would be agreed for each project, including any player telemetry. The goal is a dataset whose scope and limitations a buyer can inspect.</p>
+</section>
+
+<section id="why-it-matters" aria-labelledby="why-it-matters-title">
+  <span class="essay-number">08 / The opportunity</span>
+  <h2 id="why-it-matters-title">Better games need better feedback</h2>
+  <p>If generation becomes faster while verification remains expensive, creators inherit a growing queue of things that look plausible and still need to be tested. Helping a model inspect, diagnose, and revise its own work could make the difference between a compelling prototype and a tool a creator can rely on.</p>
+  <p>Games give us a concrete place to study that difference. They bring together spatial structure, code, time, input, shared state, and human interpretation. Within a scoped project, we can preserve the starting context, observe a failure, commission a correction, and test the result. That makes game development a useful setting for studying interactive reliability on its own terms; transfer to robotics or other domains would require separate evidence.</p>
+  <p class="essay-pullquote">The data worth capturing is the connection between a decision and what happened when someone played.</p>
+  <p>World Labs’ contribution we want to build is the expert community and collection process that makes those connections usable: precise tasks, versioned artifacts, informed critiques, and evidence of improvement. Better models, better tools, automated feedback, and expert data can all contribute. Our job is to find where specialized human knowledge adds measurable value.</p>
+  <p class="essay-status"><strong>Where we are today.</strong> First projects are in development. This article sets out our research direction; it reports no World Labs training results. Instrumented capture, a public evaluation API, validated benchmarks, and RL environments are future capabilities described in our <a href="../research.html">development approach</a>.</p>
+</section>
+
+<section id="references" class="essay-references" aria-labelledby="references-title">
+  <h2 id="references-title">Sources &amp; notes</h2>
+  <p>Primary sources checked September 23, 2026. Benchmark values are reproduced from the pinned repository snapshot below, not from a new evaluation run. Figures 1 and 3 are original conceptual diagrams; Figure 2 visualizes Roblox’s published results. The task examples link directly to their prompts and evaluation code in the same repository snapshot.</p>
+  <ol>
+<li id="ref-1"><a href="https://about.roblox.com/newsroom/2025/12/opengameeval-benchmark-agentic-ai-assistants-roblox-studio">Zhang, Ayyar, Sun &amp; Gong. Using OpenGameEval to Benchmark Agentic AI Assistants for Roblox Studio.</a><span class="ref-detail">Roblox, December 17, 2025. Launch scope and qualitative findings.</span></li>
+<li id="ref-2"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/EVAL_RELEASE_LOG.md">Roblox. OpenGameEval release log.</a><span class="ref-detail">Expanded suite: 47 initial tasks plus 40 additions on April 14, 2026. Pinned repository snapshot.</span></li>
+<li id="ref-3"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/LLM_LEADERBOARD.md">Roblox. LLM Leaderboard on Roblox Studio Assistant.</a><span class="ref-detail">June 10, 2026 snapshot, commit 9ba3f07. Expanded-set scores and metric definitions. No cross-version trend is inferred.</span></li>
+<li id="ref-4"><a href="https://github.com/Roblox/open-game-eval/blob/9ba3f07f67af353c28501e801056ec1f79b508ab/README.md">Roblox. OpenGameEval framework and evaluation contract.</a><span class="ref-detail">A pass requires all checks to pass. Open-source evaluation tools and setup documentation.</span></li>
+<li id="ref-5"><a href="https://arxiv.org/abs/2404.10179">SIMA Team et al. Scaling Instructable Agents Across Many Simulated Worlds.</a><span class="ref-detail">2024. Language-conditioned agents acting through visual observations and keyboard/mouse control.</span></li>
+<li id="ref-6"><a href="https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds/">Google DeepMind. SIMA 2: An agent that plays, reasons, and learns with you in virtual 3D worlds.</a><span class="ref-detail">November 13, 2025. Reported advances, learning approach, and remaining limitations; technical report linked from the post.</span></li>
+<li id="ref-7"><a href="https://arxiv.org/abs/2305.16291">Wang et al. Voyager: An Open-Ended Embodied Agent with Large Language Models.</a><span class="ref-detail">2023. Executable skills, iterative prompting, and environment feedback in Minecraft.</span></li>
+<li id="ref-8"><a href="https://arxiv.org/abs/2206.08853">Fan et al. MineDojo: Building Open-Ended Embodied Agents with Internet-Scale Knowledge.</a><span class="ref-detail">NeurIPS 2022. Minecraft tasks, internet knowledge, and a learned reward model.</span></li>
+<li id="ref-9"><a href="https://arxiv.org/abs/2404.07972">Xie et al. OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments.</a><span class="ref-detail">2024. Initial-state setup and execution-based evaluation for computer-use tasks.</span></li>
+<li id="ref-10"><a href="https://proceedings.mlr.press/v15/ross11a.html">Ross, Gordon &amp; Bagnell. A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning.</a><span class="ref-detail">AISTATS 2011. DAgger and the state-distribution problem in sequential prediction.</span></li>
+</ol>
+</section>
+<aside class="essay-cta" aria-label="Work with World Labs">
+  <h2>Bring us a task your model struggles with.</h2>
+  <p>We’re interested in scoped projects that connect expert game-development work to a clear learning or evaluation question.</p>
+  <a href="mailto:dhruv@tryworldlabs.com?subject=Interactive%20worlds%20research%20pilot">Discuss a research pilot <span aria-hidden="true">↗</span></a>
+</aside>
+</div>
+</div>
+</article>
+</main>
+
+</div>
+<!-- Footer -->
+<footer class="mk-footer">
+  <div class="mk-footer-inner">
+    <div class="mk-footer-brand">
+      <div class="mk-footer-name">World Labs</div>
+      <p>Gaming expertise. Data for better AI.</p>
+      <p class="mk-footer-legal">&copy; 2026 World Labs.</p>
+    </div>
+
+    <div class="mk-footer-cols">
+      <div>
+        <div class="mk-footer-head">Explore</div>
+        <a href="../index.html#products">Datasets</a>
+        <ul role="list">
+          <li><a href="../research.html">Research</a></li>
+          <li><a href="../benchmark.html">Benchmark</a></li>
+          <li><a href="../community.html">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Get in touch</div>
+        <ul role="list">
+          <li><a href="mailto:dhruv@tryworldlabs.com">dhruv@tryworldlabs.com</a></li>
+          <li><a href="../apply.html">Apply to the Panel</a></li>
+          <li><a href="../join.html">Join the Waitlist</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mk-footer-head">Legal</div>
+        <ul role="list">
+          <li><a href="../privacy.html">Privacy</a></li>
+          <li><a href="../terms.html">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="../scripts/site-ui.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Local previews, screenshots, and one-off editing scripts stay on this machine.
+.dev/
+.git/
+.vercel/
+node_modules/
+.env
+.env.*
+.DS_Store

@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 670" role="img" aria-labelledby="title desc">
+  <title id="title">An interaction must be tested inside the world</title>
+  <desc id="desc">An original conceptual diagram of a player approaching a gate through a trigger volume in a three-dimensional game. The visible scene is only part of the task: collision, timing, camera position, and runtime state also affect success. A loop connects context, action, runtime, evidence, and revision, returning the revised world to the next observation.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 9 5 1 9" fill="none" stroke="#697b52" stroke-width="1.5"/></marker>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><path d="M0 0V8" stroke="#697b52" stroke-opacity=".13" stroke-width="2"/></pattern>
+    <style>
+      text{font-family:Arial,Helvetica,sans-serif;fill:#242620;font-size:20px}
+      .muted{fill:#686e61}.small{font-size:18px}.label{font-size:19px}.heading{font-size:28px;font-weight:500}
+      .rule{fill:none;stroke:#b9bfae;stroke-width:1.5}.olive{fill:#697b52}
+    </style>
+  </defs>
+  <rect width="1120" height="670" rx="8" fill="#f7f8f3"/>
+  <text x="42" y="50" class="heading">An interaction must be tested inside the world.</text>
+  <text x="42" y="82" class="small muted">ILLUSTRATIVE ENVIRONMENT</text>
+
+  <!-- A small, deliberately inspectable 3D scene. -->
+  <g stroke-linejoin="round">
+    <path d="M70 291 332 153 657 326 394 464Z" fill="#e9edde" stroke="#a6af96" stroke-width="1.7"/>
+    <path d="M70 291 394 464V480L70 307Z" fill="#d2dbc3" stroke="#a6af96" stroke-width="1.3"/>
+    <path d="M394 464 657 326V342L394 480Z" fill="#bac7a8" stroke="#a6af96" stroke-width="1.3"/>
+    <g stroke="#cad1bd" stroke-width="1">
+      <path d="M135 257 459 430M201 222 525 395M266 188 591 360"/>
+      <path d="M151 334 413 196M232 378 494 239M313 421 576 283"/>
+    </g>
+    <!-- Static collision block on the left. -->
+    <path d="M143 283V236L222 194 295 233V280L216 322Z" fill="#d0d8c2" stroke="#869674" stroke-width="1.5"/>
+    <path d="M143 236 222 194 295 233 216 275Z" fill="#f2f4e9" stroke="#869674" stroke-width="1.5"/>
+    <path d="M216 275V322M295 233 216 275 143 236" fill="none" stroke="#869674" stroke-width="1.5"/>
+    <!-- Trigger volume is present in the state, even if invisible to a player. -->
+    <path d="M378 300 451 261 541 309 468 348Z" fill="#697b52" fill-opacity=".15" stroke="#697b52" stroke-width="1.8" stroke-dasharray="6 5"/>
+    <path d="M378 300V190L451 151 541 199V309M468 348V238L378 190M451 151V261M468 238 541 199" fill="#697b52" fill-opacity=".045" stroke="#697b52" stroke-width="1.6" stroke-dasharray="6 5"/>
+    <!-- The gate: a coherent opening, with a small open-door leaf. -->
+    <path d="M499 213V142L570 180V252L556 245V190L513 167V220Z" fill="#697b52" stroke="#4f6040" stroke-width="1.5"/>
+    <path d="M499 142 510 136 581 174 570 180ZM570 180 581 174V246L570 252Z" fill="#93a37d" stroke="#4f6040" stroke-width="1.5"/>
+    <path d="M514 169 543 158V212L514 222Z" fill="#dee5ce" stroke="#697b52" stroke-width="1.7"/>
+    <circle cx="536" cy="189" r="2.5" fill="#697b52"/>
+    <!-- Agent silhouette and footfall. -->
+    <ellipse cx="336" cy="366" rx="27" ry="12" fill="#a0ad8d" fill-opacity=".3"/>
+    <path d="M328 330 323 362M345 335 351 363" stroke="#242620" stroke-width="10" stroke-linecap="round"/>
+    <path d="M331 295 349 305 349 336 331 341 318 333 318 303Z" fill="#697b52" stroke="#3e4a32" stroke-width="1.4"/>
+    <path d="M331 295 331 328 349 336M331 328 318 333" fill="none" stroke="#3e4a32" stroke-width="1.4"/>
+    <path d="M319 308 302 323M349 310 362 300" stroke="#242620" stroke-width="7" stroke-linecap="round"/>
+    <path d="M320 274 332 267 348 276 348 293 336 300 320 291Z" fill="#eeebe0" stroke="#42483b" stroke-width="1.5"/>
+    <path d="M320 274 336 283 348 276M336 283V300" fill="none" stroke="#42483b" stroke-width="1.5"/>
+    <!-- An action path must traverse the volume, not simply look right. -->
+    <path d="M365 375C404 363 411 333 448 319" fill="none" stroke="#697b52" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+  </g>
+  <g class="rule">
+    <path d="M166 237 105 193H58"/><path d="M427 151V121H541"/><path d="M576 188H618V143"/>
+  </g>
+  <text x="58" y="181" class="small muted">Collision</text>
+  <text x="432" y="109" class="small muted">Trigger volume</text>
+  <text x="588" y="131" class="small muted">Gate</text>
+
+  <!-- Compact state legend avoids implying these properties can be read from pixels alone. -->
+  <path d="M704 123V438" class="rule"/>
+  <text x="746" y="161" font-size="23">What must be observed?</text>
+  <circle cx="754" cy="203" r="5" fill="#697b52"/>
+  <text x="775" y="209" class="label">Geometry + collision</text>
+  <circle cx="754" cy="251" r="5" fill="#697b52"/>
+  <text x="775" y="257" class="label">Camera + visibility</text>
+  <circle cx="754" cy="299" r="5" fill="#697b52"/>
+  <text x="775" y="305" class="label">Events + timing</text>
+  <circle cx="754" cy="347" r="5" fill="#697b52"/>
+  <text x="775" y="353" class="label">The resulting world state</text>
+  <text x="746" y="411" class="small muted">A plausible scene is a hypothesis.</text>
+  <text x="746" y="437" class="small muted">Playtesting supplies evidence.</text>
+
+  <path d="M42 513H1078" class="rule"/>
+  <g>
+    <g transform="translate(44 542)"><text x="0" y="24" class="olive small">01</text><text x="37" y="24">Context</text><text x="0" y="55" class="small muted">Observe state</text></g>
+    <g transform="translate(264 542)"><text x="0" y="24" class="olive small">02</text><text x="37" y="24">Action</text><text x="0" y="55" class="small muted">Edit or interact</text></g>
+    <g transform="translate(484 542)"><text x="0" y="24" class="olive small">03</text><text x="37" y="24">Runtime</text><text x="0" y="55" class="small muted">Execute in world</text></g>
+    <g transform="translate(704 542)"><text x="0" y="24" class="olive small">04</text><text x="37" y="24">Evidence</text><text x="0" y="55" class="small muted">Inspect outcome</text></g>
+    <g transform="translate(923 542)"><text x="0" y="24" class="olive small">05</text><text x="37" y="24">Revision</text><text x="0" y="55" class="small muted">Update + retest</text></g>
+    <g fill="none" stroke="#697b52" stroke-width="1.8" marker-end="url(#arrow)"><path d="M197 559H243"/><path d="M417 559H463"/><path d="M637 559H683"/><path d="M857 559H902"/><path d="M1008 614V638H99V616"/></g>
+  </g>
+</svg>
