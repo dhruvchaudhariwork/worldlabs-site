@@ -1,0 +1,206 @@
+{
+  "source": "https://github.com/Roblox/open-game-eval/blob/9070ee70cf7e479f83f6cfe684937a6225ae3b77/LLM_LEADERBOARD.md",
+  "commit": "9070ee70cf7e479f83f6cfe684937a6225ae3b77",
+  "retrieved": "2026-10-02",
+  "metrics": [
+    "Pass@1",
+    "Pass@5",
+    "Cons@5",
+    "All@5",
+    "Avg Tool Error Rate"
+  ],
+  "suites": [
+    {
+      "name": "Code generation",
+      "tasks": 87,
+      "models": [
+        {
+          "model": "Claude Fable 5",
+          "scores": [
+            50.34,
+            62.07,
+            51.09,
+            39.52,
+            1.4
+          ]
+        },
+        {
+          "model": "Claude Opus 4.6",
+          "scores": [
+            48.05,
+            59.77,
+            48.05,
+            38.28,
+            0.71
+          ]
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "scores": [
+            48.05,
+            63.22,
+            49.03,
+            33.86,
+            3.3
+          ]
+        },
+        {
+          "model": "Gemini 3 Flash Preview",
+          "scores": [
+            47.82,
+            60.92,
+            48.84,
+            35.12,
+            5.51
+          ]
+        },
+        {
+          "model": "Claude Opus 4.7",
+          "scores": [
+            43.45,
+            58.62,
+            43.45,
+            32.18,
+            1.33
+          ]
+        },
+        {
+          "model": "GPT-5.5 (Reasoning: M)",
+          "scores": [
+            40.69,
+            56.32,
+            40.13,
+            30.62,
+            0.91
+          ]
+        },
+        {
+          "model": "GPT-5.4 (Reasoning: M)",
+          "scores": [
+            40.23,
+            55.17,
+            40.0,
+            29.02,
+            1.81
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Debugging",
+      "tasks": 30,
+      "models": [
+        {
+          "model": "Claude Fable 5",
+          "scores": [
+            64.67,
+            73.33,
+            66.09,
+            54.66,
+            1.01
+          ]
+        },
+        {
+          "model": "Gemini 3.1 Pro",
+          "scores": [
+            56.67,
+            70.0,
+            58.36,
+            42.68,
+            5.97
+          ]
+        },
+        {
+          "model": "GLM 5",
+          "scores": [
+            56.0,
+            73.33,
+            59.87,
+            33.98,
+            2.39
+          ]
+        },
+        {
+          "model": "Claude Opus 4.7",
+          "scores": [
+            52.67,
+            63.33,
+            53.14,
+            43.57,
+            4.26
+          ]
+        },
+        {
+          "model": "GPT-5.4 (Reasoning: M)",
+          "scores": [
+            51.33,
+            63.33,
+            52.08,
+            39.7,
+            2.98
+          ]
+        },
+        {
+          "model": "Gemini 3 Flash Preview",
+          "scores": [
+            51.33,
+            63.33,
+            51.06,
+            43.31,
+            4.58
+          ]
+        },
+        {
+          "model": "Claude Opus 4.6",
+          "scores": [
+            50.67,
+            66.67,
+            49.52,
+            40.85,
+            0.96
+          ]
+        },
+        {
+          "model": "GPT-5.5 (Reasoning: M)",
+          "scores": [
+            50.0,
+            66.67,
+            51.02,
+            35.18,
+            1.54
+          ]
+        },
+        {
+          "model": "Gemini 3.5 Flash",
+          "scores": [
+            49.33,
+            70.0,
+            48.46,
+            36.33,
+            3.37
+          ]
+        },
+        {
+          "model": "GPT Codex 5.3",
+          "scores": [
+            47.33,
+            70.0,
+            47.9,
+            27.0,
+            3.21
+          ]
+        },
+        {
+          "model": "Claude Sonnet 4.6",
+          "scores": [
+            46.0,
+            60.0,
+            46.47,
+            33.87,
+            6.47
+          ]
+        }
+      ]
+    }
+  ]
+}

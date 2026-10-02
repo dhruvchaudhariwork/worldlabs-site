@@ -10,6 +10,7 @@
   <link rel="alternate icon" href="/favicon.ico?v=20261001-mark">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark">
   <link rel="stylesheet" href="/horizon.css">
+  <link rel="stylesheet" href="/benchmark.css">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="World Labs">
   <meta property="og:title" content="World Labs | Long-horizon tasks in interactive worlds">
@@ -38,7 +39,65 @@
       <p>We’re also developing human-data projects across game engines and browser games, including WebGL experiences. Expert demonstrations, critiques, comparisons, and revisions capture the human judgment behind game development, design, and playtesting.</p>
       <p class="contact">To discuss an environment pilot or a human-data project, get in touch at <a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20project">dhruv@tryworldlabs.com</a>.</p>
     </div>
+    <!-- BENCHMARK:START -->
+<section class="benchmark" id="opengameeval" aria-labelledby="eval-heading">
+  <details class="benchmark-disclosure">
+    <summary><h2 id="eval-heading">Interact Bench</h2><span class="disclosure-icon" aria-hidden="true"></span></summary>
+    <div class="benchmark-content">
+  <p class="eval-subtitle">Evaluating AI agents on building and debugging interactive games</p>
+  <p class="eval-date"><time datetime="2026-10-02">October 2, 2026</time></p>
+  <p>We present Interact Bench, a benchmark of 117 tasks that evaluates AI agents on game development inside Roblox Studio. Across 87 code-generation tasks and 30 debugging tasks, agents modify scenes, implement game mechanics, and repair existing scripts. Tasks run in a game-engine environment, with automated checks that verify changes to the scene and behavior during gameplay.</p>
+  <p>We compare frontier models across both task suites, measuring first-attempt success, success within five attempts, consistency, and tool-call errors. The charts below show Pass@1; the full results include all five metrics for each model.</p>
+  <div class="eval-card">
+    <div class="eval-card-top"><h3>Interact Bench leaderboard</h3><span>Pass@1 · Higher is better</span></div>
+    <div class="eval-switch" role="group" aria-label="Evaluation suite" hidden><button type="button" aria-pressed="true" aria-controls="eval-suite-0" data-suite="0">Code generation</button><button type="button" aria-pressed="false" aria-controls="eval-suite-1" data-suite="1">Debugging</button></div>
+    <section class="eval-chart" id="eval-suite-0" aria-labelledby="eval-title-0">
+  <div class="eval-chart-heading"><h3 id="eval-title-0">Code generation</h3><span>87 tasks · 7 models</span></div>
+  <div class="eval-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+  <ol class="eval-bars" role="list"><li><span class="eval-model">Claude Fable 5</span><span class="eval-track" aria-hidden="true"><span style="width:50.34%"></span></span><span class="eval-value">50.34%</span></li>
+<li><span class="eval-model">Claude Opus 4.6</span><span class="eval-track" aria-hidden="true"><span style="width:48.05%"></span></span><span class="eval-value">48.05%</span></li>
+<li><span class="eval-model">Gemini 3.5 Flash</span><span class="eval-track" aria-hidden="true"><span style="width:48.05%"></span></span><span class="eval-value">48.05%</span></li>
+<li><span class="eval-model">Gemini 3 Flash Preview</span><span class="eval-track" aria-hidden="true"><span style="width:47.82%"></span></span><span class="eval-value">47.82%</span></li>
+<li><span class="eval-model">Claude Opus 4.7</span><span class="eval-track" aria-hidden="true"><span style="width:43.45%"></span></span><span class="eval-value">43.45%</span></li>
+<li><span class="eval-model">GPT-5.5 (Reasoning: M)</span><span class="eval-track" aria-hidden="true"><span style="width:40.69%"></span></span><span class="eval-value">40.69%</span></li>
+<li><span class="eval-model">GPT-5.4 (Reasoning: M)</span><span class="eval-track" aria-hidden="true"><span style="width:40.23%"></span></span><span class="eval-value">40.23%</span></li></ol>
+</section>
+<section class="eval-chart" id="eval-suite-1" aria-labelledby="eval-title-1">
+  <div class="eval-chart-heading"><h3 id="eval-title-1">Debugging</h3><span>30 tasks · 11 models</span></div>
+  <div class="eval-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
+  <ol class="eval-bars" role="list"><li><span class="eval-model">Claude Fable 5</span><span class="eval-track" aria-hidden="true"><span style="width:64.67%"></span></span><span class="eval-value">64.67%</span></li>
+<li><span class="eval-model">Gemini 3.1 Pro</span><span class="eval-track" aria-hidden="true"><span style="width:56.67%"></span></span><span class="eval-value">56.67%</span></li>
+<li><span class="eval-model">GLM 5</span><span class="eval-track" aria-hidden="true"><span style="width:56%"></span></span><span class="eval-value">56.00%</span></li>
+<li><span class="eval-model">Claude Opus 4.7</span><span class="eval-track" aria-hidden="true"><span style="width:52.67%"></span></span><span class="eval-value">52.67%</span></li>
+<li><span class="eval-model">GPT-5.4 (Reasoning: M)</span><span class="eval-track" aria-hidden="true"><span style="width:51.33%"></span></span><span class="eval-value">51.33%</span></li>
+<li><span class="eval-model">Gemini 3 Flash Preview</span><span class="eval-track" aria-hidden="true"><span style="width:51.33%"></span></span><span class="eval-value">51.33%</span></li>
+<li><span class="eval-model">Claude Opus 4.6</span><span class="eval-track" aria-hidden="true"><span style="width:50.67%"></span></span><span class="eval-value">50.67%</span></li>
+<li><span class="eval-model">GPT-5.5 (Reasoning: M)</span><span class="eval-track" aria-hidden="true"><span style="width:50%"></span></span><span class="eval-value">50.00%</span></li>
+<li><span class="eval-model">Gemini 3.5 Flash</span><span class="eval-track" aria-hidden="true"><span style="width:49.33%"></span></span><span class="eval-value">49.33%</span></li>
+<li><span class="eval-model">GPT Codex 5.3</span><span class="eval-track" aria-hidden="true"><span style="width:47.33%"></span></span><span class="eval-value">47.33%</span></li>
+<li><span class="eval-model">Claude Sonnet 4.6</span><span class="eval-track" aria-hidden="true"><span style="width:46%"></span></span><span class="eval-value">46.00%</span></li></ol>
+</section>
+    <p class="eval-caption">Pass@1 is the average probability of success in one attempt. Model coverage differs between suites.</p>
+  </div>
+  <a class="eval-link" href="/benchmark.html">Full results and methodology <span aria-hidden="true">↗</span></a>
+    </div>
+  </details>
+</section>
+<!-- BENCHMARK:END -->
+    <section class="benchmark worldline" id="worldline" aria-labelledby="worldline-heading">
+      <details class="benchmark-disclosure">
+        <summary><h2 id="worldline-heading">Worldline Bench</h2><span class="disclosure-icon" aria-hidden="true"></span></summary>
+        <div class="benchmark-content">
+      <p class="eval-eyebrow"><span class="development-status">Under development</span></p>
+      <p class="eval-subtitle">Evaluating AI agents across long-horizon tasks in interactive worlds</p>
+      <p>Worldline Bench is being designed around extended development assignments that require agents to turn an open-ended goal into a working game system. Agents will need to break down requirements, coordinate changes across code and scenes, and carry decisions through many dependent steps. A design choice made early may only reveal its consequences much later—when systems interact, playtests expose edge cases, or a new feature breaks existing behavior.</p>
+      <p>The challenge is carrying the whole assignment through: tracking unfinished work, revising a plan as evidence changes, recovering from failed approaches, and verifying that the final experience works as a coherent whole.</p>
+      <p class="worldline-note">Worldline Bench is under development. The task suite and evaluation methodology are being developed; results have not yet been published.</p>
+        </div>
+      </details>
+    </section>
   </main>
   <footer class="footer">© 2026 World Labs. All rights reserved.</footer>
+  <script src="/scripts/benchmark-ui.js" defer></script>
 </body>
 </html>

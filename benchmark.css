@@ -1,0 +1,81 @@
+/* Public results extend the current site's narrow, typographic layout. */
+.benchmark { margin-top:48px; padding-top:30px; border-top:1px solid #d9d9d9; }
+.eval-eyebrow { font-size:12px; color:#666; margin:0 0 12px; }
+.benchmark h2 { font-family:'EB Garamond',Georgia,serif; font-size:32px; font-weight:400; letter-spacing:-.025em; line-height:1.15; margin:0 0 18px; }
+.eval-card { margin:28px 0 22px; }
+.eval-card-top { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:12px; }
+.eval-card-top h3 { font-size:15px; font-weight:400; margin:0; }
+.eval-card-top > span { font-size:11px; color:#666; }
+.eval-switch { display:flex; gap:24px; border-bottom:1px solid #d9d9d9; margin-bottom:22px; }
+.eval-switch button { font:inherit; font-size:13px; color:#666; background:none; cursor:pointer; border:0; border-bottom:2px solid transparent; margin-bottom:-1px; padding:12px 0; min-height:44px; }
+.eval-switch button[aria-pressed="true"] { border-color:#191919; color:#191919; }
+.eval-switch button:focus-visible { outline:2px solid #525252; outline-offset:4px; }
+.eval-switch[hidden],.eval-chart[hidden] { display:none; }
+.eval-chart-heading { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:18px; }
+.eval-chart-heading h3 { font-size:13px; font-weight:400; margin:0; }
+.eval-chart-heading > span { font-size:11px; color:#666; }
+.eval-axis { display:flex; justify-content:space-between; margin-left:200px; margin-right:64px; font-size:10px; color:#737373; padding-bottom:8px; }
+.eval-bars { margin:0; padding:0; list-style:none; }
+.eval-bars li { display:grid; grid-template-columns:188px minmax(0,1fr) 52px; align-items:center; gap:12px; min-height:40px; margin:0; padding:0; }
+.eval-model { font-size:12px; line-height:1.4; }
+.eval-track { display:block; height:15px; background:linear-gradient(to right,#dcdcdc 1px,transparent 1px) 0 0/50% 100%,#ebebeb; border-right:1px solid #dcdcdc; }
+.eval-track > span { display:block; height:100%; background:#969a91; }
+.eval-bars li:first-child .eval-track > span { background:#575e50; }
+.eval-value { font-size:12px; text-align:right; font-variant-numeric:tabular-nums; }
+.eval-caption { font-size:12px; line-height:1.6; color:#666; margin:18px 0 12px; }
+.eval-source { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; font-size:11px; color:#666; border-top:1px solid #d9d9d9; padding-top:12px; }
+.eval-context { font-size:13px; color:#666; line-height:1.65; margin-bottom:12px; }
+.eval-link { display:inline-flex; gap:10px; align-items:center; font-size:14px; min-height:44px; }
+.eval-chart + .eval-chart { margin-top:28px; }
+.eval-switch:not([hidden]) ~ .eval-chart { margin-top:0; }
+.eval-page { width:min(800px,calc(100% - 48px)); }
+.eval-brand { display:inline-flex; align-items:center; gap:10px; font-family:'EB Garamond',Georgia,serif; font-size:46.4px; line-height:.95; letter-spacing:-.03em; text-decoration:none; }
+.eval-back { display:inline-block; font-size:13px; margin:0 0 36px; }
+.eval-title { font-size:38px; line-height:1.1; margin:0 0 20px; }
+.eval-page-meta { display:flex; flex-wrap:wrap; gap:12px 24px; font-size:12px; color:#666; margin:24px 0; }
+.eval-note { border-left:2px solid #969a91; padding-left:16px; font-size:13px; color:#666; }
+.eval-results { margin-top:38px; }
+.eval-results h2,.eval-method h2 { font-family:'EB Garamond',Georgia,serif; font-size:28px; font-weight:400; line-height:1.2; margin:0 0 18px; }
+.eval-results h2 span { font-family:'Geist',Arial,sans-serif; font-size:12px; color:#666; margin-left:12px; }
+.eval-table-wrap { overflow-x:auto; }
+.eval-table-wrap:focus-visible { outline:2px solid #525252; outline-offset:4px; }
+.eval-results table { border-collapse:collapse; width:100%; white-space:nowrap; font-size:12px; }
+.eval-results caption { text-align:left; white-space:normal; font-size:12px; color:#666; margin:0 0 12px; }
+.eval-results th,.eval-results td { text-align:right; border-bottom:1px solid #dedede; padding:13px 10px; font-variant-numeric:tabular-nums; }
+.eval-results th { font-weight:400; }
+.eval-results th:first-child { text-align:left; padding-left:0; }
+.eval-results th:last-child,.eval-results td:last-child { padding-right:0; }
+.eval-results thead { color:#666; font-size:11px; }
+.eval-results tbody tr:first-child { background:#eceedf; }
+.eval-method { margin-top:44px; padding-top:28px; border-top:1px solid #d9d9d9; }
+.eval-method > div + div { margin-top:32px; }
+.eval-method dl { margin:0; }
+.eval-method dt { font-size:13px; margin:14px 0 4px; }
+.eval-method dd { font-size:13px; color:#666; line-height:1.6; margin:0; }
+.eval-method p { font-size:14px; }
+@media(max-width:600px) {
+ .eval-bars li { grid-template-columns:minmax(0,1fr) 52px; gap:6px; padding:9px 0; }
+ .eval-model { grid-column:1; } .eval-value { grid-column:2; grid-row:1; }
+ .eval-track { grid-column:1/-1; grid-row:2; height:12px; }
+ .eval-axis { margin:0; } .eval-card-top { align-items:baseline; flex-wrap:wrap; gap:8px; }
+ .eval-chart-heading { flex-wrap:wrap; gap:6px; } .eval-brand { font-size:42px; }
+ .eval-results h2 span { display:block; margin:6px 0 0; }
+}
+
+/* Research introduction: name, scope, date, then methodology. */
+.benchmark h2 { margin-bottom:6px; font-size:36px; }
+.eval-subtitle { font-size:21px; line-height:1.35; letter-spacing:-.02em; margin:0 0 16px; }
+.eval-date { font-size:12px; color:#666; margin-bottom:24px; }
+.eval-title + .eval-subtitle { margin-top:-10px; }
+.benchmark .eval-card { margin-top:34px; }
+
+.worldline { padding-bottom:8px; }
+.development-status { display:inline-block; padding:4px 9px; border:1px solid #d3d6cf; border-radius:3px; color:#575e50; font-size:11px; line-height:1.5; }
+.worldline .worldline-note { font-size:13px; line-height:1.65; color:#666; margin-bottom:0; }
+
+.benchmark-disclosure > summary { display:flex; width:100%; align-items:center; justify-content:space-between; gap:24px; min-height:48px; color:#191919; }
+.benchmark-disclosure > summary h2 { margin:0; }
+.benchmark-disclosure > summary .disclosure-icon { flex-basis:16px; width:16px; height:16px; top:0; }
+.benchmark-disclosure > summary .disclosure-icon::before { width:16px; top:7px; }
+.benchmark-disclosure > summary .disclosure-icon::after { height:16px; left:7px; }
+.benchmark-content { padding-top:20px; }

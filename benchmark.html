@@ -1,59 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benchmark — In progress | World Labs</title>
-  <meta name="description" content="The World Labs benchmark is in progress.">
-  <link rel="icon" href="/favicon.ico?v=20261001-mark" sizes="16x16 32x32 48x48">
-<link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark" sizes="180x180">
-  <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; background: #fff; color: #161616; font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .home { position: absolute; top: 32px; left: 36px; display: inline-flex; align-items: center; gap: 10px; padding: 8px 0; color: #777; text-decoration: none; font-size: 13px; }
-    .home:hover { color: #111; }
-    .home:focus-visible { outline: 2px solid #888; outline-offset: 6px; border-radius: 2px; }
-    main { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 24px; }
-    .hourglass { width: 30px; height: 38px; color: #777; margin-bottom: 24px; overflow: visible; animation: turn 4s ease-in-out infinite; }
-    .sand-top { transform-origin: 16px 18px; animation: empty 4s ease-in-out infinite; }
-    .sand-bottom { transform-origin: 16px 29px; animation: fill 4s ease-in-out infinite; }
-    .sand-stream { animation: stream 4s linear infinite; }
-    h1 { font-size: 17px; font-weight: 400; letter-spacing: -.02em; margin: 0; }
-    @keyframes turn { 0%, 75% { transform: rotate(0); } 95%, 100% { transform: rotate(180deg); } }
-    @keyframes empty { 0%, 10% { transform: scaleY(1); } 70%, 100% { transform: scaleY(0); } }
-    @keyframes fill { 0%, 10% { transform: scaleY(0); } 70%, 100% { transform: scaleY(1); } }
-    @keyframes stream { 0%, 8%, 74%, 100% { opacity: 0; } 12%, 68% { opacity: .6; } }
-    @media (max-width: 600px) { .home { top: 20px; left: 24px; } }
-    @media (prefers-reduced-motion: reduce) { .hourglass, .sand-top, .sand-bottom, .sand-stream { animation: none; } .sand-bottom { transform: scaleY(.4); } .sand-stream { opacity: 0; } }
-  </style>
-<link rel="canonical" href="https://tryworldlabs.com/benchmark">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="World Labs">
-<meta property="og:title" content="Benchmark — In progress | World Labs">
-<meta property="og:description" content="The World Labs benchmark is in progress.">
-<meta property="og:url" content="https://tryworldlabs.com/benchmark">
-<meta property="og:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Benchmark — In progress | World Labs">
-<meta name="twitter:description" content="The World Labs benchmark is in progress.">
-<meta name="twitter:image" content="https://tryworldlabs.com/assets/social/world-labs-preview-v1.png">
-<meta name="twitter:image:alt" content="World Labs. AI for interactive worlds. Expert training data and evaluations.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interact Bench | World Labs</title>
+  <meta name="description" content="Roblox’s published OpenGameEval results for code generation and debugging, with metric definitions and source data.">
+  <link rel="canonical" href="https://tryworldlabs.com/benchmark">
+  <link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml">
+  <link rel="alternate icon" href="/favicon.ico?v=20261001-mark">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark">
+  <link rel="stylesheet" href="/horizon.css">
+  <link rel="stylesheet" href="/benchmark.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="World Labs">
+  <meta property="og:title" content="Interact Bench | World Labs">
+  <meta property="og:description" content="Roblox’s published OpenGameEval results, with metric definitions and source data.">
+  <meta property="og:url" content="https://tryworldlabs.com/benchmark">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Interact Bench | World Labs">
+  <meta name="twitter:description" content="Roblox’s published OpenGameEval results, with metric definitions and source data.">
 </head>
 <body>
-  <a class="home" href="./index.html"><span aria-hidden="true">←</span> Back to home</a>
-  <main>
-    <svg class="hourglass" viewBox="0 0 32 40" fill="none" aria-hidden="true">
-      <path d="M7 4h18M7 36h18M9 5v6c0 4 4 6 7 9-3 3-7 5-7 9v6M23 5v6c0 4-4 6-7 9 3 3 7 5 7 9v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="sand-top" d="M11 10h10c0 3-2 5-5 8-3-3-5-5-5-8Z" fill="currentColor" opacity=".45"/>
-      <path class="sand-bottom" d="m16 23 5 7H11l5-7Z" fill="currentColor" opacity=".45"/>
-      <path class="sand-stream" d="M16 20v8" stroke="currentColor" stroke-width="1" stroke-dasharray="1 2"/>
-    </svg>
-    <h1>In progress</h1>
-  </main>
+ <a class="skip-link" href="#results">Skip to results</a>
+ <main class="page eval-page">
+  <header class="masthead"><a class="eval-brand" href="/" aria-label="World Labs home"><img class="brand-mark" src="/assets/world-labs-mark.png" width="40" height="40" alt="">world labs</a><p class="tagline">Long-horizon tasks in interactive worlds.</p></header>
+  <a class="eval-back" href="/#opengameeval">← Back to overview</a>
+  <div id="results" tabindex="-1">
+  <h1 class="eval-title">Interact Bench</h1>
+  <p class="eval-subtitle">Evaluating AI agents on building and debugging interactive games</p>
+  <p class="eval-date"><time datetime="2026-10-02">October 2, 2026</time></p>
+  <p>We present Interact Bench, a benchmark of 117 tasks that evaluates AI agents on game development inside Roblox Studio. Across 87 code-generation tasks and 30 debugging tasks, agents modify scenes, implement game mechanics, and repair existing scripts. Tasks run in a game-engine environment, with automated checks that verify changes to the scene and behavior during gameplay.</p>
+  <p>We compare frontier models across both task suites, measuring first-attempt success, success within five attempts, consistency, and tool-call errors. The tables below include all five metrics for each model.</p>
+   <!-- RESULTS:START -->
+<section class="eval-results" aria-label="Code generation results">
+ <h2>Code generation <span>87 tasks</span></h2>
+ <div class="eval-table-wrap" role="region" aria-label="Code generation scores, scroll horizontally on small screens" tabindex="0"><table>
+ <caption>Code generation results, ordered by Pass@1. All values are percentages.</caption>
+ <thead><tr><th scope="col">Model</th><th scope="col">Pass@1</th><th scope="col">Pass@5</th><th scope="col">Cons@5</th><th scope="col">All@5</th><th scope="col">Avg Tool Error Rate</th></tr></thead>
+ <tbody><tr><th scope="row">Claude Fable 5</th><td>50.34%</td><td>62.07%</td><td>51.09%</td><td>39.52%</td><td>1.40%</td></tr>
+<tr><th scope="row">Claude Opus 4.6</th><td>48.05%</td><td>59.77%</td><td>48.05%</td><td>38.28%</td><td>0.71%</td></tr>
+<tr><th scope="row">Gemini 3.5 Flash</th><td>48.05%</td><td>63.22%</td><td>49.03%</td><td>33.86%</td><td>3.30%</td></tr>
+<tr><th scope="row">Gemini 3 Flash Preview</th><td>47.82%</td><td>60.92%</td><td>48.84%</td><td>35.12%</td><td>5.51%</td></tr>
+<tr><th scope="row">Claude Opus 4.7</th><td>43.45%</td><td>58.62%</td><td>43.45%</td><td>32.18%</td><td>1.33%</td></tr>
+<tr><th scope="row">GPT-5.5 (Reasoning: M)</th><td>40.69%</td><td>56.32%</td><td>40.13%</td><td>30.62%</td><td>0.91%</td></tr>
+<tr><th scope="row">GPT-5.4 (Reasoning: M)</th><td>40.23%</td><td>55.17%</td><td>40.00%</td><td>29.02%</td><td>1.81%</td></tr></tbody>
+ </table></div>
+</section>
+<section class="eval-results" aria-label="Debugging results">
+ <h2>Debugging <span>30 tasks</span></h2>
+ <div class="eval-table-wrap" role="region" aria-label="Debugging scores, scroll horizontally on small screens" tabindex="0"><table>
+ <caption>Debugging results, ordered by Pass@1. All values are percentages.</caption>
+ <thead><tr><th scope="col">Model</th><th scope="col">Pass@1</th><th scope="col">Pass@5</th><th scope="col">Cons@5</th><th scope="col">All@5</th><th scope="col">Avg Tool Error Rate</th></tr></thead>
+ <tbody><tr><th scope="row">Claude Fable 5</th><td>64.67%</td><td>73.33%</td><td>66.09%</td><td>54.66%</td><td>1.01%</td></tr>
+<tr><th scope="row">Gemini 3.1 Pro</th><td>56.67%</td><td>70.00%</td><td>58.36%</td><td>42.68%</td><td>5.97%</td></tr>
+<tr><th scope="row">GLM 5</th><td>56.00%</td><td>73.33%</td><td>59.87%</td><td>33.98%</td><td>2.39%</td></tr>
+<tr><th scope="row">Claude Opus 4.7</th><td>52.67%</td><td>63.33%</td><td>53.14%</td><td>43.57%</td><td>4.26%</td></tr>
+<tr><th scope="row">GPT-5.4 (Reasoning: M)</th><td>51.33%</td><td>63.33%</td><td>52.08%</td><td>39.70%</td><td>2.98%</td></tr>
+<tr><th scope="row">Gemini 3 Flash Preview</th><td>51.33%</td><td>63.33%</td><td>51.06%</td><td>43.31%</td><td>4.58%</td></tr>
+<tr><th scope="row">Claude Opus 4.6</th><td>50.67%</td><td>66.67%</td><td>49.52%</td><td>40.85%</td><td>0.96%</td></tr>
+<tr><th scope="row">GPT-5.5 (Reasoning: M)</th><td>50.00%</td><td>66.67%</td><td>51.02%</td><td>35.18%</td><td>1.54%</td></tr>
+<tr><th scope="row">Gemini 3.5 Flash</th><td>49.33%</td><td>70.00%</td><td>48.46%</td><td>36.33%</td><td>3.37%</td></tr>
+<tr><th scope="row">GPT Codex 5.3</th><td>47.33%</td><td>70.00%</td><td>47.90%</td><td>27.00%</td><td>3.21%</td></tr>
+<tr><th scope="row">Claude Sonnet 4.6</th><td>46.00%</td><td>60.00%</td><td>46.47%</td><td>33.87%</td><td>6.47%</td></tr></tbody>
+ </table></div>
+</section>
+<!-- RESULTS:END -->
+ <section class="eval-method" aria-label="Methodology and context">
+  <div><h2>Reading the scores</h2><dl>
+   <dt>Pass@1</dt><dd>Average probability of success in one attempt.</dd>
+   <dt>Pass@5</dt><dd>Average probability of at least one successful attempt out of five.</dd>
+   <dt>Cons@5</dt><dd>Average probability of success in at least three of five attempts.</dd>
+   <dt>All@5</dt><dd>Average probability of success in all five attempts.</dd>
+   <dt>Average tool error rate</dt><dd>Average tool-call error rate. Lower is better; higher is better for the four success metrics.</dd>
+  </dl></div>
+ </section>
+  </div>
+ </main>
+ <footer class="footer">© 2026 World Labs. All rights reserved.</footer>
 </body>
 </html>

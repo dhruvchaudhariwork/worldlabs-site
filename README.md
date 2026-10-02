@@ -4,11 +4,11 @@ Environments inside game engines for training and evaluating AI agents on long-h
 
 ## Current product status
 
-The homepage introduces the environment, task, and verification direction alongside human-data projects across game engines and browser games, including WebGL experiences: expert demonstrations, critiques, comparisons, and revisions for game development, design, and playtesting. It uses a minimal, text-first layout. The environment, evaluation framework, and human-data projects are in development; this repository does not implement an RL gym, trajectory capture, dataset delivery, or a validated evaluation harness, and no benchmark results are published.
+The homepage introduces the environment, task, and verification direction alongside human-data projects across game engines and browser games, including WebGL experiences: expert demonstrations, critiques, comparisons, and revisions for game development, design, and playtesting. It uses a minimal, text-first layout. The environment, evaluation framework, and human-data projects are in development; this repository does not implement an RL gym, trajectory capture, dataset delivery, or a validated evaluation harness, and no World Labs benchmark results are published. The homepage and benchmark page present a pinned snapshot of Roblox’s public OpenGameEval results, with provenance recorded in the data snapshot.
 
 The application, waitlist, community, research, and admin pages remain available. Secondary pages retain the earlier expert-data positioning and have not yet been redesigned. The existing leaderboard API stores experimental aggregates and is not used by the homepage or public benchmark page.
 
-The homepage uses `horizon.css`, without JavaScript. EB Garamond (wordmark) and Geist (body) are served locally from `assets/fonts`, alongside their open font licenses, with system fallbacks. Previous homepage scripts and styles remain in the repository. The older `tests/home-browser.py` checks target the previous interactive homepage and do not apply to this version.
+The homepage uses `horizon.css` and `benchmark.css`. The benchmark suite switch uses optional JavaScript; both suites remain readable when JavaScript is disabled. EB Garamond (wordmark) and Geist (body) are served locally from `assets/fonts`, alongside their open font licenses, with system fallbacks. Previous homepage scripts and styles remain in the repository. The older `tests/home-browser.py` checks target the previous interactive homepage and do not apply to this version.
 
 See `docs/market-positioning-review-2026-09-08.md` for source-linked positioning,
 implementation gaps, and the checks needed before publishing comparisons.
@@ -107,7 +107,7 @@ do not establish production persistence.
 | `/handbook` | Contributor guide covering application review, project matching, assignments, and planned compensation practices. |
 | `/apply` | Expert application. Posts to `/api/apply`; production storage uses Postgres. |
 | `/admin` | Private application and waitlist inboxes with search, pagination, review statuses, and notes. |
-| `/benchmark` | "In progress" screen with an animated hourglass and a link home. |
+| `/benchmark` | Interact Bench results and metric definitions. |
 | `/join` | Waitlist signup. Posts to `/api/waitlist`; persistence depends on the server mode. |
 
 Blog pages have been removed from the public site.
@@ -198,3 +198,17 @@ Variables** (they are not read from `.env.local` in production).
 
 Check the deployment account's current function limits and configuration
 before publishing. Running the local preview does not deploy changes.
+
+## Public benchmark data
+
+`data/opengameeval.json` records the upstream commit, retrieval date, and all five
+metrics for both OpenGameEval suites. Run `node scripts/render-benchmark.js`
+to regenerate the marked regions in `index.html` and `benchmark.html` after
+updating the verified snapshot. Review the introduction and draft date when changing snapshots. The committed
+HTML needs no build step or external data request. These scores are published by
+Roblox; World Labs has not run or independently verified the evaluations.
+
+The local benchmark presentation uses **Interact Bench** as a hypothetical working
+name at the user’s request. Scores and task counts remain from OpenGameEval, with
+the original source retained in the data snapshot. The draft
+date is October 2, 2026; this does not represent a new evaluation run.
