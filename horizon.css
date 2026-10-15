@@ -40,7 +40,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid #525252; outline-off
 .mission:focus { outline: none; }
 .contact { margin-bottom: 0; }
 .contact a { overflow-wrap: anywhere; }
-.more { border-top: 1px solid #d9d9d9; margin-top: 30px; padding-top: 17px; }
 summary { display: flex; align-items: baseline; gap: 8px; color: #666; cursor: pointer; list-style: none; width: fit-content; }
 summary::-webkit-details-marker { display: none; }
 summary:hover { color: #191919; }
@@ -49,9 +48,6 @@ summary:hover { color: #191919; }
 .disclosure-icon::before { width: 9px; height: 1px; left: 0; top: 4px; }
 .disclosure-icon::after { width: 1px; height: 9px; left: 4px; top: 0; }
 details[open] .disclosure-icon::after { display: none; }
-.more-content { padding-top: 22px; }
-blockquote { margin: 0 0 20px; border-left: 1px solid #bcbcbc; padding: 0 0 0 18px; font-size: 16px; line-height: 1.58; }
-.development-note { font-size: 14px; color: #666; margin-bottom: 0; }
 .footer { margin-top: auto; padding: 24px; text-align: right; font-size: 12px; line-height: 1.5; }
 .skip-link { position: absolute; top: 10px; left: 24px; padding: 8px; background: #fff; transform: translateY(-160%); }
 .skip-link:focus { transform: translateY(0); }

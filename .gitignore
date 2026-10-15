@@ -1,13 +1,9 @@
-# Secrets — never commit. SUPABASE_SERVICE_ROLE_KEY is full-access.
-.env
-.env.local
-.env.*.local
-
-# Local tooling
+# Local development files
 node_modules/
+.dev/
 .vercel/
 .DS_Store
 
-# Local dev database / scratch
-.dev/
-.vercel
+# Local credentials
+.env
+.env.*

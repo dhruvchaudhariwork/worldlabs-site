@@ -79,7 +79,48 @@
 </section>
     <p class="eval-caption">Pass@1 is the average probability of success in one attempt. Model coverage differs between suites.</p>
   </div>
-  <a class="eval-link" href="/benchmark.html">Full results and methodology <span aria-hidden="true">↗</span></a>
+  <section class="eval-results" aria-label="Code generation results">
+ <h3>Code generation <span>87 tasks</span></h3>
+ <div class="eval-table-wrap" role="region" aria-label="Code generation scores, scroll horizontally on small screens" tabindex="0"><table>
+ <caption>Code generation results, ordered by Pass@1. All values are percentages.</caption>
+ <thead><tr><th scope="col">Model</th><th scope="col">Pass@1</th><th scope="col">Pass@5</th><th scope="col">Cons@5</th><th scope="col">All@5</th><th scope="col">Avg Tool Error Rate</th></tr></thead>
+ <tbody><tr><th scope="row">Claude Fable 5</th><td>50.34%</td><td>62.07%</td><td>51.09%</td><td>39.52%</td><td>1.40%</td></tr>
+<tr><th scope="row">Claude Opus 4.6</th><td>48.05%</td><td>59.77%</td><td>48.05%</td><td>38.28%</td><td>0.71%</td></tr>
+<tr><th scope="row">Gemini 3.5 Flash</th><td>48.05%</td><td>63.22%</td><td>49.03%</td><td>33.86%</td><td>3.30%</td></tr>
+<tr><th scope="row">Gemini 3 Flash Preview</th><td>47.82%</td><td>60.92%</td><td>48.84%</td><td>35.12%</td><td>5.51%</td></tr>
+<tr><th scope="row">Claude Opus 4.7</th><td>43.45%</td><td>58.62%</td><td>43.45%</td><td>32.18%</td><td>1.33%</td></tr>
+<tr><th scope="row">GPT-5.5 (Reasoning: M)</th><td>40.69%</td><td>56.32%</td><td>40.13%</td><td>30.62%</td><td>0.91%</td></tr>
+<tr><th scope="row">GPT-5.4 (Reasoning: M)</th><td>40.23%</td><td>55.17%</td><td>40.00%</td><td>29.02%</td><td>1.81%</td></tr></tbody>
+ </table></div>
+</section>
+<section class="eval-results" aria-label="Debugging results">
+ <h3>Debugging <span>30 tasks</span></h3>
+ <div class="eval-table-wrap" role="region" aria-label="Debugging scores, scroll horizontally on small screens" tabindex="0"><table>
+ <caption>Debugging results, ordered by Pass@1. All values are percentages.</caption>
+ <thead><tr><th scope="col">Model</th><th scope="col">Pass@1</th><th scope="col">Pass@5</th><th scope="col">Cons@5</th><th scope="col">All@5</th><th scope="col">Avg Tool Error Rate</th></tr></thead>
+ <tbody><tr><th scope="row">Claude Fable 5</th><td>64.67%</td><td>73.33%</td><td>66.09%</td><td>54.66%</td><td>1.01%</td></tr>
+<tr><th scope="row">Gemini 3.1 Pro</th><td>56.67%</td><td>70.00%</td><td>58.36%</td><td>42.68%</td><td>5.97%</td></tr>
+<tr><th scope="row">GLM 5</th><td>56.00%</td><td>73.33%</td><td>59.87%</td><td>33.98%</td><td>2.39%</td></tr>
+<tr><th scope="row">Claude Opus 4.7</th><td>52.67%</td><td>63.33%</td><td>53.14%</td><td>43.57%</td><td>4.26%</td></tr>
+<tr><th scope="row">GPT-5.4 (Reasoning: M)</th><td>51.33%</td><td>63.33%</td><td>52.08%</td><td>39.70%</td><td>2.98%</td></tr>
+<tr><th scope="row">Gemini 3 Flash Preview</th><td>51.33%</td><td>63.33%</td><td>51.06%</td><td>43.31%</td><td>4.58%</td></tr>
+<tr><th scope="row">Claude Opus 4.6</th><td>50.67%</td><td>66.67%</td><td>49.52%</td><td>40.85%</td><td>0.96%</td></tr>
+<tr><th scope="row">GPT-5.5 (Reasoning: M)</th><td>50.00%</td><td>66.67%</td><td>51.02%</td><td>35.18%</td><td>1.54%</td></tr>
+<tr><th scope="row">Gemini 3.5 Flash</th><td>49.33%</td><td>70.00%</td><td>48.46%</td><td>36.33%</td><td>3.37%</td></tr>
+<tr><th scope="row">GPT Codex 5.3</th><td>47.33%</td><td>70.00%</td><td>47.90%</td><td>27.00%</td><td>3.21%</td></tr>
+<tr><th scope="row">Claude Sonnet 4.6</th><td>46.00%</td><td>60.00%</td><td>46.47%</td><td>33.87%</td><td>6.47%</td></tr></tbody>
+ </table></div>
+</section>
+  <section class="eval-method" aria-label="Methodology and context">
+    <h3>Reading the scores</h3>
+    <dl>
+      <dt>Pass@1</dt><dd>Average probability of success in one attempt.</dd>
+      <dt>Pass@5</dt><dd>Average probability of at least one successful attempt out of five.</dd>
+      <dt>Cons@5</dt><dd>Average probability of success in at least three of five attempts.</dd>
+      <dt>All@5</dt><dd>Average probability of success in all five attempts.</dd>
+      <dt>Average tool error rate</dt><dd>Average tool-call error rate. Lower is better; higher is better for the four success metrics.</dd>
+    </dl>
+  </section>
     </div>
   </details>
 </section>
