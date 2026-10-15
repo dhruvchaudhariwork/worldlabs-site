@@ -3,169 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agents that finish the job | World Labs</title>
-  <meta name="description" content="A World Labs research memo on long-horizon AI agents: connected tasks across game engines and creative tools, verifiable outcomes, and expert human judgment.">
+  <title>Advancing agents through game worlds | World Labs</title>
+  <meta name="description" content="World Labs is a research lab advancing agents through interactive worlds. Original data for pretraining, game-engine RL gyms for post-training, and controlled evaluation of model progress.">
   <link rel="canonical" href="https://tryworldlabs.com/memo">
   <link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml">
   <link rel="alternate icon" href="/favicon.ico?v=20261001-mark">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark">
   <link rel="preload" href="/assets/fonts/eb-garamond-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/horizon.css">
+  <link rel="preload" href="/assets/fonts/geist-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/memo.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="World Labs">
-  <meta property="og:title" content="Agents that finish the job">
-  <meta property="og:description" content="A research agenda for long-horizon work in game engines and creative tools.">
+  <meta property="og:title" content="Advancing agents through game worlds">
+  <meta property="og:description" content="Original training data, executable environments, and a research loop that measures what agents learn.">
   <meta property="og:url" content="https://tryworldlabs.com/memo">
-  <meta property="og:image" content="https://tryworldlabs.com/assets/memo-environment.jpg">
-  <meta property="og:image:alt" content="A conceptual game environment with a bridge, sliding gate, and a wireframe asset study.">
-  <meta property="article:published_time" content="2026-10-14">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Agents that finish the job | World Labs">
-  <meta name="twitter:description" content="A research agenda for long-horizon work in game engines and creative tools.">
-  <meta name="twitter:image" content="https://tryworldlabs.com/assets/memo-environment.jpg">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Agents that finish the job",
-    "description": "A research agenda for long-horizon work in game engines and creative tools.",
-    "datePublished": "2026-10-14",
-    "author": { "@type": "Organization", "name": "World Labs", "url": "https://tryworldlabs.com/" },
-    "publisher": { "@type": "Organization", "name": "World Labs", "url": "https://tryworldlabs.com/" },
-    "mainEntityOfPage": "https://tryworldlabs.com/memo",
-    "image": "https://tryworldlabs.com/assets/memo-environment.jpg"
-  }
-  </script>
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Advancing agents through game worlds | World Labs">
+  <meta name="twitter:description" content="Original training data, executable environments, and a research loop that measures what agents learn.">
 </head>
-<body class="memo-page">
+<body>
   <a class="skip-link" href="#memo">Skip to memo</a>
-  <header class="memo-site-header">
-    <a class="memo-wordmark" href="/" aria-label="World Labs home"><img class="brand-mark" src="/assets/world-labs-mark.png" width="32" height="32" alt="">world labs</a>
-    <nav aria-label="Main navigation">
-      <a href="/">Overview</a>
-      <a href="/benchmark">Methodology</a>
-    </nav>
-  </header>
+  <main class="memo" id="memo" tabindex="-1">
+    <header class="letterhead">
+      <a class="wordmark" href="/" aria-label="World Labs home"><img src="/assets/world-labs-mark.png" width="32" height="32" alt=""><span>world labs</span></a>
+      <nav aria-label="Main navigation"><a href="/">Overview</a><a href="/benchmark">Research <span aria-hidden="true">↗</span></a></nav>
+    </header>
 
-  <main id="memo" tabindex="-1">
-    <article class="memo-paper" aria-labelledby="memo-title">
-      <header class="memo-hero">
-        <p class="memo-kicker">Research memo</p>
-        <h1 id="memo-title">Agents that finish the job</h1>
-        <p class="memo-dek">A research agenda for long-horizon work in game engines and creative tools.</p>
-        <div class="memo-byline"><span>World Labs</span><time datetime="2026-10-14">October 14, 2026</time></div>
+    <article aria-labelledby="memo-title">
+      <header class="memo-intro prose">
+        <p class="eyebrow">Research thesis <span>October 2026</span></p>
+        <h1 id="memo-title">Advancing agents<br>through game worlds.</h1>
+        <p class="dek">World Labs is a research lab focused on long-horizon agents in interactive worlds.</p>
+        <p>Game development demands sustained reasoning across code, spatial structure, and runtime behavior. Decisions carry consequences across many steps. A feature is complete when it works in the running world and preserves the systems around it.</p>
+        <p>We are building <strong>original training data and game-engine RL gyms</strong> to advance this capability, with a research loop that measures what agents learn.</p>
       </header>
 
-      <figure class="memo-cover">
-        <img src="/assets/memo-environment.jpg" srcset="/assets/memo-environment-800.jpg 800w, /assets/memo-environment.jpg 1600w" sizes="(max-width: 600px) calc(100vw - 26px), (max-width: 1008px) calc(100vw - 50px), 958px" width="1600" height="800" fetchpriority="high" alt="Conceptual game environment: a bridge leads to a sliding gate, with a wireframe gate asset beside the scene.">
-        <figcaption>From an asset to a working interaction. Concept illustration of the task described below.</figcaption>
+      <section class="prose" id="data" aria-labelledby="data-heading">
+        <h2 id="data-heading">A continuous supply of original data.</h2>
+        <p>We are building a continuing supply of fresh, high-quality data for increasingly difficult game-development tasks. The datasets span engine code, 3D scenes, and complete project artifacts, with technical correctness, novelty, and depth as core requirements.</p>
+        <p>We are developing these datasets for pretraining and continued pretraining. Their value is measured by the capabilities they teach.</p>
+      </section>
+
+      <section class="prose" id="gyms" aria-labelledby="gyms-heading">
+        <h2 id="gyms-heading">Game engines as RL environments.</h2>
+        <p>Each gym is an executable problem set: a versioned starting project, a task specification, engine tools, and verifiers for the resulting state and behavior. Agents modify code and scenes, observe runtime consequences, and receive reward tied to task completion and preservation of existing functionality.</p>
+        <p>Our direction spans environments such as Roblox Studio, Unreal Engine, and Minecraft. Tasks extend from individual mechanics to interacting systems that require planning, debugging, and recovery over long horizons.</p>
+      </section>
+
+      <figure class="technical-figure" id="gym-architecture" aria-labelledby="gym-figure-title" aria-describedby="gym-caption">
+        <div class="figure-heading"><h2 id="gym-figure-title">How a gym trains an agent</h2><span class="figure-note">Schematic</span></div>
+        <div class="diagram-surface"><svg class="technical-diagram diagram-wide" viewBox="0 0 720 386" role="img" aria-labelledby="gym-wide-title gym-wide-desc">
+<title id="gym-wide-title">The gym execution and learning loop</title><desc id="gym-wide-desc">The gym contains a game engine and task verifier. The agent sends actions to the engine and receives observations. The verifier checks the resulting state and behavior. The RL trainer consumes the recorded rollout and reward, then updates the agent policy. Signals move in this order; they represent information flow, not measured throughput.</desc>
+<defs><marker id="gym-wide-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1l6 3-6 3"/></marker></defs>
+<rect class="diagram-scope" x="244" y="22" width="460" height="224" rx="6"/><text class="scope-label" x="264" y="47" text-anchor="start">GAME-ENGINE GYM</text><rect class="diagram-box " x="12" y="88" width="144" height="100" rx="4"/><text class="diagram-node-title" x="84.0" y="117" text-anchor="middle">Agent</text><text class="diagram-label" x="84.0" y="140" text-anchor="middle">current policy</text><rect class="diagram-box engine-box" x="278" y="88" width="180" height="100" rx="4"/><text class="diagram-node-title" x="368.0" y="117" text-anchor="middle">Game engine</text><text class="diagram-label" x="368.0" y="140" text-anchor="middle">project + task</text><text class="diagram-label" x="368.0" y="158" text-anchor="middle">tools + runtime</text><rect class="diagram-box " x="548" y="88" width="132" height="100" rx="4"/><text class="diagram-node-title" x="614.0" y="117" text-anchor="middle">Task verifier</text><text class="diagram-label" x="614.0" y="140" text-anchor="middle">completion</text><text class="diagram-label" x="614.0" y="158" text-anchor="middle">preservation</text><rect class="diagram-box trainer-box" x="278" y="280" width="180" height="84" rx="4"/><text class="diagram-node-title" x="368.0" y="309" text-anchor="middle">RL trainer</text><text class="diagram-label" x="368.0" y="332" text-anchor="middle">policy update</text><path class="diagram-route " d="M158 117H276" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-action " pathLength="100" d="M158 117H276" aria-hidden="true"/><text class="route-label" x="217" y="105" text-anchor="middle">actions</text><path class="diagram-route " d="M276 159H158" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-observation " pathLength="100" d="M276 159H158" aria-hidden="true"/><text class="route-label" x="217" y="179" text-anchor="middle">observations</text><path class="diagram-route " d="M460 138H546" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-result " pathLength="100" d="M460 138H546" aria-hidden="true"/><text class="route-label" x="503" y="125" text-anchor="middle">result</text><path class="diagram-route " d="M368 190V278" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-rollout " pathLength="100" d="M368 190V278" aria-hidden="true"/><text class="route-label" x="400" y="241" text-anchor="middle">rollout</text><path class="diagram-route reward-route" d="M614 190v122q0 10-10 10H460" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-reward reward-route" pathLength="100" d="M614 190v122q0 10-10 10H460" aria-hidden="true"/><text class="route-label" x="538" y="309" text-anchor="middle">reward</text><path class="diagram-route reward-route" d="M276 322H94q-10 0-10-10V190" marker-end="url(#gym-wide-arrow)"/><path class="flow-signal signal-update reward-route" pathLength="100" d="M276 322H94q-10 0-10-10V190" aria-hidden="true"/><text class="route-label" x="174" y="309" text-anchor="middle">updated policy</text>
+</svg><svg class="technical-diagram diagram-compact" viewBox="0 0 340 608" role="img" aria-labelledby="gym-compact-title gym-compact-desc">
+<title id="gym-compact-title">The gym execution and learning loop</title><desc id="gym-compact-desc">The gym contains a game engine and task verifier. The agent sends actions to the engine and receives observations. The verifier checks the resulting state and behavior. The RL trainer consumes the recorded rollout and reward, then updates the agent policy. Signals move in this order; they represent information flow, not measured throughput.</desc>
+<defs><marker id="gym-compact-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1l6 3-6 3"/></marker></defs>
+<rect class="diagram-scope" x="8" y="132" width="324" height="178" rx="6"/><text class="scope-label" x="174" y="153" text-anchor="start">GAME-ENGINE GYM</text><rect class="diagram-box " x="20" y="14" width="132" height="74" rx="4"/><text class="diagram-node-title" x="86.0" y="43" text-anchor="middle">Agent</text><text class="diagram-label" x="86.0" y="66" text-anchor="middle">current policy</text><rect class="diagram-box engine-box" x="20" y="178" width="132" height="96" rx="4"/><text class="diagram-node-title" x="86.0" y="207" text-anchor="middle">Game engine</text><text class="diagram-label" x="86.0" y="230" text-anchor="middle">project + task</text><text class="diagram-label" x="86.0" y="248" text-anchor="middle">tools + runtime</text><rect class="diagram-box " x="206" y="178" width="114" height="96" rx="4"/><text class="diagram-node-title" x="263.0" y="207" text-anchor="middle">Task verifier</text><text class="diagram-label" x="263.0" y="230" text-anchor="middle">completion</text><text class="diagram-label" x="263.0" y="248" text-anchor="middle">preservation</text><rect class="diagram-box trainer-box" x="104" y="426" width="180" height="80" rx="4"/><text class="diagram-node-title" x="194.0" y="455" text-anchor="middle">RL trainer</text><text class="diagram-label" x="194.0" y="478" text-anchor="middle">policy update</text><path class="diagram-route " d="M56 90V176" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-action " pathLength="100" d="M56 90V176" aria-hidden="true"/><text class="route-label" x="29" y="118" text-anchor="middle">actions</text><path class="diagram-route " d="M120 176V90" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-observation " pathLength="100" d="M120 176V90" aria-hidden="true"/><text class="route-label" x="173" y="118" text-anchor="middle">observations</text><path class="diagram-route " d="M154 225H204" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-result " pathLength="100" d="M154 225H204" aria-hidden="true"/><text class="route-label" x="179" y="212" text-anchor="middle">result</text><path class="diagram-route " d="M86 276v180q0 10 10 10h6" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-rollout " pathLength="100" d="M86 276v180q0 10 10 10h6" aria-hidden="true"/><text class="route-label" x="55" y="358" text-anchor="middle">rollout</text><path class="diagram-route reward-route" d="M263 276V424" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-reward reward-route" pathLength="100" d="M263 276V424" aria-hidden="true"/><text class="route-label" x="292" y="358" text-anchor="middle">reward</text><path class="diagram-route reward-route" d="M194 508v48q0 10-10 10H14q-10 0-10-10V61q0-10 10-10h4" marker-end="url(#gym-compact-arrow)"/><path class="flow-signal signal-update reward-route" pathLength="100" d="M194 508v48q0 10-10 10H14q-10 0-10-10V61q0-10 10-10h4" aria-hidden="true"/><text class="route-label" x="106" y="590" text-anchor="middle">updated policy</text>
+</svg></div>
+        <figcaption id="gym-caption"><span>Fig. 1</span> Actions and observations form a rollout. The trainer uses the rollout and verified reward to update the policy.</figcaption>
       </figure>
 
-      <div class="memo-prose">
-        <section class="memo-abstract" aria-labelledby="abstract-heading">
-          <h2 id="abstract-heading">Abstract</h2>
-          <p>Useful agents need to carry an assignment through many dependent decisions. In game development, that means connecting code, assets, scenes, and live behavior while preserving the systems already in place. A plausible script or a convincing screenshot captures only part of that work.</p>
-          <p>World Labs is building environments to train and evaluate this capability. Our research direction combines tasks inside game engines, verification of the resulting experience, and human demonstrations and feedback. This memo sets out the motivation and proposed design principles for that work. The longer-horizon task suite and methodology are under development.</p>
-        </section>
+      <section class="prose" id="loop" aria-labelledby="measurement-heading">
+        <h2 id="measurement-heading">Measure the effect of the data.</h2>
+        <p>Our research loop centres on controlled training runs. Starting from the same checkpoint, we compare a current data mix with one that includes a new batch, holding the training recipe, compute, and evaluation budget constant.</p>
+        <p>Both models are evaluated on held-out gym projects, separate from training tasks. We measure completion, regressions, and recovery. The results inform the next dataset and environment release.</p>
+      </section>
 
-        <nav class="memo-contents" aria-label="Memo contents">
-          <p>In this memo</p>
-          <ol>
-            <li><a href="#interactive-worlds">Why interactive worlds</a></li>
-            <li><a href="#connected-task">One connected assignment</a></li>
-            <li><a href="#verification">Verifying the whole result</a></li>
-            <li><a href="#human-judgment">Learning from human judgment</a></li>
-            <li><a href="#research-agenda">The research agenda</a></li>
-            <li><a href="#references">References</a></li>
-          </ol>
-        </nav>
+      <figure class="technical-figure" id="data-evaluation" aria-labelledby="evaluation-figure-title" aria-describedby="evaluation-caption">
+        <div class="figure-heading"><h2 id="evaluation-figure-title">Isolate the contribution of new data</h2><span class="figure-note">Schematic</span></div>
+        <div class="diagram-surface"><svg class="technical-diagram diagram-wide" viewBox="0 0 720 336" role="img" aria-labelledby="evaluation-wide-title evaluation-wide-desc">
+<title id="evaluation-wide-title">A controlled comparison of new training data</title><desc id="evaluation-wide-desc">Two models are trained from the same checkpoint with the same training recipe and compute. The control uses the current data mix; the candidate adds a new data batch. Each model is evaluated separately on identical held-out tasks, using the same verifier and attempt budget. Result A and Result B remain separate until completion, regressions, and recovery are compared. The drawing shows an experimental design without numerical results.</desc>
+<defs><marker id="evaluation-wide-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1l6 3-6 3"/></marker></defs>
+<text class="condition-label" x="360" y="20" text-anchor="middle">Same checkpoint · training recipe · compute</text><rect class="diagram-scope" x="300" y="64" width="220" height="250" rx="6"/><text class="diagram-node-title" x="410" y="94" text-anchor="middle">Held-out evaluation</text><text class="condition-label" x="410" y="116" text-anchor="middle">fixed tasks · verifier · attempt budget</text><rect class="diagram-box " x="14" y="114" width="184" height="78" rx="4"/><text class="diagram-node-title" x="106.0" y="143" text-anchor="middle">Control model</text><text class="diagram-label" x="106.0" y="166" text-anchor="middle">current data mix</text><rect class="diagram-box candidate-box" x="14" y="236" width="184" height="78" rx="4"/><text class="diagram-node-title" x="106.0" y="265" text-anchor="middle">Candidate model</text><text class="diagram-label" x="106.0" y="288" text-anchor="middle">+ new data batch</text><rect class="diagram-box " x="346" y="132" width="128" height="44" rx="4"/><text class="diagram-node-title" x="410.0" y="159.0" text-anchor="middle">Result A</text><rect class="diagram-box candidate-box" x="346" y="252" width="128" height="44" rx="4"/><text class="diagram-node-title" x="410.0" y="279.0" text-anchor="middle">Result B</text><rect class="diagram-box trainer-box" x="590" y="162" width="114" height="110" rx="4"/><text class="diagram-node-title" x="647.0" y="191" text-anchor="middle">Compare</text><text class="diagram-label" x="647.0" y="214" text-anchor="middle">completion</text><text class="diagram-label" x="647.0" y="232" text-anchor="middle">regressions</text><text class="diagram-label" x="647.0" y="250" text-anchor="middle">recovery</text><path class="diagram-route " d="M200 154H344" marker-end="url(#evaluation-wide-arrow)"/><path class="flow-signal signal-control " pathLength="100" d="M200 154H344" aria-hidden="true"/><path class="diagram-route candidate-route" d="M200 276H344" marker-end="url(#evaluation-wide-arrow)"/><path class="flow-signal signal-candidate candidate-route" pathLength="100" d="M200 276H344" aria-hidden="true"/><path class="diagram-route " d="M476 154h61q10 0 10 10v16q0 10 10 10h31" marker-end="url(#evaluation-wide-arrow)"/><path class="flow-signal signal-score-control " pathLength="100" d="M476 154h61q10 0 10 10v16q0 10 10 10h31" aria-hidden="true"/><path class="diagram-route candidate-route" d="M476 274h61q10 0 10-10v-16q0-10 10-10h31" marker-end="url(#evaluation-wide-arrow)"/><path class="flow-signal signal-score-candidate candidate-route" pathLength="100" d="M476 274h61q10 0 10-10v-16q0-10 10-10h31" aria-hidden="true"/>
+</svg><svg class="technical-diagram diagram-compact" viewBox="0 0 340 598" role="img" aria-labelledby="evaluation-compact-title evaluation-compact-desc">
+<title id="evaluation-compact-title">A controlled comparison of new training data</title><desc id="evaluation-compact-desc">Two models are trained from the same checkpoint with the same training recipe and compute. The control uses the current data mix; the candidate adds a new data batch. Each model is evaluated separately on identical held-out tasks, using the same verifier and attempt budget. Result A and Result B remain separate until completion, regressions, and recovery are compared. The drawing shows an experimental design without numerical results.</desc>
+<defs><marker id="evaluation-compact-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 1l6 3-6 3"/></marker></defs>
+<text class="condition-label" x="170" y="26" text-anchor="middle">Same checkpoint · recipe · compute</text><rect class="diagram-box " x="12" y="62" width="148" height="78" rx="4"/><text class="diagram-node-title" x="86.0" y="91" text-anchor="middle">Control model</text><text class="diagram-label" x="86.0" y="114" text-anchor="middle">current data mix</text><rect class="diagram-box candidate-box" x="180" y="62" width="148" height="78" rx="4"/><text class="diagram-node-title" x="254.0" y="91" text-anchor="middle">Candidate model</text><text class="diagram-label" x="254.0" y="114" text-anchor="middle">+ new data batch</text><rect class="diagram-scope" x="12" y="204" width="316" height="212" rx="6"/><text class="diagram-node-title" x="170" y="232" text-anchor="middle">Held-out evaluation</text><text class="condition-label" x="170" y="254" text-anchor="middle">fixed tasks · verifier · attempt budget</text><rect class="diagram-box " x="32" y="292" width="108" height="54" rx="4"/><text class="diagram-node-title" x="86.0" y="324.0" text-anchor="middle">Result A</text><rect class="diagram-box candidate-box" x="200" y="292" width="108" height="54" rx="4"/><text class="diagram-node-title" x="254.0" y="324.0" text-anchor="middle">Result B</text><rect class="diagram-box trainer-box" x="68" y="466" width="204" height="112" rx="4"/><text class="diagram-node-title" x="170.0" y="495" text-anchor="middle">Compare</text><text class="diagram-label" x="170.0" y="518" text-anchor="middle">completion</text><text class="diagram-label" x="170.0" y="536" text-anchor="middle">regressions</text><text class="diagram-label" x="170.0" y="554" text-anchor="middle">recovery</text><path class="diagram-route " d="M86 142v60" marker-end="url(#evaluation-compact-arrow)"/><path class="flow-signal signal-control " pathLength="100" d="M86 142v60" aria-hidden="true"/><path class="diagram-route candidate-route" d="M254 142v60" marker-end="url(#evaluation-compact-arrow)"/><path class="flow-signal signal-candidate candidate-route" pathLength="100" d="M254 142v60" aria-hidden="true"/><path class="diagram-route " d="M86 348v81q0 10 10 10h31q10 0 10 10v15" marker-end="url(#evaluation-compact-arrow)"/><path class="flow-signal signal-score-control " pathLength="100" d="M86 348v81q0 10 10 10h31q10 0 10 10v15" aria-hidden="true"/><path class="diagram-route candidate-route" d="M254 348v81q0 10-10 10h-31q-10 0-10 10v15" marker-end="url(#evaluation-compact-arrow)"/><path class="flow-signal signal-score-candidate candidate-route" pathLength="100" d="M254 348v81q0 10-10 10h-31q-10 0-10 10v15" aria-hidden="true"/>
+</svg></div>
+        <figcaption id="evaluation-caption"><span>Fig. 2</span> Only the data mix changes. Each model produces a separate result under the same held-out evaluation conditions.</figcaption>
+      </figure>
 
-        <section id="interactive-worlds" aria-labelledby="worlds-heading">
-          <h2 id="worlds-heading">Why interactive worlds</h2>
-          <p>A game is a system whose parts must agree. Geometry affects movement. A script changes scene state. An interface communicates what the player can do. A feature can look correct in the editor and still fail when the game runs, when a player repeats an action, or when another system changes the same object.</p>
-          <p>We think this makes game engines useful environments for studying sustained agent work. They bring software, spatial structure, and interaction into a shared project. Tasks can require an agent to inspect an unfamiliar world, make a plan, modify several kinds of artifacts, observe the consequences, and revise its approach.</p>
-          <p>Existing research provides important foundations. SWE-bench evaluates changes to existing repositories against real software issues.<sup><a href="#ref-swe" aria-label="Reference 1: SWE-bench">[1]</a></sup> OSWorld provides computer tasks spanning applications, with explicit starting states and execution-based evaluation.<sup><a href="#ref-osworld" aria-label="Reference 2: OSWorld">[2]</a></sup> In Roblox Studio, OpenGameEval checks both edited scenes and behavior in play sessions.<sup><a href="#ref-opengameeval" aria-label="Reference 3: OpenGameEval">[3]</a></sup></p>
-          <p>Our interest is in extending connected work across tools and over longer sequences of decisions. We’re developing tasks across Roblox Studio, Unity, Unreal Engine, Godot, and other game engines. Our longest-horizon tasks will extend into creative tools such as Blender, where an asset must remain useful after it leaves the application that created it.</p>
-          <p class="memo-thesis">The unit of success is a functioning result, with the rest of the game still intact.</p>
-        </section>
+      <section class="offerings" aria-labelledby="offerings-heading">
+        <h2 id="offerings-heading">Data and environments for frontier labs.</h2>
+        <div class="offering-columns">
+          <div><p class="small-label">Pretraining</p><h3>Original datasets.</h3><p>A continuing supply of new, technically rigorous game-development data for pretraining and continued pretraining.</p></div>
+          <div><p class="small-label">Post-training</p><h3>Game-engine gyms.</h3><p>Runnable problem sets with resettable projects, verifiable outcomes, and reward signals for reinforcement learning.</p></div>
+        </div>
+      </section>
 
-        <section id="connected-task" aria-labelledby="task-heading">
-          <h2 id="task-heading">One connected assignment</h2>
-          <p>Consider an illustrative task: add a gate that opens after the player completes an existing objective. Create the gate asset in Blender, integrate it into the level, implement its behavior, and test the experience. Existing movement, objectives, and progression must continue to work.</p>
-          <p>The agent first needs to understand the project. Where is objective completion recorded? Which code owns the gate’s state? What dimensions fit the passage? How are collisions handled? These questions determine whether later changes can fit into the existing game.</p>
-
-          <figure class="memo-workflow">
-            <ol aria-label="Connected work across tools">
-              <li><span class="workflow-action">Create</span><span class="workflow-artifact">Asset</span><span class="workflow-detail">Geometry, scale, pivot</span></li>
-              <li><span class="workflow-action">Integrate</span><span class="workflow-artifact">Scene</span><span class="workflow-detail">Placement, collisions</span></li>
-              <li><span class="workflow-action">Implement</span><span class="workflow-artifact">Behavior</span><span class="workflow-detail">Events, state, logic</span></li>
-              <li><span class="workflow-action">Test</span><span class="workflow-artifact">Gameplay</span><span class="workflow-detail">Interaction, regressions</span></li>
-            </ol>
-            <p class="workflow-feedback">Observe the result. Revisit any earlier decision that no longer holds.</p>
-            <figcaption>A proposed task spans connected artifacts. Testing may send the agent back to the asset, scene, or implementation.</figcaption>
-          </figure>
-
-          <p>A successful export is only an intermediate result. The imported gate may have the wrong pivot. Its visual opening may leave an invisible collider in the way. An event handler may work once and fail after a reset. Fixing those problems may require returning to an earlier tool and then checking the downstream changes again.</p>
-          <p>This is what we mean by a long horizon: decisions remain relevant after the agent has moved on. Duration and action count help describe the workload, but the research challenge is preserving intent and constraints across dependencies, interruptions, and revisions.</p>
-        </section>
-
-        <section id="verification" aria-labelledby="verification-heading">
-          <h2 id="verification-heading">Verifying the whole result</h2>
-          <p>Verification should be designed alongside the assignment. A useful task specification identifies the requested change, the starting project, the available tools, and the behavior that must remain intact. It also defines what evidence is sufficient to call the work complete.</p>
-          <p>For the gate example, checks could inspect the imported object and its configuration, exercise the objective-to-gate interaction in a running session, and rerun the existing progression path. The evaluation should distinguish a correct feature from a solution that makes the test pass by removing the obstacle, disabling collisions everywhere, or bypassing the objective.</p>
-          <p>We propose evaluating several dimensions together:</p>
-          <dl class="memo-measures">
-            <div><dt>Completion</dt><dd>Does the delivered project satisfy the requested behavior under the task’s stated conditions?</dd></div>
-            <div><dt>Preservation</dt><dd>Do the required existing behaviors still work after the changes?</dd></div>
-            <div><dt>Consistency</dt><dd>Does the agent succeed across independent runs and controlled variations of the starting state?</dd></div>
-            <div><dt>Recovery</dt><dd>Can it diagnose an observed failure, revise its approach, and reach a verified result?</dd></div>
-            <div><dt>Cost and intervention</dt><dd>How much time, tool use, and human assistance does completion require?</dd></div>
-          </dl>
-          <p>These dimensions need explicit reporting rules. Completion should be measured over all assigned tasks; partial progress and regressions should be reported separately. Repeated attempts should use reset environments and a declared budget. Infrastructure failures, model failures, and human interventions need separate records.</p>
-          <p>Reproducibility also depends on the environment: engine and tool versions, project assets, random seeds where applicable, and the evaluator itself. We intend to use held-out projects and variations to test whether an agent can handle unfamiliar situations. Evaluation checks should be protected from modification by the agent and reviewed for shortcuts and incomplete coverage.</p>
-          <p>No finite test suite can establish that every aspect of a game is correct. Automated checks can cover stated requirements, while human review can examine qualities that are difficult to reduce to a deterministic assertion. Both need a defined scope.</p>
-        </section>
-
-        <section id="human-judgment" aria-labelledby="human-heading">
-          <h2 id="human-heading">Learning from human judgment</h2>
-          <p>The final artifact tells us what was delivered. A trajectory can show the observable work that led there: what the developer inspected, which tools they used, what changed, what failed, and how they responded.</p>
-          <p>We’re also developing human-data projects across game engines and browser games, including WebGL experiences. Expert demonstrations, critiques, comparisons, and revisions can capture decisions about development, design, and playtesting. For the gate task, a reviewer might explain why an interaction is confusing, compare two implementations, or revise an animation so the player can read its state.</p>
-          <p>Our proposed data design connects feedback to the relevant project state and artifact. A critique should identify the behavior it refers to. A revision should preserve the before-and-after versions. A demonstration should include the observations and checks available to the expert, with rationale where the expert chooses to provide it.</p>
-          <p>These records could support supervised learning, preference learning, reinforcement learning, and evaluation. Whether a particular form of feedback improves sustained execution is an empirical question. We plan to study that relationship while keeping training material separate from held-out evaluation tasks.</p>
-        </section>
-
-        <section id="research-agenda" aria-labelledby="agenda-heading">
-          <h2 id="agenda-heading">The research agenda</h2>
-          <p>World Labs’ current direction has two connected parts: environments that demand sustained execution, and evidence that lets us judge the resulting work. Interact Bench presents building and debugging tasks; its <a href="/benchmark">full results and methodology</a> are available separately. Worldline Bench is under development around extended assignments with many dependent steps.</p>
-          <p>For this longer-horizon work, the questions we want to investigate include:</p>
-          <ul class="memo-questions">
-            <li>How does reliability change as dependencies accumulate across assets, code, scenes, and tools?</li>
-            <li>Which observations, checkpoints, and recovery behaviors help an agent preserve earlier work?</li>
-            <li>Which combinations of executable feedback and expert judgment improve the quality of the final experience?</li>
-          </ul>
-          <p>Progress will require careful task construction as well as better agents. A longer script of trivial actions would tell us little about maintaining a coherent project. Task difficulty should come from meaningful constraints, incomplete information, and changes whose consequences must be discovered and checked.</p>
-          <p>Game-engine performance also has limits as evidence. It does not by itself establish reliability in other software, physical environments, or every creative workflow. Transfer across engines and tools must be measured. Our aim is to make the work and its outcomes inspectable enough that these questions can be tested.</p>
-          <p>We want to build toward agents that can take responsibility for a whole assignment: understand the goal, carry the work across systems, recover when something goes wrong, and deliver a result that holds up when used.</p>
-        </section>
-
-        <aside class="memo-contact" aria-labelledby="contact-heading">
-          <h2 id="contact-heading">Work with World Labs</h2>
-          <p>To discuss an environment pilot or a human-data project, write to <a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research%20memo">dhruv@tryworldlabs.com</a>.</p>
-        </aside>
-
-        <section class="memo-references" id="references" aria-labelledby="references-heading" role="doc-bibliography">
-          <h2 id="references-heading">References</h2>
-          <ol>
-            <li id="ref-swe">Jimenez et al. <a href="https://arxiv.org/abs/2310.06770">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</a> ICLR, 2024.</li>
-            <li id="ref-osworld">Xie et al. <a href="https://arxiv.org/abs/2404.07972">OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments.</a> 2024.</li>
-            <li id="ref-opengameeval">Turkel et al. <a href="https://arxiv.org/abs/2610.02563">OpenGameEval: Benchmarking Agentic Programming and Exploration in a Stateful Game Engine.</a> 2026.</li>
-          </ol>
-        </section>
-      </div>
-      <footer class="memo-paper-footer"><a href="/">Back to World Labs <span aria-hidden="true">↗</span></a><a href="#memo-title">Back to top <span aria-hidden="true">↑</span></a></footer>
+      <footer class="signature prose">
+        <p>Our aim is to make sustained, reliable work across interactive systems a trainable and measurable capability.</p>
+        <p class="contact">For data partnerships and gym pilots:<br><a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">dhruv@tryworldlabs.com <span aria-hidden="true">↗</span></a></p>
+        <p class="status-note">The datasets and expanded gym suite are under development.</p>
+      </footer>
     </article>
+    <footer class="page-footer"><a href="/">Back to World Labs <span aria-hidden="true">↗</span></a><span>Long-horizon tasks in interactive worlds.</span></footer>
   </main>
-  <footer class="memo-site-footer">© 2026 World Labs. All rights reserved.</footer>
 </body>
 </html>
