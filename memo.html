@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agents that finish the job | World Labs</title>
+  <meta name="description" content="A World Labs research memo on long-horizon AI agents: connected tasks across game engines and creative tools, verifiable outcomes, and expert human judgment.">
+  <link rel="canonical" href="https://tryworldlabs.com/memo">
+  <link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml">
+  <link rel="alternate icon" href="/favicon.ico?v=20261001-mark">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark">
+  <link rel="preload" href="/assets/fonts/eb-garamond-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/horizon.css">
+  <link rel="stylesheet" href="/memo.css">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="World Labs">
+  <meta property="og:title" content="Agents that finish the job">
+  <meta property="og:description" content="A research agenda for long-horizon work in game engines and creative tools.">
+  <meta property="og:url" content="https://tryworldlabs.com/memo">
+  <meta property="og:image" content="https://tryworldlabs.com/assets/memo-environment.jpg">
+  <meta property="og:image:alt" content="A conceptual game environment with a bridge, sliding gate, and a wireframe asset study.">
+  <meta property="article:published_time" content="2026-10-14">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Agents that finish the job | World Labs">
+  <meta name="twitter:description" content="A research agenda for long-horizon work in game engines and creative tools.">
+  <meta name="twitter:image" content="https://tryworldlabs.com/assets/memo-environment.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Agents that finish the job",
+    "description": "A research agenda for long-horizon work in game engines and creative tools.",
+    "datePublished": "2026-10-14",
+    "author": { "@type": "Organization", "name": "World Labs", "url": "https://tryworldlabs.com/" },
+    "publisher": { "@type": "Organization", "name": "World Labs", "url": "https://tryworldlabs.com/" },
+    "mainEntityOfPage": "https://tryworldlabs.com/memo",
+    "image": "https://tryworldlabs.com/assets/memo-environment.jpg"
+  }
+  </script>
+</head>
+<body class="memo-page">
+  <a class="skip-link" href="#memo">Skip to memo</a>
+  <header class="memo-site-header">
+    <a class="memo-wordmark" href="/" aria-label="World Labs home"><img class="brand-mark" src="/assets/world-labs-mark.png" width="32" height="32" alt="">world labs</a>
+    <nav aria-label="Main navigation">
+      <a href="/">Overview</a>
+      <a href="/benchmark">Methodology</a>
+    </nav>
+  </header>
+
+  <main id="memo" tabindex="-1">
+    <article class="memo-paper" aria-labelledby="memo-title">
+      <header class="memo-hero">
+        <p class="memo-kicker">Research memo</p>
+        <h1 id="memo-title">Agents that finish the job</h1>
+        <p class="memo-dek">A research agenda for long-horizon work in game engines and creative tools.</p>
+        <div class="memo-byline"><span>World Labs</span><time datetime="2026-10-14">October 14, 2026</time></div>
+      </header>
+
+      <figure class="memo-cover">
+        <img src="/assets/memo-environment.jpg" srcset="/assets/memo-environment-800.jpg 800w, /assets/memo-environment.jpg 1600w" sizes="(max-width: 600px) calc(100vw - 26px), (max-width: 1008px) calc(100vw - 50px), 958px" width="1600" height="800" fetchpriority="high" alt="Conceptual game environment: a bridge leads to a sliding gate, with a wireframe gate asset beside the scene.">
+        <figcaption>From an asset to a working interaction. Concept illustration of the task described below.</figcaption>
+      </figure>
+
+      <div class="memo-prose">
+        <section class="memo-abstract" aria-labelledby="abstract-heading">
+          <h2 id="abstract-heading">Abstract</h2>
+          <p>Useful agents need to carry an assignment through many dependent decisions. In game development, that means connecting code, assets, scenes, and live behavior while preserving the systems already in place. A plausible script or a convincing screenshot captures only part of that work.</p>
+          <p>World Labs is building environments to train and evaluate this capability. Our research direction combines tasks inside game engines, verification of the resulting experience, and human demonstrations and feedback. This memo sets out the motivation and proposed design principles for that work. The longer-horizon task suite and methodology are under development.</p>
+        </section>
+
+        <nav class="memo-contents" aria-label="Memo contents">
+          <p>In this memo</p>
+          <ol>
+            <li><a href="#interactive-worlds">Why interactive worlds</a></li>
+            <li><a href="#connected-task">One connected assignment</a></li>
+            <li><a href="#verification">Verifying the whole result</a></li>
+            <li><a href="#human-judgment">Learning from human judgment</a></li>
+            <li><a href="#research-agenda">The research agenda</a></li>
+            <li><a href="#references">References</a></li>
+          </ol>
+        </nav>
+
+        <section id="interactive-worlds" aria-labelledby="worlds-heading">
+          <h2 id="worlds-heading">Why interactive worlds</h2>
+          <p>A game is a system whose parts must agree. Geometry affects movement. A script changes scene state. An interface communicates what the player can do. A feature can look correct in the editor and still fail when the game runs, when a player repeats an action, or when another system changes the same object.</p>
+          <p>We think this makes game engines useful environments for studying sustained agent work. They bring software, spatial structure, and interaction into a shared project. Tasks can require an agent to inspect an unfamiliar world, make a plan, modify several kinds of artifacts, observe the consequences, and revise its approach.</p>
+          <p>Existing research provides important foundations. SWE-bench evaluates changes to existing repositories against real software issues.<sup><a href="#ref-swe" aria-label="Reference 1: SWE-bench">[1]</a></sup> OSWorld provides computer tasks spanning applications, with explicit starting states and execution-based evaluation.<sup><a href="#ref-osworld" aria-label="Reference 2: OSWorld">[2]</a></sup> In Roblox Studio, OpenGameEval checks both edited scenes and behavior in play sessions.<sup><a href="#ref-opengameeval" aria-label="Reference 3: OpenGameEval">[3]</a></sup></p>
+          <p>Our interest is in extending connected work across tools and over longer sequences of decisions. We’re developing tasks across Roblox Studio, Unity, Unreal Engine, Godot, and other game engines. Our longest-horizon tasks will extend into creative tools such as Blender, where an asset must remain useful after it leaves the application that created it.</p>
+          <p class="memo-thesis">The unit of success is a functioning result, with the rest of the game still intact.</p>
+        </section>
+
+        <section id="connected-task" aria-labelledby="task-heading">
+          <h2 id="task-heading">One connected assignment</h2>
+          <p>Consider an illustrative task: add a gate that opens after the player completes an existing objective. Create the gate asset in Blender, integrate it into the level, implement its behavior, and test the experience. Existing movement, objectives, and progression must continue to work.</p>
+          <p>The agent first needs to understand the project. Where is objective completion recorded? Which code owns the gate’s state? What dimensions fit the passage? How are collisions handled? These questions determine whether later changes can fit into the existing game.</p>
+
+          <figure class="memo-workflow">
+            <ol aria-label="Connected work across tools">
+              <li><span class="workflow-action">Create</span><span class="workflow-artifact">Asset</span><span class="workflow-detail">Geometry, scale, pivot</span></li>
+              <li><span class="workflow-action">Integrate</span><span class="workflow-artifact">Scene</span><span class="workflow-detail">Placement, collisions</span></li>
+              <li><span class="workflow-action">Implement</span><span class="workflow-artifact">Behavior</span><span class="workflow-detail">Events, state, logic</span></li>
+              <li><span class="workflow-action">Test</span><span class="workflow-artifact">Gameplay</span><span class="workflow-detail">Interaction, regressions</span></li>
+            </ol>
+            <p class="workflow-feedback">Observe the result. Revisit any earlier decision that no longer holds.</p>
+            <figcaption>A proposed task spans connected artifacts. Testing may send the agent back to the asset, scene, or implementation.</figcaption>
+          </figure>
+
+          <p>A successful export is only an intermediate result. The imported gate may have the wrong pivot. Its visual opening may leave an invisible collider in the way. An event handler may work once and fail after a reset. Fixing those problems may require returning to an earlier tool and then checking the downstream changes again.</p>
+          <p>This is what we mean by a long horizon: decisions remain relevant after the agent has moved on. Duration and action count help describe the workload, but the research challenge is preserving intent and constraints across dependencies, interruptions, and revisions.</p>
+        </section>
+
+        <section id="verification" aria-labelledby="verification-heading">
+          <h2 id="verification-heading">Verifying the whole result</h2>
+          <p>Verification should be designed alongside the assignment. A useful task specification identifies the requested change, the starting project, the available tools, and the behavior that must remain intact. It also defines what evidence is sufficient to call the work complete.</p>
+          <p>For the gate example, checks could inspect the imported object and its configuration, exercise the objective-to-gate interaction in a running session, and rerun the existing progression path. The evaluation should distinguish a correct feature from a solution that makes the test pass by removing the obstacle, disabling collisions everywhere, or bypassing the objective.</p>
+          <p>We propose evaluating several dimensions together:</p>
+          <dl class="memo-measures">
+            <div><dt>Completion</dt><dd>Does the delivered project satisfy the requested behavior under the task’s stated conditions?</dd></div>
+            <div><dt>Preservation</dt><dd>Do the required existing behaviors still work after the changes?</dd></div>
+            <div><dt>Consistency</dt><dd>Does the agent succeed across independent runs and controlled variations of the starting state?</dd></div>
+            <div><dt>Recovery</dt><dd>Can it diagnose an observed failure, revise its approach, and reach a verified result?</dd></div>
+            <div><dt>Cost and intervention</dt><dd>How much time, tool use, and human assistance does completion require?</dd></div>
+          </dl>
+          <p>These dimensions need explicit reporting rules. Completion should be measured over all assigned tasks; partial progress and regressions should be reported separately. Repeated attempts should use reset environments and a declared budget. Infrastructure failures, model failures, and human interventions need separate records.</p>
+          <p>Reproducibility also depends on the environment: engine and tool versions, project assets, random seeds where applicable, and the evaluator itself. We intend to use held-out projects and variations to test whether an agent can handle unfamiliar situations. Evaluation checks should be protected from modification by the agent and reviewed for shortcuts and incomplete coverage.</p>
+          <p>No finite test suite can establish that every aspect of a game is correct. Automated checks can cover stated requirements, while human review can examine qualities that are difficult to reduce to a deterministic assertion. Both need a defined scope.</p>
+        </section>
+
+        <section id="human-judgment" aria-labelledby="human-heading">
+          <h2 id="human-heading">Learning from human judgment</h2>
+          <p>The final artifact tells us what was delivered. A trajectory can show the observable work that led there: what the developer inspected, which tools they used, what changed, what failed, and how they responded.</p>
+          <p>We’re also developing human-data projects across game engines and browser games, including WebGL experiences. Expert demonstrations, critiques, comparisons, and revisions can capture decisions about development, design, and playtesting. For the gate task, a reviewer might explain why an interaction is confusing, compare two implementations, or revise an animation so the player can read its state.</p>
+          <p>Our proposed data design connects feedback to the relevant project state and artifact. A critique should identify the behavior it refers to. A revision should preserve the before-and-after versions. A demonstration should include the observations and checks available to the expert, with rationale where the expert chooses to provide it.</p>
+          <p>These records could support supervised learning, preference learning, reinforcement learning, and evaluation. Whether a particular form of feedback improves sustained execution is an empirical question. We plan to study that relationship while keeping training material separate from held-out evaluation tasks.</p>
+        </section>
+
+        <section id="research-agenda" aria-labelledby="agenda-heading">
+          <h2 id="agenda-heading">The research agenda</h2>
+          <p>World Labs’ current direction has two connected parts: environments that demand sustained execution, and evidence that lets us judge the resulting work. Interact Bench presents building and debugging tasks; its <a href="/benchmark">full results and methodology</a> are available separately. Worldline Bench is under development around extended assignments with many dependent steps.</p>
+          <p>For this longer-horizon work, the questions we want to investigate include:</p>
+          <ul class="memo-questions">
+            <li>How does reliability change as dependencies accumulate across assets, code, scenes, and tools?</li>
+            <li>Which observations, checkpoints, and recovery behaviors help an agent preserve earlier work?</li>
+            <li>Which combinations of executable feedback and expert judgment improve the quality of the final experience?</li>
+          </ul>
+          <p>Progress will require careful task construction as well as better agents. A longer script of trivial actions would tell us little about maintaining a coherent project. Task difficulty should come from meaningful constraints, incomplete information, and changes whose consequences must be discovered and checked.</p>
+          <p>Game-engine performance also has limits as evidence. It does not by itself establish reliability in other software, physical environments, or every creative workflow. Transfer across engines and tools must be measured. Our aim is to make the work and its outcomes inspectable enough that these questions can be tested.</p>
+          <p>We want to build toward agents that can take responsibility for a whole assignment: understand the goal, carry the work across systems, recover when something goes wrong, and deliver a result that holds up when used.</p>
+        </section>
+
+        <aside class="memo-contact" aria-labelledby="contact-heading">
+          <h2 id="contact-heading">Work with World Labs</h2>
+          <p>To discuss an environment pilot or a human-data project, write to <a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research%20memo">dhruv@tryworldlabs.com</a>.</p>
+        </aside>
+
+        <section class="memo-references" id="references" aria-labelledby="references-heading" role="doc-bibliography">
+          <h2 id="references-heading">References</h2>
+          <ol>
+            <li id="ref-swe">Jimenez et al. <a href="https://arxiv.org/abs/2310.06770">SWE-bench: Can Language Models Resolve Real-World GitHub Issues?</a> ICLR, 2024.</li>
+            <li id="ref-osworld">Xie et al. <a href="https://arxiv.org/abs/2404.07972">OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments.</a> 2024.</li>
+            <li id="ref-opengameeval">Turkel et al. <a href="https://arxiv.org/abs/2610.02563">OpenGameEval: Benchmarking Agentic Programming and Exploration in a Stateful Game Engine.</a> 2026.</li>
+          </ol>
+        </section>
+      </div>
+      <footer class="memo-paper-footer"><a href="/">Back to World Labs <span aria-hidden="true">↗</span></a><a href="#memo-title">Back to top <span aria-hidden="true">↑</span></a></footer>
+    </article>
+  </main>
+  <footer class="memo-site-footer">© 2026 World Labs. All rights reserved.</footer>
+</body>
+</html>

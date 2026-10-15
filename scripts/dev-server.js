@@ -12,8 +12,9 @@ const types = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
+  '.jpg': 'image/jpeg',
   '.ico': 'image/x-icon',
-  '.ttf': 'font/ttf',
+  '.woff2': 'font/woff2',
 };
 
 createServer(async (req, res) => {

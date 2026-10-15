@@ -3,14 +3,14 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/eb-garamond-regular.ttf') format('truetype');
+  src: url('/assets/fonts/eb-garamond-regular.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Geist';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/assets/fonts/geist-regular.ttf') format('truetype');
+  src: url('/assets/fonts/geist-regular.woff2') format('woff2');
 }
 :root {
   color-scheme: light;
@@ -40,6 +40,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid #525252; outline-off
 .mission:focus { outline: none; }
 .contact { margin-bottom: 0; }
 .contact a { overflow-wrap: anywhere; }
+.memo-link { margin: 22px 0 0; font-size: 14px; }
 summary { display: flex; align-items: baseline; gap: 8px; color: #666; cursor: pointer; list-style: none; width: fit-content; }
 summary::-webkit-details-marker { display: none; }
 summary:hover { color: #191919; }
