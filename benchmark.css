@@ -23,11 +23,16 @@
 .eval-bars li:first-child .eval-track > span { background:#575e50; }
 .eval-value { font-size:12px; text-align:right; font-variant-numeric:tabular-nums; }
 .eval-caption { font-size:12px; line-height:1.6; color:#666; margin:18px 0 12px; }
+.eval-link { display:inline-flex; gap:10px; align-items:center; font-size:14px; min-height:44px; }
 .eval-chart + .eval-chart { margin-top:28px; }
 .eval-switch:not([hidden]) ~ .eval-chart { margin-top:0; }
+.eval-page { width:min(800px,calc(100% - 48px)); }
+.eval-brand { display:inline-flex; align-items:center; gap:10px; font-family:'EB Garamond',Georgia,serif; font-size:46.4px; line-height:.95; letter-spacing:-.03em; text-decoration:none; }
+.eval-back { display:inline-block; font-size:13px; margin:0 0 36px; }
+.eval-title { font-size:38px; line-height:1.1; margin:0 0 20px; }
 .eval-results { margin-top:38px; }
-.eval-results h3,.eval-method h3 { font-family:'EB Garamond',Georgia,serif; font-size:28px; font-weight:400; line-height:1.2; margin:0 0 18px; }
-.eval-results h3 span { font-family:'Geist',Arial,sans-serif; font-size:12px; color:#666; margin-left:12px; }
+.eval-results h2,.eval-method h2 { font-family:'EB Garamond',Georgia,serif; font-size:28px; font-weight:400; line-height:1.2; margin:0 0 18px; }
+.eval-results h2 span { font-family:'Geist',Arial,sans-serif; font-size:12px; color:#666; margin-left:12px; }
 .eval-table-wrap { overflow-x:auto; }
 .eval-table-wrap:focus-visible { outline:2px solid #525252; outline-offset:4px; }
 .eval-results table { border-collapse:collapse; width:100%; white-space:nowrap; font-size:12px; }
@@ -47,14 +52,15 @@
  .eval-model { grid-column:1; } .eval-value { grid-column:2; grid-row:1; }
  .eval-track { grid-column:1/-1; grid-row:2; height:12px; }
  .eval-axis { margin:0; } .eval-card-top { align-items:baseline; flex-wrap:wrap; gap:8px; }
- .eval-chart-heading { flex-wrap:wrap; gap:6px; }
- .eval-results h3 span { display:block; margin:6px 0 0; }
+ .eval-chart-heading { flex-wrap:wrap; gap:6px; } .eval-brand { font-size:42px; }
+ .eval-results h2 span { display:block; margin:6px 0 0; }
 }
 
 /* Research introduction: name, scope, date, then methodology. */
 .benchmark h2 { margin-bottom:6px; font-size:36px; }
 .eval-subtitle { font-size:21px; line-height:1.35; letter-spacing:-.02em; margin:0 0 16px; }
 .eval-date { font-size:12px; color:#666; margin-bottom:24px; }
+.eval-title + .eval-subtitle { margin-top:-10px; }
 .benchmark .eval-card { margin-top:34px; }
 
 .worldline { padding-bottom:8px; }

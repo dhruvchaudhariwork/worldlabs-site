@@ -1,17 +1,18 @@
 # World Labs
 
-Single-page website for [tryworldlabs.com](https://tryworldlabs.com).
+Website for [tryworldlabs.com](https://tryworldlabs.com).
 
-The homepage contains the World Labs introduction, email contact, and two expandable sections: **Interact Bench** and **Worldline Bench**. Both start collapsed with a + toggle. Full Interact Bench results and metric definitions are inside its expanded section.
+The homepage contains the World Labs introduction, email contact, and two expandable sections: **Interact Bench** and **Worldline Bench**. Both start collapsed with a + toggle. Interact Bench links to a separate page with full results and methodology.
 
 ## Files
 
-- `index.html`: the only page.
+- `index.html`: homepage.
+- `benchmark.html`: full Interact Bench results and methodology, available at `/benchmark`.
 - `horizon.css`, `benchmark.css`: layout, typography, and benchmark styles.
 - `scripts/benchmark-ui.js`: optional leaderboard suite switching.
 - `assets/` and root icons: brand mark, local fonts, and their licenses.
 - `data/opengameeval.json`: pinned benchmark scores and source provenance.
-- `scripts/render-benchmark.js`: regenerates the Interact Bench section from the snapshot.
+- `scripts/render-benchmark.js`: regenerates the homepage charts and full benchmark tables from the snapshot.
 - `scripts/dev-server.js`: local static server.
 - `vercel.json`: production URL settings.
 
@@ -25,7 +26,7 @@ npm run dev
 
 Open `http://localhost:3000`. Set `PORT` to use another port.
 
-After updating the verified benchmark snapshot, regenerate the homepage section:
+After updating the verified benchmark snapshot, regenerate the charts and tables:
 
 ```bash
 npm run render:benchmark

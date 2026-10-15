@@ -1,4 +1,4 @@
-// Serve the single-page site locally without dependencies or a build step.
+// Serve the static site locally without dependencies or a build step.
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
@@ -24,7 +24,8 @@ createServer(async (req, res) => {
   try {
     const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
     if (pathname.split('/').some(part => part.startsWith('.'))) throw new Error('Hidden path');
-    const file = resolve(root, pathname === '/' ? 'index.html' : pathname.slice(1));
+    let file = resolve(root, pathname === '/' ? 'index.html' : pathname.slice(1));
+    if (!extname(file)) file += '.html';
     if (!file.startsWith(root + sep) || !(await stat(file)).isFile()) throw new Error('Missing file');
     const body = await readFile(file);
     res.writeHead(200, {

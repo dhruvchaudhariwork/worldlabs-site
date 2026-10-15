@@ -10,14 +10,6 @@ const charts = data.suites.map((suite, i) => `<section class="eval-chart" id="ev
   <div class="eval-axis" aria-hidden="true"><span>0%</span><span>50%</span><span>100%</span></div>
   <ol class="eval-bars" role="list">${suite.models.map(row => `<li><span class="eval-model">${escape(row.model)}</span><span class="eval-track" aria-hidden="true"><span style="width:${row.scores[0]}%"></span></span><span class="eval-value">${pct(row.scores[0])}</span></li>`).join('\n')}</ol>
 </section>`).join('\n');
-const tables = data.suites.map(suite => `<section class="eval-results" aria-label="${escape(suite.name)} results">
- <h3>${escape(suite.name)} <span>${suite.tasks} tasks</span></h3>
- <div class="eval-table-wrap" role="region" aria-label="${escape(suite.name)} scores, scroll horizontally on small screens" tabindex="0"><table>
- <caption>${escape(suite.name)} results, ordered by Pass@1. All values are percentages.</caption>
- <thead><tr><th scope="col">Model</th>${data.metrics.map(m => `<th scope="col">${escape(m)}</th>`).join('')}</tr></thead>
- <tbody>${suite.models.map(row => `<tr><th scope="row">${escape(row.model)}</th>${row.scores.map(n => `<td>${pct(n)}</td>`).join('')}</tr>`).join('\n')}</tbody>
- </table></div>
-</section>`).join('\n');
 const home = `<section class="benchmark" id="opengameeval" aria-labelledby="eval-heading">
   <details class="benchmark-disclosure">
     <summary><h2 id="eval-heading">Interact Bench</h2><span class="disclosure-icon" aria-hidden="true"></span></summary>
@@ -32,22 +24,22 @@ const home = `<section class="benchmark" id="opengameeval" aria-labelledby="eval
     ${charts}
     <p class="eval-caption">Pass@1 is the average probability of success in one attempt. Model coverage differs between suites.</p>
   </div>
-  ${tables}
-  <section class="eval-method" aria-label="Methodology and context">
-    <h3>Reading the scores</h3>
-    <dl>
-      <dt>Pass@1</dt><dd>Average probability of success in one attempt.</dd>
-      <dt>Pass@5</dt><dd>Average probability of at least one successful attempt out of five.</dd>
-      <dt>Cons@5</dt><dd>Average probability of success in at least three of five attempts.</dd>
-      <dt>All@5</dt><dd>Average probability of success in all five attempts.</dd>
-      <dt>Average tool error rate</dt><dd>Average tool-call error rate. Lower is better; higher is better for the four success metrics.</dd>
-    </dl>
-  </section>
+  <a class="eval-link" href="/benchmark.html">Full results and methodology <span aria-hidden="true">↗</span></a>
     </div>
   </details>
 </section>`;
-const path = new URL('index.html', root);
-const original = readFileSync(path, 'utf8');
-const expression = /<!-- BENCHMARK:START -->[\s\S]*?<!-- BENCHMARK:END -->/;
-if (!expression.test(original)) throw new Error('Missing BENCHMARK markers in index.html');
-writeFileSync(path, original.replace(expression, `<!-- BENCHMARK:START -->\n${home}\n<!-- BENCHMARK:END -->`));
+const tables = data.suites.map(suite => `<section class="eval-results" aria-label="${escape(suite.name)} results">
+ <h2>${escape(suite.name)} <span>${suite.tasks} tasks</span></h2>
+ <div class="eval-table-wrap" role="region" aria-label="${escape(suite.name)} scores, scroll horizontally on small screens" tabindex="0"><table>
+ <caption>${escape(suite.name)} results, ordered by Pass@1. All values are percentages.</caption>
+ <thead><tr><th scope="col">Model</th>${data.metrics.map(m => `<th scope="col">${escape(m)}</th>`).join('')}</tr></thead>
+ <tbody>${suite.models.map(row => `<tr><th scope="row">${escape(row.model)}</th>${row.scores.map(n => `<td>${pct(n)}</td>`).join('')}</tr>`).join('\n')}</tbody>
+ </table></div>
+</section>`).join('\n');
+for (const [file, key, content] of [['index.html','BENCHMARK',home], ['benchmark.html','RESULTS',tables]]) {
+ const path = new URL(file, root);
+ const original = readFileSync(path, 'utf8');
+ const expression = new RegExp(`<!-- ${key}:START -->[\\s\\S]*?<!-- ${key}:END -->`);
+ if (!expression.test(original)) throw new Error(`Missing ${key} markers in ${file}`);
+ writeFileSync(path, original.replace(expression, `<!-- ${key}:START -->\n${content}\n<!-- ${key}:END -->`));
+}
