@@ -5,8 +5,7 @@
   "type": "module",
   "description": "World Labs — Long-horizon tasks in interactive worlds.",
   "scripts": {
-    "dev": "node scripts/dev-server.js",
-    "render:benchmark": "node scripts/render-benchmark.js"
+    "dev": "node scripts/dev-server.js"
   },
   "engines": {
     "node": ">=22"

@@ -1,4 +1,8 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/benchmark", "destination": "/", "permanent": true },
+    { "source": "/benchmark.html", "destination": "/", "permanent": true }
+  ]
 }

@@ -2,20 +2,16 @@
 
 Website for [tryworldlabs.com](https://tryworldlabs.com).
 
-The homepage introduces World Labs as a research lab developing original training data, game-engine RL gyms, and controlled evaluation of agent progress. It includes email contact, a research thesis link, and two expandable sections: **Interact Bench** and **Worldline Bench**. Both start collapsed with a + toggle. Interact Bench links to a separate page with full results and methodology.
+The homepage introduces World Labs as a research lab developing original training data, game-engine RL gyms, and controlled evaluation of agent progress. It includes email contact, a research thesis link, and an expandable **Worldline Bench** section that starts collapsed with a + toggle.
 
 ## Files
 
 - `index.html`: homepage.
-- `benchmark.html`: full Interact Bench results and methodology, available at `/benchmark`.
 - `memo.html`, `memo.css`: the research thesis at `/memo`, with two concise technical diagrams covering gym execution and controlled training comparisons. CSS signal animations respect reduced-motion preferences; diagrams remain readable without motion and in print.
-- `horizon.css`, `benchmark.css`: layout, typography, and benchmark styles.
-- `scripts/benchmark-ui.js`: optional leaderboard suite switching.
+- `horizon.css`, `benchmark.css`: layout, typography, and Worldline Bench styles.
 - `assets/` and root icons: brand mark, local fonts, and their licenses.
-- `data/opengameeval.json`: pinned benchmark scores and source provenance.
-- `scripts/render-benchmark.js`: regenerates the homepage charts and full benchmark tables from the snapshot.
 - `scripts/dev-server.js`: local static server.
-- `vercel.json`: production URL settings.
+- `vercel.json`: production URL settings, including redirects from the retired `/benchmark` and `/benchmark.html` URLs to the homepage.
 
 ## Development
 
@@ -26,14 +22,6 @@ npm run dev
 ```
 
 Open `http://localhost:3000`. Set `PORT` to use another port.
-
-After updating the verified benchmark snapshot, regenerate the charts and tables:
-
-```bash
-npm run render:benchmark
-```
-
-Review the generated HTML and source metadata before committing. Benchmark content remains readable without JavaScript.
 
 ## Production
 
