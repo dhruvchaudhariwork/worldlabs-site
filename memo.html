@@ -3,588 +3,113 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Advancing agents through game worlds | World Labs</title>
-  <meta name="description" content="World Labs is a research lab advancing agents through interactive worlds. Original data for pretraining, game-engine RL gyms for post-training, and controlled evaluation of model progress.">
+  <title>Learning to act in complex worlds | World Labs Research</title>
+  <meta name="description" content="Why game engines are useful training environments for AI agents: concrete development and gameplay tasks, reinforcement learning, and a measured path beyond games.">
   <link rel="canonical" href="https://tryworldlabs.com/memo">
-  <link rel="icon" href="/favicon.svg?v=20261001-mark" type="image/svg+xml">
-  <link rel="alternate icon" href="/favicon.ico?v=20261001-mark">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=20261001-mark">
-  <link rel="preload" href="/assets/fonts/eb-garamond-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/geist-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/memo.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="World Labs">
-  <meta property="og:title" content="Advancing agents through game worlds">
-  <meta property="og:description" content="Original training data, executable environments, and a research loop that measures what agents learn.">
+  <meta property="og:title" content="Learning to act in complex worlds">
+  <meta property="og:description" content="Game-engine training environments, the evidence for reinforcement learning, and a measured path beyond games.">
   <meta property="og:url" content="https://tryworldlabs.com/memo">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Advancing agents through game worlds | World Labs">
-  <meta name="twitter:description" content="Original training data, executable environments, and a research loop that measures what agents learn.">
 </head>
 <body>
   <a class="skip-link" href="#memo">Skip to memo</a>
-  <main class="memo" id="memo" tabindex="-1">
-    <header class="letterhead">
-      <a class="wordmark" href="/" aria-label="World Labs home"><img src="/assets/world-labs-mark.png" width="32" height="32" alt=""><span>world labs</span></a>
-      <nav aria-label="Main navigation"><a href="/">Overview</a><a href="/#worldline">Worldline Bench <span aria-hidden="true">↗</span></a></nav>
+  <header class="site-nav">
+    <a class="wordmark" href="/" aria-label="World Labs home"><img src="/assets/world-labs-mark.png" width="32" height="32" alt="">world labs</a>
+    <nav aria-label="Main navigation"><a href="/">Overview</a><a href="#references">The reading list <span aria-hidden="true">↗</span></a></nav>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+  <main id="memo" tabindex="-1">
+    <header class="memo-hero">
+      <div class="pill"><span class="pill-mark" aria-hidden="true">◎</span> The research thesis</div>
+      <h1>Learning to act<br> in complex worlds.</h1>
+      <p class="dek">Why game engines are useful training grounds for AI.<br> And how the opportunity extends beyond games.</p>
+      <div class="memo-meta"><span>World Labs Research</span><time datetime="2026-10-16">October 16, 2026</time><a href="#references">8 research papers</a></div>
     </header>
+    <div class="memo-layout">
+      <aside class="contents">
+        <nav aria-label="On this page">
+          <p>In this memo</p>
+          <a href="#thesis">The thesis</a>
+          <a href="#gyms">Two concrete uses</a>
+          <a href="#data">How training works</a>
+          <a href="#evidence">What the research shows</a>
+          <a href="#beyond">Beyond games</a>
+          <a href="#loop">What we need to prove</a>
+          <a href="#references">Research &amp; references</a>
+        </nav>
+        <a class="contents-contact" href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">Work with us <span aria-hidden="true">↗</span></a>
+      </aside>
+      <article class="memo-body" aria-label="World Labs research thesis">
+        <section class="prose" id="thesis" aria-labelledby="thesis-heading">
+          <p class="section-label">The thesis</p>
+          <h2 id="thesis-heading">Learn from what happens.</h2>
+          <p>World Labs is building original training data and game-engine environments for AI agents: models that take actions to complete tasks. Game engines combine code, geometry, physics, and interacting systems in worlds we can run, reset, and inspect. This makes them useful for teaching an agent to plan, test its assumptions, and recover when an action fails. <strong>The immediate use is better agents for game development and interactive worlds.</strong></p>
+        </section>
 
-    <article aria-labelledby="memo-title">
-      <header class="memo-intro prose">
-        <p class="eyebrow">Research thesis <span>October 2026</span></p>
-        <h1 id="memo-title">Advancing agents<br>through game worlds.</h1>
-        <p class="dek">World Labs is a research lab focused on long-horizon agents in interactive worlds.</p>
-        <p>Game development demands sustained reasoning across code, spatial structure, and runtime behavior. Decisions carry consequences across many steps. A feature is complete when it works in the running world and preserves the systems around it.</p>
-        <p>We are building <strong>original training data and game-engine RL gyms</strong> to advance this capability, with a research loop that measures what agents learn.</p>
-      </header>
+        <section class="prose" id="gyms" aria-labelledby="gyms-heading">
+          <p class="section-label">Two concrete uses</p>
+          <h2 id="gyms-heading">Build a system.<br> Learn to operate in one.</h2>
+          <figure class="task-example">
+            <figcaption>Illustrative development task</figcaption>
+            <h3>Build an elevator that two players can use together.</h3>
+            <p>A coding agent must inspect the project, edit scripts and scene objects, then run a playtest. Compiling is insufficient: both players must stay on the platform, see the same position, and still use nearby doors. A verifier checks these outcomes and catches broken existing behavior. Repeating this process across different projects could train the agent to deliver working features, reducing the debugging left to developers.</p>
+          </figure>
+          <p>The second use is training agents <strong>inside existing games</strong>: navigate to a destination, collect resources, or coordinate several actions despite incomplete information. Developers can supply varied worlds; AI labs can use them for training and evaluation. <em>SIMA 2</em> demonstrates this route, combining human demonstrations with reinforcement learning on verifiable tasks, using images and keyboard-and-mouse actions, and testing on games excluded from RL training. <a class="cite" href="#ref-5" aria-label="Reference 5, SIMA 2">[5]</a></p>
+        </section>
 
-      <section class="prose" id="data" aria-labelledby="data-heading">
-        <h2 id="data-heading">A continuous supply of original data.</h2>
-        <p>We are building a continuing supply of fresh, high-quality data for increasingly difficult game-development tasks. The datasets span engine code, 3D scenes, and complete project artifacts, with technical correctness, novelty, and depth as core requirements.</p>
-        <p>We are developing these datasets for pretraining and continued pretraining. Their value is measured by the capabilities they teach.</p>
-      </section>
+        <section class="prose" id="data" aria-labelledby="data-heading">
+          <p class="section-label">How training works</p>
+          <h2 id="data-heading">Turn consequences into feedback.</h2>
+          <p>Each environment needs a repeatable starting state, a goal, tools for observing and acting, and a protected success check the agent cannot rewrite. <strong>In reinforcement learning (RL), the model attempts a task, receives a score, and a trainer updates the model to favor successful behavior.</strong> Resetting the world enables repeated practice; changing layouts, constraints, and failures discourages memorization. Subjective goals still need human review.</p>
+          <p>Our intended offering pairs these environments with original, rights-cleared code, scenes, demonstrations, and recorded attempts. Code and scenes can support pretraining, the broad learning before task-specific practice; demonstrations teach useful behavior; scored attempts support RL. The same environment can evaluate a model without updating it. These are distinct uses of a shared training infrastructure.</p>
+        </section>
 
-      <section class="prose" id="gyms" aria-labelledby="gyms-heading">
-        <h2 id="gyms-heading">Game engines as RL environments.</h2>
-        <p>Each gym is an executable problem set: a versioned starting project, a task specification, engine tools, and verifiers for the resulting state and behavior. Agents modify code and scenes, observe runtime consequences, and receive reward tied to task completion and preservation of existing functionality.</p>
-        <p>Our direction spans environments such as Roblox Studio, Unreal Engine, and Minecraft. Tasks extend from individual mechanics to interacting systems that require planning, debugging, and recovery over long horizons.</p>
-      </section>
+        <section class="prose" id="evidence" aria-labelledby="evidence-heading">
+          <p class="section-label">The evidence</p>
+          <h2 id="evidence-heading">A foundation we can test.</h2>
+          <p><em>GameDevBench</em> reports GPT-5.4 task success rising from 41.1% to 52.0% with screenshot and runtime-video feedback. That is better information during execution, not evidence of RL training. <a class="cite" href="#ref-1" aria-label="Reference 1, GameDevBench">[1]</a> <em>OpenGameEval</em>, <em>GameEngineBench</em>, and <em>GameCraft-Bench</em> reinforce the need to evaluate running scenes, integrated engine behavior, and complete playable systems. <a class="cite" href="#ref-2" aria-label="Reference 2, OpenGameEval">[2]</a><a class="cite" href="#ref-3" aria-label="Reference 3, GameEngineBench">[3]</a><a class="cite" href="#ref-4" aria-label="Reference 4, GameCraft-Bench">[4]</a></p>
+          <p>Actual training evidence is promising: <em>Play to Generalize</em> reports visual-game RL improving a model’s score on MathVista, a visual-reasoning test, from 68.0% to 71.9%; <em>SPIRAL</em> reports reasoning gains from strategic, language-based self-play. <a class="cite" href="#ref-6" aria-label="Reference 6, Play to Generalize">[6]</a><a class="cite" href="#ref-7" aria-label="Reference 7, SPIRAL">[7]</a> These are specific transfer results, not proof that richer worlds always help. <em>Procgen</em> motivates varied training levels and unseen test levels to distinguish generalization from memorization. <a class="cite" href="#ref-8" aria-label="Reference 8, Procgen">[8]</a></p>
+        </section>
 
-      <figure class="technical-figure" id="gym-architecture" aria-labelledby="gym-figure-title" aria-describedby="gym-caption">
-        <div class="figure-heading"><h2 id="gym-figure-title">How a gym trains an agent</h2><span class="figure-note">Schematic</span></div>
-        <div class="diagram-surface">
-  <svg class="technical-diagram diagram-wide" viewBox="0 0 720 386" role="img" aria-labelledby="gym-wide-title gym-wide-desc">
-    <title id="gym-wide-title">The gym execution and learning loop</title>
-    <desc id="gym-wide-desc">The gym contains an illustrated game world and task verifier. The agent sends actions to the engine and receives observations. The verifier checks completion and preservation. The RL trainer uses the recorded rollout and reward to update the agent policy. Arrows show information flow; the world is illustrative.</desc>
-    <defs>
-      <marker id="gym-wide-arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 5 3-5 3"/></marker>
-      <marker id="gym-wide-arrow-green" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="arrow-green" d="m1 1 5 3-5 3"/></marker>
-      <g id="gym-wide-world" stroke-linejoin="round">
-<polygon class="world-shadow" points="108,18.8 211.2,70.4 132,110 28.8,58.4"/>
-<polygon class="world-stone-right" points="144,32 144,37.4 72,73.4 72,68"/>
-<polygon class="world-stone-left" points="36,50 72,68 72,73.4 36,55.4"/>
-<polygon class="world-stone-top" points="108,14 144,32 72,68 36,50"/>
-<polygon class="world-stone-right" points="204,62 204,67.4 132,103.4 132,98"/>
-<polygon class="world-stone-left" points="84,74 132,98 132,103.4 84,79.4"/>
-<polygon class="world-stone-top" points="156,38 204,62 132,98 84,74"/>
-<path class="world-grid" d="M108 14L36 50"/>
-<path class="world-grid" d="M120 20L48 56"/>
-<path class="world-grid" d="M132 26L60 62"/>
-<path class="world-grid" d="M156 38L84 74"/>
-<path class="world-grid" d="M168 44L96 80"/>
-<path class="world-grid" d="M180 50L108 86"/>
-<path class="world-grid" d="M192 56L120 92"/>
-<path class="world-grid" d="M204 62L132 98"/>
-<path class="world-grid" d="M96 20L132 38"/>
-<path class="world-grid" d="M144 44L192 68"/>
-<path class="world-grid" d="M84 26L120 44"/>
-<path class="world-grid" d="M132 50L180 74"/>
-<path class="world-grid" d="M72 32L108 50"/>
-<path class="world-grid" d="M120 56L168 80"/>
-<path class="world-grid" d="M60 38L96 56"/>
-<path class="world-grid" d="M108 62L156 86"/>
-<path class="world-grid" d="M48 44L84 62"/>
-<path class="world-grid" d="M96 68L144 92"/>
-<polygon class="world-stone-right" points="117.6,9.8 117.6,24.2 108,29 108,14.6"/>
-<polygon class="world-stone-left" points="98.4,9.8 108,14.6 108,29 98.4,24.2"/>
-<polygon class="world-stone-top" points="108,5 117.6,9.8 108,14.6 98.4,9.8"/>
-<polygon class="world-stone-right" points="129.6,21.8 129.6,30.2 120,35 120,26.6"/>
-<polygon class="world-stone-left" points="110.4,21.8 120,26.6 120,35 110.4,30.2"/>
-<polygon class="world-stone-top" points="120,17 129.6,21.8 120,26.6 110.4,21.8"/>
-<polygon class="world-stone-right" points="192,55.4 192,60.8 184.2,64.7 184.2,59.3"/>
-<polygon class="world-stone-left" points="162.6,48.5 184.2,59.3 184.2,64.7 162.6,53.9"/>
-<polygon class="world-stone-top" points="170.4,44.6 192,55.4 184.2,59.3 162.6,48.5"/>
-<polygon class="world-stone-right" points="192,45.8 192,55.4 184.2,59.3 184.2,49.7"/>
-<polygon class="world-stone-left" points="169.2,42.2 184.2,49.7 184.2,59.3 169.2,51.8"/>
-<polygon class="world-stone-top" points="177,38.3 192,45.8 184.2,49.7 169.2,42.2"/>
-<polyline class="world-route" points="63.6,44.96 75.6,50.96 96,40.76 151.2,68.36"/>
-<polygon class="world-green-right" points="122.76,43.46 122.76,45.38 103.56,54.98 103.56,53.06"/>
-<polygon class="world-green-left" points="100.8,51.68 103.56,53.06 103.56,54.98 100.8,53.6"/>
-<polygon class="world-green-top" points="120,42.08 122.76,43.46 103.56,53.06 100.8,51.68"/>
-<polygon class="world-green-right" points="125.76,44.96 125.76,46.88 106.56,56.48 106.56,54.56"/>
-<polygon class="world-green-left" points="103.8,53.18 106.56,54.56 106.56,56.48 103.8,55.1"/>
-<polygon class="world-green-top" points="123,43.58 125.76,44.96 106.56,54.56 103.8,53.18"/>
-<polygon class="world-green-right" points="128.76,46.46 128.76,48.38 109.56,57.98 109.56,56.06"/>
-<polygon class="world-green-left" points="106.8,54.68 109.56,56.06 109.56,57.98 106.8,56.6"/>
-<polygon class="world-green-top" points="126,45.08 128.76,46.46 109.56,56.06 106.8,54.68"/>
-<polygon class="world-green-right" points="131.76,47.96 131.76,49.88 112.56,59.48 112.56,57.56"/>
-<polygon class="world-green-left" points="109.8,56.18 112.56,57.56 112.56,59.48 109.8,58.1"/>
-<polygon class="world-green-top" points="129,46.58 131.76,47.96 112.56,57.56 109.8,56.18"/>
-<polygon class="world-green-right" points="161.76,31.28 161.76,61.88 156.96,64.28 156.96,33.68"/>
-<polygon class="world-green-left" points="152.4,31.4 156.96,33.68 156.96,64.28 152.4,62"/>
-<polygon class="world-green-top" points="157.2,29 161.76,31.28 156.96,33.68 152.4,31.4"/>
-<polygon class="world-green-right" points="141.36,41.48 141.36,72.08 136.56,74.48 136.56,43.88"/>
-<polygon class="world-green-left" points="132,41.6 136.56,43.88 136.56,74.48 132,72.2"/>
-<polygon class="world-green-top" points="136.8,39.2 141.36,41.48 136.56,43.88 132,41.6"/>
-<polygon class="world-green-right" points="161.76,27.2 161.76,31.28 136.56,43.88 136.56,39.8"/>
-<polygon class="world-green-left" points="132,37.52 136.56,39.8 136.56,43.88 132,41.6"/>
-<polygon class="world-green-top" points="157.2,24.92 161.76,27.2 136.56,39.8 132,37.52"/>
-<path class="world-wire" d="M147.6 37.96L160.8 44.56"/>
-<path class="world-wire" d="M160.8 44.56L146.4 51.76"/>
-<path class="world-wire" d="M146.4 51.76L133.2 45.16"/>
-<path class="world-wire" d="M133.2 45.16L147.6 37.96"/>
-<path class="world-wire" d="M147.6 59.96L147.6 37.96"/>
-<path class="world-wire" d="M160.8 66.56L160.8 44.56"/>
-<path class="world-wire" d="M146.4 73.76L146.4 51.76"/>
-<path class="world-wire" d="M133.2 67.16L133.2 45.16"/>
-<polygon class="world-green-right" points="69,37.1 69,44.9 63.6,47.6 63.6,39.8"/>
-<polygon class="world-green-left" points="58.2,37.1 63.6,39.8 63.6,47.6 58.2,44.9"/>
-<polygon class="world-green-top" points="63.6,34.4 69,37.1 63.6,39.8 58.2,37.1"/>
-<polygon class="world-stone-right" points="138,82.4 138,86.6 130.2,90.5 130.2,86.3"/>
-<polygon class="world-stone-left" points="120.6,81.5 130.2,86.3 130.2,90.5 120.6,85.7"/>
-<polygon class="world-stone-top" points="128.4,77.6 138,82.4 130.2,86.3 120.6,81.5"/>
-<polygon class="world-stone-right" points="151.8,77.9 151.8,85.7 144,89.6 144,81.8"/>
-<polygon class="world-stone-left" points="136.2,77.9 144,81.8 144,89.6 136.2,85.7"/>
-<polygon class="world-stone-top" points="144,74 151.8,77.9 144,81.8 136.2,77.9"/>
-</g>
-      <g id="gym-wide-policy"><path class="policy-edge" d="M0 8L29 0"/><path class="policy-edge" d="M0 8L29 20"/><path class="policy-edge" d="M0 30L29 0"/><path class="policy-edge" d="M0 30L29 20"/><path class="policy-edge" d="M0 30L29 40"/><path class="policy-edge" d="M0 52L29 20"/><path class="policy-edge" d="M0 52L29 40"/><path class="policy-edge" d="M0 52L29 60"/><path class="policy-edge" d="M29 0L58 8"/><path class="policy-edge" d="M29 0L58 30"/><path class="policy-edge" d="M29 20L58 8"/><path class="policy-edge" d="M29 20L58 30"/><path class="policy-edge" d="M29 20L58 52"/><path class="policy-edge" d="M29 40L58 30"/><path class="policy-edge" d="M29 40L58 52"/><path class="policy-edge" d="M29 60L58 52"/><path class="policy-edge" d="M58 8L87 20"/><path class="policy-edge" d="M58 8L87 40"/><path class="policy-edge" d="M58 30L87 20"/><path class="policy-edge" d="M58 30L87 40"/><path class="policy-edge" d="M58 52L87 40"/><circle class="policy-node" cx="0" cy="8" r="3"/><circle class="policy-node" cx="0" cy="30" r="3"/><circle class="policy-node" cx="0" cy="52" r="3"/><circle class="policy-node" cx="29" cy="0" r="3"/><circle class="policy-node" cx="29" cy="20" r="3"/><circle class="policy-node" cx="29" cy="40" r="3"/><circle class="policy-node" cx="29" cy="60" r="3"/><circle class="policy-node" cx="58" cy="8" r="3"/><circle class="policy-node" cx="58" cy="30" r="3"/><circle class="policy-node" cx="58" cy="52" r="3"/><circle class="policy-node" cx="87" cy="20" r="3"/><circle class="policy-node" cx="87" cy="40" r="3"/><path class="policy-active" d="M0 30L29 20L58 30L87 20"/><circle class="policy-active-node" cx="0" cy="30" r="3"/><circle class="policy-active-node" cx="29" cy="20" r="3"/><circle class="policy-active-node" cx="58" cy="30" r="3"/><circle class="policy-active-node" cx="87" cy="20" r="3"/></g>
-    </defs>
-    <!-- The gym boundary encloses both execution and verification. -->
-<rect class="diagram-scope" x="224" y="10" width="484" height="258" rx="7"/>
-<text class="scope-label" x="244" y="34">GAME-ENGINE GYM</text>
-<rect class="diagram-box" x="12" y="99" width="138" height="143" rx="5"/>
-<use href="#gym-wide-policy" transform="translate(37 115) scale(0.98)"/>
-<text class="diagram-node-title" x="81" y="207" text-anchor="middle">Agent</text>
-<text class="diagram-label" x="81" y="225" text-anchor="middle">current policy</text>
-<rect class="engine-box" x="244" y="53" width="248" height="192" rx="5"/>
-<text class="diagram-node-title" x="262" y="78">Game engine</text>
-<use href="#gym-wide-world" transform="translate(247 91) scale(1.08)"/>
-<text class="diagram-label" x="262" y="224">project + task</text>
-<text class="diagram-label" x="474" y="224" text-anchor="end">tools + runtime</text>
-<rect class="diagram-box" x="564" y="99" width="126" height="143" rx="5"/>
-<text class="diagram-node-title" x="579" y="124">Task verifier</text>
-<path class="verifier-rule" d="M580 140H674"/>
-<path class="verifier-bracket" d="M586 154h-6v12h6m82-12h6v12h-6M586 187h-6v12h6m82-12h6v12h-6"/>
-<text class="diagram-label" x="627" y="164" text-anchor="middle">completion</text>
-<text class="diagram-label" x="627" y="197" text-anchor="middle">preservation</text>
-<path class="verifier-rule" d="M627 212v18"/><circle class="policy-active-node" cx="627" cy="230" r="3"/>
-<!-- Action and observation paths remain separate. -->
-<path class="diagram-route route-accent" d="M152 137H242" marker-end="url(#gym-wide-arrow-green)"/>
-<text class="route-label" x="198" y="126" text-anchor="middle">actions</text>
-<path class="diagram-route" d="M242 181H152" marker-end="url(#gym-wide-arrow)"/>
-<text class="route-label" x="198" y="201" text-anchor="middle">observations</text>
-<path class="diagram-route" d="M494 169H562" marker-end="url(#gym-wide-arrow)"/>
-<text class="route-label" x="528" y="157" text-anchor="middle">result</text>
-<!-- Both rollout and verified reward feed the trainer. -->
-<path class="diagram-route" d="M368 247V306" marker-end="url(#gym-wide-arrow)"/>
-<text class="route-label" x="380" y="291">rollout</text>
-<path class="diagram-route route-accent" d="M627 244V330Q627 342 615 342H494" marker-end="url(#gym-wide-arrow-green)"/>
-<text class="route-label" x="550" y="330" text-anchor="middle">reward</text>
-<path class="diagram-route route-accent" d="M242 342H93Q81 342 81 330V244" marker-end="url(#gym-wide-arrow-green)"/>
-<text class="route-label" x="166" y="330" text-anchor="middle">updated policy</text>
-<rect class="trainer-box" x="244" y="308" width="248" height="66" rx="5"/>
-<path class="trainer-stack" d="m261 344 23-13 23 13-23 13Zm0 7 23 13 23-13m-46 7 23 13 23-13"/>
-<text class="diagram-node-title" x="324" y="335">RL trainer</text>
-<text class="diagram-label" x="324" y="355">policy update</text>
-  </svg>
-  <svg class="technical-diagram diagram-compact" viewBox="0 0 340 608" role="img" aria-labelledby="gym-compact-title gym-compact-desc">
-    <title id="gym-compact-title">The gym execution and learning loop</title>
-    <desc id="gym-compact-desc">The gym contains an illustrated game world and task verifier. The agent sends actions to the engine and receives observations. The verifier checks completion and preservation. The RL trainer uses the recorded rollout and reward to update the agent policy. Arrows show information flow; the world is illustrative.</desc>
-    <defs>
-      <marker id="gym-compact-arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 5 3-5 3"/></marker>
-      <marker id="gym-compact-arrow-green" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="arrow-green" d="m1 1 5 3-5 3"/></marker>
-      <g id="gym-compact-world" stroke-linejoin="round">
-<polygon class="world-shadow" points="108,18.8 211.2,70.4 132,110 28.8,58.4"/>
-<polygon class="world-stone-right" points="144,32 144,37.4 72,73.4 72,68"/>
-<polygon class="world-stone-left" points="36,50 72,68 72,73.4 36,55.4"/>
-<polygon class="world-stone-top" points="108,14 144,32 72,68 36,50"/>
-<polygon class="world-stone-right" points="204,62 204,67.4 132,103.4 132,98"/>
-<polygon class="world-stone-left" points="84,74 132,98 132,103.4 84,79.4"/>
-<polygon class="world-stone-top" points="156,38 204,62 132,98 84,74"/>
-<path class="world-grid" d="M108 14L36 50"/>
-<path class="world-grid" d="M120 20L48 56"/>
-<path class="world-grid" d="M132 26L60 62"/>
-<path class="world-grid" d="M156 38L84 74"/>
-<path class="world-grid" d="M168 44L96 80"/>
-<path class="world-grid" d="M180 50L108 86"/>
-<path class="world-grid" d="M192 56L120 92"/>
-<path class="world-grid" d="M204 62L132 98"/>
-<path class="world-grid" d="M96 20L132 38"/>
-<path class="world-grid" d="M144 44L192 68"/>
-<path class="world-grid" d="M84 26L120 44"/>
-<path class="world-grid" d="M132 50L180 74"/>
-<path class="world-grid" d="M72 32L108 50"/>
-<path class="world-grid" d="M120 56L168 80"/>
-<path class="world-grid" d="M60 38L96 56"/>
-<path class="world-grid" d="M108 62L156 86"/>
-<path class="world-grid" d="M48 44L84 62"/>
-<path class="world-grid" d="M96 68L144 92"/>
-<polygon class="world-stone-right" points="117.6,9.8 117.6,24.2 108,29 108,14.6"/>
-<polygon class="world-stone-left" points="98.4,9.8 108,14.6 108,29 98.4,24.2"/>
-<polygon class="world-stone-top" points="108,5 117.6,9.8 108,14.6 98.4,9.8"/>
-<polygon class="world-stone-right" points="129.6,21.8 129.6,30.2 120,35 120,26.6"/>
-<polygon class="world-stone-left" points="110.4,21.8 120,26.6 120,35 110.4,30.2"/>
-<polygon class="world-stone-top" points="120,17 129.6,21.8 120,26.6 110.4,21.8"/>
-<polygon class="world-stone-right" points="192,55.4 192,60.8 184.2,64.7 184.2,59.3"/>
-<polygon class="world-stone-left" points="162.6,48.5 184.2,59.3 184.2,64.7 162.6,53.9"/>
-<polygon class="world-stone-top" points="170.4,44.6 192,55.4 184.2,59.3 162.6,48.5"/>
-<polygon class="world-stone-right" points="192,45.8 192,55.4 184.2,59.3 184.2,49.7"/>
-<polygon class="world-stone-left" points="169.2,42.2 184.2,49.7 184.2,59.3 169.2,51.8"/>
-<polygon class="world-stone-top" points="177,38.3 192,45.8 184.2,49.7 169.2,42.2"/>
-<polyline class="world-route" points="63.6,44.96 75.6,50.96 96,40.76 151.2,68.36"/>
-<polygon class="world-green-right" points="122.76,43.46 122.76,45.38 103.56,54.98 103.56,53.06"/>
-<polygon class="world-green-left" points="100.8,51.68 103.56,53.06 103.56,54.98 100.8,53.6"/>
-<polygon class="world-green-top" points="120,42.08 122.76,43.46 103.56,53.06 100.8,51.68"/>
-<polygon class="world-green-right" points="125.76,44.96 125.76,46.88 106.56,56.48 106.56,54.56"/>
-<polygon class="world-green-left" points="103.8,53.18 106.56,54.56 106.56,56.48 103.8,55.1"/>
-<polygon class="world-green-top" points="123,43.58 125.76,44.96 106.56,54.56 103.8,53.18"/>
-<polygon class="world-green-right" points="128.76,46.46 128.76,48.38 109.56,57.98 109.56,56.06"/>
-<polygon class="world-green-left" points="106.8,54.68 109.56,56.06 109.56,57.98 106.8,56.6"/>
-<polygon class="world-green-top" points="126,45.08 128.76,46.46 109.56,56.06 106.8,54.68"/>
-<polygon class="world-green-right" points="131.76,47.96 131.76,49.88 112.56,59.48 112.56,57.56"/>
-<polygon class="world-green-left" points="109.8,56.18 112.56,57.56 112.56,59.48 109.8,58.1"/>
-<polygon class="world-green-top" points="129,46.58 131.76,47.96 112.56,57.56 109.8,56.18"/>
-<polygon class="world-green-right" points="161.76,31.28 161.76,61.88 156.96,64.28 156.96,33.68"/>
-<polygon class="world-green-left" points="152.4,31.4 156.96,33.68 156.96,64.28 152.4,62"/>
-<polygon class="world-green-top" points="157.2,29 161.76,31.28 156.96,33.68 152.4,31.4"/>
-<polygon class="world-green-right" points="141.36,41.48 141.36,72.08 136.56,74.48 136.56,43.88"/>
-<polygon class="world-green-left" points="132,41.6 136.56,43.88 136.56,74.48 132,72.2"/>
-<polygon class="world-green-top" points="136.8,39.2 141.36,41.48 136.56,43.88 132,41.6"/>
-<polygon class="world-green-right" points="161.76,27.2 161.76,31.28 136.56,43.88 136.56,39.8"/>
-<polygon class="world-green-left" points="132,37.52 136.56,39.8 136.56,43.88 132,41.6"/>
-<polygon class="world-green-top" points="157.2,24.92 161.76,27.2 136.56,39.8 132,37.52"/>
-<path class="world-wire" d="M147.6 37.96L160.8 44.56"/>
-<path class="world-wire" d="M160.8 44.56L146.4 51.76"/>
-<path class="world-wire" d="M146.4 51.76L133.2 45.16"/>
-<path class="world-wire" d="M133.2 45.16L147.6 37.96"/>
-<path class="world-wire" d="M147.6 59.96L147.6 37.96"/>
-<path class="world-wire" d="M160.8 66.56L160.8 44.56"/>
-<path class="world-wire" d="M146.4 73.76L146.4 51.76"/>
-<path class="world-wire" d="M133.2 67.16L133.2 45.16"/>
-<polygon class="world-green-right" points="69,37.1 69,44.9 63.6,47.6 63.6,39.8"/>
-<polygon class="world-green-left" points="58.2,37.1 63.6,39.8 63.6,47.6 58.2,44.9"/>
-<polygon class="world-green-top" points="63.6,34.4 69,37.1 63.6,39.8 58.2,37.1"/>
-<polygon class="world-stone-right" points="138,82.4 138,86.6 130.2,90.5 130.2,86.3"/>
-<polygon class="world-stone-left" points="120.6,81.5 130.2,86.3 130.2,90.5 120.6,85.7"/>
-<polygon class="world-stone-top" points="128.4,77.6 138,82.4 130.2,86.3 120.6,81.5"/>
-<polygon class="world-stone-right" points="151.8,77.9 151.8,85.7 144,89.6 144,81.8"/>
-<polygon class="world-stone-left" points="136.2,77.9 144,81.8 144,89.6 136.2,85.7"/>
-<polygon class="world-stone-top" points="144,74 151.8,77.9 144,81.8 136.2,77.9"/>
-</g>
-      <g id="gym-compact-policy"><path class="policy-edge" d="M0 8L29 0"/><path class="policy-edge" d="M0 8L29 20"/><path class="policy-edge" d="M0 30L29 0"/><path class="policy-edge" d="M0 30L29 20"/><path class="policy-edge" d="M0 30L29 40"/><path class="policy-edge" d="M0 52L29 20"/><path class="policy-edge" d="M0 52L29 40"/><path class="policy-edge" d="M0 52L29 60"/><path class="policy-edge" d="M29 0L58 8"/><path class="policy-edge" d="M29 0L58 30"/><path class="policy-edge" d="M29 20L58 8"/><path class="policy-edge" d="M29 20L58 30"/><path class="policy-edge" d="M29 20L58 52"/><path class="policy-edge" d="M29 40L58 30"/><path class="policy-edge" d="M29 40L58 52"/><path class="policy-edge" d="M29 60L58 52"/><path class="policy-edge" d="M58 8L87 20"/><path class="policy-edge" d="M58 8L87 40"/><path class="policy-edge" d="M58 30L87 20"/><path class="policy-edge" d="M58 30L87 40"/><path class="policy-edge" d="M58 52L87 40"/><circle class="policy-node" cx="0" cy="8" r="3"/><circle class="policy-node" cx="0" cy="30" r="3"/><circle class="policy-node" cx="0" cy="52" r="3"/><circle class="policy-node" cx="29" cy="0" r="3"/><circle class="policy-node" cx="29" cy="20" r="3"/><circle class="policy-node" cx="29" cy="40" r="3"/><circle class="policy-node" cx="29" cy="60" r="3"/><circle class="policy-node" cx="58" cy="8" r="3"/><circle class="policy-node" cx="58" cy="30" r="3"/><circle class="policy-node" cx="58" cy="52" r="3"/><circle class="policy-node" cx="87" cy="20" r="3"/><circle class="policy-node" cx="87" cy="40" r="3"/><path class="policy-active" d="M0 30L29 20L58 30L87 20"/><circle class="policy-active-node" cx="0" cy="30" r="3"/><circle class="policy-active-node" cx="29" cy="20" r="3"/><circle class="policy-active-node" cx="58" cy="30" r="3"/><circle class="policy-active-node" cx="87" cy="20" r="3"/></g>
-    </defs>
-    <rect class="diagram-box" x="66" y="12" width="244" height="82" rx="5"/>
-<use href="#gym-compact-policy" transform="translate(82 30) scale(0.75)"/>
-<text class="diagram-node-title" x="171" y="48">Agent</text>
-<text class="diagram-label" x="171" y="68">current policy</text>
-<rect class="diagram-scope" x="34" y="155" width="294" height="283" rx="7"/>
-<text class="scope-label" x="177" y="179" text-anchor="middle">GAME-ENGINE GYM</text>
-<rect class="engine-box" x="50" y="195" width="262" height="148" rx="5"/>
-<text class="diagram-node-title" x="66" y="218">Game engine</text>
-<use href="#gym-compact-world" transform="translate(90 225) scale(0.82)"/>
-<text class="diagram-label" x="66" y="329">project + task</text>
-<text class="diagram-label" x="296" y="329" text-anchor="end">tools + runtime</text>
-<path class="diagram-route route-accent" d="M116 96V193" marker-end="url(#gym-compact-arrow-green)"/>
-<text class="route-label" x="103" y="125" text-anchor="end">actions</text>
-<path class="diagram-route" d="M238 193V96" marker-end="url(#gym-compact-arrow)"/>
-<text class="route-label" x="250" y="125">observations</text>
-<rect class="diagram-box" x="96" y="368" width="216" height="54" rx="5"/>
-<text class="diagram-node-title" x="112" y="389">Task verifier</text>
-<text class="diagram-label" x="112" y="407">completion</text>
-<text class="diagram-label" x="214" y="407">preservation</text>
-<path class="diagram-route" d="M204 345V366" marker-end="url(#gym-compact-arrow)"/>
-<text class="route-label" x="219" y="359">result</text>
-<path class="diagram-route" d="M66 345V521Q66 533 78 533H94" marker-end="url(#gym-compact-arrow)"/>
-<text class="route-label" x="77" y="475">rollout</text>
-<path class="diagram-route route-accent" d="M262 424V493" marker-end="url(#gym-compact-arrow-green)"/>
-<text class="route-label" x="274" y="466">reward</text>
-<rect class="trainer-box" x="96" y="495" width="216" height="68" rx="5"/>
-<path class="trainer-stack" d="m112 528 20-11 20 11-20 11Zm0 6 20 11 20-11m-40 6 20 11 20-11"/>
-<text class="diagram-node-title" x="168" y="524">RL trainer</text>
-<text class="diagram-label" x="168" y="544">policy update</text>
-<path class="diagram-route route-accent" d="M204 565V582Q204 594 192 594H24Q12 594 12 582V65Q12 53 24 53H64" marker-end="url(#gym-compact-arrow-green)"/>
-<text class="route-label" x="108" y="583" text-anchor="middle">updated policy</text>
-  </svg>
-        </div>
-        <figcaption id="gym-caption"><span>Fig. 1</span> Actions and observations form a rollout. The trainer uses the rollout and verified reward to update the policy.</figcaption>
-      </figure>
+        <section class="prose" id="beyond" aria-labelledby="beyond-heading">
+          <p class="section-label">Beyond games</p>
+          <h2 id="beyond-heading">The engine is a starting point.</h2>
+          <p>The expansion we see is into <strong>simulation and robotics research</strong>, including digital twins: virtual copies of physical places and systems. A warehouse simulation could train an agent to reroute around a blocked aisle, inspect equipment, or recover from a failed pickup. The reusable infrastructure is the same: worlds with persistent state, actions with consequences, resettable scenarios, and measurable outcomes. Transfer requires testing on the target workflow; simulation alone cannot establish physical safety or real-world performance. Our near-term focus remains game engines while we measure which capabilities travel beyond them.</p>
+        </section>
 
-      <section class="prose" id="loop" aria-labelledby="measurement-heading">
-        <h2 id="measurement-heading">Measure the effect of the data.</h2>
-        <p>Our research loop centres on controlled training runs. Starting from the same checkpoint, we compare a current data mix with one that includes a new batch, holding the training recipe, compute, and evaluation budget constant.</p>
-        <p>Both models are evaluated on held-out gym projects, separate from training tasks. We measure completion, regressions, and recovery. The results inform the next dataset and environment release.</p>
-      </section>
+        <section class="prose" id="loop" aria-labelledby="loop-heading">
+          <p class="section-label">The research plan</p>
+          <h2 id="loop-heading">Prove the training value.</h2>
+          <p>Our proposed study starts from the same model and compares generic coding tasks, game-engine tasks, and a mixture under matched training compute. Evaluation uses unseen projects and task families, identical tools, and equal execution budgets. We will measure completion, repeatability, recovery, broken existing behavior, and cost per successful task. A separate comparison will isolate visual feedback from training gains. The cited papers establish a research foundation; World Labs still needs its own controlled results. The product becomes valuable when these environments reliably teach useful capabilities at a competitive cost.</p>
+        </section>
 
-      <figure class="technical-figure" id="data-evaluation" aria-labelledby="evaluation-figure-title" aria-describedby="evaluation-caption">
-        <div class="figure-heading"><h2 id="evaluation-figure-title">Isolate the contribution of new data</h2><span class="figure-note">Schematic</span></div>
-        <div class="diagram-surface">
-  <svg class="technical-diagram diagram-wide" viewBox="0 0 720 336" role="img" aria-labelledby="evaluation-wide-title evaluation-wide-desc">
-    <title id="evaluation-wide-title">A controlled comparison of new training data</title>
-    <desc id="evaluation-wide-desc">Two models start from the same checkpoint with the same training recipe and compute. The control uses the current data mix; the candidate adds a new data batch, shown as a green layer. Both encounter identical held-out worlds, with the same verifier and attempt budget. Result A and Result B remain separate until completion, regressions, and recovery are compared. This is an experimental design, without numerical results.</desc>
-    <defs>
-      <marker id="evaluation-wide-arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 5 3-5 3"/></marker>
-      <marker id="evaluation-wide-arrow-green" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="arrow-green" d="m1 1 5 3-5 3"/></marker>
-      <g id="evaluation-wide-world" stroke-linejoin="round">
-<polygon class="world-shadow" points="108,18.8 211.2,70.4 132,110 28.8,58.4"/>
-<polygon class="world-stone-right" points="144,32 144,37.4 72,73.4 72,68"/>
-<polygon class="world-stone-left" points="36,50 72,68 72,73.4 36,55.4"/>
-<polygon class="world-stone-top" points="108,14 144,32 72,68 36,50"/>
-<polygon class="world-stone-right" points="204,62 204,67.4 132,103.4 132,98"/>
-<polygon class="world-stone-left" points="84,74 132,98 132,103.4 84,79.4"/>
-<polygon class="world-stone-top" points="156,38 204,62 132,98 84,74"/>
-<path class="world-grid" d="M108 14L36 50"/>
-<path class="world-grid" d="M120 20L48 56"/>
-<path class="world-grid" d="M132 26L60 62"/>
-<path class="world-grid" d="M156 38L84 74"/>
-<path class="world-grid" d="M168 44L96 80"/>
-<path class="world-grid" d="M180 50L108 86"/>
-<path class="world-grid" d="M192 56L120 92"/>
-<path class="world-grid" d="M204 62L132 98"/>
-<path class="world-grid" d="M96 20L132 38"/>
-<path class="world-grid" d="M144 44L192 68"/>
-<path class="world-grid" d="M84 26L120 44"/>
-<path class="world-grid" d="M132 50L180 74"/>
-<path class="world-grid" d="M72 32L108 50"/>
-<path class="world-grid" d="M120 56L168 80"/>
-<path class="world-grid" d="M60 38L96 56"/>
-<path class="world-grid" d="M108 62L156 86"/>
-<path class="world-grid" d="M48 44L84 62"/>
-<path class="world-grid" d="M96 68L144 92"/>
-<polygon class="world-stone-right" points="117.6,9.8 117.6,24.2 108,29 108,14.6"/>
-<polygon class="world-stone-left" points="98.4,9.8 108,14.6 108,29 98.4,24.2"/>
-<polygon class="world-stone-top" points="108,5 117.6,9.8 108,14.6 98.4,9.8"/>
-<polygon class="world-stone-right" points="129.6,21.8 129.6,30.2 120,35 120,26.6"/>
-<polygon class="world-stone-left" points="110.4,21.8 120,26.6 120,35 110.4,30.2"/>
-<polygon class="world-stone-top" points="120,17 129.6,21.8 120,26.6 110.4,21.8"/>
-<polygon class="world-stone-right" points="192,55.4 192,60.8 184.2,64.7 184.2,59.3"/>
-<polygon class="world-stone-left" points="162.6,48.5 184.2,59.3 184.2,64.7 162.6,53.9"/>
-<polygon class="world-stone-top" points="170.4,44.6 192,55.4 184.2,59.3 162.6,48.5"/>
-<polygon class="world-stone-right" points="192,45.8 192,55.4 184.2,59.3 184.2,49.7"/>
-<polygon class="world-stone-left" points="169.2,42.2 184.2,49.7 184.2,59.3 169.2,51.8"/>
-<polygon class="world-stone-top" points="177,38.3 192,45.8 184.2,49.7 169.2,42.2"/>
-<polyline class="world-route" points="63.6,44.96 75.6,50.96 96,40.76 151.2,68.36"/>
-<polygon class="world-green-right" points="122.76,43.46 122.76,45.38 103.56,54.98 103.56,53.06"/>
-<polygon class="world-green-left" points="100.8,51.68 103.56,53.06 103.56,54.98 100.8,53.6"/>
-<polygon class="world-green-top" points="120,42.08 122.76,43.46 103.56,53.06 100.8,51.68"/>
-<polygon class="world-green-right" points="125.76,44.96 125.76,46.88 106.56,56.48 106.56,54.56"/>
-<polygon class="world-green-left" points="103.8,53.18 106.56,54.56 106.56,56.48 103.8,55.1"/>
-<polygon class="world-green-top" points="123,43.58 125.76,44.96 106.56,54.56 103.8,53.18"/>
-<polygon class="world-green-right" points="128.76,46.46 128.76,48.38 109.56,57.98 109.56,56.06"/>
-<polygon class="world-green-left" points="106.8,54.68 109.56,56.06 109.56,57.98 106.8,56.6"/>
-<polygon class="world-green-top" points="126,45.08 128.76,46.46 109.56,56.06 106.8,54.68"/>
-<polygon class="world-green-right" points="131.76,47.96 131.76,49.88 112.56,59.48 112.56,57.56"/>
-<polygon class="world-green-left" points="109.8,56.18 112.56,57.56 112.56,59.48 109.8,58.1"/>
-<polygon class="world-green-top" points="129,46.58 131.76,47.96 112.56,57.56 109.8,56.18"/>
-<polygon class="world-green-right" points="161.76,31.28 161.76,61.88 156.96,64.28 156.96,33.68"/>
-<polygon class="world-green-left" points="152.4,31.4 156.96,33.68 156.96,64.28 152.4,62"/>
-<polygon class="world-green-top" points="157.2,29 161.76,31.28 156.96,33.68 152.4,31.4"/>
-<polygon class="world-green-right" points="141.36,41.48 141.36,72.08 136.56,74.48 136.56,43.88"/>
-<polygon class="world-green-left" points="132,41.6 136.56,43.88 136.56,74.48 132,72.2"/>
-<polygon class="world-green-top" points="136.8,39.2 141.36,41.48 136.56,43.88 132,41.6"/>
-<polygon class="world-green-right" points="161.76,27.2 161.76,31.28 136.56,43.88 136.56,39.8"/>
-<polygon class="world-green-left" points="132,37.52 136.56,39.8 136.56,43.88 132,41.6"/>
-<polygon class="world-green-top" points="157.2,24.92 161.76,27.2 136.56,39.8 132,37.52"/>
-<path class="world-wire" d="M147.6 37.96L160.8 44.56"/>
-<path class="world-wire" d="M160.8 44.56L146.4 51.76"/>
-<path class="world-wire" d="M146.4 51.76L133.2 45.16"/>
-<path class="world-wire" d="M133.2 45.16L147.6 37.96"/>
-<path class="world-wire" d="M147.6 59.96L147.6 37.96"/>
-<path class="world-wire" d="M160.8 66.56L160.8 44.56"/>
-<path class="world-wire" d="M146.4 73.76L146.4 51.76"/>
-<path class="world-wire" d="M133.2 67.16L133.2 45.16"/>
-<polygon class="world-green-right" points="69,37.1 69,44.9 63.6,47.6 63.6,39.8"/>
-<polygon class="world-green-left" points="58.2,37.1 63.6,39.8 63.6,47.6 58.2,44.9"/>
-<polygon class="world-green-top" points="63.6,34.4 69,37.1 63.6,39.8 58.2,37.1"/>
-<polygon class="world-stone-right" points="138,82.4 138,86.6 130.2,90.5 130.2,86.3"/>
-<polygon class="world-stone-left" points="120.6,81.5 130.2,86.3 130.2,90.5 120.6,85.7"/>
-<polygon class="world-stone-top" points="128.4,77.6 138,82.4 130.2,86.3 120.6,81.5"/>
-<polygon class="world-stone-right" points="151.8,77.9 151.8,85.7 144,89.6 144,81.8"/>
-<polygon class="world-stone-left" points="136.2,77.9 144,81.8 144,89.6 136.2,85.7"/>
-<polygon class="world-stone-top" points="144,74 151.8,77.9 144,81.8 136.2,77.9"/>
-</g>
-      <g id="evaluation-wide-data" stroke-linejoin="round">
-      <path class="data-sheet-back" d="M0 20 34 2 66 18 32 36Z"/>
-      <path class="data-sheet-mid" d="M0 14 34-4 66 12 32 30Z"/>
-      <path class="data-sheet-top" d="M0 8 34-10 66 6 32 24Z"/>
-      <path class="data-rule" d="m13 7 21-11m-13 15 21-11m-13 15 21-11"/>
-    </g>
-    </defs>
-    <text class="condition-label" x="360" y="19" text-anchor="middle">Same checkpoint · training recipe · compute</text>
-<path class="checkpoint" d="m348 34 12-6 12 6-12 6Zm0 5 12 6 12-6"/>
-<!-- A shared origin, with two independent training arms. -->
-<path class="diagram-route" d="M360 47V51H170V72" marker-end="url(#evaluation-wide-arrow)"/>
-<path class="diagram-route route-accent" d="M360 51H550V72" marker-end="url(#evaluation-wide-arrow-green)"/>
-<rect class="diagram-box" x="30" y="74" width="280" height="72" rx="5"/>
-<use href="#evaluation-wide-data" transform="translate(47 104) scale(0.83)"/>
-<text class="diagram-node-title" x="124" y="103">Control model</text>
-<text class="diagram-label" x="124" y="125">current data mix</text>
-<rect class="candidate-box" x="410" y="74" width="280" height="72" rx="5"/>
-<use href="#evaluation-wide-data" transform="translate(427 104) scale(0.83)"/>
-<path class="data-new-layer" d="m427 104 28-15 27 13-28 15Z"/>
-<path class="data-new-rule" d="m441 102 14-7m-7 11 14-7"/>
-<text class="diagram-node-title" x="504" y="103">Candidate model</text>
-<text class="diagram-label label-accent" x="504" y="125">+ new data batch</text>
-<path class="diagram-route" d="M115 148V196" marker-end="url(#evaluation-wide-arrow)"/>
-<path class="diagram-route route-accent" d="M495 148V196" marker-end="url(#evaluation-wide-arrow-green)"/>
-<text class="diagram-node-title" x="360" y="166" text-anchor="middle">Held-out evaluation</text>
-<text class="condition-label" x="360" y="183" text-anchor="middle">fixed tasks · verifier · attempt budget</text>
-<rect class="diagram-scope" x="30" y="195" width="660" height="68" rx="5"/>
-<path class="evaluation-divider" d="M360 207V251"/>
-<!-- These worlds are identical; the diagrams encode no scores. -->
-<use href="#evaluation-wide-world" transform="translate(61 199) scale(0.46)"/>
-<use href="#evaluation-wide-world" transform="translate(441 199) scale(0.46)"/>
-<path class="diagram-route" d="M164 231H192" marker-end="url(#evaluation-wide-arrow)"/>
-<path class="diagram-route route-accent" d="M544 231H572" marker-end="url(#evaluation-wide-arrow-green)"/>
-<rect class="result-box" x="194" y="214" width="90" height="33" rx="5"/>
-<text class="result-label" x="239" y="235" text-anchor="middle">Result A</text>
-<rect class="result-box result-candidate" x="574" y="214" width="90" height="33" rx="5"/>
-<text class="result-label label-accent" x="619" y="235" text-anchor="middle">Result B</text>
-<path class="diagram-route" d="M239 249V276Q239 286 249 286H266V292" marker-end="url(#evaluation-wide-arrow)"/>
-<path class="diagram-route route-accent" d="M619 249V275Q619 286 607 286H454V292" marker-end="url(#evaluation-wide-arrow-green)"/>
-<rect class="compare-box" x="202" y="294" width="316" height="39" rx="4"/>
-<text class="diagram-node-title" x="217" y="318">Compare</text>
-<path class="compare-divider" d="M288 303V324"/>
-<text class="compare-label" x="302" y="318">completion</text>
-<text class="compare-label" x="378" y="318">regressions</text>
-<text class="compare-label" x="454" y="318">recovery</text>
-  </svg>
-  <svg class="technical-diagram diagram-compact" viewBox="0 0 340 598" role="img" aria-labelledby="evaluation-compact-title evaluation-compact-desc">
-    <title id="evaluation-compact-title">A controlled comparison of new training data</title>
-    <desc id="evaluation-compact-desc">Two models start from the same checkpoint with the same training recipe and compute. The control uses the current data mix; the candidate adds a new data batch, shown as a green layer. Both encounter identical held-out worlds, with the same verifier and attempt budget. Result A and Result B remain separate until completion, regressions, and recovery are compared. This is an experimental design, without numerical results.</desc>
-    <defs>
-      <marker id="evaluation-compact-arrow" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="m1 1 5 3-5 3"/></marker>
-      <marker id="evaluation-compact-arrow-green" viewBox="0 0 8 8" refX="6.5" refY="4" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path class="arrow-green" d="m1 1 5 3-5 3"/></marker>
-      <g id="evaluation-compact-world" stroke-linejoin="round">
-<polygon class="world-shadow" points="108,18.8 211.2,70.4 132,110 28.8,58.4"/>
-<polygon class="world-stone-right" points="144,32 144,37.4 72,73.4 72,68"/>
-<polygon class="world-stone-left" points="36,50 72,68 72,73.4 36,55.4"/>
-<polygon class="world-stone-top" points="108,14 144,32 72,68 36,50"/>
-<polygon class="world-stone-right" points="204,62 204,67.4 132,103.4 132,98"/>
-<polygon class="world-stone-left" points="84,74 132,98 132,103.4 84,79.4"/>
-<polygon class="world-stone-top" points="156,38 204,62 132,98 84,74"/>
-<path class="world-grid" d="M108 14L36 50"/>
-<path class="world-grid" d="M120 20L48 56"/>
-<path class="world-grid" d="M132 26L60 62"/>
-<path class="world-grid" d="M156 38L84 74"/>
-<path class="world-grid" d="M168 44L96 80"/>
-<path class="world-grid" d="M180 50L108 86"/>
-<path class="world-grid" d="M192 56L120 92"/>
-<path class="world-grid" d="M204 62L132 98"/>
-<path class="world-grid" d="M96 20L132 38"/>
-<path class="world-grid" d="M144 44L192 68"/>
-<path class="world-grid" d="M84 26L120 44"/>
-<path class="world-grid" d="M132 50L180 74"/>
-<path class="world-grid" d="M72 32L108 50"/>
-<path class="world-grid" d="M120 56L168 80"/>
-<path class="world-grid" d="M60 38L96 56"/>
-<path class="world-grid" d="M108 62L156 86"/>
-<path class="world-grid" d="M48 44L84 62"/>
-<path class="world-grid" d="M96 68L144 92"/>
-<polygon class="world-stone-right" points="117.6,9.8 117.6,24.2 108,29 108,14.6"/>
-<polygon class="world-stone-left" points="98.4,9.8 108,14.6 108,29 98.4,24.2"/>
-<polygon class="world-stone-top" points="108,5 117.6,9.8 108,14.6 98.4,9.8"/>
-<polygon class="world-stone-right" points="129.6,21.8 129.6,30.2 120,35 120,26.6"/>
-<polygon class="world-stone-left" points="110.4,21.8 120,26.6 120,35 110.4,30.2"/>
-<polygon class="world-stone-top" points="120,17 129.6,21.8 120,26.6 110.4,21.8"/>
-<polygon class="world-stone-right" points="192,55.4 192,60.8 184.2,64.7 184.2,59.3"/>
-<polygon class="world-stone-left" points="162.6,48.5 184.2,59.3 184.2,64.7 162.6,53.9"/>
-<polygon class="world-stone-top" points="170.4,44.6 192,55.4 184.2,59.3 162.6,48.5"/>
-<polygon class="world-stone-right" points="192,45.8 192,55.4 184.2,59.3 184.2,49.7"/>
-<polygon class="world-stone-left" points="169.2,42.2 184.2,49.7 184.2,59.3 169.2,51.8"/>
-<polygon class="world-stone-top" points="177,38.3 192,45.8 184.2,49.7 169.2,42.2"/>
-<polyline class="world-route" points="63.6,44.96 75.6,50.96 96,40.76 151.2,68.36"/>
-<polygon class="world-green-right" points="122.76,43.46 122.76,45.38 103.56,54.98 103.56,53.06"/>
-<polygon class="world-green-left" points="100.8,51.68 103.56,53.06 103.56,54.98 100.8,53.6"/>
-<polygon class="world-green-top" points="120,42.08 122.76,43.46 103.56,53.06 100.8,51.68"/>
-<polygon class="world-green-right" points="125.76,44.96 125.76,46.88 106.56,56.48 106.56,54.56"/>
-<polygon class="world-green-left" points="103.8,53.18 106.56,54.56 106.56,56.48 103.8,55.1"/>
-<polygon class="world-green-top" points="123,43.58 125.76,44.96 106.56,54.56 103.8,53.18"/>
-<polygon class="world-green-right" points="128.76,46.46 128.76,48.38 109.56,57.98 109.56,56.06"/>
-<polygon class="world-green-left" points="106.8,54.68 109.56,56.06 109.56,57.98 106.8,56.6"/>
-<polygon class="world-green-top" points="126,45.08 128.76,46.46 109.56,56.06 106.8,54.68"/>
-<polygon class="world-green-right" points="131.76,47.96 131.76,49.88 112.56,59.48 112.56,57.56"/>
-<polygon class="world-green-left" points="109.8,56.18 112.56,57.56 112.56,59.48 109.8,58.1"/>
-<polygon class="world-green-top" points="129,46.58 131.76,47.96 112.56,57.56 109.8,56.18"/>
-<polygon class="world-green-right" points="161.76,31.28 161.76,61.88 156.96,64.28 156.96,33.68"/>
-<polygon class="world-green-left" points="152.4,31.4 156.96,33.68 156.96,64.28 152.4,62"/>
-<polygon class="world-green-top" points="157.2,29 161.76,31.28 156.96,33.68 152.4,31.4"/>
-<polygon class="world-green-right" points="141.36,41.48 141.36,72.08 136.56,74.48 136.56,43.88"/>
-<polygon class="world-green-left" points="132,41.6 136.56,43.88 136.56,74.48 132,72.2"/>
-<polygon class="world-green-top" points="136.8,39.2 141.36,41.48 136.56,43.88 132,41.6"/>
-<polygon class="world-green-right" points="161.76,27.2 161.76,31.28 136.56,43.88 136.56,39.8"/>
-<polygon class="world-green-left" points="132,37.52 136.56,39.8 136.56,43.88 132,41.6"/>
-<polygon class="world-green-top" points="157.2,24.92 161.76,27.2 136.56,39.8 132,37.52"/>
-<path class="world-wire" d="M147.6 37.96L160.8 44.56"/>
-<path class="world-wire" d="M160.8 44.56L146.4 51.76"/>
-<path class="world-wire" d="M146.4 51.76L133.2 45.16"/>
-<path class="world-wire" d="M133.2 45.16L147.6 37.96"/>
-<path class="world-wire" d="M147.6 59.96L147.6 37.96"/>
-<path class="world-wire" d="M160.8 66.56L160.8 44.56"/>
-<path class="world-wire" d="M146.4 73.76L146.4 51.76"/>
-<path class="world-wire" d="M133.2 67.16L133.2 45.16"/>
-<polygon class="world-green-right" points="69,37.1 69,44.9 63.6,47.6 63.6,39.8"/>
-<polygon class="world-green-left" points="58.2,37.1 63.6,39.8 63.6,47.6 58.2,44.9"/>
-<polygon class="world-green-top" points="63.6,34.4 69,37.1 63.6,39.8 58.2,37.1"/>
-<polygon class="world-stone-right" points="138,82.4 138,86.6 130.2,90.5 130.2,86.3"/>
-<polygon class="world-stone-left" points="120.6,81.5 130.2,86.3 130.2,90.5 120.6,85.7"/>
-<polygon class="world-stone-top" points="128.4,77.6 138,82.4 130.2,86.3 120.6,81.5"/>
-<polygon class="world-stone-right" points="151.8,77.9 151.8,85.7 144,89.6 144,81.8"/>
-<polygon class="world-stone-left" points="136.2,77.9 144,81.8 144,89.6 136.2,85.7"/>
-<polygon class="world-stone-top" points="144,74 151.8,77.9 144,81.8 136.2,77.9"/>
-</g>
-      <g id="evaluation-compact-data" stroke-linejoin="round">
-      <path class="data-sheet-back" d="M0 20 34 2 66 18 32 36Z"/>
-      <path class="data-sheet-mid" d="M0 14 34-4 66 12 32 30Z"/>
-      <path class="data-sheet-top" d="M0 8 34-10 66 6 32 24Z"/>
-      <path class="data-rule" d="m13 7 21-11m-13 15 21-11m-13 15 21-11"/>
-    </g>
-    </defs>
-    <text class="condition-label" x="170" y="23" text-anchor="middle">Same checkpoint · recipe · compute</text>
-<path class="checkpoint" d="m158 40 12-6 12 6-12 6Zm0 5 12 6 12-6"/>
-<path class="diagram-route" d="M170 53V62H85V78" marker-end="url(#evaluation-compact-arrow)"/>
-<path class="diagram-route route-accent" d="M170 62H255V78" marker-end="url(#evaluation-compact-arrow-green)"/>
-<rect class="diagram-box" x="10" y="80" width="150" height="128" rx="5"/>
-<use href="#evaluation-compact-data" transform="translate(54 114) scale(0.9)"/>
-<text class="diagram-node-title" x="85" y="171" text-anchor="middle">Control model</text>
-<text class="diagram-label" x="85" y="191" text-anchor="middle">current data mix</text>
-<rect class="candidate-box" x="180" y="80" width="150" height="128" rx="5"/>
-<use href="#evaluation-compact-data" transform="translate(224 114) scale(0.9)"/>
-<path class="data-new-layer" d="m224 114 30.6-16.2 28.8 14.4-30.6 16.2Z"/>
-<path class="data-new-rule" d="m239 112 16-8m-8 12 16-8"/>
-<text class="diagram-node-title" x="255" y="171" text-anchor="middle">Candidate model</text>
-<text class="diagram-label label-accent" x="255" y="191" text-anchor="middle">+ new data batch</text>
-<path class="diagram-route" d="M85 210V257" marker-end="url(#evaluation-compact-arrow)"/>
-<path class="diagram-route route-accent" d="M255 210V257" marker-end="url(#evaluation-compact-arrow-green)"/>
-<rect class="diagram-scope" x="10" y="259" width="320" height="182" rx="7"/>
-<text class="diagram-node-title" x="170" y="284" text-anchor="middle">Held-out evaluation</text>
-<text class="condition-label" x="170" y="304" text-anchor="middle">fixed tasks · verifier · attempt budget</text>
-<path class="evaluation-divider" d="M170 324V427"/>
-<use href="#evaluation-compact-world" transform="translate(21 326) scale(0.6)"/>
-<use href="#evaluation-compact-world" transform="translate(191 326) scale(0.6)"/>
-<path class="diagram-route" d="M85 392V398" marker-end="url(#evaluation-compact-arrow)"/>
-<path class="diagram-route route-accent" d="M255 392V398" marker-end="url(#evaluation-compact-arrow-green)"/>
-<rect class="result-box" x="34" y="400" width="102" height="28" rx="5"/>
-<text class="result-label" x="85" y="419" text-anchor="middle">Result A</text>
-<rect class="result-box result-candidate" x="204" y="400" width="102" height="28" rx="5"/>
-<text class="result-label label-accent" x="255" y="419" text-anchor="middle">Result B</text>
-<path class="diagram-route" d="M85 430V466Q85 478 97 478H130V496" marker-end="url(#evaluation-compact-arrow)"/>
-<path class="diagram-route route-accent" d="M255 430V466Q255 478 243 478H210V496" marker-end="url(#evaluation-compact-arrow-green)"/>
-<rect class="compare-box" x="58" y="498" width="224" height="86" rx="5"/>
-<text class="diagram-node-title" x="170" y="522" text-anchor="middle">Compare</text>
-<path class="compare-divider" d="M74 534H266"/>
-<text class="compare-label" x="76" y="557">completion</text>
-<text class="compare-label" x="184" y="557">regressions</text>
-<text class="compare-label" x="170" y="576" text-anchor="middle">recovery</text>
-  </svg>
-        </div>
-        <figcaption id="evaluation-caption"><span>Fig. 2</span> Only the data mix changes. Each model produces a separate result under the same held-out evaluation conditions.</figcaption>
-      </figure>
-
-      <section class="offerings" aria-labelledby="offerings-heading">
-        <h2 id="offerings-heading">Data and environments for frontier labs.</h2>
-        <div class="offering-columns">
-          <div><p class="small-label">Pretraining</p><h3>Original datasets.</h3><p>A continuing supply of new, technically rigorous game-development data for pretraining and continued pretraining.</p></div>
-          <div><p class="small-label">Post-training</p><h3>Game-engine gyms.</h3><p>Runnable problem sets with resettable projects, verifiable outcomes, and reward signals for reinforcement learning.</p></div>
-        </div>
-      </section>
-
-      <footer class="signature prose">
-        <p>Our aim is to make sustained, reliable work across interactive systems a trainable and measurable capability.</p>
-        <p class="contact">For data partnerships and gym pilots:<br><a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">dhruv@tryworldlabs.com <span aria-hidden="true">↗</span></a></p>
-        <p class="status-note">The datasets and expanded gym suite are under development.</p>
-      </footer>
-    </article>
-    <footer class="page-footer"><a href="/">Back to World Labs <span aria-hidden="true">↗</span></a><span>Long-horizon tasks in interactive worlds.</span></footer>
+        <section class="prose references" id="references" aria-labelledby="references-heading">
+          <p class="section-label">Further reading</p>
+          <h2 id="references-heading">The research behind the thesis.</h2>
+          <ol class="paper-list">
+            <li id="ref-1"><span class="paper-number">01</span><div><a href="https://arxiv.org/html/2602.11103v2">GameDevBench <span aria-hidden="true">↗</span></a><p>Chi et al. · Game development &amp; visual feedback</p></div></li>
+            <li id="ref-2"><span class="paper-number">02</span><div><a href="https://arxiv.org/html/2610.02563v1">OpenGameEval <span aria-hidden="true">↗</span></a><p>Turkel et al. · Stateful Roblox tasks</p></div></li>
+            <li id="ref-3"><span class="paper-number">03</span><div><a href="https://arxiv.org/html/2607.03525v1">GameEngineBench <span aria-hidden="true">↗</span></a><p>La et al. · Unreal C++ runtime behavior</p></div></li>
+            <li id="ref-4"><span class="paper-number">04</span><div><a href="https://arxiv.org/html/2606.17861v1">GameCraft-Bench <span aria-hidden="true">↗</span></a><p>Luo et al. · Complete playable Godot games</p></div></li>
+            <li id="ref-5"><span class="paper-number">05</span><div><a href="https://arxiv.org/html/2512.04797v1">SIMA 2 <span aria-hidden="true">↗</span></a><p>SIMA Team · Generalist agents in virtual worlds</p></div></li>
+            <li id="ref-6"><span class="paper-number">06</span><div><a href="https://arxiv.org/html/2506.08011v4">Play to Generalize <span aria-hidden="true">↗</span></a><p>Xie et al. · Visual-game RL &amp; reasoning transfer</p></div></li>
+            <li id="ref-7"><span class="paper-number">07</span><div><a href="https://arxiv.org/html/2506.24119v3">SPIRAL <span aria-hidden="true">↗</span></a><p>Liu et al. · Strategic self-play &amp; reasoning</p></div></li>
+            <li id="ref-8"><span class="paper-number">08</span><div><a href="https://arxiv.org/abs/1912.01588">Procgen <span aria-hidden="true">↗</span></a><p>Cobbe et al. · Procedural generation &amp; generalization</p></div></li>
+          </ol>
+        </section>
+        <footer class="memo-contact"><p class="section-label">Build with us</p><p>For original data, research collaborations, and game-world pilots.</p><a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">dhruv@tryworldlabs.com <span aria-hidden="true">↗</span></a></footer>
+      </article>
+    </div>
   </main>
+  <footer class="page-footer"><a class="wordmark" href="/">world labs</a><span>Long-horizon tasks in interactive worlds.</span><a href="#memo">Back to top ↑</a></footer>
+  <script src="/scripts/memo-ui.js" defer></script>
 </body>
 </html>
