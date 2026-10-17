@@ -7,9 +7,8 @@ The homepage introduces World Labs as a research lab developing original trainin
 ## Files
 
 - `index.html`: homepage.
-- `memo.html`, `memo.css`: a concise research memo at `/memo` covering concrete game-engine training use cases, RL, primary research, expansion beyond games, and a proposed controlled study. The memo has responsive and print layouts.
-- `scripts/memo-ui.js`: reading progress and active section navigation; all content remains available without JavaScript.
-- `horizon.css`: the original homepage layout and typography.
+- `memo.html`, `memo.css`: a concise research memo at `/memo` covering concrete game-engine training use cases, RL, primary research, expansion beyond games, and a proposed controlled study. The memo uses the homepage’s shared typography, colors, and column width, with responsive and print layouts.
+- `horizon.css`: shared homepage and memo layout, typography, and brand styling.
 - `assets/` and root icons: brand mark, local fonts, and their licenses.
 - `scripts/dev-server.js`: local static server.
 - `vercel.json`: production URL settings, including redirects from the retired `/benchmark` and `/benchmark.html` URLs to the homepage.

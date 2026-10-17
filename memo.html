@@ -3,14 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Learning to act in complex worlds | World Labs Research</title>
+  <title>Learning to act in complex worlds | World Labs</title>
   <meta name="description" content="Why game engines are useful training environments for AI agents: concrete development and gameplay tasks, reinforcement learning, and a measured path beyond games.">
   <link rel="canonical" href="https://tryworldlabs.com/memo">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/horizon.css">
   <link rel="stylesheet" href="/memo.css">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="World Labs">
@@ -21,95 +19,65 @@
 </head>
 <body>
   <a class="skip-link" href="#memo">Skip to memo</a>
-  <header class="site-nav">
-    <a class="wordmark" href="/" aria-label="World Labs home"><img src="/assets/world-labs-mark.png" width="32" height="32" alt="">world labs</a>
-    <nav aria-label="Main navigation"><a href="/">Overview</a><a href="#references">The reading list <span aria-hidden="true">↗</span></a></nav>
-    <div class="reading-progress" aria-hidden="true"></div>
-  </header>
-  <main id="memo" tabindex="-1">
-    <header class="memo-hero">
-      <div class="pill"><span class="pill-mark" aria-hidden="true">◎</span> The research thesis</div>
-      <h1>Learning to act<br> in complex worlds.</h1>
-      <p class="dek">Why game engines are useful training grounds for AI.<br> And how the opportunity extends beyond games.</p>
-      <div class="memo-meta"><span>World Labs Research</span><time datetime="2026-10-16">October 16, 2026</time><a href="#references">8 research papers</a></div>
+  <main class="page">
+    <header class="masthead">
+      <p class="memo-brand"><a href="/" aria-label="World Labs home"><img class="brand-mark" src="/assets/world-labs-mark.png" width="40" height="40" alt="">world labs</a></p>
+      <p class="tagline">Long-horizon tasks in interactive worlds.</p>
     </header>
-    <div class="memo-layout">
-      <aside class="contents">
-        <nav aria-label="On this page">
-          <p>In this memo</p>
-          <a href="#thesis">The thesis</a>
-          <a href="#gyms">Two concrete uses</a>
-          <a href="#data">How training works</a>
-          <a href="#evidence">What the research shows</a>
-          <a href="#beyond">Beyond games</a>
-          <a href="#loop">What we need to prove</a>
-          <a href="#references">Research &amp; references</a>
-        </nav>
-        <a class="contents-contact" href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">Work with us <span aria-hidden="true">↗</span></a>
-      </aside>
-      <article class="memo-body" aria-label="World Labs research thesis">
-        <section class="prose" id="thesis" aria-labelledby="thesis-heading">
-          <p class="section-label">The thesis</p>
-          <h2 id="thesis-heading">Learn from what happens.</h2>
-          <p>World Labs is building original training data and game-engine environments for AI agents: models that take actions to complete tasks. Game engines combine code, geometry, physics, and interacting systems in worlds we can run, reset, and inspect. This makes them useful for teaching an agent to plan, test its assumptions, and recover when an action fails. <strong>The immediate use is better agents for game development and interactive worlds.</strong></p>
-        </section>
+    <article class="memo-body" id="memo" tabindex="-1" aria-labelledby="memo-title">
+      <h1 id="memo-title">Learning to act in complex worlds.</h1>
+      <section class="prose" id="thesis" aria-labelledby="memo-title">
+        <p>World Labs is building original training data and game-engine environments for AI agents: models that take actions to complete tasks. Game engines combine code, geometry, physics, and interacting systems in worlds we can run, reset, and inspect. This makes them useful for teaching an agent to plan, test its assumptions, and recover when an action fails. <strong>The immediate use is better agents for game development and interactive worlds.</strong></p>
+      </section>
 
-        <section class="prose" id="gyms" aria-labelledby="gyms-heading">
-          <p class="section-label">Two concrete uses</p>
-          <h2 id="gyms-heading">Build a system.<br> Learn to operate in one.</h2>
-          <figure class="task-example">
-            <figcaption>Illustrative development task</figcaption>
-            <h3>Build an elevator that two players can use together.</h3>
-            <p>A coding agent must inspect the project, edit scripts and scene objects, then run a playtest. Compiling is insufficient: both players must stay on the platform, see the same position, and still use nearby doors. A verifier checks these outcomes and catches broken existing behavior. Repeating this process across different projects could train the agent to deliver working features, reducing the debugging left to developers.</p>
-          </figure>
-          <p>The second use is training agents <strong>inside existing games</strong>: navigate to a destination, collect resources, or coordinate several actions despite incomplete information. Developers can supply varied worlds; AI labs can use them for training and evaluation. <em>SIMA 2</em> demonstrates this route, combining human demonstrations with reinforcement learning on verifiable tasks, using images and keyboard-and-mouse actions, and testing on games excluded from RL training. <a class="cite" href="#ref-5" aria-label="Reference 5, SIMA 2">[5]</a></p>
-        </section>
+      <section class="prose" id="gyms" aria-labelledby="gyms-heading">
+        <h2 id="gyms-heading">Build a system. Learn to operate in one.</h2>
+        <figure class="task-example">
+          <figcaption>Illustrative development task</figcaption>
+          <h3>Build an elevator that two players can use together.</h3>
+          <p>A coding agent must inspect the project, edit scripts and scene objects, then run a playtest. Compiling is insufficient: both players must stay on the platform, see the same position, and still use nearby doors. A verifier checks these outcomes and catches broken existing behavior. Repeating this process across different projects could train the agent to deliver working features, reducing the debugging left to developers.</p>
+        </figure>
+        <p>The second use is training agents <strong>inside existing games</strong>: navigate to a destination, collect resources, or coordinate several actions despite incomplete information. Developers can supply varied worlds; AI labs can use them for training and evaluation. <em>SIMA 2</em> demonstrates this route, combining human demonstrations with reinforcement learning on verifiable tasks, using images and keyboard-and-mouse actions, and testing on games excluded from RL training. <a class="cite" href="#ref-5" aria-label="Reference 5, SIMA 2">[5]</a></p>
+      </section>
 
-        <section class="prose" id="data" aria-labelledby="data-heading">
-          <p class="section-label">How training works</p>
-          <h2 id="data-heading">Turn consequences into feedback.</h2>
-          <p>Each environment needs a repeatable starting state, a goal, tools for observing and acting, and a protected success check the agent cannot rewrite. <strong>In reinforcement learning (RL), the model attempts a task, receives a score, and a trainer updates the model to favor successful behavior.</strong> Resetting the world enables repeated practice; changing layouts, constraints, and failures discourages memorization. Subjective goals still need human review.</p>
-          <p>Our intended offering pairs these environments with original, rights-cleared code, scenes, demonstrations, and recorded attempts. Code and scenes can support pretraining, the broad learning before task-specific practice; demonstrations teach useful behavior; scored attempts support RL. The same environment can evaluate a model without updating it. These are distinct uses of a shared training infrastructure.</p>
-        </section>
+      <section class="prose" id="data" aria-labelledby="data-heading">
+        <h2 id="data-heading">Turn consequences into feedback.</h2>
+        <p>Each environment needs a repeatable starting state, a goal, tools for observing and acting, and a protected success check the agent cannot rewrite. <strong>In reinforcement learning (RL), the model attempts a task, receives a score, and a trainer updates the model to favor successful behavior.</strong> Resetting the world enables repeated practice; changing layouts, constraints, and failures discourages memorization. Subjective goals still need human review.</p>
+        <p>Our intended offering pairs these environments with original, rights-cleared code, scenes, demonstrations, and recorded attempts. Code and scenes can support pretraining, the broad learning before task-specific practice; demonstrations teach useful behavior; scored attempts support RL. The same environment can evaluate a model without updating it. These are distinct uses of a shared training infrastructure.</p>
+      </section>
 
-        <section class="prose" id="evidence" aria-labelledby="evidence-heading">
-          <p class="section-label">The evidence</p>
-          <h2 id="evidence-heading">A foundation we can test.</h2>
-          <p><em>GameDevBench</em> reports GPT-5.4 task success rising from 41.1% to 52.0% with screenshot and runtime-video feedback. That is better information during execution, not evidence of RL training. <a class="cite" href="#ref-1" aria-label="Reference 1, GameDevBench">[1]</a> <em>OpenGameEval</em>, <em>GameEngineBench</em>, and <em>GameCraft-Bench</em> reinforce the need to evaluate running scenes, integrated engine behavior, and complete playable systems. <a class="cite" href="#ref-2" aria-label="Reference 2, OpenGameEval">[2]</a><a class="cite" href="#ref-3" aria-label="Reference 3, GameEngineBench">[3]</a><a class="cite" href="#ref-4" aria-label="Reference 4, GameCraft-Bench">[4]</a></p>
-          <p>Actual training evidence is promising: <em>Play to Generalize</em> reports visual-game RL improving a model’s score on MathVista, a visual-reasoning test, from 68.0% to 71.9%; <em>SPIRAL</em> reports reasoning gains from strategic, language-based self-play. <a class="cite" href="#ref-6" aria-label="Reference 6, Play to Generalize">[6]</a><a class="cite" href="#ref-7" aria-label="Reference 7, SPIRAL">[7]</a> These are specific transfer results, not proof that richer worlds always help. <em>Procgen</em> motivates varied training levels and unseen test levels to distinguish generalization from memorization. <a class="cite" href="#ref-8" aria-label="Reference 8, Procgen">[8]</a></p>
-        </section>
+      <section class="prose" id="evidence" aria-labelledby="evidence-heading">
+        <h2 id="evidence-heading">A foundation we can test.</h2>
+        <p><em>GameDevBench</em> reports GPT-5.4 task success rising from 41.1% to 52.0% with screenshot and runtime-video feedback. That is better information during execution, not evidence of RL training. <a class="cite" href="#ref-1" aria-label="Reference 1, GameDevBench">[1]</a> <em>OpenGameEval</em>, <em>GameEngineBench</em>, and <em>GameCraft-Bench</em> reinforce the need to evaluate running scenes, integrated engine behavior, and complete playable systems. <a class="cite" href="#ref-2" aria-label="Reference 2, OpenGameEval">[2]</a><a class="cite" href="#ref-3" aria-label="Reference 3, GameEngineBench">[3]</a><a class="cite" href="#ref-4" aria-label="Reference 4, GameCraft-Bench">[4]</a></p>
+        <p>Actual training evidence is promising: <em>Play to Generalize</em> reports visual-game RL improving a model’s score on MathVista, a visual-reasoning test, from 68.0% to 71.9%; <em>SPIRAL</em> reports reasoning gains from strategic, language-based self-play. <a class="cite" href="#ref-6" aria-label="Reference 6, Play to Generalize">[6]</a><a class="cite" href="#ref-7" aria-label="Reference 7, SPIRAL">[7]</a> These are specific transfer results, not proof that richer worlds always help. <em>Procgen</em> motivates varied training levels and unseen test levels to distinguish generalization from memorization. <a class="cite" href="#ref-8" aria-label="Reference 8, Procgen">[8]</a></p>
+      </section>
 
-        <section class="prose" id="beyond" aria-labelledby="beyond-heading">
-          <p class="section-label">Beyond games</p>
-          <h2 id="beyond-heading">The engine is a starting point.</h2>
-          <p>The expansion we see is into <strong>simulation and robotics research</strong>, including digital twins: virtual copies of physical places and systems. A warehouse simulation could train an agent to reroute around a blocked aisle, inspect equipment, or recover from a failed pickup. The reusable infrastructure is the same: worlds with persistent state, actions with consequences, resettable scenarios, and measurable outcomes. Transfer requires testing on the target workflow; simulation alone cannot establish physical safety or real-world performance. Our near-term focus remains game engines while we measure which capabilities travel beyond them.</p>
-        </section>
+      <section class="prose" id="beyond" aria-labelledby="beyond-heading">
+        <h2 id="beyond-heading">The engine is a starting point.</h2>
+        <p>The expansion we see is into <strong>simulation and robotics research</strong>, including digital twins: virtual copies of physical places and systems. A warehouse simulation could train an agent to reroute around a blocked aisle, inspect equipment, or recover from a failed pickup. The reusable infrastructure is the same: worlds with persistent state, actions with consequences, resettable scenarios, and measurable outcomes. Transfer requires testing on the target workflow; simulation alone cannot establish physical safety or real-world performance. Our near-term focus remains game engines while we measure which capabilities travel beyond them.</p>
+      </section>
 
-        <section class="prose" id="loop" aria-labelledby="loop-heading">
-          <p class="section-label">The research plan</p>
-          <h2 id="loop-heading">Prove the training value.</h2>
-          <p>Our proposed study starts from the same model and compares generic coding tasks, game-engine tasks, and a mixture under matched training compute. Evaluation uses unseen projects and task families, identical tools, and equal execution budgets. We will measure completion, repeatability, recovery, broken existing behavior, and cost per successful task. A separate comparison will isolate visual feedback from training gains. The cited papers establish a research foundation; World Labs still needs its own controlled results. The product becomes valuable when these environments reliably teach useful capabilities at a competitive cost.</p>
-        </section>
+      <section class="prose" id="loop" aria-labelledby="loop-heading">
+        <h2 id="loop-heading">Prove the training value.</h2>
+        <p>Our proposed study starts from the same model and compares generic coding tasks, game-engine tasks, and a mixture under matched training compute. Evaluation uses unseen projects and task families, identical tools, and equal execution budgets. We will measure completion, repeatability, recovery, broken existing behavior, and cost per successful task. A separate comparison will isolate visual feedback from training gains. The cited papers establish a research foundation; World Labs still needs its own controlled results. The product becomes valuable when these environments reliably teach useful capabilities at a competitive cost.</p>
+      </section>
 
-        <section class="prose references" id="references" aria-labelledby="references-heading">
-          <p class="section-label">Further reading</p>
-          <h2 id="references-heading">The research behind the thesis.</h2>
-          <ol class="paper-list">
-            <li id="ref-1"><span class="paper-number">01</span><div><a href="https://arxiv.org/html/2602.11103v2">GameDevBench <span aria-hidden="true">↗</span></a><p>Chi et al. · Game development &amp; visual feedback</p></div></li>
-            <li id="ref-2"><span class="paper-number">02</span><div><a href="https://arxiv.org/html/2610.02563v1">OpenGameEval <span aria-hidden="true">↗</span></a><p>Turkel et al. · Stateful Roblox tasks</p></div></li>
-            <li id="ref-3"><span class="paper-number">03</span><div><a href="https://arxiv.org/html/2607.03525v1">GameEngineBench <span aria-hidden="true">↗</span></a><p>La et al. · Unreal C++ runtime behavior</p></div></li>
-            <li id="ref-4"><span class="paper-number">04</span><div><a href="https://arxiv.org/html/2606.17861v1">GameCraft-Bench <span aria-hidden="true">↗</span></a><p>Luo et al. · Complete playable Godot games</p></div></li>
-            <li id="ref-5"><span class="paper-number">05</span><div><a href="https://arxiv.org/html/2512.04797v1">SIMA 2 <span aria-hidden="true">↗</span></a><p>SIMA Team · Generalist agents in virtual worlds</p></div></li>
-            <li id="ref-6"><span class="paper-number">06</span><div><a href="https://arxiv.org/html/2506.08011v4">Play to Generalize <span aria-hidden="true">↗</span></a><p>Xie et al. · Visual-game RL &amp; reasoning transfer</p></div></li>
-            <li id="ref-7"><span class="paper-number">07</span><div><a href="https://arxiv.org/html/2506.24119v3">SPIRAL <span aria-hidden="true">↗</span></a><p>Liu et al. · Strategic self-play &amp; reasoning</p></div></li>
-            <li id="ref-8"><span class="paper-number">08</span><div><a href="https://arxiv.org/abs/1912.01588">Procgen <span aria-hidden="true">↗</span></a><p>Cobbe et al. · Procedural generation &amp; generalization</p></div></li>
-          </ol>
-        </section>
-        <footer class="memo-contact"><p class="section-label">Build with us</p><p>For original data, research collaborations, and game-world pilots.</p><a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">dhruv@tryworldlabs.com <span aria-hidden="true">↗</span></a></footer>
-      </article>
-    </div>
+      <section class="prose references" id="references" aria-labelledby="references-heading">
+        <h2 id="references-heading">The research behind the thesis.</h2>
+        <ol class="paper-list">
+          <li id="ref-1"><span class="paper-number">01</span><div><a href="https://arxiv.org/html/2602.11103v2">GameDevBench <span aria-hidden="true">↗</span></a><p>Chi et al. · Game development &amp; visual feedback</p></div></li>
+          <li id="ref-2"><span class="paper-number">02</span><div><a href="https://arxiv.org/html/2610.02563v1">OpenGameEval <span aria-hidden="true">↗</span></a><p>Turkel et al. · Stateful Roblox tasks</p></div></li>
+          <li id="ref-3"><span class="paper-number">03</span><div><a href="https://arxiv.org/html/2607.03525v1">GameEngineBench <span aria-hidden="true">↗</span></a><p>La et al. · Unreal C++ runtime behavior</p></div></li>
+          <li id="ref-4"><span class="paper-number">04</span><div><a href="https://arxiv.org/html/2606.17861v1">GameCraft-Bench <span aria-hidden="true">↗</span></a><p>Luo et al. · Complete playable Godot games</p></div></li>
+          <li id="ref-5"><span class="paper-number">05</span><div><a href="https://arxiv.org/html/2512.04797v1">SIMA 2 <span aria-hidden="true">↗</span></a><p>SIMA Team · Generalist agents in virtual worlds</p></div></li>
+          <li id="ref-6"><span class="paper-number">06</span><div><a href="https://arxiv.org/html/2506.08011v4">Play to Generalize <span aria-hidden="true">↗</span></a><p>Xie et al. · Visual-game RL &amp; reasoning transfer</p></div></li>
+          <li id="ref-7"><span class="paper-number">07</span><div><a href="https://arxiv.org/html/2506.24119v3">SPIRAL <span aria-hidden="true">↗</span></a><p>Liu et al. · Strategic self-play &amp; reasoning</p></div></li>
+          <li id="ref-8"><span class="paper-number">08</span><div><a href="https://arxiv.org/abs/1912.01588">Procgen <span aria-hidden="true">↗</span></a><p>Cobbe et al. · Procedural generation &amp; generalization</p></div></li>
+        </ol>
+      </section>
+      <footer class="memo-contact"><p>For original data, research collaborations, and game-world pilots, get in touch at <a href="mailto:dhruv@tryworldlabs.com?subject=World%20Labs%20research">dhruv@tryworldlabs.com</a>.</p><p class="memo-back"><a href="/">Back to home <span aria-hidden="true">↗</span></a></p></footer>
+    </article>
   </main>
-  <footer class="page-footer"><a class="wordmark" href="/">world labs</a><span>Long-horizon tasks in interactive worlds.</span><a href="#memo">Back to top ↑</a></footer>
-  <script src="/scripts/memo-ui.js" defer></script>
+  <footer class="footer">© 2026 World Labs. All rights reserved.</footer>
 </body>
 </html>
