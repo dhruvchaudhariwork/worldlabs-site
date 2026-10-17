@@ -53,6 +53,16 @@
         <p>The next step is to connect modeling, procedural geometry, materials, animation, CAD, and engine tools into a single assignment. Consider turning a warehouse workstation model into an interactive training scene. The agent could repair geometry in Blender, generate variants in Houdini, prepare materials, import the asset into an engine, configure joints and collisions, add interaction logic, and verify the result from several viewpoints. Success depends on dimensions, appearance, behavior, and performance together.</p>
         <p>Existing software provides useful building blocks. Blender exposes scene data and operations through Python. OpenUSD supports assembling and layering scene descriptions across applications. Unreal’s Datasmith imports scenes and assemblies from design tools for real-time use. <a class="cite" href="#ref-9" aria-label="Reference 9, Blender Python API">[9]</a><a class="cite" href="#ref-10" aria-label="Reference 10, OpenUSD">[10]</a><a class="cite" href="#ref-11" aria-label="Reference 11, Datasmith">[11]</a> These interfaces make integration feasible, but file interchange alone does not preserve every material, rig, constraint, or simulation behavior.</p>
         <p>Our proposed adapters would track asset identities, units, coordinate systems, dependencies, and application versions. An episode would include the documents and relevant application state, not just a repository checkout. Each tool call would return observable results and changed artifacts; checkpoints would support rollback across the workflow. Verification would check that an upstream edit survives export, import, and runtime use. The resulting training signal concerns a complete production task, even when the agent chooses to perform every operation through code.</p>
+        <figure class="memo-figure" id="figure-workflow" aria-labelledby="workflow-title">
+          <h3 id="workflow-title">One task across creative tools</h3>
+          <a class="figure-image" href="/assets/memo-figures/creative-workflow.svg" title="Open the creative workflow diagram at full size">
+            <picture>
+              <source media="screen and (max-width: 680px)" srcset="/assets/memo-figures/creative-workflow-mobile.svg" width="360" height="660">
+              <img src="/assets/memo-figures/creative-workflow.svg" width="640" height="400" loading="lazy" decoding="async" alt="The same workstation moves from a wireframe asset in a creative tool, to a scene with collision bounds in a game engine, to a tested interaction replay. Authoring, integration and verification share asset IDs, units, application versions and checkpoints. Failed checks return the task to the responsible tool.">
+            </picture>
+          </a>
+          <figcaption><span class="figure-label">Figure 1 · Proposed workflow.</span> The deliverable is a working scene, so verification follows the asset across application boundaries. The drawings illustrate the proposal; they are not screenshots of an existing integration. <a href="/assets/memo-figures/creative-workflow.png" download>Download diagram</a>.</figcaption>
+        </figure>
       </section>
 
       <section class="prose" id="data" aria-labelledby="data-heading">
@@ -66,6 +76,16 @@
         <h2 id="verification-heading">A reliable reward is part of the product</h2>
         <p>We would separate agent-accessible tools from protected verification. Checks should combine artifact structure, runtime behavior, preservation of existing features, and task-specific resource limits. For a scene, these might include valid references, collision clearance, successful interaction replays, and a frame-time budget. Hard requirements should act as gates: an attractive render cannot compensate for a broken interaction. Intermediate rewards can help with long assignments, but they must not make an incomplete shortcut more profitable than finishing the task.</p>
         <p>Visual and subjective requirements need a different treatment. Human preferences or calibrated model judgments can assess presentation, but should remain distinguishable from executable checks. We would audit disagreements, test obvious ways to exploit the scoring rules, and run repeated trials when physics or networking introduces variation. Reset reproducibility must also be measured: a random seed alone does not guarantee identical execution. The verifier should preserve enough evidence to distinguish an agent error, an invalid reward, and an infrastructure failure.</p>
+        <figure class="memo-figure" id="figure-training" aria-labelledby="training-title">
+          <h3 id="training-title">From an attempt to a learning signal</h3>
+          <a class="figure-image" href="/assets/memo-figures/training-loop.svg" title="Open the proposed training architecture at full size">
+            <picture>
+              <source media="screen and (max-width: 680px)" srcset="/assets/memo-figures/training-loop-mobile.svg" width="360" height="872">
+              <img src="/assets/memo-figures/training-loop.svg" width="640" height="592" loading="lazy" decoding="async" alt="An agent sends actions to an engine or tool worker and receives observations. A protected verifier examines state and replay evidence. The episode record joins actions, observations, artifacts and scores. An AI lab’s RL trainer samples these records, updates model weights and supplies the policy for later attempts. The agent cannot edit the verifier’s checks.">
+            </picture>
+          </a>
+          <figcaption><span class="figure-label">Figure 2 · Proposed World Labs architecture.</span> Acting, scoring and training are distinct operations. World Labs would run environments and verification; the AI lab could retain its model and trainer. Protected test code stays outside the agent’s editable project. <a href="/assets/memo-figures/training-loop.png" download>Download diagram</a>.</figcaption>
+        </figure>
       </section>
 
       <section class="prose" id="existing-games" aria-labelledby="existing-games-heading">
@@ -94,6 +114,28 @@
         <p><em>GameDevBench</em> reports GPT-5.4 task success increasing from 41.1% to 52.0% with screenshot and runtime-video feedback. This demonstrates the value of observations during execution; it is not an RL training result. <a class="cite" href="#ref-1" aria-label="Reference 1, GameDevBench">[1]</a> <em>OpenGameEval</em> checks both edited Roblox scenes and simulated play, making exploration and state changes measurable. <a class="cite" href="#ref-2" aria-label="Reference 2, OpenGameEval">[2]</a></p>
         <p><em>GameEngineBench</em> evaluates 110 C++ tasks across nine Unreal projects, exposing failures in integration and runtime behavior. <em>GameCraft-Bench</em> evaluates complete Godot games through replayed interaction and multimodal judging. <a class="cite" href="#ref-3" aria-label="Reference 3, GameEngineBench">[3]</a><a class="cite" href="#ref-4" aria-label="Reference 4, GameCraft-Bench">[4]</a> These benchmarks motivate richer tasks, but their different scoring protocols are not interchangeable. Model-based evaluation also needs additional auditing before becoming a reward used repeatedly in training.</p>
         <p>There is evidence for learning beyond the trained games. <em>Play to Generalize</em> reports that RL on visual Snake and Rotation tasks improves Qwen2.5-VL-7B’s MathVista score from 68.0% to 71.9%. <em>SPIRAL</em> reports Qwen3-4B-Base improving from 34.0% to 44.5% on an average of eight reasoning benchmarks after strategic self-play. <a class="cite" href="#ref-6" aria-label="Reference 6, Play to Generalize">[6]</a><a class="cite" href="#ref-7" aria-label="Reference 7, SPIRAL">[7]</a> These specific results support further experiments; they also show why simpler games must remain serious cost and capability baselines.</p>
+        <figure class="memo-figure evidence-figure" id="figure-evidence" aria-labelledby="evidence-figure-title">
+          <h3 id="evidence-figure-title">Two different kinds of evidence</h3>
+          <div class="chart-panel">
+            <a class="figure-image" href="/assets/memo-figures/research-feedback.svg" title="Open the GameDevBench visual feedback chart at full size">
+              <picture>
+                <source media="screen and (max-width: 680px)" srcset="/assets/memo-figures/research-feedback-mobile.svg" width="360" height="300">
+                <img src="/assets/memo-figures/research-feedback.svg" width="640" height="280" loading="lazy" decoding="async" alt="GameDevBench: GPT-5.4 in the Codex harness solves 41.1% of tasks without screenshot or video tools and 52.0% with both, an increase of 10.9 percentage points. This changes observations during execution, not model weights. Both bars use a zero-to-100-percent scale.">
+              </picture>
+            </a>
+            <p class="chart-note">A. Redrawn from <a href="https://arxiv.org/html/2602.11103v2#S4.T2.fig1">Chi et al., GameDevBench, Table 2</a>. The comparison changes inference tools, and inference costs differ; it is not a matched-compute RL experiment. These rows do not report uncertainty intervals.</p>
+          </div>
+          <div class="chart-panel">
+            <a class="figure-image" href="/assets/memo-figures/research-transfer.svg" title="Open the game-based RL transfer chart at full size">
+              <picture>
+                <source media="screen and (max-width: 680px)" srcset="/assets/memo-figures/research-transfer-mobile.svg" width="360" height="466">
+                <img src="/assets/memo-figures/research-transfer.svg" width="640" height="466" loading="lazy" decoding="async" alt="Play to Generalize: Qwen2.5-VL-7B before and after ViGaL Snake plus Rotation RL. MathVista: 68.0% to 71.9%, plus 3.9 percentage points. MathVerse: 49.0% to 52.4%, plus 3.4 points. MathVision: 26.0% to 27.5%, plus 1.5 points. After-RL standard deviations are 0.4, 0.2 and 0.3 points over three runs; baseline variability is not reported. All bars use a zero-to-100-percent scale.">
+              </picture>
+            </a>
+            <p class="chart-note">B. Redrawn from <a href="https://arxiv.org/html/2506.08011v4#S2.T2">Xie et al., Play to Generalize, Table 2</a>. Error bars show the reported standard deviation over three RL runs, not confidence intervals. Baseline variability is not reported. This selects the paper’s three math benchmarks; it does not establish transfer to game-engine work or physical systems.</p>
+          </div>
+          <figcaption><span class="figure-label">Figure 3 · Published results, independently redrawn.</span> A measures the effect of visual feedback at execution time; B measures reasoning performance after training on games. The studies use different models, tasks and protocols. Neither panel reports World Labs results. <a href="/assets/memo-figures/research-data.csv" download>Download source data</a>.</figcaption>
+        </figure>
         <p><em>Procgen</em> emphasizes diversity and evaluation on unseen levels. <a class="cite" href="#ref-8" aria-label="Reference 8, Procgen">[8]</a> Our extension of that principle is to hold out projects, task families, asset collections, and workflows. Generalizing to a new random seed inside a familiar project is a weaker result than succeeding in a new application context.</p>
       </section>
 

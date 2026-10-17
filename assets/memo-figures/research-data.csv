@@ -1,0 +1,9 @@
+study,benchmark,model,condition,score_percent,standard_deviation_pp,table,source
+GameDevBench,GameDevBench pass@1,GPT-5.4 (Codex),No screenshot or video,41.1,,2,https://arxiv.org/html/2602.11103v2#S4.T2.fig1
+GameDevBench,GameDevBench pass@1,GPT-5.4 (Codex),Screenshot and runtime video,52.0,,2,https://arxiv.org/html/2602.11103v2#S4.T2.fig1
+Play to Generalize,MathVista,Qwen2.5-VL-7B,Base model,68.0,,2,https://arxiv.org/html/2506.08011v4#S2.T2
+Play to Generalize,MathVista,Qwen2.5-VL-7B,ViGaL Snake + Rotation,71.9,0.4,2,https://arxiv.org/html/2506.08011v4#S2.T2
+Play to Generalize,MathVerse,Qwen2.5-VL-7B,Base model,49.0,,2,https://arxiv.org/html/2506.08011v4#S2.T2
+Play to Generalize,MathVerse,Qwen2.5-VL-7B,ViGaL Snake + Rotation,52.4,0.2,2,https://arxiv.org/html/2506.08011v4#S2.T2
+Play to Generalize,MathVision,Qwen2.5-VL-7B,Base model,26.0,,2,https://arxiv.org/html/2506.08011v4#S2.T2
+Play to Generalize,MathVision,Qwen2.5-VL-7B,ViGaL Snake + Rotation,27.5,0.3,2,https://arxiv.org/html/2506.08011v4#S2.T2

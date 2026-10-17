@@ -18,6 +18,15 @@
 .task-example figcaption { font-size: 12px; line-height: 1.5; color: #666; margin-bottom: 8px; }
 .task-example h3 { margin: 0 0 12px; font-family: 'EB Garamond', Georgia, serif; font-size: 23px; font-weight: 400; line-height: 1.2; letter-spacing: -.02em; }
 .task-example p { margin-bottom: 0; }
+.memo-figure { margin: 32px 0; }
+.memo-figure h3 { margin: 0 0 16px; font-family: 'EB Garamond', Georgia, serif; font-size: 25px; font-weight: 400; line-height: 1.2; letter-spacing: -.02em; }
+.figure-image { display: block; }
+.figure-image picture, .figure-image img { display: block; width: 100%; }
+.figure-image img { height: auto; }
+.memo-figure figcaption { margin-top: 12px; padding-top: 12px; border-top: 1px solid #d8d8d8; font-size: 13px; line-height: 1.55; color: #666; }
+.figure-label { color: #191919; }
+.chart-panel + .chart-panel { margin-top: 28px; padding-top: 22px; border-top: 1px solid #d8d8d8; }
+.chart-panel .chart-note { margin: 8px 0 0; font-size: 13px; line-height: 1.55; color: #666; }
 .paper-list { list-style: none; padding: 0; margin: 0; }
 .paper-list li { display: grid; grid-template-columns: 24px minmax(0,1fr); gap: 12px; margin: 0 0 14px; scroll-margin-top: 28px; }
 .paper-number { color: #666; font-size: 12px; padding-top: 3px; font-variant-numeric: tabular-nums; }
@@ -28,6 +37,7 @@
 @media (max-width: 680px) {
   .memo-brand { font-size: 42px; }
   .memo-body > h1 { font-size: 32px; }
+  .memo-figure .figure-image { margin-inline: -12px; }
 }
 @media print {
   @page { size: letter; margin: 16mm 18mm; }
@@ -43,6 +53,15 @@
   .task-example figcaption { font-size: 7pt; margin-bottom: 5pt; }
   .task-example h3 { font-size: 12pt; margin-bottom: 6pt; }
   .task-example p { margin-bottom: 0; }
+  .memo-figure { margin: 12pt 0; break-inside: avoid; }
+  .memo-figure h3 { font-size: 13pt; margin-bottom: 6pt; break-after: avoid; }
+  .memo-figure .figure-image { margin-inline: 0; }
+  .memo-figure figcaption, .chart-panel .chart-note { font-size: 8pt; line-height: 1.4; }
+  .memo-figure figcaption { margin-top: 6pt; padding-top: 6pt; }
+  .memo-figure figcaption a[download] { display: none; }
+  .evidence-figure { break-inside: auto; }
+  .chart-panel { break-inside: avoid; }
+  .chart-panel + .chart-panel { margin-top: 10pt; padding-top: 8pt; }
   .cite { font-size: 7pt; padding: 0 1pt; }
   .paper-list { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 6pt 10pt; }
   .paper-list li { grid-template-columns: 12pt minmax(0,1fr); gap: 4pt; margin: 0; font-size: 8pt; break-inside: avoid; }
