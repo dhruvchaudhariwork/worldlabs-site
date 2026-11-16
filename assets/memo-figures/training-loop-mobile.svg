@@ -8,11 +8,11 @@
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
     <dc:title>From an attempt to a learning signal</dc:title>
-    <dc:description>Proposed World Labs architecture. An agent sends actions to an engine or tool worker and receives observations. A protected verifier checks runtime state and replay evidence. An episode record joins action and observation traces, artifacts and reward evidence. The AI lab's RL trainer samples these records and updates the policy for future attempts. The agent cannot edit the protected checks. This is a proposed design, not an implemented product.</dc:description>
+    <dc:description>Proposed Playfield Labs architecture. An agent sends actions to an engine or tool worker and receives observations. A protected verifier checks runtime state and replay evidence. An episode record joins action and observation traces, artifacts and reward evidence. The AI lab's RL trainer samples these records and updates the policy for future attempts. The agent cannot edit the protected checks. This is a proposed design, not an implemented product.</dc:description>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>World Labs</dc:title>
+      <dc:title>Playfield Labs</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>

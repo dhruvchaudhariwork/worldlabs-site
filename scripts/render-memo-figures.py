@@ -59,7 +59,7 @@ def node(ax, x, y, w, h, title, details, protected=False):
 def save(fig, name, title, description, mobile=False):
     stem = name + ("-mobile" if mobile else "")
     fig.savefig(OUT / (stem + ".svg"), metadata={
-        "Title": title, "Description": description, "Creator": "World Labs",
+        "Title": title, "Description": description, "Creator": "Playfield Labs",
         "Date": None,
     })
     if not mobile:
@@ -145,7 +145,7 @@ def workflow(mobile=False):
         text(ax, 18, 353, "Shared, versioned task state", 15)
         text(ax, 18, 381, "Asset IDs · units · app versions · native files · interchange · checkpoints", 13.5, GRAY)
     save(fig, "creative-workflow", "One task across creative tools",
-         "Proposed World Labs workflow. Author geometry and materials in creative tools; "
+         "Proposed Playfield Labs workflow. Author geometry and materials in creative tools; "
          "integrate assets, collisions and logic in a game engine; verify dimensions, behavior "
          "and frame time. Failed checks send work back to the responsible tool. Asset IDs, "
          "units, application versions and checkpoints connect the stages. The isometric "
@@ -205,7 +205,7 @@ def training_loop(mobile=False):
         text(ax, 294, 502, "Execution produces experience.", 16)
         text(ax, 294, 544, "The trainer uses that experience\nto change the model’s weights.", 14, GRAY)
     save(fig, "training-loop", "From an attempt to a learning signal",
-         "Proposed World Labs architecture. An agent sends actions to an engine or tool worker "
+         "Proposed Playfield Labs architecture. An agent sends actions to an engine or tool worker "
          "and receives observations. A protected verifier checks runtime state and replay evidence. "
          "An episode record joins action and observation traces, artifacts and reward evidence. "
          "The AI lab's RL trainer samples these records and updates the policy for future attempts. "
@@ -294,7 +294,7 @@ with TemporaryDirectory() as font_dir:
     font_manager.fontManager.addfont(ttf_path)
     matplotlib.rcParams.update({
         "font.family": font_manager.FontProperties(fname=ttf_path).get_name(),
-        "svg.fonttype": "path", "svg.hashsalt": "worldlabs-memo-figures-v1",
+        "svg.fonttype": "path", "svg.hashsalt": "playfield-labs-memo-figures-v1",
     })
     for draw in [workflow, training_loop, feedback_chart, transfer_chart]:
         draw()

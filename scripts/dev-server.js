@@ -38,4 +38,4 @@ createServer(async (req, res) => {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end(req.method === 'HEAD' ? undefined : '404 Not Found');
   }
-}).listen(port, () => console.log(`World Labs → http://localhost:${port}`));
+}).listen(port, () => console.log(`Playfield Labs → http://localhost:${port}`));

@@ -8,11 +8,11 @@
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
     <dc:title>One task across creative tools</dc:title>
-    <dc:description>Proposed World Labs workflow. Author geometry and materials in creative tools; integrate assets, collisions and logic in a game engine; verify dimensions, behavior and frame time. Failed checks send work back to the responsible tool. Asset IDs, units, application versions and checkpoints connect the stages. The isometric workstation drawings are original schematics, not software screenshots.</dc:description>
+    <dc:description>Proposed Playfield Labs workflow. Author geometry and materials in creative tools; integrate assets, collisions and logic in a game engine; verify dimensions, behavior and frame time. Failed checks send work back to the responsible tool. Asset IDs, units, application versions and checkpoints connect the stages. The isometric workstation drawings are original schematics, not software screenshots.</dc:description>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>World Labs</dc:title>
+      <dc:title>Playfield Labs</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
